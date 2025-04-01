@@ -14,9 +14,10 @@ dependencies:
   bloc: ^9.0.0
   freezed: ^3.0.4
   shared_preferences: ^2.0.6
-  flutter_svg: ^2.0.17
-
-
+  firebase_core: ^2.27.1
+  firebase_auth: ^4.17.9
+  google_sign_in: ^6.2.1
+  flutter_facebook_auth: ^7.1.0
 
 dev_dependencies:
   flutter_test:
