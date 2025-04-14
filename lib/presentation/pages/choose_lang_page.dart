@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gwenchana/common/widgets/basic_appbutton.dart';
 import 'package:gwenchana/common/widgets/basic_appbar.dart';
 import 'package:gwenchana/presentation/pages/login_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ChooseLangPage extends StatefulWidget {
   const ChooseLangPage({super.key});
@@ -15,14 +16,18 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
   final List<Map<String, dynamic>> languages = [
     {'name': 'Русский', 'flag': 'assets/flags/ru.png', 'code': 'ru'},
     {'name': 'English', 'flag': 'assets/flags/us.png', 'code': 'en'},
-    {'name': 'Tiếng Việt', 'flag': 'assets/flags/vn.png', 'code': 'vi'},
-    {'name': '日本語', 'flag': 'assets/flags/jp.png', 'code': 'ja'},
-    {'name': 'Français', 'flag': 'assets/flags/fr.png', 'code': 'fr'},
-    {'name': 'Bahasa Indo', 'flag': 'assets/flags/id.png', 'code': 'id'},
-    {'name': '简体中文', 'flag': 'assets/flags/cn.png', 'code': 'zh_CN'},
-    {'name': '繁體中文', 'flag': 'assets/flags/tw.png', 'code': 'zh_TW'},
-    {'name': 'Deutsch', 'flag': 'assets/flags/de.png', 'code': 'de'},
+    //   {'name': 'Tiếng Việt', 'flag': 'assets/flags/vn.png', 'code': 'vi'},
+    //   {'name': '日本語', 'flag': 'assets/flags/jp.png', 'code': 'ja'},
+    //   {'name': 'Français', 'flag': 'assets/flags/fr.png', 'code': 'fr'},
+    //   {'name': 'Bahasa Indo', 'flag': 'assets/flags/id.png', 'code': 'id'},
+    //   {'name': '简体中文', 'flag': 'assets/flags/cn.png', 'code': 'zh_CN'},
+    //   {'name': '繁體中文', 'flag': 'assets/flags/tw.png', 'code': 'zh_TW'},
+    //   {'name': 'Deutsch', 'flag': 'assets/flags/de.png', 'code': 'de'},
   ];
+
+  void _changeLanguage(String languageCode) {
+    context.setLocale(Locale(languageCode));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +43,8 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
               itemCount: languages.length,
               itemBuilder: (context, index) {
                 final language = languages[index];
-                final isSelected = language['name'] == selectedLanguage;
+                final isSelected =
+                    language['code'] == context.locale.languageCode;
                 return ListTile(
                   leading: CircleAvatar(
                     backgroundImage: AssetImage(language['flag']),
@@ -73,7 +79,7 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
                   onTap: () {
                     setState(() {
                       selectedLanguage = language['name'];
-                      print(selectedLanguage);
+                      _changeLanguage(language['code']);
                     });
                   },
                 );
@@ -89,7 +95,7 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
               onPressed: () {
                 Navigator.of(context).pushReplacement(
                   MaterialPageRoute(
-                    builder: (BuildContext context) => LoginPage(),
+                    builder: (BuildContext context) => const LoginPage(),
                   ),
                 );
               },

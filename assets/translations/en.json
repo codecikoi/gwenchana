@@ -1,0 +1,10 @@
+{
+    "hello": "Hello",
+    "welcome": "Welcome to Gwenchana",
+     "choose_language": "Chose Your Language",
+    "next": "Next",
+    "settings": {
+        "language": "Language",
+        "title": "Settings"
+    }
+}

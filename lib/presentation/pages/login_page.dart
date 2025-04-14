@@ -1,8 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gwenchana/common/helpers/app_colors.dart';
 import 'package:gwenchana/common/widgets/basic_appbar.dart';
 import 'package:gwenchana/common/widgets/basic_appbutton.dart';
 import 'package:gwenchana/core/auth_service.dart';
+import 'package:gwenchana/presentation/pages/app_page.dart';
+import 'package:gwenchana/presentation/pages/recovery_password_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,7 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BasicAppBar(
-        title: Text('Log in'),
+        title: Text('Log in'.tr()),
       ),
       body: Column(
         children: [
@@ -30,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           const SizedBox(height: 16),
           Text(
-            'Welcome to Gwenchana^^',
+            'Welcome to Gwenchana'.tr(),
             style: TextStyle(
               fontSize: 20,
               color: AppColors.appBar,
@@ -61,9 +64,15 @@ class _LoginPageState extends State<LoginPage> {
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => RecoveryPasswordPage(),
+                  ),
+                );
+              },
               child: Text(
-                'Forgot password?',
+                'Forgot password?'.tr(),
                 style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -89,25 +98,31 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: BasicAppButton(
               onPressed: () {
-                // Navigator.of(context).push(
-                //   MaterialPageRoute(
-                //     builder: (context) => HomePage(),
-                //   ),
-                // );
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => AppPage(),
+                  ),
+                );
               },
-              title: ('Log in'),
+              title: ('Log in'.tr()),
             ),
           ),
           const SizedBox(height: 20),
-          BasicAppButton(
-            onPressed: () => AuthService().signInWithGoogle(),
-            title: 'Google Sign In',
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: BasicAppButton(
+              onPressed: () => AuthService().signInWithGoogle(),
+              title: 'Google Sign In',
+            ),
           ),
           const SizedBox(height: 20),
-          BasicAppButton(
-            onPressed: () => AuthService().signInWithFacebook(),
-            title: 'Facebook Sign In',
-          )
+
+          // TODO: facebook log in
+
+          // BasicAppButton(
+          //   onPressed: () => AuthService().signInWithFacebook(),
+          //   title: 'Facebook Sign In',
+          // )
         ],
       ),
     );

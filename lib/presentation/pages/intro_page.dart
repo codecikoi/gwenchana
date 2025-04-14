@@ -12,7 +12,7 @@ class _IntroPageState extends State<IntroPage> {
   @override
   void initState() {
     super.initState();
-    reditect();
+    redirect();
   }
 
   @override
@@ -24,13 +24,13 @@ class _IntroPageState extends State<IntroPage> {
     );
   }
 
-  Future<void> reditect() async {
+  Future<void> redirect() async {
     await Future.delayed(const Duration(seconds: 2));
     if (mounted) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (BuildContext context) => ChooseLangPage(),
+          builder: (BuildContext context) => const ChooseLangPage(),
         ),
       );
     }
