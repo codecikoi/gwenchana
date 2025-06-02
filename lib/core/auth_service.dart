@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
@@ -60,33 +59,35 @@ class AuthService {
 
       return await _auth.signInWithCredential(credential);
     } catch (e) {
+      // ignore: avoid_print
       print('error signing in with google: $e');
     }
   }
+}
 // facebook sign in
 
-  Future<UserCredential?> signInWithFacebook() async {
-    final LoginResult loginResult = await FacebookAuth.instance.login();
+  // Future<UserCredential?> signInWithFacebook() async {
+  //   final LoginResult loginResult = await FacebookAuth.instance.login();
 
-    // Create a credential from the access token
-    if (loginResult.status == LoginStatus.success &&
-        loginResult.accessToken != null) {
-      final OAuthCredential facebookAuthCredential =
-          FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
-      return await FirebaseAuth.instance
-          .signInWithCredential(facebookAuthCredential);
-    } else {
-      return null;
-    }
-  }
+  //   // Create a credential from the access token
+  //   if (loginResult.status == LoginStatus.success &&
+  //       loginResult.accessToken != null) {
+  //     final OAuthCredential facebookAuthCredential =
+  //         FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+  //     return await FirebaseAuth.instance
+  //         .signInWithCredential(facebookAuthCredential);
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   // sign out
 
-  Future<void> signOut() async {
-    await Future.wait([
-      _auth.signOut(),
-      _googleSignIn.signOut(),
-      FacebookAuth.instance.logOut(),
-    ]);
-  }
-}
+//   Future<void> signOut() async {
+//     await Future.wait([
+//       _auth.signOut(),
+//       _googleSignIn.signOut(),
+//       FacebookAuth.instance.logOut(),
+//     ]);
+//   }
+// }

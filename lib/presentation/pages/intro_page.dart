@@ -30,7 +30,8 @@ class _IntroPageState extends State<IntroPage> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (BuildContext context) => const ChooseLangPage(),
+          builder: (BuildContext context) =>
+              ChooseLangPage(onLanguageSelected: () {}),
         ),
       );
     }

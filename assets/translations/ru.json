@@ -1,15 +1,11 @@
 {
     "hello": "Привет",
-    "Welcome to Gwenchana": "Добро пожаловать в Gwenchana",
+    "welcome_text": "Добро пожаловать в Gwenchana",
     "choose_language": "Выберите язык",
     "next": "Далее",
     "Log in": "Вход", 
     "Email": "Введите почту",
     "Password": "Введите пароль",
     "Forgot password?": "Забыли пароль?",
-    "By signing in to Gwenchana, you agree to our Terms of Service and Privacy Policy": "Регистрируясь в Gwenchana, вы соглашаетесь с нашими Условиями обслуживания и Политикой конфиденциальности.",
-    "settings": {
-        "language": "Язык",
-        "title": "Настройки"
-    }
+    "By signing in to Gwenchana, you agree to our Terms of Service and Privacy Policy": "Регистрируясь в Gwenchana, вы соглашаетесь с нашими Условиями обслуживания и Политикой конфиденциальности."
 }
