@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gwenchana/common/helpers/app_colors.dart';
 
 class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
@@ -15,7 +14,6 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      backgroundColor: AppColors.appBar,
       title: title,
       elevation: 0,
     );

@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:gwenchana/presentation/app_localization.dart';
 import 'package:gwenchana/presentation/pages/choose_lang_page.dart';
+import 'package:gwenchana/presentation/pages/login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
-import 'package:gwenchana/presentation/pages/intro_page.dart';
+import 'package:gwenchana/other/intro_page.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:go_router/go_router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -79,18 +81,53 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _onLanguageChanged() {
+    setState(() {
+      _isLanguageSelected = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      // routerConfig: _router,
       title: 'Gwenchana App',
       supportedLocales: localization.supportedLocales,
       localizationsDelegates: localization.localizationsDelegates,
       debugShowCheckedModeBanner: false,
+      // TODO: main fontfamily SORA
+      // TODO: change page
+
       home: _isLanguageSelected
-          ? IntroPage()
+          ? LoginPage()
           : ChooseLangPage(
               onLanguageSelected: _onLanguageSelected,
             ),
     );
   }
 }
+
+final GoRouter _router = GoRouter(
+  initialLocation: '/',
+  routes: <RouteBase>[
+    GoRoute(
+      path: '/',
+      name: 'home',
+      builder: (BuildContext context, GoRouterState state) {
+        return const LoginPage();
+      },
+      routes: <RouteBase>[
+        GoRoute(
+            path: '/choose-lang',
+            name: 'choose-lang',
+            builder: (BuildContext context, GoRouterState state) {
+              return ChooseLangPage(
+                onLanguageSelected: () {
+                  context.go('/login');
+                },
+              );
+            }),
+      ],
+    ),
+  ],
+);

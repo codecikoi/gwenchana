@@ -1,6 +1,9 @@
+import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:gwenchana/common/helpers/app_colors.dart';
 import 'package:gwenchana/presentation/app_localization.dart';
+import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ChooseLangPage extends StatefulWidget {
@@ -33,9 +36,11 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
     setState(() {
       selectedLanguage = languageCode;
     });
-
+    // сохраняем выбранный язык в SharedPreferences
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('selected_language', languageCode);
+
+    // обновляем локализацию приложения
     localization.translate(languageCode);
   }
 
@@ -48,27 +53,28 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[50],
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 14.0,
+            vertical: 10.0,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 40),
-
               // Заголовок
-              Text(
-                AppLocale.chooseLanguage.getString(context),
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black87,
+              Align(
+                alignment: Alignment.center,
+                child: Text(
+                  AppLocale.chooseLanguage.getString(context),
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
                 ),
               ),
-
-              const SizedBox(height: 40),
-
+              const SizedBox(height: 16),
               // Список языков
               Expanded(
                 child: ListView.builder(
@@ -76,9 +82,8 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
                   itemBuilder: (context, index) {
                     final language = languages[index];
                     final isSelected = selectedLanguage == language['code'];
-
                     return Container(
-                      margin: const EdgeInsets.only(bottom: 12),
+                      margin: const EdgeInsets.only(bottom: 5),
                       child: Material(
                         color: Colors.transparent,
                         child: InkWell(
@@ -107,6 +112,16 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
                             child: Row(
                               children: [
                                 // Флаг
+                                // доработать этот пакет позже
+                                // ClipRRect(
+                                //   borderRadius: BorderRadius.circular(7),
+                                //   child: CountryFlag.fromCountryCode(
+                                //     language['code'],
+                                //     width: 16,
+                                //     height: 16,
+                                //     shape: const RoundedRectangle(8.0),
+                                //   ),
+                                // ),
                                 CircleAvatar(
                                     backgroundImage:
                                         AssetImage(language['flag']),
@@ -125,7 +140,6 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
                                     ),
                                   ),
                                 ),
-
                                 // Индикатор выбора
                                 Container(
                                   width: 20,
@@ -159,33 +173,14 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
                   },
                 ),
               ),
-
               const SizedBox(height: 20),
-
               // Кнопка "Далее"
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: selectedLanguage.isNotEmpty
-                      ? _navigateToNextScreen
-                      : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF4CAF50),
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    elevation: selectedLanguage.isNotEmpty ? 2 : 0,
-                  ),
-                  child: Text(
-                    AppLocale.next.getString(context),
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
+              BasicAppButton(
+                onPressed: selectedLanguage.isNotEmpty
+                    ? () => _navigateToNextScreen()
+                    : null,
+                title: AppLocale.next.getString(context),
+                elevation: selectedLanguage.isNotEmpty ? 2 : 0,
               ),
             ],
           ),
