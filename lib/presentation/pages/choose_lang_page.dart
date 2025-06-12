@@ -1,7 +1,5 @@
-import 'package:country_flags/country_flags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:gwenchana/common/helpers/app_colors.dart';
 import 'package:gwenchana/presentation/app_localization.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
 import 'package:shared_preferences/shared_preferences.dart';
