@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:gwenchana/presentation/app_localization.dart';
+import 'package:gwenchana/localization/app_localization.dart';
 import 'package:gwenchana/presentation/pages/app_page.dart';
 import 'package:gwenchana/presentation/pages/choose_lang_page.dart';
 import 'package:gwenchana/presentation/pages/create_account_page.dart';
 import 'package:gwenchana/presentation/pages/login_page.dart';
-import 'package:gwenchana/presentation/pages/recovery_password_page.dart';
+import 'package:gwenchana/presentation/pages/recover_password_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localization/flutter_localization.dart';
@@ -80,9 +80,9 @@ class _MyAppState extends State<MyApp> {
           },
         ),
         GoRoute(
-          path: '/recovery-password',
+          path: '/recover-password',
           builder: (BuildContext context, GoRouterState state) {
-            return RecoveryPasswordPage();
+            return RecoverPasswordPage();
           },
         ),
       ],
@@ -121,10 +121,8 @@ class _MyAppState extends State<MyApp> {
         const MapLocale('ja', AppLocale.JA),
         const MapLocale('fr', AppLocale.FR),
         const MapLocale('id', AppLocale.ID),
-        const MapLocale('zh_CN', AppLocale.ZH_CN),
-        const MapLocale('zh_TW', AppLocale.ZH_TW),
+        const MapLocale('zh', AppLocale.ZH),
         const MapLocale('de', AppLocale.DE),
-        const MapLocale('es', AppLocale.ES),
       ],
       initLanguageCode: 'en',
       // initLanguageCode: 'en', // seting default app language.
@@ -158,13 +156,13 @@ class _MyAppState extends State<MyApp> {
     _router.go('/login');
   }
 
-  void _onLanguageChanged() {
-    setState(() {
-      _isLanguageSelected = false;
-    });
-    // переход на страницу выбора языка
-    _router.go('/сhoose-lang');
-  }
+  // void _onLanguageChanged() {
+  //   setState(() {
+  //     _isLanguageSelected = false;
+  //   });
+  //   // переход на страницу выбора языка
+  //   _router.go('/сhoose-lang');
+  // }
 
   @override
   Widget build(BuildContext context) {

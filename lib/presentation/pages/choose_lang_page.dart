@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:gwenchana/presentation/app_localization.dart';
+import 'package:gwenchana/localization/app_localization.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,7 +26,6 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
     {'name': 'Français', 'flag': 'assets/flags/fr.png', 'code': 'fr'},
     {'name': 'Bahasa Indo', 'flag': 'assets/flags/id.png', 'code': 'id'},
     {'name': '简体中文', 'flag': 'assets/flags/cn.png', 'code': 'zh_CN'},
-    {'name': '繁體中文', 'flag': 'assets/flags/tw.png', 'code': 'zh_TW'},
     {'name': 'Deutsch', 'flag': 'assets/flags/de.png', 'code': 'de'},
   ];
 
@@ -121,9 +120,9 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
                                 //   ),
                                 // ),
                                 CircleAvatar(
-                                    backgroundImage:
-                                        AssetImage(language['flag']),
-                                    radius: 16),
+                                  backgroundImage: AssetImage(language['flag']),
+                                  radius: 16,
+                                ),
                                 const SizedBox(width: 16),
                                 // Название языка
                                 Expanded(

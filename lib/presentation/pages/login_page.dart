@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gwenchana/common/helpers/app_colors.dart';
+import 'package:gwenchana/localization/app_localization.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbar.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
 import 'package:gwenchana/core/auth_service.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -61,7 +63,13 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BasicAppBar(
-        title: Text('Log in'),
+        title: Text(
+          AppLocale.login.getString(context),
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
@@ -80,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 16),
             Text(
-              'Welcome to Gwenchana',
+              '${AppLocale.welcomeTo.getString(context)} Gwenchana',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -91,11 +99,11 @@ class _LoginPageState extends State<LoginPage> {
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                labelText: 'Email',
+                labelText: AppLocale.email.getString(context),
                 border: OutlineInputBorder(),
                 errorText: _emailController.text.isNotEmpty &&
                         !_isValidEmail(_emailController.text.trim())
-                    ? 'Please enter a valid email'
+                    ? AppLocale.pleaseEnterValidEmail.getString(context)
                     : null,
               ),
             ),
@@ -103,17 +111,17 @@ class _LoginPageState extends State<LoginPage> {
             TextField(
               controller: _passwordController,
               obscureText: true,
-              decoration: const InputDecoration(
-                labelText: 'Password',
+              decoration: InputDecoration(
+                labelText: AppLocale.password.getString(context),
                 border: OutlineInputBorder(),
               ),
             ),
             Align(
               alignment: AlignmentDirectional.centerEnd,
               child: TextButton(
-                onPressed: () => context.go('/recovery-password'),
+                onPressed: () => context.go('/recover-password'),
                 child: Text(
-                  'Forgot password?',
+                  AppLocale.forgotPassword.getString(context),
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -126,38 +134,126 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Icon(Icons.check_box, color: Colors.teal),
                 SizedBox(width: 4),
-                Text(
-                    ' By signing in to Gwenchana, you agree \n to our Terms of Service and Privacy Policy',
+                Expanded(
+                  child: Text(
+                    AppLocale.termsAndConditions.getString(context),
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
-                    )),
+                    ),
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 20),
             BasicAppButton(
               onPressed: _isFormValid ? _handleLogin : null,
-              title: ('Log in'),
+              title: AppLocale.login.getString(context),
             ),
-            const SizedBox(height: 12),
-            BasicAppButton(
-              onPressed: () => AuthService().signInWithGoogle(),
-              title: 'Google Sign In',
+            const SizedBox(height: 10),
+
+            // sign in with google and facebook
+
+            Row(
+              children: [
+                Expanded(
+                  child: Divider(
+                    color: AppColors.black,
+                    thickness: 1,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8.0,
+                  ),
+                  child: Text(
+                    AppLocale.signInWith.getString(context),
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.black,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Divider(
+                    color: AppColors.black,
+                    thickness: 1,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 20),
+            // google sign in button
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                Expanded(
+                  child: ElevatedButton.icon(
+                    onPressed: () => AuthService().signInWithGoogle(),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.black,
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    icon: Image.asset(
+                      'assets/logo/google_logo.png',
+                      width: 28,
+                      height: 28,
+                    ),
+                    label: Text(
+                      'Google',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: ElevatedButton.icon(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.black,
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                    icon: Image.asset(
+                      'assets/logo/facebook_logo.png',
+                      width: 28,
+                      height: 28,
+                    ),
+                    label: Text(
+                      'Facebook',
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
             Row(
               children: [
                 Text(
-                  'Don\'t have an account?',
+                  AppLocale.dontHaveAccount.getString(context),
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 TextButton(
-                  onPressed: () => context.push('/create-account'),
+                  onPressed: () => context.go('/create-account'),
                   child: Text(
-                    'Create account',
+                    AppLocale.createAccount.getString(context),
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
