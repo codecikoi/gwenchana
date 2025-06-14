@@ -20,6 +20,7 @@ mixin AppLocale {
   static const String doHaveAccount = 'Do you have an account';
   static const String signIn = 'Sign in';
   static const String pleaseEnterValidEmail = 'Please enter a valid email';
+  static const String passwordsNotMatch = 'Passwords do not match';
 
   // English
   static const Map<String, dynamic> EN = {

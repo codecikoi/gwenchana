@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gwenchana/common/helpers/app_colors.dart';
@@ -19,9 +20,12 @@ class _LoginPageState extends State<LoginPage> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final AuthService _authService = AuthService();
 
   // переменная для проверки валидности формы
+  bool _isLoading = false;
   bool _isFormValid = false;
+  String? _errorMessage;
 
   @override
   void initState() {
@@ -45,6 +49,7 @@ class _LoginPageState extends State<LoginPage> {
       _isFormValid = _emailController.text.trim().isNotEmpty &&
           _passwordController.text.trim().isNotEmpty &&
           _isValidEmail(_emailController.text.trim());
+      _errorMessage = null;
     });
   }
 
@@ -53,9 +58,34 @@ class _LoginPageState extends State<LoginPage> {
     return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
   }
 
-  void _handleLogin() {
-    if (_isFormValid) {
-      context.go('/app-page');
+  Future<void> _handleLogin() async {
+    if (!_isFormValid) return;
+
+    setState(() {
+      _isLoading = true;
+      _errorMessage = null;
+    });
+    try {
+      final userCredential = await _authService.signInWithEmailPassword(
+        _emailController.text.trim(),
+        _passwordController.text,
+      );
+
+      if (userCredential != null && userCredential.user != null) {
+        if (mounted) {
+          context.go('/app-page');
+        }
+      }
+    } catch (e) {
+      setState(() {
+        _errorMessage = e.toString();
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -148,7 +178,9 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 20),
             BasicAppButton(
               onPressed: _isFormValid ? _handleLogin : null,
-              title: AppLocale.login.getString(context),
+              title: _isLoading
+                  ? 'signing in...'
+                  : AppLocale.login.getString(context),
             ),
             const SizedBox(height: 10),
 
@@ -262,6 +294,17 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
+            if (_errorMessage != null)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: Text(
+                  _errorMessage!,
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
           ],
         ),
       ),

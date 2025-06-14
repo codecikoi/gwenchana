@@ -113,21 +113,24 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> configureLocalization() async {
-    localization.init(
-      mapLocales: [
-        const MapLocale('en', AppLocale.EN),
-        const MapLocale('ru', AppLocale.RU),
-        const MapLocale('vi', AppLocale.VI),
-        const MapLocale('ja', AppLocale.JA),
-        const MapLocale('fr', AppLocale.FR),
-        const MapLocale('id', AppLocale.ID),
-        const MapLocale('zh', AppLocale.ZH),
-        const MapLocale('de', AppLocale.DE),
-      ],
-      initLanguageCode: 'en',
-      // initLanguageCode: 'en', // seting default app language.
-    );
-    localization.onTranslatedLanguage = _onTranslatedLanguage;
+    try {
+      localization.init(
+        mapLocales: [
+          const MapLocale('en', AppLocale.EN),
+          const MapLocale('ru', AppLocale.RU),
+          const MapLocale('vi', AppLocale.VI),
+          const MapLocale('ja', AppLocale.JA),
+          const MapLocale('fr', AppLocale.FR),
+          const MapLocale('id', AppLocale.ID),
+          const MapLocale('zh_CN', AppLocale.ZH),
+          const MapLocale('de', AppLocale.DE),
+        ],
+        initLanguageCode: 'en',
+      );
+      localization.onTranslatedLanguage = _onTranslatedLanguage;
+    } catch (e) {
+      print('error initializing localization: $e');
+    }
   }
 
   void _onTranslatedLanguage(Locale? locale) {

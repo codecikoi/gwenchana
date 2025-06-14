@@ -11,7 +11,7 @@ class _AppPageState extends State<AppPage> {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('HERE WILL BE 4 BLOCKS AUDIO, VOCABULARY'),
+      child: Text('User name'),
     );
   }
 }

@@ -17,35 +17,88 @@ class CreateAccountPage extends StatefulWidget {
 class _CreateAccountPageState extends State<CreateAccountPage> {
   // контроллеры для текстовых полей
 
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
+  final AuthService _authService = AuthService();
 
   // переменная для проверки валидности формы
   bool _isFormValid = false;
+  bool _isLoading = false;
 
   @override
   void initState() {
     super.initState();
 
     // инициализация контроллеров
+    _nameController.addListener(_validateForm);
     _emailController.addListener(_validateForm);
     _passwordController.addListener(_validateForm);
+    _confirmPasswordController.addListener(_validateForm);
   }
 
   @override
   void dispose() {
     // освобождение ресурсов контроллеров
+    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
   void _validateForm() {
     setState(() {
-      _isFormValid = _emailController.text.trim().isNotEmpty &&
+      _isFormValid = _nameController.text.trim().isNotEmpty &&
+          _emailController.text.trim().isNotEmpty &&
           _passwordController.text.trim().isNotEmpty &&
-          _isValidEmail(_emailController.text.trim());
+          _confirmPasswordController.text.trim().isNotEmpty &&
+          _isValidEmail(_emailController.text.trim()) &&
+          _passwordController.text == _confirmPasswordController.text;
     });
+  }
+
+  Future<void> _handleCreateAccount() async {
+    if (!_isFormValid) return;
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final userCredential = await _authService.signUpWithEmailPassword(
+        _emailController.text.trim(),
+        _passwordController.text,
+      );
+
+      if (userCredential != null && userCredential.user != null) {
+        // save user data to firestore
+
+        await userCredential.user!
+            .updateDisplayName(_nameController.text.trim());
+        if (mounted) {
+          context.go('/app-page');
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
   }
 
   // валидация почты
@@ -53,11 +106,11 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
   }
 
-  void _handleLogin() {
-    if (_isFormValid) {
-      context.go('/app-page');
-    }
-  }
+  // void _handleLogin() {
+  //   if (_isFormValid) {
+  //     context.go('/app-page');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -79,8 +132,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         child: Column(
           children: [
             TextField(
-              controller: _passwordController,
-              obscureText: true,
+              controller: _nameController,
               decoration: InputDecoration(
                 labelText: AppLocale.name.getString(context),
                 border: OutlineInputBorder(),
@@ -110,11 +162,16 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             ),
             const SizedBox(height: 16),
             TextField(
-              controller: _passwordController,
+              controller: _confirmPasswordController,
               obscureText: true,
               decoration: InputDecoration(
                 labelText: AppLocale.confirmPassword.getString(context),
                 border: OutlineInputBorder(),
+                errorText: _confirmPasswordController.text.isNotEmpty &&
+                        _passwordController.text !=
+                            _confirmPasswordController.text
+                    ? AppLocale.passwordsNotMatch.getString(context)
+                    : null,
               ),
             ),
             const SizedBox(height: 16),
@@ -135,8 +192,10 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             ),
             const SizedBox(height: 20),
             BasicAppButton(
-              onPressed: _isFormValid ? _handleLogin : null,
-              title: AppLocale.createAccount.getString(context),
+              onPressed: _isFormValid ? _handleCreateAccount : null,
+              title: _isLoading
+                  ? 'Creating account ...'
+                  : AppLocale.createAccount.getString(context),
             ),
             const SizedBox(height: 10),
             Row(
