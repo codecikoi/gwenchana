@@ -1,6 +1,6 @@
 name: gwenchana
 description: "A new Flutter project."
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none' 
 version: 1.0.0+1
 
 environment:
@@ -20,6 +20,7 @@ dependencies:
   google_sign_in: ^6.2.1
   country_flags: ^3.2.0
   go_router: ^15.1.3
+  flutter_facebook_auth: ^7.1.2
   
 
 dev_dependencies:

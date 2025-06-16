@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Gwenchana</string>
-    <string name="facebook_client_token">1207605197591153</string>
+    <string name="facebook_app_id">1207605197591153</string>
+    <string name="facebook_client_token">0c034e64c39db73150f4816d87e99e09</string>
     <string name="fb_login_protocol_scheme">fb1207605197591153</string>
 </resources>

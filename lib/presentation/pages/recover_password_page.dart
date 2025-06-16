@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:go_router/go_router.dart';
+import 'package:gwenchana/core/auth_service.dart';
 import 'package:gwenchana/localization/app_localization.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbar.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
@@ -19,6 +20,7 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
 
   // переменная для проверки валидности формы
   bool _isFormValid = false;
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -50,9 +52,37 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
   // тут должно быть другое
   // страница воосстановления пароля
 
-  void _handleLogin() {
-    if (_isFormValid) {
-      context.go('/app-page');
+  void _handlePasswordReset() async {
+    if (!_isFormValid) return;
+    setState(() {
+      _isLoading = true;
+    });
+    try {
+      await AuthService().resetPassword(
+        _emailController.text.trim(),
+      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Password reset email link sent! Check your inbox.'),
+          backgroundColor: Colors.green,
+        ));
+        context.go('/login');
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -89,8 +119,11 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
             ),
             const SizedBox(height: 40),
             BasicAppButton(
-              onPressed: _isFormValid ? _handleLogin : null,
-              title: AppLocale.reset.getString(context),
+              onPressed:
+                  (_isFormValid && !_isLoading) ? _handlePasswordReset : null,
+              title: _isLoading
+                  ? 'Sending...'
+                  : AppLocale.reset.getString(context),
             ),
             const SizedBox(height: 30),
           ],
