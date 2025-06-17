@@ -106,12 +106,6 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
   }
 
-  // void _handleLogin() {
-  //   if (_isFormValid) {
-  //     context.go('/app-page');
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
