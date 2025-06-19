@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:gwenchana/bloc/auth/language/language_bloc.dart';
-import 'package:gwenchana/bloc/auth/language/language_event.dart';
-import 'package:gwenchana/bloc/auth/language/language_state.dart';
-import 'package:gwenchana/localization/app_localization.dart';
+import 'package:gwenchana/presentation/bloc/auth/language/language_bloc.dart';
+import 'package:gwenchana/presentation/bloc/auth/language/language_event.dart';
+import 'package:gwenchana/presentation/bloc/auth/language/language_state.dart';
+import 'package:gwenchana/core/localization/app_localization.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
 
 class ChooseLangPage extends StatefulWidget {

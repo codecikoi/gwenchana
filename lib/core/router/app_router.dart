@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:gwenchana/bloc/auth/auth_bloc.dart';
-import 'package:gwenchana/bloc/auth/auth_state.dart';
-import 'package:gwenchana/bloc/auth/language/language_bloc.dart';
-import 'package:gwenchana/bloc/auth/language/language_state.dart';
+import 'package:gwenchana/presentation/bloc/auth/auth_bloc.dart';
+import 'package:gwenchana/presentation/bloc/auth/auth_state.dart';
+import 'package:gwenchana/presentation/bloc/auth/language/language_bloc.dart';
+import 'package:gwenchana/presentation/bloc/auth/language/language_state.dart';
 import 'package:gwenchana/presentation/pages/app_page.dart';
 import 'package:gwenchana/presentation/pages/choose_lang_page.dart';
 import 'package:gwenchana/presentation/pages/create_account_page.dart';
@@ -25,16 +25,17 @@ class AppRouter {
                 if (languageState is LanguageNotSelected) {
                   return ChooseLangPage(
                     onLanguageSelected: () {
-                      context.go('/choose-lang');
+                      context.go('/login');
                     },
                   );
                 }
                 return BlocBuilder<AuthBloc, AuthState>(
                   builder: (context, authState) {
                     if (authState is AuthAuthenticated) {
-                      return LoginPage();
+                      return AppPage();
+                      // apppage
                     }
-                    return AppPage();
+                    return LoginPage();
                   },
                 );
               },
@@ -46,7 +47,7 @@ class AppRouter {
           builder: (BuildContext context, GoRouterState state) {
             return ChooseLangPage(
               onLanguageSelected: () {
-                context.go('/choose-lang');
+                context.go('/login');
               },
             );
           },
@@ -54,7 +55,8 @@ class AppRouter {
         GoRoute(
           path: '/app-page',
           builder: (BuildContext context, GoRouterState state) {
-            return AppPage();
+            return CreateAccountPage();
+            // apppage
           },
         ),
         GoRoute(
@@ -80,21 +82,23 @@ class AppRouter {
 
         // eсли язык не выбран
 
-        if (languageState is LanguageNotSelected &&
-            location != '/choose-lang' &&
-            location != '/') {
-          return '/choose-lang';
+        if (languageState is LanguageNotSelected && location != '/') {
+          return '/';
         }
+
         if (authState is AuthAuthenticated) {
           if (location == '/login' ||
               location == '/create-account' ||
-              location == '/recover-password') {
+              location == '/recover-password' ||
+              location == '/') {
             return '/app-page';
           }
         }
 
-        if (authState is AuthUnauthenticated && location == '/app-page') {
-          return '/login';
+        if (authState is AuthUnauthenticated) {
+          if (location == '/app-page' || location == '/') {
+            return '/login';
+          }
         }
         return null;
       },

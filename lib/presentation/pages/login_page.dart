@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:gwenchana/common/helpers/app_colors.dart';
-import 'package:gwenchana/localization/app_localization.dart';
+import 'package:gwenchana/core/localization/app_localization.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbar.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
-import 'package:gwenchana/core/auth_service.dart';
+import 'package:gwenchana/core/services/auth_service.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 
 class LoginPage extends StatefulWidget {

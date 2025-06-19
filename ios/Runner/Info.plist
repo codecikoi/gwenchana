@@ -41,7 +41,11 @@
 	<key>GIDClientID</key>
 	<string>321930392834-t7e9sq4qphgoi0v1srto8soo1equgf67.apps.googleusercontent.com</string>
 	
-
+	<!-- privacy descriptions -->
+	<key>NSCameraUsageDescription</key>
+	<string>App needs camera access for profile photos</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App needs photo library access for profile photos</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
