@@ -29,7 +29,7 @@ class AuthSignUpRequested extends AuthEvent {
   final String email;
   final String password;
 
-  AuthSignUpRequested({
+  const AuthSignUpRequested({
     required this.name,
     required this.email,
     required this.password,

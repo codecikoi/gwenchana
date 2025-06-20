@@ -22,20 +22,25 @@ class AppRouter {
           builder: (BuildContext context, GoRouterState state) {
             return BlocBuilder<LanguageBloc, LanguageState>(
               builder: (context, languageState) {
-                if (languageState is LanguageNotSelected) {
-                  return ChooseLangPage(
-                    onLanguageSelected: () {
-                      context.go('/login');
-                    },
-                  );
-                }
                 return BlocBuilder<AuthBloc, AuthState>(
                   builder: (context, authState) {
-                    if (authState is AuthAuthenticated) {
-                      return AppPage();
-                      // apppage
+                    if (authState is AuthUnauthenticated &&
+                        languageState is LanguageNotSelected) {
+                      return ChooseLangPage(
+                        onLanguageSelected: () {
+                          context.go('/login');
+                        },
+                      );
                     }
-                    return LoginPage();
+                    if (authState is AuthUnauthenticated &&
+                        languageState is LanguageSelectedState) {
+                      return LoginPage();
+                    }
+                    if (authState is AuthAuthenticated &&
+                        languageState is LanguageSelectedState) {
+                      return AppPage();
+                    }
+                    return ScaffoldMessenger(child: Text('error'));
                   },
                 );
               },
@@ -82,23 +87,23 @@ class AppRouter {
 
         // eсли язык не выбран
 
-        if (languageState is LanguageNotSelected && location != '/') {
+        if (authState is AuthUnauthenticated &&
+            languageState is LanguageNotSelected &&
+            location != '/') {
           return '/';
         }
 
-        if (authState is AuthAuthenticated) {
-          if (location == '/login' ||
-              location == '/create-account' ||
-              location == '/recover-password' ||
-              location == '/') {
-            return '/app-page';
-          }
+        // Если язык выбран, но не авторизован — всегда на /login
+        if (authState is AuthUnauthenticated &&
+            languageState is LanguageSelectedState &&
+            location != '/login') {
+          return '/login';
         }
-
-        if (authState is AuthUnauthenticated) {
-          if (location == '/app-page' || location == '/') {
-            return '/login';
-          }
+        // Если авторизован и язык выбран — всегда на /app-page
+        if (authState is AuthAuthenticated &&
+            languageState is LanguageSelectedState &&
+            location != '/app-page') {
+          return '/app-page';
         }
         return null;
       },
