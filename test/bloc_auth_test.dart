@@ -4,6 +4,9 @@
 // import 'package:gwenchana/presentation/bloc/auth/auth_event.dart';
 // import 'package:gwenchana/presentation/bloc/auth/auth_state.dart';
 // import 'package:mockito/mockito.dart';
+// import 'package:gwenchana/core/services/auth_service.dart';
+
+// class MockAuthService extends Mock implements AuthService {}
 
 // void main() {
 //   group('AuthBloc', () {

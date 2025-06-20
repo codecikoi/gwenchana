@@ -3,6 +3,7 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
+import 'package:gwenchana/core/services/dotenv.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -49,20 +50,22 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCh30AjHTJF9m_HEOYfF1pSMjl08QIbRi4',
-    appId: '1:321930392834:android:b9df6295449c1152727e1b',
-    messagingSenderId: '321930392834',
-    projectId: 'gwenchana-2024',
-    storageBucket: 'gwenchana-2024.firebasestorage.app',
-  );
+  static final _dotenv = FireBaseOptionsService();
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCCYBKFFuOmlqlAXI8MGrYyiHEr3YqYqrU',
-    appId: '1:321930392834:ios:73e8dfebdbf91ccf727e1b',
-    messagingSenderId: '321930392834',
-    projectId: 'gwenchana-2024',
-    storageBucket: 'gwenchana-2024.firebasestorage.app',
-    iosBundleId: 'com.example.gwenchana',
-  );
+  static FirebaseOptions get android => FirebaseOptions(
+        apiKey: _dotenv.apiKeyAndroid,
+        appId: _dotenv.appIdAndroid,
+        messagingSenderId: _dotenv.messagingSenderId,
+        projectId: _dotenv.projectId,
+        storageBucket: _dotenv.storageBucket,
+      );
+
+  static FirebaseOptions get ios => FirebaseOptions(
+        apiKey: _dotenv.apiKeyIos,
+        appId: _dotenv.appIdIos,
+        messagingSenderId: _dotenv.messagingSenderId,
+        projectId: _dotenv.projectId,
+        storageBucket: _dotenv.storageBucket,
+        iosBundleId: _dotenv.bundleIdIos,
+      );
 }
