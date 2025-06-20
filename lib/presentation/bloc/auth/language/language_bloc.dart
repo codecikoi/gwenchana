@@ -17,17 +17,25 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
     Emitter<LanguageState> emit,
   ) async {
     try {
+      print('📱 LanguageBloc: Загружаем сохраненный язык...');
       // сохранение языка в локальное хранилище (SharedPreferences)
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? savedLanguage = prefs.getString('selected_language');
 
-      if (savedLanguage != null) {
+      print('📱 LanguageBloc: Сохраненный язык = $savedLanguage');
+
+      if (savedLanguage != null && savedLanguage.isNotEmpty) {
         localization.translate(savedLanguage);
+        print(
+            '📱 LanguageBloc: Язык найден, переключаемся на LanguageSelectedState($savedLanguage)');
         emit(LanguageSelectedState(savedLanguage));
       } else {
+        print(
+            '📱 LanguageBloc: Язык не найден, переключаемся на LanguageNotSelected');
         emit(LanguageNotSelected());
       }
     } catch (e) {
+      print('❌ LanguageBloc: Ошибка при загрузке языка: $e');
       emit(LanguageNotSelected());
     }
   }
@@ -39,13 +47,15 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
     Emitter<LanguageState> emit,
   ) async {
     try {
+      print('📱 LanguageBloc: Выбран язык ${event.languageCode}');
       // сохранение выбранного языка (SharedPreferences)
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString('selected_language', event.languageCode);
       // обновление локализации
       localization.translate(event.languageCode);
-
+      print(
+          '📱 LanguageBloc: Язык сохранен и применен, переключаемся на LanguageSelectedState');
       emit(LanguageSelectedState(event.languageCode));
     } catch (e) {
       print('$e.toString()');

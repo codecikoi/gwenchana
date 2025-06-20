@@ -24,22 +24,37 @@ class AppRouter {
               builder: (context, languageState) {
                 return BlocBuilder<AuthBloc, AuthState>(
                   builder: (context, authState) {
+                    print('AuthState: ${authState.runtimeType}');
+                    print('LanguageState: ${languageState.runtimeType}');
+
+                    if (authState is AuthInitial || authState is AuthLoading) {
+                      return Scaffold(
+                        body: Text('ebaaa'),
+                      );
+                    }
+
                     if (authState is AuthUnauthenticated &&
-                        languageState is LanguageNotSelected) {
+                        languageState is LanguageNotSelected &&
+                        languageState is LanguageInitial) {
                       return ChooseLangPage(
                         onLanguageSelected: () {
+                          print('🎯 Показываем ChooseLangPage');
                           context.go('/login');
                         },
                       );
                     }
                     if (authState is AuthUnauthenticated &&
                         languageState is LanguageSelectedState) {
+                      print('🎯 Показываем LoginPAge');
                       return LoginPage();
                     }
                     if (authState is AuthAuthenticated &&
                         languageState is LanguageSelectedState) {
+                      print('🎯 Показываем APPPAGE');
                       return AppPage();
                     }
+                    print(
+                        '❌ Неожиданное состояние: Auth=${authState.runtimeType}, Lang=${languageState.runtimeType}');
                     return ScaffoldMessenger(child: Text('error'));
                   },
                 );
@@ -48,19 +63,15 @@ class AppRouter {
           },
         ),
         GoRoute(
-          path: '/choose-lang',
+          path: '/login',
           builder: (BuildContext context, GoRouterState state) {
-            return ChooseLangPage(
-              onLanguageSelected: () {
-                context.go('/login');
-              },
-            );
+            return LoginPage();
           },
         ),
         GoRoute(
           path: '/app-page',
           builder: (BuildContext context, GoRouterState state) {
-            return CreateAccountPage();
+            return AppPage();
             // apppage
           },
         ),
@@ -89,6 +100,7 @@ class AppRouter {
 
         if (authState is AuthUnauthenticated &&
             languageState is LanguageNotSelected &&
+            languageState is LanguageInitial &&
             location != '/') {
           return '/';
         }

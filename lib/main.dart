@@ -11,7 +11,6 @@ import 'package:gwenchana/core/services/auth_service.dart';
 import 'package:gwenchana/core/localization/app_localization.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:go_router/go_router.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,12 +32,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final FlutterLocalization localization = FlutterLocalization.instance;
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-  late final GoRouter _router;
 
   @override
   void initState() {
     super.initState();
-    _router = AppRouter.createRouter(navigatorKey);
     _configureLocalization();
   }
 
@@ -84,14 +81,20 @@ class _MyAppState extends State<MyApp> {
           )..add(LanguageLoaded()),
         ),
       ],
-      child: MaterialApp.router(
-        routerConfig: _router,
-        title: 'Gwenchana App',
-        supportedLocales: localization.supportedLocales,
-        localizationsDelegates: localization.localizationsDelegates,
-        debugShowCheckedModeBanner: false,
+      child: Builder(
+        builder: (context) {
+          final router = AppRouter.createRouter(navigatorKey);
 
-        // TODO: main fontfamily SORA
+          return MaterialApp.router(
+            routerConfig: router,
+            title: 'Gwenchana App',
+            supportedLocales: localization.supportedLocales,
+            localizationsDelegates: localization.localizationsDelegates,
+            debugShowCheckedModeBanner: false,
+
+            // TODO: main fontfamily SORA
+          );
+        },
       ),
     );
   }
