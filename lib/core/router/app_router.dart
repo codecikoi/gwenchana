@@ -29,32 +29,36 @@ class AppRouter {
 
                     if (authState is AuthInitial || authState is AuthLoading) {
                       return Scaffold(
-                        body: Text('ebaaa'),
+                        body: Center(
+                          child: CircularProgressIndicator(),
+                        ),
                       );
                     }
 
-                    if (authState is AuthUnauthenticated &&
-                        languageState is LanguageNotSelected &&
+                    // если язык не выбран
+
+                    if (languageState is LanguageNotSelected ||
                         languageState is LanguageInitial) {
                       return ChooseLangPage(
                         onLanguageSelected: () {
-                          print('🎯 Показываем ChooseLangPage');
+                          print('neponyanno srabotalo');
                           context.go('/login');
                         },
                       );
                     }
-                    if (authState is AuthUnauthenticated &&
-                        languageState is LanguageSelectedState) {
-                      print('🎯 Показываем LoginPAge');
+
+                    if ((authState is AuthUnauthenticated) &&
+                        (languageState is LanguageSelectedState)) {
+                      print('Показываем LoginPAge');
                       return LoginPage();
                     }
                     if (authState is AuthAuthenticated &&
                         languageState is LanguageSelectedState) {
-                      print('🎯 Показываем APPPAGE');
+                      print('показываем APPPAGE');
                       return AppPage();
                     }
                     print(
-                        '❌ Неожиданное состояние: Auth=${authState.runtimeType}, Lang=${languageState.runtimeType}');
+                        'Неожиданное состояние: Auth=${authState.runtimeType}, Lang=${languageState.runtimeType}');
                     return ScaffoldMessenger(child: Text('error'));
                   },
                 );
@@ -98,17 +102,20 @@ class AppRouter {
 
         // eсли язык не выбран
 
-        if (authState is AuthUnauthenticated &&
-            languageState is LanguageNotSelected &&
-            languageState is LanguageInitial &&
+        if ((languageState is LanguageNotSelected ||
+                languageState is LanguageInitial) &&
             location != '/') {
+          print('yazik ne vibran');
           return '/';
         }
 
         // Если язык выбран, но не авторизован — всегда на /login
         if (authState is AuthUnauthenticated &&
             languageState is LanguageSelectedState &&
+            location != '/create-account' &&
+            location != '/recover-password' &&
             location != '/login') {
+          print('ne avtorizovan');
           return '/login';
         }
         // Если авторизован и язык выбран — всегда на /app-page
@@ -117,6 +124,8 @@ class AppRouter {
             location != '/app-page') {
           return '/app-page';
         }
+
+        print('redirect ne nujen');
         return null;
       },
     );

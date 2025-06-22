@@ -12,11 +12,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({required AuthService authService})
       : _authService = authService,
         super(AuthInitial()) {
-    print('🔐 AuthBloc: Инициализируем...');
+    print('AuthBloc: Инициализируем...');
     // подписываемся на изменения состояния авторизации
 
     _authSubscription = _authService.authStateChanges.listen((user) {
-      print('🔐 AuthBloc: Auth state changed, user = ${user?.email ?? 'null'}');
+      print('AuthBloc: Auth state changed, user = ${user?.email ?? 'null'}');
       if (user != null) {
         // user авторизован => обновляение состояния
         add(AuthStatusChecked());
@@ -156,13 +156,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     AuthStatusChecked event,
     Emitter<AuthState> emit,
   ) {
-    print('🔐 AuthBloc: Проверяем статус авторизации...');
+    print('AuthBloc: Проверяем статус авторизации...');
     final currentUser = _authService.currentUser;
     if (currentUser != null) {
-      print('🔐 AuthBloc: Пользователь авторизован: ${currentUser.email}');
+      print('AuthBloc: Пользователь авторизован: ${currentUser.email}');
       emit(AuthAuthenticated(user: currentUser));
     } else {
-      print('🔐 AuthBloc: Пользователь не авторизован');
+      print('AuthBloc: Пользователь не авторизован');
       emit(AuthUnauthenticated());
     }
   }

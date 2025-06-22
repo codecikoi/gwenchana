@@ -17,25 +17,25 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
     Emitter<LanguageState> emit,
   ) async {
     try {
-      print('📱 LanguageBloc: Загружаем сохраненный язык...');
+      print('LanguageBloc: Загружаем сохраненный язык...');
       // сохранение языка в локальное хранилище (SharedPreferences)
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? savedLanguage = prefs.getString('selected_language');
 
-      print('📱 LanguageBloc: Сохраненный язык = $savedLanguage');
+      print('LanguageBloc: Сохраненный язык = $savedLanguage');
 
       if (savedLanguage != null && savedLanguage.isNotEmpty) {
         localization.translate(savedLanguage);
         print(
-            '📱 LanguageBloc: Язык найден, переключаемся на LanguageSelectedState($savedLanguage)');
+            'LanguageBloc: Язык найден, переключаемся на LanguageSelectedState($savedLanguage)');
         emit(LanguageSelectedState(savedLanguage));
       } else {
         print(
-            '📱 LanguageBloc: Язык не найден, переключаемся на LanguageNotSelected');
+            'LanguageBloc: Язык не найден, переключаемся на LanguageNotSelected');
         emit(LanguageNotSelected());
       }
     } catch (e) {
-      print('❌ LanguageBloc: Ошибка при загрузке языка: $e');
+      print('LanguageBloc: Ошибка при загрузке языка: $e');
       emit(LanguageNotSelected());
     }
   }
@@ -47,7 +47,7 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
     Emitter<LanguageState> emit,
   ) async {
     try {
-      print('📱 LanguageBloc: Выбран язык ${event.languageCode}');
+      print('LanguageBloc: Выбран язык ${event.languageCode}');
       // сохранение выбранного языка (SharedPreferences)
 
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -55,7 +55,7 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
       // обновление локализации
       localization.translate(event.languageCode);
       print(
-          '📱 LanguageBloc: Язык сохранен и применен, переключаемся на LanguageSelectedState');
+          'LanguageBloc: Язык сохранен и применен, переключаемся на LanguageSelectedState');
       emit(LanguageSelectedState(event.languageCode));
     } catch (e) {
       print('$e.toString()');
