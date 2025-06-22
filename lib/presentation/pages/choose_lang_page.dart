@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:gwenchana/presentation/bloc/auth/language/language_bloc.dart';
 import 'package:gwenchana/core/localization/app_localization.dart';
+import 'package:gwenchana/presentation/bloc/auth/language/language_state.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
 import 'package:gwenchana/presentation/bloc/auth/language/language_event.dart';
 
@@ -32,6 +33,7 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
   void _selectLanguage(String languageCode) {
     setState(() {
       selectedLanguage = languageCode;
+      FlutterLocalization.instance.translate(languageCode);
     });
     // отправляем событие в LanguageBloc
   }
@@ -39,135 +41,140 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
   void _confirmLanguageSelection() {
     if (selectedLanguage.isNotEmpty) {
       context.read<LanguageBloc>().add(LanguageSelected(selectedLanguage));
-      // widget.onLanguageSelected();
+      widget.onLanguageSelected();
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 14.0,
-            vertical: 10.0,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Заголовок
-              Align(
-                alignment: Alignment.center,
-                child: Text(
-                  AppLocale.chooseLanguage.getString(context),
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
-                  ),
-                ),
+    return BlocBuilder<LanguageBloc, LanguageState>(
+      builder: (context, state) {
+        return Scaffold(
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 14.0,
+                vertical: 10.0,
               ),
-              const SizedBox(height: 16),
-              // Список языков
-              Expanded(
-                child: ListView.builder(
-                  itemCount: languages.length,
-                  itemBuilder: (context, index) {
-                    final language = languages[index];
-                    final isSelected = selectedLanguage == language['code'];
-                    return Container(
-                      margin: const EdgeInsets.only(bottom: 5),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: () => _selectLanguage(language['code']),
-                          borderRadius: BorderRadius.circular(16),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 16),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Заголовок
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      AppLocale.chooseLanguage.getString(context),
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  // Список языков
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: languages.length,
+                      itemBuilder: (context, index) {
+                        final language = languages[index];
+                        final isSelected = selectedLanguage == language['code'];
+                        return Container(
+                          margin: const EdgeInsets.only(bottom: 5),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () => _selectLanguage(language['code']),
                               borderRadius: BorderRadius.circular(16),
-                              border: Border.all(
-                                color: isSelected
-                                    ? const Color(0xFF4CAF50)
-                                    : Colors.grey[300]!,
-                                width: isSelected ? 2 : 1,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.05),
-                                  blurRadius: 8,
-                                  offset: const Offset(0, 2),
-                                ),
-                              ],
-                            ),
-                            child: Row(
-                              children: [
-                                CircleAvatar(
-                                  backgroundImage: AssetImage(language['flag']),
-                                  radius: 16,
-                                ),
-                                const SizedBox(width: 16),
-                                // Название языка
-                                Expanded(
-                                  child: Text(
-                                    language['name'],
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500,
-                                      color: isSelected
-                                          ? const Color(0xFF4CAF50)
-                                          : Colors.black87,
-                                    ),
-                                  ),
-                                ),
-                                // Индикатор выбора
-                                Container(
-                                  width: 20,
-                                  height: 20,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: isSelected
-                                          ? const Color(0xFF4CAF50)
-                                          : Colors.grey[400]!,
-                                      width: 2,
-                                    ),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 16),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(16),
+                                  border: Border.all(
                                     color: isSelected
                                         ? const Color(0xFF4CAF50)
-                                        : Colors.transparent,
+                                        : Colors.grey[300]!,
+                                    width: isSelected ? 2 : 1,
                                   ),
-                                  child: isSelected
-                                      ? const Icon(
-                                          Icons.check,
-                                          size: 14,
-                                          color: Colors.white,
-                                        )
-                                      : null,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withAlpha(30),
+                                      blurRadius: 8,
+                                      offset: const Offset(0, 2),
+                                    ),
+                                  ],
                                 ),
-                              ],
+                                child: Row(
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundImage:
+                                          AssetImage(language['flag']),
+                                      radius: 16,
+                                    ),
+                                    const SizedBox(width: 16),
+                                    // Название языка
+                                    Expanded(
+                                      child: Text(
+                                        language['name'],
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          color: isSelected
+                                              ? const Color(0xFF4CAF50)
+                                              : Colors.black87,
+                                        ),
+                                      ),
+                                    ),
+                                    // Индикатор выбора
+                                    Container(
+                                      width: 20,
+                                      height: 20,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                          color: isSelected
+                                              ? const Color(0xFF4CAF50)
+                                              : Colors.grey[400]!,
+                                          width: 2,
+                                        ),
+                                        color: isSelected
+                                            ? const Color(0xFF4CAF50)
+                                            : Colors.transparent,
+                                      ),
+                                      child: isSelected
+                                          ? const Icon(
+                                              Icons.check,
+                                              size: 14,
+                                              color: Colors.white,
+                                            )
+                                          : null,
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  // Кнопка "Далее"
+                  BasicAppButton(
+                    onPressed: selectedLanguage.isNotEmpty
+                        ? () => _confirmLanguageSelection()
+                        : null,
+                    title: AppLocale.next.getString(context),
+                    elevation: selectedLanguage.isNotEmpty ? 2 : 0,
+                  ),
+                ],
               ),
-              const SizedBox(height: 20),
-              // Кнопка "Далее"
-              BasicAppButton(
-                onPressed: selectedLanguage.isNotEmpty
-                    ? () => _confirmLanguageSelection()
-                    : null,
-                title: AppLocale.next.getString(context),
-                elevation: selectedLanguage.isNotEmpty ? 2 : 0,
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
