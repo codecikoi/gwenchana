@@ -47,7 +47,8 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       _isFormValid = _emailController.text.trim().isNotEmpty &&
           _passwordController.text.trim().isNotEmpty &&
-          _isValidEmail(_emailController.text.trim());
+          _isValidEmail(_emailController.text.trim()) &&
+          _passwordController.text.trim().length >= 6;
       _errorMessage = null;
     });
   }

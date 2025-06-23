@@ -40,26 +40,5 @@ class BasicAppButton extends StatelessWidget {
         ),
       ),
     );
-
-    // ElevatedButton(
-    //   onPressed: onPressed,
-    //   style: ElevatedButton.styleFrom(
-    //     minimumSize: Size(double.infinity, height ?? 50),
-    //     backgroundColor: AppColors.enableButton,
-    //     disabledBackgroundColor: AppColors.disableButton,
-    //   ),
-    //   child: Text(
-    //     title,
-    //     style: TextStyle(
-    //       color: WidgetStateColor.resolveWith((state) {
-    //         if (state.contains(WidgetState.disabled)) {
-    //           return AppColors.grey;
-    //         }
-    //         return AppColors.white;
-    //       }),
-    //       fontSize: 18,
-    //     ),
-    //   ),
-    // );
   }
 }

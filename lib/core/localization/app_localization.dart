@@ -22,6 +22,14 @@ mixin AppLocale {
   static const String pleaseEnterValidEmail = 'Please enter a valid email';
   static const String passwordsNotMatch = 'Passwords do not match';
 
+  // app page
+  static const String welcomeBack = 'Welcome back!';
+  static const String reading = 'Reading';
+  static const String vocabulary = 'Vocabulary';
+  static const String speaking = 'Speaking';
+  static const String writing = 'Writing';
+  static const String listening = 'Listening';
+
   // English
   static const Map<String, dynamic> EN = {
     chooseLanguage: 'Choose Language',
@@ -45,6 +53,12 @@ mixin AppLocale {
     doHaveAccount: 'Do you have an account',
     signIn: 'Sign in',
     pleaseEnterValidEmail: 'Please enter a valid email',
+    welcomeBack: 'Welcome back!',
+    reading: 'Reading',
+    vocabulary: 'Vocabulary',
+    speaking: 'Speaking',
+    writing: 'Writing',
+    listening: 'Listening',
   };
 
 // Russian (Русский)
@@ -70,6 +84,12 @@ mixin AppLocale {
     doHaveAccount: 'У вас есть аккаунт?',
     signIn: 'Войти',
     pleaseEnterValidEmail: 'Пожалуйста, введите действительный email',
+    welcomeBack: 'С возврашением!',
+    reading: 'Чтение',
+    vocabulary: 'Словарьный запас',
+    speaking: 'Говорение',
+    writing: 'Письмо',
+    listening: 'Прослушивание',
   };
 
 // Vietnamese (Tiếng Việt)

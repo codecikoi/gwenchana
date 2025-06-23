@@ -9,7 +9,11 @@ import 'package:gwenchana/presentation/pages/app_page.dart';
 import 'package:gwenchana/presentation/pages/choose_lang_page.dart';
 import 'package:gwenchana/presentation/pages/create_account_page.dart';
 import 'package:gwenchana/presentation/pages/login_page.dart';
+import 'package:gwenchana/presentation/pages/reading_page.dart';
 import 'package:gwenchana/presentation/pages/recover_password_page.dart';
+import 'package:gwenchana/presentation/pages/speaking_page.dart';
+import 'package:gwenchana/presentation/pages/vocabulary_page.dart';
+import 'package:gwenchana/presentation/pages/writing_page.dart';
 
 class AppRouter {
   static GoRouter createRouter(GlobalKey<NavigatorState> navigatorKey) {
@@ -86,9 +90,33 @@ class AppRouter {
           },
         ),
         GoRoute(
-          path: '/recover-password',
+          path: '/reсover-password',
           builder: (BuildContext context, GoRouterState state) {
             return RecoverPasswordPage();
+          },
+        ),
+        GoRoute(
+          path: '/reading-page',
+          builder: (BuildContext context, GoRouterState state) {
+            return ReadingPage();
+          },
+        ),
+        GoRoute(
+          path: '/writing-page',
+          builder: (BuildContext context, GoRouterState state) {
+            return WritingPage();
+          },
+        ),
+        GoRoute(
+          path: '/vocabulary-page',
+          builder: (BuildContext context, GoRouterState state) {
+            return VocabularyPage();
+          },
+        ),
+        GoRoute(
+          path: '/speaking-page',
+          builder: (BuildContext context, GoRouterState state) {
+            return SpeakingPage();
           },
         ),
       ],
