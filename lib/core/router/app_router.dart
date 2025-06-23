@@ -90,7 +90,7 @@ class AppRouter {
           },
         ),
         GoRoute(
-          path: '/reсover-password',
+          path: '/recover-password',
           builder: (BuildContext context, GoRouterState state) {
             return RecoverPasswordPage();
           },
@@ -146,10 +146,18 @@ class AppRouter {
           print('ne avtorizovan');
           return '/login';
         }
-        // Если авторизован и язык выбран — всегда на /app-page
+        // Если авторизован и язык выбран — разрешаем переходы на внутренние страницы
+        const allowedPages = [
+          '/app-page',
+          '/reading-page',
+          '/vocabulary-page',
+          '/speaking-page',
+          '/writing-page',
+          '/recover-password',
+        ];
         if (authState is AuthAuthenticated &&
             languageState is LanguageSelectedState &&
-            location != '/app-page') {
+            !allowedPages.contains(location)) {
           return '/app-page';
         }
 
