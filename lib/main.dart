@@ -13,8 +13,6 @@ import 'firebase_options.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:auto_route/auto_route.dart';
 
-part 'app_router.gr.dart';
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterLocalization.instance.ensureInitialized();
@@ -25,6 +23,7 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
+@RoutePage()
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
