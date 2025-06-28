@@ -28,4 +28,8 @@ class PreferencesService {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove(authTokenKey);
   }
+
+  Future<void> saveToken(String token) async {
+    await setAuthToken(token);
+  }
 }

@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gwenchana/common/helpers/app_colors.dart';
 import 'package:gwenchana/core/localization/app_localization.dart';
+import 'package:gwenchana/core/router/app_router.dart';
+import 'package:gwenchana/core/services/preferences_service.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbar.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
 import 'package:gwenchana/core/services/auth_service.dart';
@@ -21,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final AuthService _authService = AuthService();
+  final PreferencesService _preferencesService = PreferencesService();
 
   // переменная для проверки валидности формы
   bool _isLoading = false;
@@ -73,8 +76,9 @@ class _LoginPageState extends State<LoginPage> {
       );
 
       if (userCredential != null && userCredential.user != null) {
+        await _preferencesService.saveToken(userCredential.user!.uid);
         if (mounted) {
-          context.router.pushPath('/app-page');
+          context.router.replace(const AppRoute());
         }
       }
     } catch (e) {

@@ -17,8 +17,8 @@ part 'app_router.gr.dart';
 class AppRouter extends RootStackRouter {
   final AuthGuard _authGuard = AuthGuard();
 
-  @override
-  RouteType get defaulRouteType => RouteType.material();
+  // @override
+  // RouteType get defaulRouteType => RouteType.material();
 
   @override
   List<AutoRoute> get routes => [
@@ -29,7 +29,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: LoginRoute.page, path: '/login', guards: [_authGuard]),
         AutoRoute(
             page: CreateAccountRoute.page,
-            path: '/create-acoount',
+            path: '/create-account',
             guards: [_authGuard]),
         AutoRoute(
             page: RecoverPasswordRoute.page,

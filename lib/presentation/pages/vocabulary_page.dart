@@ -147,7 +147,7 @@ class _VocabularyPageState extends State<VocabularyPage>
         title: Text('Карточки'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () => ('/app-page'),
+          onPressed: () => context.router.pushPath('/app-page'),
         ),
         actions: [
           IconButton(

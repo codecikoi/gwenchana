@@ -1,43 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-
-  // Добавляем отладочную информацию
-  AuthService() {
-    forceSignOut();
-    _printDebugInfo();
-  }
-
-  void _printDebugInfo() {
-    print('Firebase App: ${Firebase.app().name}');
-    print('Firebase Project ID: ${Firebase.app().options.projectId}');
-    print('Current User: ${_auth.currentUser?.email ?? 'null'}');
-    print('Current User UID: ${_auth.currentUser?.uid ?? 'null'}');
-    print(
-        'Auth State: ${_auth.currentUser != null ? 'Authenticated' : 'Not Authenticated'}');
-  }
 
 // get current user
 
   User? get currentUser => _auth.currentUser;
 
   Stream<User?> get authStateChanges => _auth.authStateChanges();
-
-  // Добавляем метод для принудительного выхода
-  Future<void> forceSignOut() async {
-    print('Force sign out...');
-    await Future.wait([
-      _auth.signOut(),
-      _googleSignIn.signOut(),
-      FacebookAuth.instance.logOut(),
-    ]);
-    print('Force sign out completed');
-  }
 
   // email sing in
 
@@ -103,10 +76,12 @@ class AuthService {
 
   // google sign in
 
-  signInWithGoogle() async {
+  Future<UserCredential?> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      if (googleUser == null) return;
+      if (googleUser == null) {
+        return null;
+      }
 
       final GoogleSignInAuthentication googleAuth =
           await googleUser.authentication;
@@ -136,7 +111,6 @@ class AuthService {
                 loginResult.accessToken!.tokenString);
         return await _auth.signInWithCredential(facebookAuthCredential);
       } else {
-        print('fb login failed: ${loginResult.message}');
         return null;
       }
     } catch (e) {
