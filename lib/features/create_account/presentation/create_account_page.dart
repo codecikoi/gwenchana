@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:gwenchana/common/helpers/app_colors.dart';
-import 'package:gwenchana/core/localization/app_localization.dart';
-import 'package:gwenchana/presentation/widgets/basic_appbar.dart';
-import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
+import 'package:gwenchana/core/helper/app_colors.dart';
+import 'package:gwenchana/features/localization/presentation/pages/app_localization.dart';
+import 'package:gwenchana/core/helper/basic_appbar.dart';
+import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/core/services/auth_service.dart';
 
 @RoutePage()

@@ -96,6 +96,7 @@ class AuthService {
       // ignore: avoid_print
       print('error signing in with google: $e');
     }
+    return null;
   }
 
 // facebook sign in

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:gwenchana/presentation/bloc/auth/language/language_event.dart';
-import 'package:gwenchana/presentation/bloc/auth/language/language_state.dart';
+import 'package:gwenchana/features/choose_language/presentation/bloc/language_event.dart';
+import 'package:gwenchana/features/choose_language/presentation/bloc/language_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {

@@ -1,90 +1,98 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:gwenchana/common/helpers/app_colors.dart';
-import 'package:gwenchana/core/localization/app_localization.dart';
-import 'package:gwenchana/core/router/app_router.dart';
-import 'package:gwenchana/core/services/preferences_service.dart';
-import 'package:gwenchana/presentation/widgets/basic_appbar.dart';
-import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
-import 'package:gwenchana/core/services/auth_service.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:gwenchana/core/helper/app_colors.dart';
+import 'package:gwenchana/features/localization/presentation/pages/app_localization.dart';
+import 'package:gwenchana/core/helper/basic_appbar.dart';
+import 'package:gwenchana/core/helper/basic_appbutton.dart';
+import 'package:gwenchana/core/services/auth_service.dart';
 
 @RoutePage()
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class CreateAccountPage extends StatefulWidget {
+  const CreateAccountPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<CreateAccountPage> createState() => _CreateAccountPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _CreateAccountPageState extends State<CreateAccountPage> {
   // контроллеры для текстовых полей
 
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
   final AuthService _authService = AuthService();
-  final PreferencesService _preferencesService = PreferencesService();
 
   // переменная для проверки валидности формы
-  bool _isLoading = false;
   bool _isFormValid = false;
-  String? _errorMessage;
+  bool _isLoading = false;
 
   @override
   void initState() {
     super.initState();
 
     // инициализация контроллеров
+    _nameController.addListener(_validateForm);
     _emailController.addListener(_validateForm);
     _passwordController.addListener(_validateForm);
+    _confirmPasswordController.addListener(_validateForm);
   }
 
   @override
   void dispose() {
     // освобождение ресурсов контроллеров
+    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
   void _validateForm() {
     setState(() {
-      _isFormValid = _emailController.text.trim().isNotEmpty &&
+      _isFormValid = _nameController.text.trim().isNotEmpty &&
+          _emailController.text.trim().isNotEmpty &&
           _passwordController.text.trim().isNotEmpty &&
+          _confirmPasswordController.text.trim().isNotEmpty &&
           _isValidEmail(_emailController.text.trim()) &&
-          _passwordController.text.trim().length >= 6;
-      _errorMessage = null;
+          _passwordController.text == _confirmPasswordController.text;
     });
   }
 
-  // валидация почты
-  bool _isValidEmail(String email) {
-    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
-  }
-
-  Future<void> _handleLogin() async {
+  Future<void> _handleCreateAccount() async {
     if (!_isFormValid) return;
 
     setState(() {
       _isLoading = true;
-      _errorMessage = null;
     });
+
     try {
-      final userCredential = await _authService.signInWithEmailPassword(
+      final userCredential = await _authService.signUpWithEmailPassword(
         _emailController.text.trim(),
         _passwordController.text,
       );
 
       if (userCredential != null && userCredential.user != null) {
-        await _preferencesService.saveToken(userCredential.user!.uid);
+        // save user data to firestore
+
+        await userCredential.user!
+            .updateDisplayName(_nameController.text.trim());
         if (mounted) {
-          context.router.replace(const AppRoute());
+          context.router.pushPath('/app-page');
         }
       }
     } catch (e) {
-      setState(() {
-        _errorMessage = e.toString();
-      });
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     } finally {
       if (mounted) {
         setState(() {
@@ -94,12 +102,17 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  // валидация почты
+  bool _isValidEmail(String email) {
+    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BasicAppBar(
         title: Text(
-          AppLocale.login.getString(context),
+          AppLocale.createAccount.getString(context),
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -113,23 +126,14 @@ class _LoginPageState extends State<LoginPage> {
         ),
         child: Column(
           children: [
-            const SizedBox(height: 40),
-            ClipOval(
-              child: SizedBox(
-                width: 160,
-                height: 160,
-                child: Image.asset('assets/logo/main_logo_r.png'),
+            TextField(
+              controller: _nameController,
+              decoration: InputDecoration(
+                labelText: AppLocale.name.getString(context),
+                border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 16),
-            Text(
-              '${AppLocale.welcomeTo.getString(context)} Gwenchana',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 14),
             TextField(
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
@@ -151,20 +155,21 @@ class _LoginPageState extends State<LoginPage> {
                 border: OutlineInputBorder(),
               ),
             ),
-            Align(
-              alignment: AlignmentDirectional.centerEnd,
-              child: TextButton(
-                onPressed: () => context.router.pushPath('/recover-password'),
-                child: Text(
-                  AppLocale.forgotPassword.getString(context),
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.enableButton,
-                  ),
-                ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: _confirmPasswordController,
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: AppLocale.confirmPassword.getString(context),
+                border: OutlineInputBorder(),
+                errorText: _confirmPasswordController.text.isNotEmpty &&
+                        _passwordController.text !=
+                            _confirmPasswordController.text
+                    ? AppLocale.passwordsNotMatch.getString(context)
+                    : null,
               ),
             ),
+            const SizedBox(height: 16),
             Row(
               children: [
                 Icon(Icons.check_box, color: Colors.teal),
@@ -182,15 +187,12 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 20),
             BasicAppButton(
-              onPressed: _isFormValid ? _handleLogin : null,
+              onPressed: _isFormValid ? _handleCreateAccount : null,
               title: _isLoading
-                  ? 'signing in...'
-                  : AppLocale.login.getString(context),
+                  ? 'Creating account ...'
+                  : AppLocale.createAccount.getString(context),
             ),
             const SizedBox(height: 10),
-
-            // sign in with google and facebook
-
             Row(
               children: [
                 Expanded(
@@ -220,7 +222,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
+
             // google sign in button
+
             const SizedBox(height: 8),
             Row(
               children: [
@@ -252,21 +256,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(width: 20),
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () async {
-                      try {
-                        final result = await AuthService().signInWithFacebook();
-                        if (result != null) {
-                          context.router.pushPath('/app-page');
-                        }
-                      } catch (e) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text('fb login failed button: $e'),
-                            backgroundColor: Colors.red,
-                          ),
-                        );
-                      }
-                    },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.black,
                       foregroundColor: Colors.white,
@@ -295,16 +285,16 @@ class _LoginPageState extends State<LoginPage> {
             Row(
               children: [
                 Text(
-                  AppLocale.dontHaveAccount.getString(context),
+                  AppLocale.doHaveAccount.getString(context),
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 TextButton(
-                  onPressed: () => context.router.pushPath('/create-account'),
+                  onPressed: () => context.router.pushPath('/login'),
                   child: Text(
-                    AppLocale.createAccount.getString(context),
+                    AppLocale.signIn.getString(context),
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
@@ -313,17 +303,6 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
-            if (_errorMessage != null)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
-                child: Text(
-                  _errorMessage!,
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontSize: 14,
-                  ),
-                ),
-              ),
           ],
         ),
       ),

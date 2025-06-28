@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:gwenchana/core/services/auth_service.dart';
-import 'package:gwenchana/core/localization/app_localization.dart';
-import 'package:gwenchana/presentation/widgets/basic_appbar.dart';
-import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
+import 'package:gwenchana/features/localization/presentation/pages/app_localization.dart';
+import 'package:gwenchana/core/helper/basic_appbar.dart';
+import 'package:gwenchana/core/helper/basic_appbutton.dart';
 
 @RoutePage()
 class RecoverPasswordPage extends StatefulWidget {

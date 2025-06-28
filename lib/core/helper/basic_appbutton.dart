@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gwenchana/common/helpers/app_colors.dart';
+import 'package:gwenchana/core/helper/app_colors.dart';
 
 class BasicAppButton extends StatelessWidget {
   final VoidCallback? onPressed;

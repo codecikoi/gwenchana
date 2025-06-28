@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:gwenchana/presentation/bloc/auth/language/language_bloc.dart';
-import 'package:gwenchana/core/localization/app_localization.dart';
-import 'package:gwenchana/presentation/bloc/auth/language/language_state.dart';
-import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
-import 'package:gwenchana/presentation/bloc/auth/language/language_event.dart';
+import 'package:gwenchana/features/choose_language/presentation/bloc/language_bloc.dart';
+import 'package:gwenchana/features/localization/presentation/pages/app_localization.dart';
+import 'package:gwenchana/features/choose_language/presentation/bloc/language_state.dart';
+import 'package:gwenchana/core/helper/basic_appbutton.dart';
+import 'package:gwenchana/features/choose_language/presentation/bloc/language_event.dart';
 
 @RoutePage()
 class ChooseLangPage extends StatefulWidget {

@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gwenchana/presentation/bloc/auth/auth_event.dart';
-import 'package:gwenchana/presentation/bloc/auth/auth_state.dart';
+import 'package:gwenchana/features/authentication/presentation/bloc/auth_event.dart';
+import 'package:gwenchana/features/authentication/presentation/bloc/auth_state.dart';
 import 'package:gwenchana/core/services/auth_service.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
