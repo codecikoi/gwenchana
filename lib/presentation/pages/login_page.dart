@@ -1,5 +1,5 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:gwenchana/common/helpers/app_colors.dart';
 import 'package:gwenchana/core/localization/app_localization.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbar.dart';
@@ -7,6 +7,7 @@ import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
 import 'package:gwenchana/core/services/auth_service.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 
+@RoutePage()
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -73,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
 
       if (userCredential != null && userCredential.user != null) {
         if (mounted) {
-          context.go('/app-page');
+          context.router.pushPath('/app-page');
         }
       }
     } catch (e) {
@@ -149,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
             Align(
               alignment: AlignmentDirectional.centerEnd,
               child: TextButton(
-                onPressed: () => context.go('/recover-password'),
+                onPressed: () => context.router.pushPath('/recover-password'),
                 child: Text(
                   AppLocale.forgotPassword.getString(context),
                   style: TextStyle(
@@ -251,7 +252,7 @@ class _LoginPageState extends State<LoginPage> {
                       try {
                         final result = await AuthService().signInWithFacebook();
                         if (result != null) {
-                          context.go('/app-page');
+                          context.router.pushPath('/app-page');
                         }
                       } catch (e) {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -297,7 +298,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () => context.go('/create-account'),
+                  onPressed: () => context.router.pushPath('/create-account'),
                   child: Text(
                     AppLocale.createAccount.getString(context),
                     style: TextStyle(

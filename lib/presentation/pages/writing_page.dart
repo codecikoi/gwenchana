@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 
+@RoutePage()
 class WritingPage extends StatefulWidget {
   const WritingPage({super.key});
 

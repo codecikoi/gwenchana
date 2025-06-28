@@ -1,12 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:go_router/go_router.dart';
 import 'package:gwenchana/common/helpers/app_colors.dart';
 import 'package:gwenchana/core/localization/app_localization.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbar.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
 import 'package:gwenchana/core/services/auth_service.dart';
 
+@RoutePage()
 class CreateAccountPage extends StatefulWidget {
   const CreateAccountPage({super.key});
 
@@ -80,7 +81,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         await userCredential.user!
             .updateDisplayName(_nameController.text.trim());
         if (mounted) {
-          context.go('/app-page');
+          context.router.pushPath('/app-page');
         }
       }
     } catch (e) {
@@ -291,7 +292,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () => context.go('/login'),
+                  onPressed: () => context.router.pushPath('/login'),
                   child: Text(
                     AppLocale.signIn.getString(context),
                     style: TextStyle(

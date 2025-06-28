@@ -1,9 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:go_router/go_router.dart';
 import 'package:gwenchana/core/localization/app_localization.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
 
+@RoutePage()
 class AppPage extends StatefulWidget {
   const AppPage({super.key});
 
@@ -21,22 +22,22 @@ class _AppPageState extends State<AppPage> {
           child: Column(
             children: [
               BasicAppButton(
-                onPressed: () => context.go('/reading-page'),
+                onPressed: () => context.router.pushPath('/choose-lang-page'),
                 title: AppLocale.reading.getString(context).toUpperCase(),
               ),
               const SizedBox(height: 10),
               BasicAppButton(
-                onPressed: () => context.go('/vocabulary-page'),
+                onPressed: () => context.router.pushPath('/vocabulary-page'),
                 title: AppLocale.vocabulary.getString(context).toUpperCase(),
               ),
               const SizedBox(height: 10),
               BasicAppButton(
-                onPressed: () => context.go('/speaking-page'),
+                onPressed: () => context.router.pushPath('/speaking-page'),
                 title: AppLocale.speaking.getString(context).toUpperCase(),
               ),
               const SizedBox(height: 10),
               BasicAppButton(
-                onPressed: () => context.go('/writing-page'),
+                onPressed: () => context.router.pushPath('/writing-page'),
                 title: AppLocale.writing.getString(context).toUpperCase(),
               ),
             ],

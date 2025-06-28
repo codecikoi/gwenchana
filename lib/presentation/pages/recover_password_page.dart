@@ -1,11 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:go_router/go_router.dart';
 import 'package:gwenchana/core/services/auth_service.dart';
 import 'package:gwenchana/core/localization/app_localization.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbar.dart';
 import 'package:gwenchana/presentation/widgets/basic_appbutton.dart';
 
+@RoutePage()
 class RecoverPasswordPage extends StatefulWidget {
   const RecoverPasswordPage({super.key});
 
@@ -66,7 +67,7 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
           content: Text('Password reset email link sent! Check your inbox.'),
           backgroundColor: Colors.green,
         ));
-        context.go('/login');
+        context.router.pushPath('/login');
       }
     } catch (e) {
       if (mounted) {

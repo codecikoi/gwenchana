@@ -11,6 +11,9 @@ import 'package:gwenchana/core/services/auth_service.dart';
 import 'package:gwenchana/core/localization/app_localization.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:auto_route/auto_route.dart';
+
+part 'app_router.gr.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +35,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final FlutterLocalization localization = FlutterLocalization.instance;
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  final _appRouter = AppRouter();
 
   @override
   void initState() {
@@ -83,10 +87,8 @@ class _MyAppState extends State<MyApp> {
       ],
       child: Builder(
         builder: (context) {
-          final router = AppRouter.createRouter(navigatorKey);
-
           return MaterialApp.router(
-            routerConfig: router,
+            routerConfig: _appRouter.config(),
             title: 'Gwenchana App',
             supportedLocales: localization.supportedLocales,
             localizationsDelegates: localization.localizationsDelegates,

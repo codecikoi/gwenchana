@@ -1,7 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:gwenchana/data/vocabulary/vocabulary_data.dart';
 
+@RoutePage()
 class VocabularyPage extends StatefulWidget {
   const VocabularyPage({super.key});
 
@@ -146,7 +147,7 @@ class _VocabularyPageState extends State<VocabularyPage>
         title: Text('Карточки'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () => context.go('/app-page'),
+          onPressed: () => ('/app-page'),
         ),
         actions: [
           IconButton(
