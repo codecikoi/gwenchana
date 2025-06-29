@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:gwenchana/data/vocabulary/vocabulary_data.dart';
+import 'package:gwenchana/features/vocabulary/data/vocabulary_data.dart';
 
 @RoutePage()
 class VocabularyPage extends StatefulWidget {

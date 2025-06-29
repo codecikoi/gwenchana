@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:gwenchana/core/router/guards.dart';
+import 'package:gwenchana/core/navigation/guards.dart';
 import 'package:gwenchana/features/app_page/presentation/app_page.dart';
 import 'package:gwenchana/features/choose_language/presentation/pages/choose_lang_page.dart';
 import 'package:gwenchana/features/create_account/presentation/create_account_page.dart';

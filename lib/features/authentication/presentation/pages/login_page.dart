@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gwenchana/core/helper/app_colors.dart';
 import 'package:gwenchana/features/localization/presentation/pages/app_localization.dart';
-import 'package:gwenchana/core/router/app_router.dart';
+import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/core/services/preferences_service.dart';
 import 'package:gwenchana/core/helper/basic_appbar.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
