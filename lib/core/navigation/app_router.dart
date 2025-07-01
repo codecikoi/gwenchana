@@ -8,7 +8,7 @@ import 'package:gwenchana/features/authentication/presentation/pages/login_page.
 import 'package:gwenchana/features/reading/presentation/reading_page.dart';
 import 'package:gwenchana/features/recover_password/presentation/recover_password_page.dart';
 import 'package:gwenchana/features/speaking/presentation/speaking_page.dart';
-import 'package:gwenchana/features/vocabulary/presentation/vocabulary_page.dart';
+import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_page.dart';
 import 'package:gwenchana/features/writing/presentation/writing_page.dart';
 
 part 'app_router.gr.dart';

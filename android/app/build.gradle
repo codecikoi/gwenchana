@@ -1,5 +1,4 @@
 plugins {
-    id 'com.google.gms.google-services' version '4.4.2' apply false
     id "com.android.application"
     // START: FlutterFire Configuration
     id 'com.google.gms.google-services'
@@ -32,7 +31,7 @@ android {
         applicationId = "com.example.gwenchana"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = 21
+        minSdk = 23
         targetSdk = 33
         versionCode = flutter.versionCode
         versionName = flutter.versionName
