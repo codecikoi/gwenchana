@@ -8,6 +8,7 @@ import 'package:gwenchana/features/authentication/presentation/pages/login_page.
 import 'package:gwenchana/features/reading/presentation/reading_page.dart';
 import 'package:gwenchana/features/recover_password/presentation/recover_password_page.dart';
 import 'package:gwenchana/features/speaking/presentation/speaking_page.dart';
+import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_card.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_page.dart';
 import 'package:gwenchana/features/writing/presentation/writing_page.dart';
 
@@ -47,7 +48,13 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
             page: VocabularyRoute.page,
             path: '/vocabulary-page',
+            // initial: true,
             guards: [_authGuard]),
+        AutoRoute(
+          page: VocabularyCardRoute.page,
+          path: '/vocabulary-card/:setIndex',
+          guards: [_authGuard],
+        ),
         AutoRoute(
             page: SpeakingRoute.page,
             path: '/speaking-page',

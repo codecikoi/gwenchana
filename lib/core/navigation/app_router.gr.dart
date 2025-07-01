@@ -112,6 +112,22 @@ class LoginRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MyApp]
+class MyApp extends PageRouteInfo<void> {
+  const MyApp({List<PageRouteInfo>? children})
+    : super(MyApp.name, initialChildren: children);
+
+  static const String name = 'MyApp';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MyApp();
+    },
+  );
+}
+
+/// generated route for
 /// [ReadingPage]
 class ReadingRoute extends PageRouteInfo<void> {
   const ReadingRoute({List<PageRouteInfo>? children})
@@ -157,6 +173,77 @@ class SpeakingRoute extends PageRouteInfo<void> {
       return const SpeakingPage();
     },
   );
+}
+
+/// generated route for
+/// [VocabularyCardPage]
+class VocabularyCardRoute extends PageRouteInfo<VocabularyCardRouteArgs> {
+  VocabularyCardRoute({
+    Key? key,
+    int setIndex = 0,
+    int selectedLevel = 1,
+    List<PageRouteInfo>? children,
+  }) : super(
+         VocabularyCardRoute.name,
+         args: VocabularyCardRouteArgs(
+           key: key,
+           setIndex: setIndex,
+           selectedLevel: selectedLevel,
+         ),
+         rawPathParams: {'setIndex': setIndex},
+         initialChildren: children,
+       );
+
+  static const String name = 'VocabularyCardRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<VocabularyCardRouteArgs>(
+        orElse:
+            () => VocabularyCardRouteArgs(
+              setIndex: pathParams.getInt('setIndex', 0),
+            ),
+      );
+      return VocabularyCardPage(
+        key: args.key,
+        setIndex: args.setIndex,
+        selectedLevel: args.selectedLevel,
+      );
+    },
+  );
+}
+
+class VocabularyCardRouteArgs {
+  const VocabularyCardRouteArgs({
+    this.key,
+    this.setIndex = 0,
+    this.selectedLevel = 1,
+  });
+
+  final Key? key;
+
+  final int setIndex;
+
+  final int selectedLevel;
+
+  @override
+  String toString() {
+    return 'VocabularyCardRouteArgs{key: $key, setIndex: $setIndex, selectedLevel: $selectedLevel}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! VocabularyCardRouteArgs) return false;
+    return key == other.key &&
+        setIndex == other.setIndex &&
+        selectedLevel == other.selectedLevel;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ setIndex.hashCode ^ selectedLevel.hashCode;
 }
 
 /// generated route for

@@ -1,251 +1,201 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gwenchana/core/helper/card_colors.dart';
+import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/features/vocabulary/data/vocabulary_data.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
 
-@RoutePage()
-class VocabularyPage extends StatefulWidget {
-  const VocabularyPage({super.key});
+class VocabularyCardData {
+  final String title;
+  final String mainTitle;
+  final int progress;
+  final int total;
+  final bool isCompleted;
 
-  @override
-  State<VocabularyPage> createState() => _VocabularyPageState();
+  VocabularyCardData({
+    required this.title,
+    required this.mainTitle,
+    this.progress = 0,
+    this.total = 26,
+    this.isCompleted = false,
+  });
 }
 
-class _VocabularyPageState extends State<VocabularyPage>
-    with SingleTickerProviderStateMixin {
-  List<VocabularyCard> cards = List.from(vocabularyCards);
+@RoutePage()
+class VocabularyPage extends StatelessWidget {
+  const VocabularyPage({super.key});
 
-  int currentIndex = 0;
-  bool showEnglish = false;
-  late AnimationController _controller;
-  late Animation<double> _animation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: Duration(milliseconds: 400),
-      vsync: this,
-    );
-    _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
+  Color getCardColor(int index) {
+    return cardColors[index & cardColors.length];
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  void showLevelDialog(BuildContext context, VocabularyBloc bloc) {
+    final levelNames = [
+      '기조', // 0
+      '초급 1', // 1
+      '초급 2', // 2
+      '중급 1', // 3
+      '중급 2', // 4
+    ];
 
-  void nextCard() {
-    setState(() {
-      if (currentIndex < cards.length - 1) {
-        currentIndex++;
-        showEnglish = false;
-        _controller.reset();
-      }
-    });
-  }
+    // выбор уровня
 
-  void prevCard() {
-    setState(() {
-      if (currentIndex > 0) {
-        currentIndex--;
-        showEnglish = false;
-        _controller.reset();
-      }
-    });
-  }
-
-  void addCard(String korean, String english) {
-    setState(() {
-      cards.add(VocabularyCard(korean: korean, english: english));
-    });
-  }
-
-  void showAddCardDialog() {
-    String korean = '';
-    String english = '';
-    String? errorText;
     showDialog(
       context: context,
-      builder: (context) => StatefulBuilder(
-        builder: (context, setState) => AlertDialog(
-          title: Text('Добавить карточку'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                decoration: InputDecoration(labelText: 'Корейское слово'),
-                onChanged: (value) {
-                  korean = value;
-                  setState(() => errorText = null);
-                },
-              ),
-              TextField(
-                decoration: InputDecoration(labelText: 'Перевод (англ.)'),
-                onChanged: (value) {
-                  english = value;
-                  setState(() => errorText = null);
-                },
-              ),
-              if (errorText != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    errorText!,
-                    style: TextStyle(color: Colors.red),
-                  ),
-                ),
-            ],
+      builder: (context) => AlertDialog(
+        title: Text('Choose book'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: List.generate(
+            5,
+            (i) => ListTile(
+                title: Text(levelNames[i]),
+                onTap: () {
+                  bloc.add(ChangeLevelEvent(i + 1));
+                  Navigator.of(context).pop();
+                }),
           ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                final koreanReg =
-                    RegExp(r'^[\uac00-\ud7af\u1100-\u11ff\u3130-\u318f ]+$');
-                final englishReg = RegExp(r'^[A-Za-z ]+$');
-                if (korean.isEmpty || english.isEmpty) {
-                  setState(() => errorText = 'Поля не должны быть пустыми');
-                  return;
-                }
-                if (!koreanReg.hasMatch(korean)) {
-                  setState(() => errorText =
-                      'Корейское слово должно содержать только корейские символы');
-                  return;
-                }
-                if (!englishReg.hasMatch(english)) {
-                  setState(() =>
-                      errorText = 'Перевод должен быть на английском языке');
-                  return;
-                }
-                addCard(korean, english);
-                Navigator.of(context).pop();
-              },
-              child: Text('Добавить'),
-            ),
-          ],
         ),
       ),
     );
   }
 
-  void flipCard() {
-    if (showEnglish) {
-      _controller.reverse();
-    } else {
-      _controller.forward();
-    }
-    setState(() {
-      showEnglish = !showEnglish;
-    });
+  void navigateToVocabularyCard(
+      BuildContext context, int cardIndex, int selectedLevel) async {
+    await context.router.push(
+      VocabularyCardRoute(setIndex: cardIndex, selectedLevel: selectedLevel),
+    );
+    context.read<VocabularyBloc>().add(LoadProgressEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    final card = cards[currentIndex];
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Карточки'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => context.router.pushPath('/app-page'),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: showAddCardDialog,
-          ),
-        ],
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(4.0),
-          child: LinearProgressIndicator(
-            value: (currentIndex + 1) / cards.length,
-            backgroundColor: Colors.grey[300],
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-          ),
-        ),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            '${currentIndex + 1} / ${cards.length}',
-            style: TextStyle(fontSize: 18),
-          ),
-          SizedBox(height: 20),
-          GestureDetector(
-            onTap: flipCard,
-            child: AnimatedBuilder(
-              animation: _animation,
-              builder: (context, child) {
-                final isUnder = (_animation.value > 0.5);
-                final displayText = isUnder ? card.english : card.korean;
-                return Transform(
-                  alignment: Alignment.center,
-                  transform: Matrix4.identity()
-                    ..setEntry(3, 2, 0.001)
-                    ..rotateY(3.1416 * _animation.value),
-                  child: isUnder
-                      ? Transform(
-                          alignment: Alignment.center,
-                          transform: Matrix4.identity()..rotateY(3.1416),
-                          child: Container(
-                            width: 300,
-                            height: 200,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(16),
-                              boxShadow: [
-                                BoxShadow(blurRadius: 8, color: Colors.black12)
-                              ],
-                            ),
-                            child: Text(
-                              displayText,
-                              style: TextStyle(fontSize: 32),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        )
-                      : Container(
-                          width: 300,
-                          height: 200,
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(16),
-                            boxShadow: [
-                              BoxShadow(blurRadius: 8, color: Colors.black12)
-                            ],
-                          ),
-                          child: Text(
-                            displayText,
-                            style: TextStyle(fontSize: 32),
+    return BlocBuilder<VocabularyBloc, VocabularyState>(
+      builder: (context, state) {
+        if (state is VocabularyLoading) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Vocaabulary Cards'),
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+            ),
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+        if (state is VocabularyError) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Error'),
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+            ),
+            body: Center(
+              child: Text(state.message),
+            ),
+          );
+        }
+        if (state is VocabularyLoaded) {
+          return Scaffold(
+            appBar: AppBar(
+              title: TextButton(
+                child: Text(
+                  'Choose book',
+                  style: TextStyle(
+                    fontSize: 22,
+                  ),
+                ),
+                onPressed: () => showLevelDialog(
+                  context,
+                  context.read<VocabularyBloc>(),
+                ),
+              ),
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+              actions: [
+                IconButton(
+                  icon: Icon(Icons.refresh),
+                  onPressed: () {
+                    context.read<VocabularyBloc>().add(
+                          ResetProgressEvent(state.selectedLevel),
+                        );
+                  },
+                  tooltip: 'Reset progress',
+                ),
+              ],
+            ),
+            body: GridView.builder(
+              padding: EdgeInsets.all(16.0),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 16.0,
+                childAspectRatio: 1.0,
+                crossAxisSpacing: 16.0,
+              ),
+              itemCount: state.cards.length,
+              itemBuilder: (context, index) {
+                final card = state.cards[index];
+                return GestureDetector(
+                  onTap: () => navigateToVocabularyCard(
+                    context,
+                    index,
+                    state.selectedLevel,
+                  ),
+                  child: Card(
+                    color: getCardColor(index),
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            card.mainTitle,
                             textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
+                          SizedBox(height: 8.0),
+                          if (card.isCompleted)
+                            Icon(
+                              Icons.check_circle,
+                              color: Colors.white,
+                              size: 32.0,
+                            )
+                          else
+                            Text(
+                              '${card.progress}/${card.total}',
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
                 );
               },
             ),
+          );
+        }
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('Vocabulary Cardsadsad'),
+            backgroundColor: Colors.white,
+            foregroundColor: Colors.black,
           ),
-          SizedBox(height: 40),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                icon: Icon(Icons.arrow_back),
-                iconSize: 40,
-                onPressed: prevCard,
-              ),
-              SizedBox(width: 60),
-              IconButton(
-                icon: Icon(Icons.arrow_forward),
-                iconSize: 40,
-                onPressed: nextCard,
-              ),
-            ],
+          body: Center(
+            child: Text('No vocabulary data available.'),
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
