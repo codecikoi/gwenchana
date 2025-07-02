@@ -28,55 +28,18 @@ class AppRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [ChooseLangPage]
-class ChooseLangRoute extends PageRouteInfo<ChooseLangRouteArgs> {
-  ChooseLangRoute({
-    Key? key,
-    required VoidCallback onLanguageSelected,
-    List<PageRouteInfo>? children,
-  }) : super(
-         ChooseLangRoute.name,
-         args: ChooseLangRouteArgs(
-           key: key,
-           onLanguageSelected: onLanguageSelected,
-         ),
-         initialChildren: children,
-       );
+class ChooseLangRoute extends PageRouteInfo<void> {
+  const ChooseLangRoute({List<PageRouteInfo>? children})
+    : super(ChooseLangRoute.name, initialChildren: children);
 
   static const String name = 'ChooseLangRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<ChooseLangRouteArgs>();
-      return ChooseLangPage(
-        key: args.key,
-        onLanguageSelected: args.onLanguageSelected,
-      );
+      return const ChooseLangPage();
     },
   );
-}
-
-class ChooseLangRouteArgs {
-  const ChooseLangRouteArgs({this.key, required this.onLanguageSelected});
-
-  final Key? key;
-
-  final VoidCallback onLanguageSelected;
-
-  @override
-  String toString() {
-    return 'ChooseLangRouteArgs{key: $key, onLanguageSelected: $onLanguageSelected}';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    if (other is! ChooseLangRouteArgs) return false;
-    return key == other.key && onLanguageSelected == other.onLanguageSelected;
-  }
-
-  @override
-  int get hashCode => key.hashCode ^ onLanguageSelected.hashCode;
 }
 
 /// generated route for
@@ -107,22 +70,6 @@ class LoginRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const LoginPage();
-    },
-  );
-}
-
-/// generated route for
-/// [MyApp]
-class MyApp extends PageRouteInfo<void> {
-  const MyApp({List<PageRouteInfo>? children})
-    : super(MyApp.name, initialChildren: children);
-
-  static const String name = 'MyApp';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const MyApp();
     },
   );
 }

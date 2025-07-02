@@ -24,6 +24,7 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
+            initial: true,
             page: ChooseLangRoute.page,
             path: '/choose-lang',
             guards: [_authGuard]),
@@ -48,7 +49,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
             page: VocabularyRoute.page,
             path: '/vocabulary-page',
-            // initial: true,
             guards: [_authGuard]),
         AutoRoute(
           page: VocabularyCardRoute.page,

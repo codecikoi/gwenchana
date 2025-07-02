@@ -10,9 +10,7 @@ import 'package:gwenchana/features/choose_language/presentation/bloc/language_ev
 
 @RoutePage()
 class ChooseLangPage extends StatefulWidget {
-  final VoidCallback onLanguageSelected;
-
-  const ChooseLangPage({super.key, required this.onLanguageSelected});
+  const ChooseLangPage({super.key});
 
   @override
   State<ChooseLangPage> createState() => _ChooseLangPageState();
@@ -43,7 +41,7 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
   void _confirmLanguageSelection() {
     if (selectedLanguage.isNotEmpty) {
       context.read<LanguageBloc>().add(LanguageSelected(selectedLanguage));
-      widget.onLanguageSelected();
+      context.router.replacePath('/login');
     }
   }
 

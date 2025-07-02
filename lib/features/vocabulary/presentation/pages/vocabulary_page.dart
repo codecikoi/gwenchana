@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/core/helper/card_colors.dart';
 import 'package:gwenchana/core/navigation/app_router.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_data.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
