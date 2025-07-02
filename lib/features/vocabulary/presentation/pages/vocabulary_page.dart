@@ -28,7 +28,7 @@ class VocabularyPage extends StatelessWidget {
   const VocabularyPage({super.key});
 
   Color getCardColor(int index) {
-    return cardColors[index & cardColors.length];
+    return cardColors[index % cardColors.length];
   }
 
   void showLevelDialog(BuildContext context, VocabularyBloc bloc) {

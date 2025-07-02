@@ -1,17 +1,21 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:gwenchana/core/helper/basic_appbar.dart';
 
 @RoutePage()
-class ReadingPage extends StatefulWidget {
+@RoutePage()
+class ReadingPage extends StatelessWidget {
   const ReadingPage({super.key});
 
   @override
-  State<ReadingPage> createState() => _ReadingPageState();
-}
-
-class _ReadingPageState extends State<ReadingPage> {
-  @override
   Widget build(BuildContext context) {
-    return Text('reading page');
+    return Scaffold(
+      appBar: BasicAppBar(
+        title: Text('Reading'),
+      ),
+      body: Center(
+        child: Text('soon reading page'),
+      ),
+    );
   }
 }

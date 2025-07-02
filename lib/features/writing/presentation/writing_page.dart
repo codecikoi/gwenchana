@@ -1,17 +1,21 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:gwenchana/core/helper/basic_appbar.dart';
 
 @RoutePage()
-class WritingPage extends StatefulWidget {
+@RoutePage()
+class WritingPage extends StatelessWidget {
   const WritingPage({super.key});
 
   @override
-  State<WritingPage> createState() => _WritingPageState();
-}
-
-class _WritingPageState extends State<WritingPage> {
-  @override
   Widget build(BuildContext context) {
-    return Text('writing page');
+    return Scaffold(
+      appBar: BasicAppBar(
+        title: Text('Writing'),
+      ),
+      body: Center(
+        child: Text('soon writing page'),
+      ),
+    );
   }
 }

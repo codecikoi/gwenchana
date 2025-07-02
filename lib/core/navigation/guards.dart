@@ -11,15 +11,9 @@ class AuthGuard extends AutoRouteGuard {
     final token = await _prefs.getAuthToken();
     final path = resolver.route.path;
 
-    print('Guard: language=$language, token=$token, path=$path');
-
     if (language == null) {
       if (path != '/choose-lang') {
         // yazik ne vybran go vibrat yazik
-
-        print('Redirecting to choose-lang');
-
-        print('Allowing navigation to $path');
 
         router.replacePath('/choose-lang');
       } else {

@@ -22,7 +22,7 @@ class _AppPageState extends State<AppPage> {
           child: Column(
             children: [
               BasicAppButton(
-                onPressed: () => context.router.pushPath('/choose-lang-page'),
+                onPressed: () => context.router.pushPath('/reading-page'),
                 title: AppLocale.reading.getString(context).toUpperCase(),
               ),
               const SizedBox(height: 10),
