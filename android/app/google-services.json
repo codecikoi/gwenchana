@@ -12,7 +12,20 @@
           "package_name": "com.example.gwenchana"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "321930392834-7mp19ctmrd1f82p0ibvvgop81t61cith.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gwenchana",
+            "certificate_hash": "8260a3a2f96be0cd9b88572acd50e9e2a313fb93"
+          }
+        },
+        {
+          "client_id": "321930392834-lt2ucutdspqt983ivh9co3ku1g50gvo3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCh30AjHTJF9m_HEOYfF1pSMjl08QIbRi4"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "321930392834-lt2ucutdspqt983ivh9co3ku1g50gvo3.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "321930392834-t7e9sq4qphgoi0v1srto8soo1equgf67.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gwenchana"
+              }
+            }
+          ]
         }
       }
     }
