@@ -1,0 +1,92 @@
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for French (`fr`).
+class AppLocalizationsFr extends AppLocalizations {
+  AppLocalizationsFr([String locale = 'fr']) : super(locale);
+
+  @override
+  String get chooseLanguage => 'Choisir la langue';
+
+  @override
+  String get next => 'Suivant';
+
+  @override
+  String get welcomeTo => 'Bienvenue à';
+
+  @override
+  String get settings => 'Paramètres';
+
+  @override
+  String get changeLanguage => 'Changer de langue';
+
+  @override
+  String get login => 'Se connecter';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Mot de passe';
+
+  @override
+  String get confirmPassword => 'Confirmer le mot de passe';
+
+  @override
+  String get signInWith => 'ou Se connecter avec';
+
+  @override
+  String get dontHaveAccount => 'Vous n\'avez pas de compte?';
+
+  @override
+  String get createAccount => 'Créer un compte';
+
+  @override
+  String get forgotPassword => 'Mot de passe oublié?';
+
+  @override
+  String get recoverPassword => 'Récupérer le mot de passe';
+
+  @override
+  String get reset => 'Réinitialiser';
+
+  @override
+  String get termsAndConditions => 'En vous connectant à Gwenchana, vous acceptez nos Conditions d\'utilisation et notre Politique de confidentialité';
+
+  @override
+  String get name => 'Nom';
+
+  @override
+  String get doHaveAccount => 'Vous avez un compte?';
+
+  @override
+  String get signIn => 'Se connecter';
+
+  @override
+  String get pleaseEnterValidEmail => 'Veuillez entrer une adresse email valide';
+
+  @override
+  String get passwordsNotMatch => 'Les mots de passe ne correspondent pas';
+
+  @override
+  String get welcomeBack => 'Bon retour !';
+
+  @override
+  String get reading => 'Lecture';
+
+  @override
+  String get vocabulary => 'Vocabulaire';
+
+  @override
+  String get speaking => 'Expression orale';
+
+  @override
+  String get writing => 'Écriture';
+
+  @override
+  String get listening => 'Écoute';
+
+  @override
+  String get chooseBook => 'Choisir un livre';
+}

@@ -1,12 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localization/flutter_localization.dart';
 import 'package:gwenchana/features/choose_language/presentation/bloc/language_bloc.dart';
-import 'package:gwenchana/features/localization/presentation/pages/app_localization.dart';
 import 'package:gwenchana/features/choose_language/presentation/bloc/language_state.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/features/choose_language/presentation/bloc/language_event.dart';
+import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
 @RoutePage()
 class ChooseLangPage extends StatefulWidget {
@@ -33,7 +32,6 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
   void _selectLanguage(String languageCode) {
     setState(() {
       selectedLanguage = languageCode;
-      FlutterLocalization.instance.translate(languageCode);
     });
     // отправляем событие в LanguageBloc
   }
@@ -63,7 +61,7 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
                   Align(
                     alignment: Alignment.center,
                     child: Text(
-                      AppLocale.chooseLanguage.getString(context),
+                      AppLocalizations.of(context)!.chooseLanguage,
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -166,7 +164,7 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
                     onPressed: selectedLanguage.isNotEmpty
                         ? () => _confirmLanguageSelection()
                         : null,
-                    title: AppLocale.next.getString(context),
+                    title: AppLocalizations.of(context)!.next,
                     elevation: selectedLanguage.isNotEmpty ? 2 : 0,
                   ),
                 ],

@@ -1,13 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gwenchana/core/helper/app_colors.dart';
-import 'package:gwenchana/features/localization/presentation/pages/app_localization.dart';
+import 'package:gwenchana/core/helper/validation_helper.dart';
 import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/core/services/preferences_service.dart';
 import 'package:gwenchana/core/helper/basic_appbar.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/core/services/auth_service.dart';
-import 'package:flutter_localization/flutter_localization.dart';
+import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
 @RoutePage()
 class LoginPage extends StatefulWidget {
@@ -49,17 +49,12 @@ class _LoginPageState extends State<LoginPage> {
 
   void _validateForm() {
     setState(() {
-      _isFormValid = _emailController.text.trim().isNotEmpty &&
-          _passwordController.text.trim().isNotEmpty &&
-          _isValidEmail(_emailController.text.trim()) &&
-          _passwordController.text.trim().length >= 6;
+      _isFormValid = ValidationHelper.isValidLoginForm(
+        _emailController.text,
+        _passwordController.text,
+      );
       _errorMessage = null;
     });
-  }
-
-  // валидация почты
-  bool _isValidEmail(String email) {
-    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
   }
 
   Future<void> _handleLogin() async {
@@ -99,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: BasicAppBar(
         title: Text(
-          AppLocale.login.getString(context),
+          AppLocalizations.of(context)!.login,
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -123,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 16),
             Text(
-              '${AppLocale.welcomeTo.getString(context)} Gwenchana',
+              '${AppLocalizations.of(context)!.welcomeTo} Gwenchana',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -134,11 +129,10 @@ class _LoginPageState extends State<LoginPage> {
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                labelText: AppLocale.email.getString(context),
+                labelText: AppLocalizations.of(context)!.email,
                 border: OutlineInputBorder(),
-                errorText: _emailController.text.isNotEmpty &&
-                        !_isValidEmail(_emailController.text.trim())
-                    ? AppLocale.pleaseEnterValidEmail.getString(context)
+                errorText: _emailController.text.isNotEmpty
+                    ? _emailController.validateEmail(_emailController.text)
                     : null,
               ),
             ),
@@ -147,8 +141,12 @@ class _LoginPageState extends State<LoginPage> {
               controller: _passwordController,
               obscureText: true,
               decoration: InputDecoration(
-                labelText: AppLocale.password.getString(context),
+                labelText: AppLocalizations.of(context)!.password,
                 border: OutlineInputBorder(),
+                errorText: _passwordController.text.isNotEmpty
+                    ? _passwordController
+                        .validatePassword(_passwordController.text)
+                    : null,
               ),
             ),
             Align(
@@ -156,7 +154,7 @@ class _LoginPageState extends State<LoginPage> {
               child: TextButton(
                 onPressed: () => context.router.pushPath('/recover-password'),
                 child: Text(
-                  AppLocale.forgotPassword.getString(context),
+                  AppLocalizations.of(context)!.forgotPassword,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -171,7 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(width: 4),
                 Expanded(
                   child: Text(
-                    AppLocale.termsAndConditions.getString(context),
+                    AppLocalizations.of(context)!.termsAndConditions,
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
@@ -185,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: _isFormValid ? _handleLogin : null,
               title: _isLoading
                   ? 'signing in...'
-                  : AppLocale.login.getString(context),
+                  : AppLocalizations.of(context)!.login,
             ),
             const SizedBox(height: 10),
 
@@ -204,7 +202,7 @@ class _LoginPageState extends State<LoginPage> {
                     horizontal: 8.0,
                   ),
                   child: Text(
-                    AppLocale.signInWith.getString(context),
+                    AppLocalizations.of(context)!.signInWith,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
@@ -295,7 +293,7 @@ class _LoginPageState extends State<LoginPage> {
             Row(
               children: [
                 Text(
-                  AppLocale.dontHaveAccount.getString(context),
+                  AppLocalizations.of(context)!.dontHaveAccount,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -304,7 +302,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextButton(
                   onPressed: () => context.router.pushPath('/create-account'),
                   child: Text(
-                    AppLocale.createAccount.getString(context),
+                    AppLocalizations.of(context)!.createAccount,
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,

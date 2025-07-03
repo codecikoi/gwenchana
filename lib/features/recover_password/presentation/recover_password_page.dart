@@ -1,10 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localization/flutter_localization.dart';
 import 'package:gwenchana/core/services/auth_service.dart';
-import 'package:gwenchana/features/localization/presentation/pages/app_localization.dart';
 import 'package:gwenchana/core/helper/basic_appbar.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
+import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
 @RoutePage()
 class RecoverPasswordPage extends StatefulWidget {
@@ -92,7 +91,7 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
     return Scaffold(
       appBar: BasicAppBar(
         title: Text(
-          AppLocale.recoverPassword.getString(context),
+          AppLocalizations.of(context)!.recoverPassword,
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -110,11 +109,11 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                labelText: AppLocale.email.getString(context),
+                labelText: AppLocalizations.of(context)!.email,
                 border: OutlineInputBorder(),
                 errorText: _emailController.text.isNotEmpty &&
                         !_isValidEmail(_emailController.text.trim())
-                    ? AppLocale.pleaseEnterValidEmail.getString(context)
+                    ? AppLocalizations.of(context)!.pleaseEnterValidEmail
                     : null,
               ),
             ),
@@ -124,7 +123,7 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
                   (_isFormValid && !_isLoading) ? _handlePasswordReset : null,
               title: _isLoading
                   ? 'Sending...'
-                  : AppLocale.reset.getString(context),
+                  : AppLocalizations.of(context)!.reset,
             ),
             const SizedBox(height: 30),
           ],

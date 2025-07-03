@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localization/flutter_localization.dart';
 import 'package:gwenchana/core/helper/app_colors.dart';
-import 'package:gwenchana/features/localization/presentation/pages/app_localization.dart';
 import 'package:gwenchana/core/helper/basic_appbar.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
+import 'package:gwenchana/core/helper/validation_helper.dart';
 import 'package:gwenchana/core/services/auth_service.dart';
+import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
 @RoutePage()
 class CreateAccountPage extends StatefulWidget {
@@ -57,7 +57,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
           _emailController.text.trim().isNotEmpty &&
           _passwordController.text.trim().isNotEmpty &&
           _confirmPasswordController.text.trim().isNotEmpty &&
-          _isValidEmail(_emailController.text.trim()) &&
+          ValidationHelper.isValidEmail(_emailController.text.trim()) &&
           _passwordController.text == _confirmPasswordController.text;
     });
   }
@@ -102,17 +102,12 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
     }
   }
 
-  // валидация почты
-  bool _isValidEmail(String email) {
-    return RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BasicAppBar(
         title: Text(
-          AppLocale.createAccount.getString(context),
+          AppLocalizations.of(context)!.createAccount,
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -129,7 +124,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             TextField(
               controller: _nameController,
               decoration: InputDecoration(
-                labelText: AppLocale.name.getString(context),
+                labelText: AppLocalizations.of(context)!.name,
                 border: OutlineInputBorder(),
               ),
             ),
@@ -138,11 +133,12 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
-                labelText: AppLocale.email.getString(context),
+                labelText: AppLocalizations.of(context)!.email,
                 border: OutlineInputBorder(),
                 errorText: _emailController.text.isNotEmpty &&
-                        !_isValidEmail(_emailController.text.trim())
-                    ? AppLocale.pleaseEnterValidEmail.getString(context)
+                        ValidationHelper.isValidEmail(
+                            _emailController.text.trim())
+                    ? AppLocalizations.of(context)!.pleaseEnterValidEmail
                     : null,
               ),
             ),
@@ -151,7 +147,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               controller: _passwordController,
               obscureText: true,
               decoration: InputDecoration(
-                labelText: AppLocale.password.getString(context),
+                labelText: AppLocalizations.of(context)!.password,
                 border: OutlineInputBorder(),
               ),
             ),
@@ -160,12 +156,12 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               controller: _confirmPasswordController,
               obscureText: true,
               decoration: InputDecoration(
-                labelText: AppLocale.confirmPassword.getString(context),
+                labelText: AppLocalizations.of(context)!.confirmPassword,
                 border: OutlineInputBorder(),
                 errorText: _confirmPasswordController.text.isNotEmpty &&
                         _passwordController.text !=
                             _confirmPasswordController.text
-                    ? AppLocale.passwordsNotMatch.getString(context)
+                    ? AppLocalizations.of(context)!.passwordsNotMatch
                     : null,
               ),
             ),
@@ -176,7 +172,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 SizedBox(width: 4),
                 Expanded(
                   child: Text(
-                    AppLocale.termsAndConditions.getString(context),
+                    AppLocalizations.of(context)!.termsAndConditions,
                     style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
@@ -190,7 +186,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               onPressed: _isFormValid ? _handleCreateAccount : null,
               title: _isLoading
                   ? 'Creating account ...'
-                  : AppLocale.createAccount.getString(context),
+                  : AppLocalizations.of(context)!.createAccount,
             ),
             const SizedBox(height: 10),
             Row(
@@ -206,7 +202,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                     horizontal: 8.0,
                   ),
                   child: Text(
-                    AppLocale.signInWith.getString(context),
+                    AppLocalizations.of(context)!.signInWith,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
@@ -285,7 +281,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
             Row(
               children: [
                 Text(
-                  AppLocale.doHaveAccount.getString(context),
+                  AppLocalizations.of(context)!.doHaveAccount,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -294,7 +290,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
                 TextButton(
                   onPressed: () => context.router.pushPath('/login'),
                   child: Text(
-                    AppLocale.signIn.getString(context),
+                    AppLocalizations.of(context)!.signIn,
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
