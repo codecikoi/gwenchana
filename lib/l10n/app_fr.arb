@@ -37,5 +37,7 @@
   "emptyEnglish": "Le mot anglais ne peut pas être vide",
   "invalidKorean": "Veuillez entrer des caractères coréens valides",
   "invalidEnglish": "Veuillez entrer des caractères anglais valides",
-  "invalidInput": "Saisie invalide"
+  "invalidInput": "Saisie invalide",
+  "addCard": "Ajouter une carte",
+  "koreanWord": "Mot coréen"
 }

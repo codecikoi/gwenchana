@@ -37,5 +37,7 @@
   "emptyEnglish": "英語の単語を入力してください",
   "invalidKorean": "有効な韓国語文字を入力してください",
   "invalidEnglish": "有効な英語文字を入力してください",
-  "invalidInput": "無効な入力です"
+  "invalidInput": "無効な入力です",
+  "addCard": "カードを追加",
+  "koreanWord": "韓国語の単語"
 }

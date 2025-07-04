@@ -37,5 +37,7 @@
   "emptyEnglish": "Từ tiếng Anh không được để trống",
   "invalidKorean": "Vui lòng nhập ký tự tiếng Hàn hợp lệ",
   "invalidEnglish": "Vui lòng nhập ký tự tiếng Anh hợp lệ",
-  "invalidInput": "Dữ liệu nhập không hợp lệ"
+  "invalidInput": "Dữ liệu nhập không hợp lệ",
+  "addCard": "Thêm thẻ",
+  "koreanWord": "Từ tiếng Hàn"
 }

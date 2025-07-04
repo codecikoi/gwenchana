@@ -37,5 +37,7 @@
     "emptyEnglish": "Ingliz so'zi bo'sh bo'lishi mumkin emas",
     "invalidKorean": "Iltimos, to'g'ri koreys belgilarini kiriting",
     "invalidEnglish": "Iltimos, to'g'ri ingliz belgilarini kiriting",
-    "invalidInput": "Noto'g'ri ma'lumot"
+    "invalidInput": "Noto'g'ri ma'lumot",
+    "addCard": "Karta qo'shish",
+    "koreanWord": "Koreyscha so'z"
   }

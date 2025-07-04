@@ -37,5 +37,7 @@
   "emptyEnglish": "英语单词不能为空",
   "invalidKorean": "请输入有效的韩语字符",
   "invalidEnglish": "请输入有效的英语字符",
-  "invalidInput": "输入无效"
+  "invalidInput": "输入无效",
+  "addCard": "添加卡片",
+  "koreanWord": "韩语单词"
 }

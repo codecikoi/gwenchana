@@ -122,4 +122,10 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get invalidInput => 'Input tidak valid';
+
+  @override
+  String get addCard => 'Tambah kartu';
+
+  @override
+  String get koreanWord => 'Kata Korea';
 }

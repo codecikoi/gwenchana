@@ -122,4 +122,10 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get invalidInput => 'Ungültige Eingabe';
+
+  @override
+  String get addCard => 'Karte hinzufügen';
+
+  @override
+  String get koreanWord => 'Koreanisches Wort';
 }

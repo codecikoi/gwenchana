@@ -4,7 +4,6 @@ import 'package:gwenchana/core/helper/basic_appbar.dart';
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
 @RoutePage()
-@RoutePage()
 class ReadingPage extends StatelessWidget {
   const ReadingPage({super.key});
 

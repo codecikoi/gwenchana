@@ -122,4 +122,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get invalidInput => 'Неверный ввод';
+
+  @override
+  String get addCard => 'Добавить карточку';
+
+  @override
+  String get koreanWord => 'Корейское слово';
 }

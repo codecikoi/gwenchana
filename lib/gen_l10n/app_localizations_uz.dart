@@ -122,4 +122,10 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get invalidInput => 'Noto\'g\'ri ma\'lumot';
+
+  @override
+  String get addCard => 'Karta qo\'shish';
+
+  @override
+  String get koreanWord => 'Koreyscha so\'z';
 }

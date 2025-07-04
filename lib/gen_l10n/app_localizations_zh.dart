@@ -122,4 +122,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get invalidInput => '输入无效';
+
+  @override
+  String get addCard => '添加卡片';
+
+  @override
+  String get koreanWord => '韩语单词';
 }

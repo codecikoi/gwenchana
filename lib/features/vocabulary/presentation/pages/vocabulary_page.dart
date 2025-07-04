@@ -8,22 +8,6 @@ import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
-class VocabularyCardData {
-  final String title;
-  final String mainTitle;
-  final int progress;
-  final int total;
-  final bool isCompleted;
-
-  VocabularyCardData({
-    required this.title,
-    required this.mainTitle,
-    this.progress = 0,
-    this.total = 26,
-    this.isCompleted = false,
-  });
-}
-
 @RoutePage()
 class VocabularyPage extends StatelessWidget {
   const VocabularyPage({super.key});
@@ -63,13 +47,86 @@ class VocabularyPage extends StatelessWidget {
     );
   }
 
-  void navigateToVocabularyCard(
-      BuildContext context, int cardIndex, int selectedLevel) async {
+  void navigateToVocabularyCard(BuildContext context, int cardIndex,
+      int selectedLevel, VocabularyBloc bloc) async {
     await context.router.push(
       VocabularyCardRoute(setIndex: cardIndex, selectedLevel: selectedLevel),
     );
-    context.read<VocabularyBloc>().add(LoadProgressEvent());
+    bloc.add(LoadProgressEvent());
   }
+
+  // void addCard(String korean, String english) {
+  //   setState(() {
+  //     cards.add(VocabularyCard(korean: korean, english: english));
+  //   });
+  // }
+
+//   void showAddCardDialog() {
+//     String korean = '';
+//     String english = '';
+//     String? errorText;
+//     showDialog(
+//       context: context,
+//       builder: (context) => StatefulBuilder(
+//         builder: (context, setState) => AlertDialog(
+//           title: Text('Добавить карточку'),
+//           content: Column(
+//             mainAxisSize: MainAxisSize.min,
+//             children: [
+//               TextField(
+//                 decoration: InputDecoration(labelText: 'Корейское слово'),
+//                 onChanged: (value) {
+//                   korean = value;
+//                   setState(() => errorText = null);
+//                 },
+//               ),
+//               TextField(
+//                 decoration: InputDecoration(labelText: 'Перевод (англ.)'),
+//                 onChanged: (value) {
+//                   english = value;
+//                   setState(() => errorText = null);
+//                 },
+//               ),
+//               if (errorText != null)
+//                 Padding(
+//                   padding: const EdgeInsets.only(top: 8.0),
+//                   child: Text(
+//                     errorText!,
+//                     style: TextStyle(color: Colors.red),
+//                   ),
+//                 ),
+//             ],
+//           ),
+//           actions: [
+//             TextButton(
+//               onPressed: () {
+//                 final koreanReg =
+//                     RegExp(r'^[\uac00-\ud7af\u1100-\u11ff\u3130-\u318f ]+$');
+//                 final englishReg = RegExp(r'^[A-Za-z ]+$');
+//                 if (korean.isEmpty || english.isEmpty) {
+//                   setState(() => errorText = 'Поля не должны быть пустыми');
+//                   return;
+//                 }
+//                 if (!koreanReg.hasMatch(korean)) {
+//                   setState(() => errorText =
+//                       'Корейское слово должно содержать только корейские символы');
+//                   return;
+//                 }
+//                 if (!englishReg.hasMatch(english)) {
+//                   setState(() =>
+//                       errorText = 'Перевод должен быть на английском языке');
+//                   return;
+//                 }
+//                 addCard(korean, english);
+//                 Navigator.of(context).pop();
+//               },
+//               child: Text('Добавить'),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
 
   @override
   Widget build(BuildContext context) {
@@ -118,6 +175,10 @@ class VocabularyPage extends StatelessWidget {
               foregroundColor: Colors.black,
               actions: [
                 IconButton(
+                  icon: Icon(Icons.add),
+                  onPressed: () {},
+                ),
+                IconButton(
                   icon: Icon(Icons.refresh),
                   onPressed: () {
                     context.read<VocabularyBloc>().add(
@@ -144,6 +205,7 @@ class VocabularyPage extends StatelessWidget {
                     context,
                     index,
                     state.selectedLevel,
+                    context.read<VocabularyBloc>(),
                   ),
                   child: Card(
                     color: getCardColor(index),
@@ -198,4 +260,20 @@ class VocabularyPage extends StatelessWidget {
       },
     );
   }
+}
+
+class VocabularyCardData {
+  final String title;
+  final String mainTitle;
+  final int progress;
+  final int total;
+  final bool isCompleted;
+
+  VocabularyCardData({
+    required this.title,
+    required this.mainTitle,
+    this.progress = 0,
+    this.total = 26,
+    this.isCompleted = false,
+  });
 }

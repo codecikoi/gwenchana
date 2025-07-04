@@ -37,5 +37,7 @@
   "emptyEnglish": "English word cannot be empty",
   "invalidKorean": "Please enter valid Korean characters",
   "invalidEnglish": "Please enter valid English characters",
-  "invalidInput": "Invalid input"
+  "invalidInput": "Invalid input",
+  "addCard": "Add card",
+  "koreanWord": "Korean word"
 }

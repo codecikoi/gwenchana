@@ -37,5 +37,7 @@
     "emptyEnglish": "Kata Inggris tidak boleh kosong",
     "invalidKorean": "Silakan masukkan karakter Korea yang valid",
     "invalidEnglish": "Silakan masukkan karakter Inggris yang valid",
-    "invalidInput": "Input tidak valid"
+    "invalidInput": "Input tidak valid",
+    "addCard": "Tambah kartu",
+    "koreanWord": "Kata Korea"
   }

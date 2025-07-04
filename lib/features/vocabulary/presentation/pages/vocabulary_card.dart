@@ -136,6 +136,7 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
         currentProgress,
         widget.selectedLevel,
       );
+      if (!mounted) return;
       context.read<VocabularyBloc>().add(UpdateProgressEvent());
     }
   }
@@ -225,6 +226,7 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
                 widget.selectedLevel,
               );
               await loadProgress();
+              if (!mounted) return;
               context.read<VocabularyBloc>().add(UpdateProgressEvent());
               setState(() {
                 showEnglish = false;

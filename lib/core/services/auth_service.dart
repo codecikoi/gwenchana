@@ -115,7 +115,7 @@ class AuthService {
         return null;
       }
     } catch (e) {
-      print('error with fb: $e');
+      //ignore error
     }
     return null;
   }

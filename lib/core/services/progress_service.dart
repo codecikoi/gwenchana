@@ -10,13 +10,13 @@ class ProgressService {
   static Future<void> saveProgress(
       int setIndex, int progress, int level) async {
     final prefs = await SharedPreferences.getInstance();
-    final key = '${_progressPrefix}level${level}_set${setIndex}';
+    final key = '${_progressPrefix}level${level}_set$setIndex';
     await prefs.setInt(key, progress);
 
     // for completed sets
 
     if (progress >= 26) {
-      final completedKey = '${_completedPrefix}level${level}_set${setIndex}';
+      final completedKey = '${_completedPrefix}level${level}_set$setIndex';
       await prefs.setBool(completedKey, true);
     }
   }
@@ -25,7 +25,7 @@ class ProgressService {
 
   static Future<int> getProgress(int setIndex, int level) async {
     final prefs = await SharedPreferences.getInstance();
-    final key = '${_progressPrefix}level${level}_set${setIndex}';
+    final key = '${_progressPrefix}level${level}_set$setIndex';
     return prefs.getInt(key) ?? 0;
   }
 
@@ -33,7 +33,7 @@ class ProgressService {
 
   static Future<bool> isCompleted(int setIndex, int level) async {
     final prefs = await SharedPreferences.getInstance();
-    final key = '${_completedPrefix}level${level}_set${setIndex}';
+    final key = '${_completedPrefix}level${level}_set$setIndex';
     return prefs.getBool(key) ?? false;
   }
 
@@ -61,8 +61,8 @@ class ProgressService {
 
   static Future<void> resetProgress(int setIndex, int level) async {
     final prefs = await SharedPreferences.getInstance();
-    final progressKey = '${_progressPrefix}level${level}_set${setIndex}';
-    final completedKey = '${_completedPrefix}level${level}_set${setIndex}';
+    final progressKey = '${_progressPrefix}level${level}_set$setIndex';
+    final completedKey = '${_completedPrefix}level${level}_set$setIndex';
     await prefs.remove(progressKey);
     await prefs.remove(completedKey);
   }
@@ -72,8 +72,8 @@ class ProgressService {
   static Future<void> resetAllProgress(int level) async {
     final prefs = await SharedPreferences.getInstance();
     for (int i = 0; i < 18; i++) {
-      final progressKey = '${_progressPrefix}level${level}_set${i}';
-      final completedKey = '${_completedPrefix}level${level}_set${i}';
+      final progressKey = '${_progressPrefix}level${level}_set$i';
+      final completedKey = '${_completedPrefix}level${level}_set$i';
       await prefs.remove(progressKey);
       await prefs.remove(completedKey);
     }

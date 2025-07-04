@@ -42,7 +42,7 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
       // обновление локализации
       emit(LanguageSelectedState(event.languageCode));
     } catch (e) {
-      print('$e.toString()');
+      //ignore error
     }
   }
 }

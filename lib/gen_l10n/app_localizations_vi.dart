@@ -122,4 +122,10 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get invalidInput => 'Dữ liệu nhập không hợp lệ';
+
+  @override
+  String get addCard => 'Thêm thẻ';
+
+  @override
+  String get koreanWord => 'Từ tiếng Hàn';
 }

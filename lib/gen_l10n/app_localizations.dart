@@ -342,6 +342,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Invalid input'**
   String get invalidInput;
+
+  /// No description provided for @addCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Add card'**
+  String get addCard;
+
+  /// No description provided for @koreanWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Korean word'**
+  String get koreanWord;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

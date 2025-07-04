@@ -37,5 +37,7 @@
   "emptyEnglish": "Englisches Wort darf nicht leer sein",
   "invalidKorean": "Bitte geben Sie gültige koreanische Zeichen ein",
   "invalidEnglish": "Bitte geben Sie gültige englische Zeichen ein",
-  "invalidInput": "Ungültige Eingabe"
+  "invalidInput": "Ungültige Eingabe",
+  "addCard": "Karte hinzufügen",
+  "koreanWord": "Koreanisches Wort"
 }

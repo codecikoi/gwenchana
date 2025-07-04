@@ -252,10 +252,12 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () async {
                       try {
                         final result = await AuthService().signInWithFacebook();
+                        if (!mounted) return;
                         if (result != null) {
                           context.router.pushPath('/app-page');
                         }
                       } catch (e) {
+                        if (!mounted) return;
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text('fb login failed button: $e'),
