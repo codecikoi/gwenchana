@@ -26,5 +26,16 @@
   "speaking": "Expression orale",
   "writing": "Écriture",
   "listening": "Écoute",
-  "chooseBook": "Choisir un livre"
+  "chooseBook": "Choisir un livre",
+  "emptyEmail": "L'email ne peut pas être vide",
+  "emptyPassword": "Le mot de passe ne peut pas être vide",
+  "emptyName": "Le nom ne peut pas être vide",
+  "passwordTooShort": "Le mot de passe doit contenir au moins 6 caractères",
+  "nameTooShort": "Le nom doit contenir au moins 2 caractères",
+  "emptyConfirmPassword": "Veuillez confirmer votre mot de passe",
+  "emptyKorean": "Le mot coréen ne peut pas être vide",
+  "emptyEnglish": "Le mot anglais ne peut pas être vide",
+  "invalidKorean": "Veuillez entrer des caractères coréens valides",
+  "invalidEnglish": "Veuillez entrer des caractères anglais valides",
+  "invalidInput": "Saisie invalide"
 }

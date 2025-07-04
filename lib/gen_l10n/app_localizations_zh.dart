@@ -89,4 +89,37 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get chooseBook => '选择书籍';
+
+  @override
+  String get emptyEmail => '邮箱不能为空';
+
+  @override
+  String get emptyPassword => '密码不能为空';
+
+  @override
+  String get emptyName => '姓名不能为空';
+
+  @override
+  String get passwordTooShort => '密码至少需要6个字符';
+
+  @override
+  String get nameTooShort => '姓名至少需要2个字符';
+
+  @override
+  String get emptyConfirmPassword => '请确认您的密码';
+
+  @override
+  String get emptyKorean => '韩语单词不能为空';
+
+  @override
+  String get emptyEnglish => '英语单词不能为空';
+
+  @override
+  String get invalidKorean => '请输入有效的韩语字符';
+
+  @override
+  String get invalidEnglish => '请输入有效的英语字符';
+
+  @override
+  String get invalidInput => '输入无效';
 }

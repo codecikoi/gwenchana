@@ -26,5 +26,16 @@
   "speaking": "Sprechen",
   "writing": "Schreiben",
   "listening": "Hören",
-  "chooseBook": "Buch wählen"
+  "chooseBook": "Buch wählen",
+  "emptyEmail": "E-Mail darf nicht leer sein",
+  "emptyPassword": "Passwort darf nicht leer sein",
+  "emptyName": "Name darf nicht leer sein",
+  "passwordTooShort": "Passwort muss mindestens 6 Zeichen lang sein",
+  "nameTooShort": "Name muss mindestens 2 Zeichen lang sein",
+  "emptyConfirmPassword": "Bitte bestätigen Sie Ihr Passwort",
+  "emptyKorean": "Koreanisches Wort darf nicht leer sein",
+  "emptyEnglish": "Englisches Wort darf nicht leer sein",
+  "invalidKorean": "Bitte geben Sie gültige koreanische Zeichen ein",
+  "invalidEnglish": "Bitte geben Sie gültige englische Zeichen ein",
+  "invalidInput": "Ungültige Eingabe"
 }

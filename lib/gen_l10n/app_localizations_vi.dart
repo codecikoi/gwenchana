@@ -89,4 +89,37 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get chooseBook => 'Chọn sách';
+
+  @override
+  String get emptyEmail => 'Email không được để trống';
+
+  @override
+  String get emptyPassword => 'Mật khẩu không được để trống';
+
+  @override
+  String get emptyName => 'Tên không được để trống';
+
+  @override
+  String get passwordTooShort => 'Mật khẩu phải có ít nhất 6 ký tự';
+
+  @override
+  String get nameTooShort => 'Tên phải có ít nhất 2 ký tự';
+
+  @override
+  String get emptyConfirmPassword => 'Vui lòng xác nhận mật khẩu của bạn';
+
+  @override
+  String get emptyKorean => 'Từ tiếng Hàn không được để trống';
+
+  @override
+  String get emptyEnglish => 'Từ tiếng Anh không được để trống';
+
+  @override
+  String get invalidKorean => 'Vui lòng nhập ký tự tiếng Hàn hợp lệ';
+
+  @override
+  String get invalidEnglish => 'Vui lòng nhập ký tự tiếng Anh hợp lệ';
+
+  @override
+  String get invalidInput => 'Dữ liệu nhập không hợp lệ';
 }

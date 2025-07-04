@@ -26,5 +26,16 @@
   "speaking": "Speaking",
   "writing": "Writing",
   "listening": "Listening",
-  "chooseBook": "Choose Book"
+  "chooseBook": "Choose Book",
+  "emptyEmail": "Email cannot be empty",
+  "emptyPassword": "Password cannot be empty",
+  "emptyName": "Name cannot be empty",
+  "passwordTooShort": "Password must be at least 6 characters",
+  "nameTooShort": "Name must be at least 2 characters",
+  "emptyConfirmPassword": "Please confirm your password",
+  "emptyKorean": "Korean word cannot be empty",
+  "emptyEnglish": "English word cannot be empty",
+  "invalidKorean": "Please enter valid Korean characters",
+  "invalidEnglish": "Please enter valid English characters",
+  "invalidInput": "Invalid input"
 }

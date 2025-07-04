@@ -89,4 +89,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chooseBook => 'Choose Book';
+
+  @override
+  String get emptyEmail => 'Email cannot be empty';
+
+  @override
+  String get emptyPassword => 'Password cannot be empty';
+
+  @override
+  String get emptyName => 'Name cannot be empty';
+
+  @override
+  String get passwordTooShort => 'Password must be at least 6 characters';
+
+  @override
+  String get nameTooShort => 'Name must be at least 2 characters';
+
+  @override
+  String get emptyConfirmPassword => 'Please confirm your password';
+
+  @override
+  String get emptyKorean => 'Korean word cannot be empty';
+
+  @override
+  String get emptyEnglish => 'English word cannot be empty';
+
+  @override
+  String get invalidKorean => 'Please enter valid Korean characters';
+
+  @override
+  String get invalidEnglish => 'Please enter valid English characters';
+
+  @override
+  String get invalidInput => 'Invalid input';
 }

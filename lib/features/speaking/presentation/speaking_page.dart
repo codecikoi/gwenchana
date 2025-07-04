@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gwenchana/core/helper/basic_appbar.dart';
+import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
 @RoutePage()
 class SpeakingPage extends StatelessWidget {
@@ -10,7 +11,7 @@ class SpeakingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BasicAppBar(
-        title: Text('Speaking'),
+        title: Text(AppLocalizations.of(context)!.speaking),
       ),
       body: Center(
         child: Text('soon speaking page'),

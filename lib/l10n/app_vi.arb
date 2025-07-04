@@ -26,5 +26,16 @@
   "speaking": "Nói",
   "writing": "Viết",
   "listening": "Nghe",
-  "chooseBook": "Chọn sách"
+  "chooseBook": "Chọn sách",
+  "emptyEmail": "Email không được để trống",
+  "emptyPassword": "Mật khẩu không được để trống",
+  "emptyName": "Tên không được để trống",
+  "passwordTooShort": "Mật khẩu phải có ít nhất 6 ký tự",
+  "nameTooShort": "Tên phải có ít nhất 2 ký tự",
+  "emptyConfirmPassword": "Vui lòng xác nhận mật khẩu của bạn",
+  "emptyKorean": "Từ tiếng Hàn không được để trống",
+  "emptyEnglish": "Từ tiếng Anh không được để trống",
+  "invalidKorean": "Vui lòng nhập ký tự tiếng Hàn hợp lệ",
+  "invalidEnglish": "Vui lòng nhập ký tự tiếng Anh hợp lệ",
+  "invalidInput": "Dữ liệu nhập không hợp lệ"
 }

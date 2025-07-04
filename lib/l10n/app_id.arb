@@ -26,5 +26,16 @@
     "speaking": "Berbicara",
     "writing": "Menulis",
     "listening": "Mendengarkan",
-    "chooseBook": "Pilih Buku"
+    "chooseBook": "Pilih Buku",
+    "emptyEmail": "Email tidak boleh kosong",
+    "emptyPassword": "Kata sandi tidak boleh kosong",
+    "emptyName": "Nama tidak boleh kosong",
+    "passwordTooShort": "Kata sandi harus minimal 6 karakter",
+    "nameTooShort": "Nama harus minimal 2 karakter",
+    "emptyConfirmPassword": "Silakan konfirmasi kata sandi Anda",
+    "emptyKorean": "Kata Korea tidak boleh kosong",
+    "emptyEnglish": "Kata Inggris tidak boleh kosong",
+    "invalidKorean": "Silakan masukkan karakter Korea yang valid",
+    "invalidEnglish": "Silakan masukkan karakter Inggris yang valid",
+    "invalidInput": "Input tidak valid"
   }

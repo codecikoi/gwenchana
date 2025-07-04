@@ -89,4 +89,37 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get chooseBook => 'Выберите книгу';
+
+  @override
+  String get emptyEmail => 'Email не может быть пустым';
+
+  @override
+  String get emptyPassword => 'Пароль не может быть пустым';
+
+  @override
+  String get emptyName => 'Имя не может быть пустым';
+
+  @override
+  String get passwordTooShort => 'Пароль должен содержать не менее 6 символов';
+
+  @override
+  String get nameTooShort => 'Имя должно содержать не менее 2 символов';
+
+  @override
+  String get emptyConfirmPassword => 'Пожалуйста, подтвердите ваш пароль';
+
+  @override
+  String get emptyKorean => 'Корейское слово не может быть пустым';
+
+  @override
+  String get emptyEnglish => 'Английское слово не может быть пустым';
+
+  @override
+  String get invalidKorean => 'Пожалуйста, введите корректные корейские символы';
+
+  @override
+  String get invalidEnglish => 'Пожалуйста, введите корректные английские символы';
+
+  @override
+  String get invalidInput => 'Неверный ввод';
 }

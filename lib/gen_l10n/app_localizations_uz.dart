@@ -89,4 +89,37 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get chooseBook => 'Kitobni tanlang';
+
+  @override
+  String get emptyEmail => 'Elektron pochta bo\'sh bo\'lishi mumkin emas';
+
+  @override
+  String get emptyPassword => 'Parol bo\'sh bo\'lishi mumkin emas';
+
+  @override
+  String get emptyName => 'Ism bo\'sh bo\'lishi mumkin emas';
+
+  @override
+  String get passwordTooShort => 'Parol kamida 6 ta belgidan iborat bo\'lishi kerak';
+
+  @override
+  String get nameTooShort => 'Ism kamida 2 ta belgidan iborat bo\'lishi kerak';
+
+  @override
+  String get emptyConfirmPassword => 'Iltimos, parolingizni tasdiqlang';
+
+  @override
+  String get emptyKorean => 'Koreys so\'zi bo\'sh bo\'lishi mumkin emas';
+
+  @override
+  String get emptyEnglish => 'Ingliz so\'zi bo\'sh bo\'lishi mumkin emas';
+
+  @override
+  String get invalidKorean => 'Iltimos, to\'g\'ri koreys belgilarini kiriting';
+
+  @override
+  String get invalidEnglish => 'Iltimos, to\'g\'ri ingliz belgilarini kiriting';
+
+  @override
+  String get invalidInput => 'Noto\'g\'ri ma\'lumot';
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
 class ValidationHelper {
   // маил валидация
@@ -41,7 +42,7 @@ class ValidationHelper {
 
   // getting error messages
 
-  static String? getEmailError(String email, String context) {
+  static String? getEmailError(String email, BuildContext context) {
     if (email.isEmpty) {
       return _getLocalizedMessage('emailEmpty', context);
     }
@@ -51,7 +52,7 @@ class ValidationHelper {
     return null;
   }
 
-  static String? getPasswordError(String password, String context) {
+  static String? getPasswordError(String password, BuildContext context) {
     if (password.isEmpty) {
       return _getLocalizedMessage('passwordEmpty', context);
     }
@@ -61,7 +62,7 @@ class ValidationHelper {
     return null;
   }
 
-  static String? getNameError(String name, String context) {
+  static String? getNameError(String name, BuildContext context) {
     if (name.isEmpty) {
       return _getLocalizedMessage('nameEmpty', context);
     }
@@ -73,7 +74,7 @@ class ValidationHelper {
 
   // Получить сообщение об ошибке подтверждения пароля
   static String? getConfirmPasswordError(
-      String password, String confirmPassword, String context) {
+      String password, String confirmPassword, BuildContext context) {
     if (confirmPassword.isEmpty) {
       return _getLocalizedMessage('confirmPasswordEmpty', context);
     }
@@ -84,7 +85,7 @@ class ValidationHelper {
   }
 
   // Получить сообщение об ошибке корейского текста
-  static String? getKoreanError(String text, String context) {
+  static String? getKoreanError(String text, BuildContext context) {
     if (text.isEmpty) {
       return _getLocalizedMessage('koreanEmpty', context);
     }
@@ -95,7 +96,7 @@ class ValidationHelper {
   }
 
   // Получить сообщение об ошибке английского текста
-  static String? getEnglishError(String text, String context) {
+  static String? getEnglishError(String text, BuildContext context) {
     if (text.isEmpty) {
       return _getLocalizedMessage('englishEmpty', context);
     }
@@ -134,7 +135,7 @@ class ValidationHelper {
     required String email,
     required String password,
     required String confirmPassword,
-    required String context,
+    required BuildContext context,
   }) {
     return {
       'name': getNameError(name, context),
@@ -149,7 +150,7 @@ class ValidationHelper {
   static Map<String, String?> getVocabularyCardErrors({
     required String korean,
     required String english,
-    required String context,
+    required BuildContext context,
   }) {
     return {
       'korean': getKoreanError(korean, context),
@@ -163,58 +164,58 @@ class ValidationHelper {
   }
 
   // Приватный метод для получения локализованных сообщений
-  static String _getLocalizedMessage(String key, String context) {
+  static String _getLocalizedMessage(String key, BuildContext context) {
     // Здесь можно интегрировать с AppLocale
     switch (key) {
       case 'emailEmpty':
-        return 'Email cannot be empty';
+        return AppLocalizations.of(context)!.emptyEmail;
       case 'emailInvalid':
-        return 'Please enter a valid email';
+        return AppLocalizations.of(context)!.pleaseEnterValidEmail;
       case 'passwordEmpty':
-        return 'Password cannot be empty';
+        return AppLocalizations.of(context)!.emptyPassword;
       case 'passwordTooShort':
-        return 'Password must be at least 6 characters';
+        return AppLocalizations.of(context)!.passwordTooShort;
       case 'nameEmpty':
-        return 'Name cannot be empty';
+        return AppLocalizations.of(context)!.emptyName;
       case 'nameTooShort':
-        return 'Name must be at least 2 characters';
+        return AppLocalizations.of(context)!.nameTooShort;
       case 'confirmPasswordEmpty':
-        return 'Please confirm your password';
+        return AppLocalizations.of(context)!.emptyConfirmPassword;
       case 'passwordsNotMatch':
-        return 'Passwords do not match';
+        return AppLocalizations.of(context)!.passwordsNotMatch;
       case 'koreanEmpty':
-        return 'Korean text cannot be empty';
+        return AppLocalizations.of(context)!.emptyKorean;
       case 'koreanInvalid':
-        return 'Please enter valid Korean characters';
+        return AppLocalizations.of(context)!.invalidKorean;
       case 'englishEmpty':
-        return 'English text cannot be empty';
+        return AppLocalizations.of(context)!.emptyEnglish;
       case 'englishInvalid':
-        return 'Please enter valid English characters';
+        return AppLocalizations.of(context)!.invalidEnglish;
       default:
-        return 'Invalid input';
+        return AppLocalizations.of(context)!.invalidInput;
     }
   }
 }
 
 // Расширение для удобного использования с TextEditingController
 extension ValidationExtension on TextEditingController {
-  String? validateEmail(String context) {
+  String? validateEmail(BuildContext context) {
     return ValidationHelper.getEmailError(text, context);
   }
 
-  String? validatePassword(String context) {
+  String? validatePassword(BuildContext context) {
     return ValidationHelper.getPasswordError(text, context);
   }
 
-  String? validateName(String context) {
+  String? validateName(BuildContext context) {
     return ValidationHelper.getNameError(text, context);
   }
 
-  String? validateKorean(String context) {
+  String? validateKorean(BuildContext context) {
     return ValidationHelper.getKoreanError(text, context);
   }
 
-  String? validateEnglish(String context) {
+  String? validateEnglish(BuildContext context) {
     return ValidationHelper.getEnglishError(text, context);
   }
 }

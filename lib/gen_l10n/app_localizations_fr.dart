@@ -89,4 +89,37 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get chooseBook => 'Choisir un livre';
+
+  @override
+  String get emptyEmail => 'L\'email ne peut pas être vide';
+
+  @override
+  String get emptyPassword => 'Le mot de passe ne peut pas être vide';
+
+  @override
+  String get emptyName => 'Le nom ne peut pas être vide';
+
+  @override
+  String get passwordTooShort => 'Le mot de passe doit contenir au moins 6 caractères';
+
+  @override
+  String get nameTooShort => 'Le nom doit contenir au moins 2 caractères';
+
+  @override
+  String get emptyConfirmPassword => 'Veuillez confirmer votre mot de passe';
+
+  @override
+  String get emptyKorean => 'Le mot coréen ne peut pas être vide';
+
+  @override
+  String get emptyEnglish => 'Le mot anglais ne peut pas être vide';
+
+  @override
+  String get invalidKorean => 'Veuillez entrer des caractères coréens valides';
+
+  @override
+  String get invalidEnglish => 'Veuillez entrer des caractères anglais valides';
+
+  @override
+  String get invalidInput => 'Saisie invalide';
 }

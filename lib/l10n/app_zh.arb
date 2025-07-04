@@ -26,5 +26,16 @@
   "speaking": "口语",
   "writing": "写作",
   "listening": "听力",
-  "chooseBook": "选择书籍"
+  "chooseBook": "选择书籍",
+  "emptyEmail": "邮箱不能为空",
+  "emptyPassword": "密码不能为空",
+  "emptyName": "姓名不能为空",
+  "passwordTooShort": "密码至少需要6个字符",
+  "nameTooShort": "姓名至少需要2个字符",
+  "emptyConfirmPassword": "请确认您的密码",
+  "emptyKorean": "韩语单词不能为空",
+  "emptyEnglish": "英语单词不能为空",
+  "invalidKorean": "请输入有效的韩语字符",
+  "invalidEnglish": "请输入有效的英语字符",
+  "invalidInput": "输入无效"
 }

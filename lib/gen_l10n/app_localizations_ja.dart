@@ -89,4 +89,37 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get chooseBook => '本を選ぶ';
+
+  @override
+  String get emptyEmail => 'メールアドレスを入力してください';
+
+  @override
+  String get emptyPassword => 'パスワードを入力してください';
+
+  @override
+  String get emptyName => '名前を入力してください';
+
+  @override
+  String get passwordTooShort => 'パスワードは6文字以上である必要があります';
+
+  @override
+  String get nameTooShort => '名前は2文字以上である必要があります';
+
+  @override
+  String get emptyConfirmPassword => 'パスワードを確認してください';
+
+  @override
+  String get emptyKorean => '韓国語の単語を入力してください';
+
+  @override
+  String get emptyEnglish => '英語の単語を入力してください';
+
+  @override
+  String get invalidKorean => '有効な韓国語文字を入力してください';
+
+  @override
+  String get invalidEnglish => '有効な英語文字を入力してください';
+
+  @override
+  String get invalidInput => '無効な入力です';
 }

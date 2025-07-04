@@ -26,5 +26,16 @@
     "speaking": "Gapirish",
     "writing": "Yozish",
     "listening": "Tinglash",
-    "chooseBook": "Kitobni tanlang"
+    "chooseBook": "Kitobni tanlang",
+    "emptyEmail": "Elektron pochta bo'sh bo'lishi mumkin emas",
+    "emptyPassword": "Parol bo'sh bo'lishi mumkin emas",
+    "emptyName": "Ism bo'sh bo'lishi mumkin emas",
+    "passwordTooShort": "Parol kamida 6 ta belgidan iborat bo'lishi kerak",
+    "nameTooShort": "Ism kamida 2 ta belgidan iborat bo'lishi kerak",
+    "emptyConfirmPassword": "Iltimos, parolingizni tasdiqlang",
+    "emptyKorean": "Koreys so'zi bo'sh bo'lishi mumkin emas",
+    "emptyEnglish": "Ingliz so'zi bo'sh bo'lishi mumkin emas",
+    "invalidKorean": "Iltimos, to'g'ri koreys belgilarini kiriting",
+    "invalidEnglish": "Iltimos, to'g'ri ingliz belgilarini kiriting",
+    "invalidInput": "Noto'g'ri ma'lumot"
   }

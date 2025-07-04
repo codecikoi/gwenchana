@@ -89,4 +89,37 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get chooseBook => 'Pilih Buku';
+
+  @override
+  String get emptyEmail => 'Email tidak boleh kosong';
+
+  @override
+  String get emptyPassword => 'Kata sandi tidak boleh kosong';
+
+  @override
+  String get emptyName => 'Nama tidak boleh kosong';
+
+  @override
+  String get passwordTooShort => 'Kata sandi harus minimal 6 karakter';
+
+  @override
+  String get nameTooShort => 'Nama harus minimal 2 karakter';
+
+  @override
+  String get emptyConfirmPassword => 'Silakan konfirmasi kata sandi Anda';
+
+  @override
+  String get emptyKorean => 'Kata Korea tidak boleh kosong';
+
+  @override
+  String get emptyEnglish => 'Kata Inggris tidak boleh kosong';
+
+  @override
+  String get invalidKorean => 'Silakan masukkan karakter Korea yang valid';
+
+  @override
+  String get invalidEnglish => 'Silakan masukkan karakter Inggris yang valid';
+
+  @override
+  String get invalidInput => 'Input tidak valid';
 }

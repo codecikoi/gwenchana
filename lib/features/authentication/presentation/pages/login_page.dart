@@ -132,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                 labelText: AppLocalizations.of(context)!.email,
                 border: OutlineInputBorder(),
                 errorText: _emailController.text.isNotEmpty
-                    ? _emailController.validateEmail(_emailController.text)
+                    ? _emailController.validateEmail(context)
                     : null,
               ),
             ),
@@ -144,8 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                 labelText: AppLocalizations.of(context)!.password,
                 border: OutlineInputBorder(),
                 errorText: _passwordController.text.isNotEmpty
-                    ? _passwordController
-                        .validatePassword(_passwordController.text)
+                    ? _passwordController.validatePassword(context)
                     : null,
               ),
             ),

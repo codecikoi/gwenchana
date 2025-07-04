@@ -6,6 +6,7 @@ import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
+import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
 class VocabularyCardData {
   final String title;
@@ -45,7 +46,7 @@ class VocabularyPage extends StatelessWidget {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Choose book'),
+        title: Text(AppLocalizations.of(context)!.chooseBook),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: List.generate(
@@ -103,7 +104,7 @@ class VocabularyPage extends StatelessWidget {
             appBar: AppBar(
               title: TextButton(
                 child: Text(
-                  'Choose book',
+                  AppLocalizations.of(context)!.chooseBook,
                   style: TextStyle(
                     fontSize: 22,
                   ),

@@ -26,5 +26,16 @@
   "speaking": "話す",
   "writing": "書く",
   "listening": "聞く",
-  "chooseBook": "本を選ぶ"
+  "chooseBook": "本を選ぶ",
+  "emptyEmail": "メールアドレスを入力してください",
+  "emptyPassword": "パスワードを入力してください",
+  "emptyName": "名前を入力してください",
+  "passwordTooShort": "パスワードは6文字以上である必要があります",
+  "nameTooShort": "名前は2文字以上である必要があります",
+  "emptyConfirmPassword": "パスワードを確認してください",
+  "emptyKorean": "韓国語の単語を入力してください",
+  "emptyEnglish": "英語の単語を入力してください",
+  "invalidKorean": "有効な韓国語文字を入力してください",
+  "invalidEnglish": "有効な英語文字を入力してください",
+  "invalidInput": "無効な入力です"
 }

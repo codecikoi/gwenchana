@@ -69,8 +69,7 @@ import 'app_localizations_zh.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -78,8 +77,7 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -91,8 +89,7 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -279,10 +276,75 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose Book'**
   String get chooseBook;
+
+  /// No description provided for @emptyEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Email cannot be empty'**
+  String get emptyEmail;
+
+  /// No description provided for @emptyPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Password cannot be empty'**
+  String get emptyPassword;
+
+  /// No description provided for @emptyName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name cannot be empty'**
+  String get emptyName;
+
+  /// No description provided for @passwordTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters'**
+  String get passwordTooShort;
+
+  /// No description provided for @nameTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Name must be at least 2 characters'**
+  String get nameTooShort;
+
+  /// No description provided for @emptyConfirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Please confirm your password'**
+  String get emptyConfirmPassword;
+
+  /// No description provided for @emptyKorean.
+  ///
+  /// In en, this message translates to:
+  /// **'Korean word cannot be empty'**
+  String get emptyKorean;
+
+  /// No description provided for @emptyEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'English word cannot be empty'**
+  String get emptyEnglish;
+
+  /// No description provided for @invalidKorean.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter valid Korean characters'**
+  String get invalidKorean;
+
+  /// No description provided for @invalidEnglish.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter valid English characters'**
+  String get invalidEnglish;
+
+  /// No description provided for @invalidInput.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid input'**
+  String get invalidInput;
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -291,48 +353,32 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) => <String>[
-        'de',
-        'en',
-        'fr',
-        'id',
-        'ja',
-        'ru',
-        'uz',
-        'vi',
-        'zh'
-      ].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['de', 'en', 'fr', 'id', 'ja', 'ru', 'uz', 'vi', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'de':
-      return AppLocalizationsDe();
-    case 'en':
-      return AppLocalizationsEn();
-    case 'fr':
-      return AppLocalizationsFr();
-    case 'id':
-      return AppLocalizationsId();
-    case 'ja':
-      return AppLocalizationsJa();
-    case 'ru':
-      return AppLocalizationsRu();
-    case 'uz':
-      return AppLocalizationsUz();
-    case 'vi':
-      return AppLocalizationsVi();
-    case 'zh':
-      return AppLocalizationsZh();
+    case 'de': return AppLocalizationsDe();
+    case 'en': return AppLocalizationsEn();
+    case 'fr': return AppLocalizationsFr();
+    case 'id': return AppLocalizationsId();
+    case 'ja': return AppLocalizationsJa();
+    case 'ru': return AppLocalizationsRu();
+    case 'uz': return AppLocalizationsUz();
+    case 'vi': return AppLocalizationsVi();
+    case 'zh': return AppLocalizationsZh();
   }
 
   throw FlutterError(
-      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }
