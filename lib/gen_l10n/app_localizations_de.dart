@@ -128,4 +128,16 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get koreanWord => 'Koreanisches Wort';
+
+  @override
+  String get errorLoadFavorites => 'Fehler beim Laden der Favoriten';
+
+  @override
+  String get errorAddFavorites => 'Fehler beim Hinzufügen zu Favoriten';
+
+  @override
+  String get errorAddCard => 'Fehler beim Hinzufügen der Karte';
+
+  @override
+  String get errorLoadCard => 'Fehler beim Laden der Karten';
 }

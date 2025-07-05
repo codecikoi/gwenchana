@@ -39,5 +39,9 @@
   "invalidEnglish": "有効な英語文字を入力してください",
   "invalidInput": "無効な入力です",
   "addCard": "カードを追加",
-  "koreanWord": "韓国語の単語"
+  "koreanWord": "韓国語の単語",
+  "errorLoadFavorites": "お気に入りの読み込みエラー",
+  "errorAddFavorites": "お気に入りへの追加エラー",
+  "errorAddCard": "カード追加エラー",
+  "errorLoadCard": "カード読み込みエラー"
 }

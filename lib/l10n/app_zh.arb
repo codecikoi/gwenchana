@@ -39,5 +39,9 @@
   "invalidEnglish": "请输入有效的英语字符",
   "invalidInput": "输入无效",
   "addCard": "添加卡片",
-  "koreanWord": "韩语单词"
+  "koreanWord": "韩语单词",
+  "errorLoadFavorites": "加载收藏夹时出错",
+  "errorAddFavorites": "添加到收藏夹时出错",
+  "errorAddCard": "添加卡片时出错",
+  "errorLoadCard": "加载卡片时出错"
 }

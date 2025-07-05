@@ -128,4 +128,16 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get koreanWord => 'Từ tiếng Hàn';
+
+  @override
+  String get errorLoadFavorites => 'Lỗi tải danh sách yêu thích';
+
+  @override
+  String get errorAddFavorites => 'Lỗi thêm vào danh sách yêu thích';
+
+  @override
+  String get errorAddCard => 'Lỗi thêm thẻ';
+
+  @override
+  String get errorLoadCard => 'Lỗi tải thẻ';
 }

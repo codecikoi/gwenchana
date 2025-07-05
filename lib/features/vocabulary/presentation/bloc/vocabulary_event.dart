@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 
 abstract class VocabularyEvent extends Equatable {
   const VocabularyEvent();
@@ -24,3 +25,26 @@ class ResetProgressEvent extends VocabularyEvent {
 }
 
 class UpdateProgressEvent extends VocabularyEvent {}
+
+class OpenFavoritesEvent extends VocabularyEvent {}
+
+class OpenMyCardsEvent extends VocabularyEvent {}
+
+class LoadCardsEvent extends VocabularyEvent {}
+
+class AddCardEvent extends VocabularyEvent {
+  final MyCard card;
+
+  const AddCardEvent(this.card);
+  @override
+  List<Object?> get props => [card];
+}
+
+class AddToFavoritesEvent extends VocabularyEvent {
+  final MyCard card;
+  const AddToFavoritesEvent(this.card);
+  @override
+  List<Object?> get props => [card];
+}
+
+class LoadFavoritesEvent extends VocabularyEvent {}

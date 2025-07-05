@@ -39,5 +39,9 @@
     "invalidEnglish": "Silakan masukkan karakter Inggris yang valid",
     "invalidInput": "Input tidak valid",
     "addCard": "Tambah kartu",
-    "koreanWord": "Kata Korea"
+    "koreanWord": "Kata Korea",
+    "errorLoadFavorites": "Error memuat favorit",
+    "errorAddFavorites": "Error menambahkan ke favorit",
+    "errorAddCard": "Error menambahkan kartu",
+    "errorLoadCard": "Error memuat kartu"
   }

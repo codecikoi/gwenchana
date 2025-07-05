@@ -128,4 +128,16 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get koreanWord => 'Корейское слово';
+
+  @override
+  String get errorLoadFavorites => 'Ошибка загрузки избранного';
+
+  @override
+  String get errorAddFavorites => 'Ошибка добавления в избранное';
+
+  @override
+  String get errorAddCard => 'Ошибка добавления карточки';
+
+  @override
+  String get errorLoadCard => 'Ошибка загрузки карточек';
 }

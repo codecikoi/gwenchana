@@ -39,5 +39,9 @@
   "invalidEnglish": "Please enter valid English characters",
   "invalidInput": "Invalid input",
   "addCard": "Add card",
-  "koreanWord": "Korean word"
+  "koreanWord": "Korean word",
+  "errorLoadFavorites": "Error loading favorites",
+  "errorAddFavorites": "Error adding to favorites",
+  "errorAddCard": "Error adding card",
+  "errorLoadCard": "Error loading cards"
 }

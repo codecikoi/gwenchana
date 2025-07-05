@@ -3,8 +3,10 @@ import 'package:bloc/bloc.dart';
 import 'package:gwenchana/core/services/progress_service.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
-import 'package:gwenchana/features/vocabulary/presentation/pages/card_titles.dart';
+import 'package:gwenchana/features/vocabulary/presentation/widgets/card_titles.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_page.dart';
+import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
+import 'package:hive/hive.dart';
 
 class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
   VocabularyBloc() : super(VocabularyLoading()) {
@@ -12,6 +14,10 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
     on<ChangeLevelEvent>(_onChangeLevel);
     on<ResetProgressEvent>(_onResetProgress);
     on<UpdateProgressEvent>(_onUpdateProgress);
+    on<LoadCardsEvent>(_onLoadCards);
+    on<AddCardEvent>(_onAddCard);
+    on<AddToFavoritesEvent>(_onAddToFavorites);
+    on<LoadFavoritesEvent>(_onLoadFavorites);
   }
 
   Future<void> _onLoadProgress(
@@ -68,6 +74,54 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
         return cardTitlesLevel5[index];
       default:
         return cardTitlesLevel1[index];
+    }
+  }
+
+  // favorites and myCards bloc
+
+  Future<void> _onLoadCards(
+      LoadCardsEvent event, Emitter<VocabularyState> emit) async {
+    emit(VocabularyLoading());
+    try {
+      final cards = await getAllCards();
+      emit(CardsLoaded(cards));
+    } catch (e) {
+      emit(VocabularyError('Ошибка загрузки карточек'));
+    }
+  }
+
+  Future<void> _onAddCard(
+      AddCardEvent event, Emitter<VocabularyState> emit) async {
+    emit(VocabularyLoading());
+    try {
+      final box = await Hive.openBox<MyCard>('my_cards');
+      await box.add(event.card);
+      final cards = await getAllCards();
+      emit(CardsLoaded(cards));
+    } catch (e) {
+      emit(VocabularyError('Ошибка добавления карточки'));
+    }
+  }
+
+  Future<void> _onAddToFavorites(
+      AddToFavoritesEvent event, Emitter<VocabularyState> emit) async {
+    try {
+      await addToFavorites(event.card);
+      final favorites = await getFavorites();
+      emit(FavoritesLoaded(favorites));
+    } catch (e) {
+      emit(VocabularyError('Ошибка добавления в избранное'));
+    }
+  }
+
+  Future<void> _onLoadFavorites(
+      LoadFavoritesEvent event, Emitter<VocabularyState> emit) async {
+    emit(VocabularyLoading());
+    try {
+      final favorites = await getFavorites();
+      emit(FavoritesLoaded(favorites));
+    } catch (e) {
+      emit(VocabularyError('Ошибка загрузки избранного'));
     }
   }
 }

@@ -128,4 +128,16 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get koreanWord => '韓国語の単語';
+
+  @override
+  String get errorLoadFavorites => 'お気に入りの読み込みエラー';
+
+  @override
+  String get errorAddFavorites => 'お気に入りへの追加エラー';
+
+  @override
+  String get errorAddCard => 'カード追加エラー';
+
+  @override
+  String get errorLoadCard => 'カード読み込みエラー';
 }

@@ -128,4 +128,16 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get koreanWord => 'Kata Korea';
+
+  @override
+  String get errorLoadFavorites => 'Error memuat favorit';
+
+  @override
+  String get errorAddFavorites => 'Error menambahkan ke favorit';
+
+  @override
+  String get errorAddCard => 'Error menambahkan kartu';
+
+  @override
+  String get errorLoadCard => 'Error memuat kartu';
 }

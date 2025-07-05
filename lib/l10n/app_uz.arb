@@ -39,5 +39,9 @@
     "invalidEnglish": "Iltimos, to'g'ri ingliz belgilarini kiriting",
     "invalidInput": "Noto'g'ri ma'lumot",
     "addCard": "Karta qo'shish",
-    "koreanWord": "Koreyscha so'z"
+    "koreanWord": "Koreyscha so'z",
+    "errorLoadFavorites": "Sevimlilarni yuklashda xatolik",
+    "errorAddFavorites": "Sevimlilarga qo'shishda xatolik",
+    "errorAddCard": "Karta qo'shishda xatolik",
+    "errorLoadCard": "Kartalarni yuklashda xatolik"
   }

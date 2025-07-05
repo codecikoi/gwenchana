@@ -354,6 +354,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Korean word'**
   String get koreanWord;
+
+  /// No description provided for @errorLoadFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading favorites'**
+  String get errorLoadFavorites;
+
+  /// No description provided for @errorAddFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Error adding to favorites'**
+  String get errorAddFavorites;
+
+  /// No description provided for @errorAddCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Error adding card'**
+  String get errorAddCard;
+
+  /// No description provided for @errorLoadCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading cards'**
+  String get errorLoadCard;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -128,4 +128,16 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get koreanWord => 'Koreyscha so\'z';
+
+  @override
+  String get errorLoadFavorites => 'Sevimlilarni yuklashda xatolik';
+
+  @override
+  String get errorAddFavorites => 'Sevimlilarga qo\'shishda xatolik';
+
+  @override
+  String get errorAddCard => 'Karta qo\'shishda xatolik';
+
+  @override
+  String get errorLoadCard => 'Kartalarni yuklashda xatolik';
 }

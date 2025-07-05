@@ -39,5 +39,9 @@
   "invalidEnglish": "Vui lòng nhập ký tự tiếng Anh hợp lệ",
   "invalidInput": "Dữ liệu nhập không hợp lệ",
   "addCard": "Thêm thẻ",
-  "koreanWord": "Từ tiếng Hàn"
+  "koreanWord": "Từ tiếng Hàn",
+  "errorLoadFavorites": "Lỗi tải danh sách yêu thích",
+  "errorAddFavorites": "Lỗi thêm vào danh sách yêu thích",
+  "errorAddCard": "Lỗi thêm thẻ",
+  "errorLoadCard": "Lỗi tải thẻ"
 }

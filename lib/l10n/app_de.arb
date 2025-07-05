@@ -39,5 +39,9 @@
   "invalidEnglish": "Bitte geben Sie gültige englische Zeichen ein",
   "invalidInput": "Ungültige Eingabe",
   "addCard": "Karte hinzufügen",
-  "koreanWord": "Koreanisches Wort"
+  "koreanWord": "Koreanisches Wort",
+  "errorLoadFavorites": "Fehler beim Laden der Favoriten",
+  "errorAddFavorites": "Fehler beim Hinzufügen zu Favoriten",
+  "errorAddCard": "Fehler beim Hinzufügen der Karte",
+  "errorLoadCard": "Fehler beim Laden der Karten"
 }

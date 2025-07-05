@@ -128,4 +128,16 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get koreanWord => '韩语单词';
+
+  @override
+  String get errorLoadFavorites => '加载收藏夹时出错';
+
+  @override
+  String get errorAddFavorites => '添加到收藏夹时出错';
+
+  @override
+  String get errorAddCard => '添加卡片时出错';
+
+  @override
+  String get errorLoadCard => '加载卡片时出错';
 }

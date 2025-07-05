@@ -11,6 +11,7 @@ import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/core/services/auth_service.dart';
 import 'package:gwenchana/features/choose_language/presentation/bloc/language_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'firebase_options.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
@@ -18,6 +19,9 @@ import 'package:gwenchana/gen_l10n/app_localizations.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: '.env');
+  await Hive.initFlutter();
+  await Hive.openBox('my_cards');
+  await Hive.openBox('favorites');
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

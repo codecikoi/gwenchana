@@ -6,6 +6,9 @@ import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
+import 'package:gwenchana/features/vocabulary/presentation/widgets/add_card_dialog.dart';
+import 'package:gwenchana/features/vocabulary/presentation/widgets/favorite_dialog.dart';
+import 'package:gwenchana/features/vocabulary/presentation/widgets/my_card_dialog.dart';
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
 @RoutePage()
@@ -55,79 +58,6 @@ class VocabularyPage extends StatelessWidget {
     bloc.add(LoadProgressEvent());
   }
 
-  // void addCard(String korean, String english) {
-  //   setState(() {
-  //     cards.add(VocabularyCard(korean: korean, english: english));
-  //   });
-  // }
-
-//   void showAddCardDialog() {
-//     String korean = '';
-//     String english = '';
-//     String? errorText;
-//     showDialog(
-//       context: context,
-//       builder: (context) => StatefulBuilder(
-//         builder: (context, setState) => AlertDialog(
-//           title: Text('Добавить карточку'),
-//           content: Column(
-//             mainAxisSize: MainAxisSize.min,
-//             children: [
-//               TextField(
-//                 decoration: InputDecoration(labelText: 'Корейское слово'),
-//                 onChanged: (value) {
-//                   korean = value;
-//                   setState(() => errorText = null);
-//                 },
-//               ),
-//               TextField(
-//                 decoration: InputDecoration(labelText: 'Перевод (англ.)'),
-//                 onChanged: (value) {
-//                   english = value;
-//                   setState(() => errorText = null);
-//                 },
-//               ),
-//               if (errorText != null)
-//                 Padding(
-//                   padding: const EdgeInsets.only(top: 8.0),
-//                   child: Text(
-//                     errorText!,
-//                     style: TextStyle(color: Colors.red),
-//                   ),
-//                 ),
-//             ],
-//           ),
-//           actions: [
-//             TextButton(
-//               onPressed: () {
-//                 final koreanReg =
-//                     RegExp(r'^[\uac00-\ud7af\u1100-\u11ff\u3130-\u318f ]+$');
-//                 final englishReg = RegExp(r'^[A-Za-z ]+$');
-//                 if (korean.isEmpty || english.isEmpty) {
-//                   setState(() => errorText = 'Поля не должны быть пустыми');
-//                   return;
-//                 }
-//                 if (!koreanReg.hasMatch(korean)) {
-//                   setState(() => errorText =
-//                       'Корейское слово должно содержать только корейские символы');
-//                   return;
-//                 }
-//                 if (!englishReg.hasMatch(english)) {
-//                   setState(() =>
-//                       errorText = 'Перевод должен быть на английском языке');
-//                   return;
-//                 }
-//                 addCard(korean, english);
-//                 Navigator.of(context).pop();
-//               },
-//               child: Text('Добавить'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<VocabularyBloc, VocabularyState>(
@@ -176,7 +106,30 @@ class VocabularyPage extends StatelessWidget {
               actions: [
                 IconButton(
                   icon: Icon(Icons.add),
-                  onPressed: () {},
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (context) => AddCardDialog(
+                      bloc: context.read<VocabularyBloc>(),
+                    ),
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.favorite),
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (context) => FavoriteDialog(
+                      bloc: context.read<VocabularyBloc>(),
+                    ),
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.list),
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (context) => MyCardsDialog(
+                      bloc: context.read<VocabularyBloc>(),
+                    ),
+                  ),
                 ),
                 IconButton(
                   icon: Icon(Icons.refresh),
@@ -249,7 +202,7 @@ class VocabularyPage extends StatelessWidget {
         }
         return Scaffold(
           appBar: AppBar(
-            title: Text('Vocabulary Cardsadsad'),
+            title: Text('Vocabulary Cards'),
             backgroundColor: Colors.white,
             foregroundColor: Colors.black,
           ),

@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_page.dart';
+import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 
 abstract class VocabularyState extends Equatable {
   const VocabularyState();
@@ -31,4 +32,20 @@ class VocabularyError extends VocabularyState {
 
   @override
   List<Object?> get props => [message];
+}
+
+class CardsLoaded extends VocabularyState {
+  final List<MyCard> cards;
+  const CardsLoaded(this.cards);
+
+  @override
+  List<Object?> get props => [cards];
+}
+
+class FavoritesLoaded extends VocabularyState {
+  final List<MyCard> favorites;
+  const FavoritesLoaded(this.favorites);
+
+  @override
+  List<Object?> get props => [favorites];
 }
