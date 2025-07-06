@@ -4,7 +4,7 @@ import 'package:gwenchana/core/helper/app_colors.dart';
 import 'package:gwenchana/core/helper/basic_appbar.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/core/helper/validation_helper.dart';
-import 'package:gwenchana/core/services/auth_service.dart';
+import 'package:gwenchana/core/services/auth_service_impl.dart';
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
 @RoutePage()
@@ -24,7 +24,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
-  final AuthService _authService = AuthService();
+  final AuthServiceImpl _authService = AuthServiceImpl();
 
   // переменная для проверки валидности формы
   bool _isFormValid = false;
@@ -226,7 +226,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               children: [
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () => AuthService().signInWithGoogle(),
+                    onPressed: () => AuthServiceImpl().signInWithGoogle(),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.black,
                       foregroundColor: Colors.white,

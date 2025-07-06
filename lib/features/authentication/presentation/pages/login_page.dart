@@ -6,7 +6,7 @@ import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/core/services/preferences_service.dart';
 import 'package:gwenchana/core/helper/basic_appbar.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
-import 'package:gwenchana/core/services/auth_service.dart';
+import 'package:gwenchana/core/services/auth_service_impl.dart';
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
 @RoutePage()
@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final AuthService _authService = AuthService();
+  final AuthServiceImpl _authService = AuthServiceImpl();
   final PreferencesService _preferencesService = PreferencesService();
 
   // переменная для проверки валидности формы
@@ -223,7 +223,7 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Expanded(
                   child: ElevatedButton.icon(
-                    onPressed: () => AuthService().signInWithGoogle(),
+                    onPressed: () => AuthServiceImpl().signInWithGoogle(),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.black,
                       foregroundColor: Colors.white,
@@ -251,7 +251,8 @@ class _LoginPageState extends State<LoginPage> {
                   child: ElevatedButton.icon(
                     onPressed: () async {
                       try {
-                        final result = await AuthService().signInWithFacebook();
+                        final result =
+                            await AuthServiceImpl().signInWithFacebook();
                         if (!mounted) return;
                         if (result != null) {
                           context.router.pushPath('/app-page');

@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:gwenchana/core/services/auth_service.dart';
+import 'package:gwenchana/core/services/auth_service_impl.dart';
 import 'package:gwenchana/core/helper/basic_appbar.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
@@ -58,7 +58,7 @@ class _RecoverPasswordPageState extends State<RecoverPasswordPage> {
       _isLoading = true;
     });
     try {
-      await AuthService().resetPassword(
+      await AuthServiceImpl().resetPassword(
         _emailController.text.trim(),
       );
       if (mounted) {

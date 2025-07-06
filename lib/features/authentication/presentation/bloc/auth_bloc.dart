@@ -3,13 +3,13 @@ import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gwenchana/features/authentication/presentation/bloc/auth_event.dart';
 import 'package:gwenchana/features/authentication/presentation/bloc/auth_state.dart';
-import 'package:gwenchana/core/services/auth_service.dart';
+import 'package:gwenchana/core/services/auth_service_impl.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final AuthService _authService;
+  final AuthServiceImpl _authService;
   late StreamSubscription<User?> _authSubscription;
 
-  AuthBloc({required AuthService authService})
+  AuthBloc({required AuthServiceImpl authService})
       : _authService = authService,
         super(AuthInitial()) {
     // подписываемся на изменения состояния авторизации
