@@ -1,7 +1,12 @@
 import 'package:hive/hive.dart';
+part 'word_card_model.g.dart';
 
+@HiveType(typeId: 0)
 class MyCard {
+  @HiveField(0)
   final String korean;
+
+  @HiveField(1)
   final String translation;
 
   MyCard({

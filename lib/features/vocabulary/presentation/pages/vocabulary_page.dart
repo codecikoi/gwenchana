@@ -65,7 +65,7 @@ class VocabularyPage extends StatelessWidget {
         if (state is VocabularyLoading) {
           return Scaffold(
             appBar: AppBar(
-              title: Text('Vocaabulary Cards'),
+              title: Text('Vocabulary Cards'),
               backgroundColor: Colors.white,
               foregroundColor: Colors.black,
             ),
@@ -150,18 +150,90 @@ class VocabularyPage extends StatelessWidget {
                 childAspectRatio: 1.0,
                 crossAxisSpacing: 16.0,
               ),
-              itemCount: state.cards.length,
+              itemCount: state.cards.length + 2,
               itemBuilder: (context, index) {
-                final card = state.cards[index];
+                if (index == 0) {
+                  // my cards
+                  return GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => MyCardsDialog(
+                          bloc: context.read<VocabularyBloc>(),
+                        ),
+                      );
+                    },
+                    child: Card(
+                      color: getCardColor(index - 3),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.person,
+                              color: Colors.white,
+                              size: 40,
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              'My cards',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                }
+                if (index == 1) {
+                  // favorites
+                  return GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => FavoriteDialog(
+                          bloc: context.read<VocabularyBloc>(),
+                        ),
+                      );
+                    },
+                    child: Card(
+                      color: getCardColor(index - 7),
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.favorite,
+                              color: Colors.white,
+                              size: 40,
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              'My cards',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                }
+                final card = state.cards[index - 2];
                 return GestureDetector(
                   onTap: () => navigateToVocabularyCard(
                     context,
-                    index,
+                    index - 2,
                     state.selectedLevel,
                     context.read<VocabularyBloc>(),
                   ),
                   child: Card(
-                    color: getCardColor(index),
+                    color: getCardColor(index - 2),
                     child: Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Column(

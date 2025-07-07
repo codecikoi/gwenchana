@@ -9,7 +9,9 @@ import 'package:gwenchana/features/vocabulary/data/vocabulary_three_data.dart';
 import 'package:gwenchana/features/vocabulary/data/vocabulary_two_data.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/card_titles.dart';
+import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 
 class VocabularyWordCard {
   final String korean;
@@ -298,9 +300,46 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
                       ? prevCard
                       : null, // норм что нулл или сделать кнопку не кликабельной?
                 ),
-                IconButton(
-                  icon: Icon(Icons.flip),
-                  onPressed: flipCard,
+                BlocBuilder<VocabularyBloc, VocabularyState>(
+                  builder: (context, state) {
+                    List<MyCard> favorites = [];
+                    if (state is FavoritesLoaded) {
+                      favorites = state.favorites;
+                    }
+
+                    final card = wordCards[currentIndex];
+                    final myCard = MyCard(
+                      korean: card.korean,
+                      translation: card.english,
+                    );
+                    final isFavorite = favorites.any(
+                      (fav) =>
+                          fav.korean == myCard.korean &&
+                          fav.translation == myCard.translation,
+                    );
+                    return IconButton(
+                      icon: Icon(
+                        isFavorite ? Icons.favorite : Icons.favorite_border,
+                        color: isFavorite ? Colors.red : null,
+                      ),
+                      onPressed: isFavorite
+                          ? null
+                          : () {
+                              context
+                                  .read<VocabularyBloc>()
+                                  .add(AddToFavoritesEvent(myCard));
+                              context
+                                  .read<VocabularyBloc>()
+                                  .add(LoadFavoritesEvent());
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Added to favorites')),
+                              );
+                            },
+                      tooltip: isFavorite
+                          ? 'Already in favorites'
+                          : 'Add to favorites',
+                    );
+                  },
                 ),
                 IconButton(
                   icon: Icon(Icons.arrow_forward),
