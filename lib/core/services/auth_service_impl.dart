@@ -3,19 +3,20 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:gwenchana/core/services/auth_service.dart';
 
-@LazySingleton(as IAuthService)
 class AuthServiceImpl implements IAuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
 // get current user
 
+  @override
   User? get currentUser => _auth.currentUser;
 
+  @override
   Stream<User?> get authStateChanges => _auth.authStateChanges();
 
   // email sing in
-
+  @override
   Future<UserCredential?> signInWithEmailPassword(
       String email, password) async {
     try {
@@ -48,6 +49,7 @@ class AuthServiceImpl implements IAuthService {
 
   // email sign up
 
+  @override
   Future<UserCredential?> signUpWithEmailPassword(
       String email, password) async {
     try {
@@ -77,7 +79,7 @@ class AuthServiceImpl implements IAuthService {
   }
 
   // google sign in
-
+  @override
   Future<UserCredential?> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
@@ -102,7 +104,7 @@ class AuthServiceImpl implements IAuthService {
   }
 
 // facebook sign in
-
+  @override
   Future<UserCredential?> signInWithFacebook() async {
     try {
       final LoginResult loginResult = await FacebookAuth.instance.login();
@@ -123,7 +125,7 @@ class AuthServiceImpl implements IAuthService {
   }
 
   // fb sign out
-
+  @override
   Future<void> signOut() async {
     await Future.wait([
       _auth.signOut(),
@@ -133,7 +135,7 @@ class AuthServiceImpl implements IAuthService {
   }
 
 // reset password
-
+  @override
   Future<void> resetPassword(String email) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);

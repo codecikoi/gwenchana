@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:gwenchana/core/di/locator.dart';
 import 'package:gwenchana/features/authentication/presentation/bloc/auth_bloc.dart';
 import 'package:gwenchana/features/authentication/presentation/bloc/auth_event.dart';
 import 'package:gwenchana/features/choose_language/presentation/bloc/language_bloc.dart';
@@ -25,6 +26,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  setupLocator();
   runApp(MyApp());
 }
 
