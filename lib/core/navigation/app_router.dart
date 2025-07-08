@@ -8,6 +8,8 @@ import 'package:gwenchana/features/authentication/presentation/pages/login_page.
 import 'package:gwenchana/features/reading/presentation/reading_page.dart';
 import 'package:gwenchana/features/recover_password/presentation/recover_password_page.dart';
 import 'package:gwenchana/features/speaking/presentation/speaking_page.dart';
+import 'package:gwenchana/features/vocabulary/presentation/pages/favorites_card_page.dart';
+import 'package:gwenchana/features/vocabulary/presentation/pages/my_cards_page.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_card.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_page.dart';
 import 'package:gwenchana/features/writing/presentation/writing_page.dart';
@@ -59,6 +61,16 @@ class AppRouter extends RootStackRouter {
             page: SpeakingRoute.page,
             path: '/speaking-page',
             guards: [_authGuard]),
+        AutoRoute(
+          page: FavoritesCardRoute.page,
+          path: '/favorites-page',
+          guards: [_authGuard],
+        ),
+        AutoRoute(
+          page: MyCardsRoute.page,
+          path: '/my-cards-page',
+          guards: [_authGuard],
+        ),
         RedirectRoute(path: '/', redirectTo: '/choose-lang'),
       ];
 }

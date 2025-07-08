@@ -59,6 +59,22 @@ class CreateAccountRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [FavoritesCardPage]
+class FavoritesCardRoute extends PageRouteInfo<void> {
+  const FavoritesCardRoute({List<PageRouteInfo>? children})
+    : super(FavoritesCardRoute.name, initialChildren: children);
+
+  static const String name = 'FavoritesCardRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const FavoritesCardPage();
+    },
+  );
+}
+
+/// generated route for
 /// [LoginPage]
 class LoginRoute extends PageRouteInfo<void> {
   const LoginRoute({List<PageRouteInfo>? children})
@@ -70,6 +86,22 @@ class LoginRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const LoginPage();
+    },
+  );
+}
+
+/// generated route for
+/// [MyCardsPage]
+class MyCardsRoute extends PageRouteInfo<void> {
+  const MyCardsRoute({List<PageRouteInfo>? children})
+    : super(MyCardsRoute.name, initialChildren: children);
+
+  static const String name = 'MyCardsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MyCardsPage();
     },
   );
 }
