@@ -18,6 +18,25 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
     on<AddCardEvent>(_onAddCard);
     on<AddToFavoritesEvent>(_onAddToFavorites);
     on<LoadFavoritesEvent>(_onLoadFavorites);
+    on<RemoveFromFavoritesEvent>(_onRemoveFromFavorites);
+  }
+
+  Future<void> _onRemoveFromFavorites(
+      RemoveFromFavoritesEvent event, Emitter<VocabularyState> emit) async {
+    try {
+      final favBox = await Hive.openBox('favorites');
+      final favorites = favBox.values.toList();
+      final index = favorites.indexWhere((e) =>
+          e['korean'] == event.card.korean &&
+          e['translation'] == event.card.translation);
+      if (index != -1) {
+        await favBox.deleteAt(index);
+      }
+      final updatedFavorites = await getFavorites();
+      emit(FavoritesLoaded(updatedFavorites));
+    } catch (e) {
+      emit(VocabularyError('Ошибка удаления из избранного'));
+    }
   }
 
   Future<void> _onLoadProgress(

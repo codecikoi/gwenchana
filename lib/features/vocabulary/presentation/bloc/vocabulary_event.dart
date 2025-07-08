@@ -48,3 +48,10 @@ class AddToFavoritesEvent extends VocabularyEvent {
 }
 
 class LoadFavoritesEvent extends VocabularyEvent {}
+
+class RemoveFromFavoritesEvent extends VocabularyEvent {
+  final MyCard card;
+  const RemoveFromFavoritesEvent(this.card);
+  @override
+  List<Object?> get props => [card];
+}
