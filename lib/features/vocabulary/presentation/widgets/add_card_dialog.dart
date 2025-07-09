@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gwenchana/core/helper/validation_helper.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
@@ -37,7 +36,7 @@ class _AddCardDialogState extends State<AddCardDialog> {
         translation: _translationController.text.trim(),
       );
       widget.bloc.add(AddCardEvent(card));
-      Navigator.of(context).context.pop();
+      Navigator.of(context).pop();
     }
   }
 

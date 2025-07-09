@@ -126,8 +126,8 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
       AddToFavoritesEvent event, Emitter<VocabularyState> emit) async {
     try {
       await addToFavorites(event.card);
-      final favorites = await getFavorites();
-      emit(FavoritesLoaded(favorites));
+      // final favorites = await getFavorites();
+      // emit(FavoritesLoaded(favorites));
     } catch (e) {
       emit(VocabularyError('Ошибка добавления в избранное'));
     }
@@ -140,6 +140,7 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
       final favorites = await getFavorites();
       emit(FavoritesLoaded(favorites));
     } catch (e) {
+      print('Error loading favorites: $e');
       emit(VocabularyError('Ошибка загрузки избранного'));
     }
   }

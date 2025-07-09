@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:hive/hive.dart';
 
 enum ViewMode { cards, list }
 
@@ -26,6 +26,9 @@ class _FavoritesCardPageState extends State<FavoritesCardPage>
   late AnimationController _controller;
   late Animation<double> _animation;
 
+  List<MyCard> favorites = [];
+  bool isLoading = true;
+
   @override
   void initState() {
     super.initState();
@@ -35,6 +38,22 @@ class _FavoritesCardPageState extends State<FavoritesCardPage>
       duration: const Duration(milliseconds: 400),
     );
     _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
+    loadFavoritesDirectly();
+  }
+
+  Future<void> loadFavoritesDirectly() async {
+    try {
+      final loadedFavorites = await getFavorites();
+      setState(() {
+        favorites = loadedFavorites;
+        isLoading = false;
+      });
+    } catch (e) {
+      print('error loading fav $e');
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
 
   @override
@@ -74,35 +93,60 @@ class _FavoritesCardPageState extends State<FavoritesCardPage>
     });
   }
 
-  void removeFromFavorites(MyCard card, int total, {String? source}) {
-    context.read<VocabularyBloc>().add(RemoveFromFavoritesEvent(card));
+  Future<void> removeFromFavorites(MyCard card, {String? source}) async {
+    try {
+      final favBox = await Hive.openBox('favorites');
+      final favoritesList = favBox.values.toList();
+      final index = favoritesList.indexWhere(
+        (e) =>
+            e['korean'] == card.korean && e['translation'] == card.translation,
+      );
+      if (index != -1) {
+        await favBox.deleteAt(index);
+      }
 
-    if (currentViewMode == ViewMode.cards) {
       setState(() {
-        if (total <= 1) {
-          currentIndex = 0;
-        } else if (currentIndex >= total - 1) {
-          currentIndex = total - 2;
+        favorites.removeWhere(
+          (fav) =>
+              fav.korean == card.korean && fav.translation == card.translation,
+        );
+        if (currentViewMode == ViewMode.cards && favorites.isNotEmpty) {
+          if (currentIndex >= favorites.length) {
+            currentIndex = favorites.length - 1;
+          }
+          showTranslation = false;
+          _controller.reset();
         }
-        showTranslation = false;
-        _controller.reset();
       });
-    }
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(source == 'swipe'
-            ? 'Card deleted'
-            : 'Карточка удалена из избранного'),
-        backgroundColor: Colors.orange,
-        action: SnackBarAction(
-          label: 'cancel',
-          onPressed: () {
-            context.read<VocabularyBloc>().add(AddToFavoritesEvent(card));
-          },
-        ),
-      ),
-    );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(source == 'swipe'
+                ? 'Card deleted'
+                : 'Карточка удалена из избранного'),
+            backgroundColor: Colors.orange,
+            action: SnackBarAction(
+              label: 'cancel',
+              onPressed: () => addToFavoritesLocal(card),
+            ),
+          ),
+        );
+      }
+    } catch (e) {
+      print('error from favorites $e');
+    }
+  }
+
+  Future<void> addToFavoritesLocal(MyCard card) async {
+    try {
+      await addToFavorites(card);
+      setState(() {
+        favorites.add(card);
+      });
+    } catch (e) {
+      print('error adding to fav $e');
+    }
   }
 
   void toggleViewMode() {
@@ -122,7 +166,7 @@ class _FavoritesCardPageState extends State<FavoritesCardPage>
           key: Key('${card.korean}_${card.translation}_$index'),
           direction: DismissDirection.endToStart,
           onDismissed: (direction) {
-            removeFromFavorites(card, favorites.length, source: 'swipe');
+            removeFromFavorites(card, source: 'swipe');
           },
           confirmDismiss: (direction) async {
             return await showDialog(
@@ -213,8 +257,7 @@ class _FavoritesCardPageState extends State<FavoritesCardPage>
                         ),
                       ),
                       IconButton(
-                        onPressed: () =>
-                            removeFromFavorites(card, favorites.length),
+                        onPressed: () => removeFromFavorites(card),
                         icon: Icon(
                           Icons.delete_outline,
                           color: Colors.red,
@@ -337,104 +380,93 @@ class _FavoritesCardPageState extends State<FavoritesCardPage>
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<VocabularyBloc, VocabularyState>(
-      builder: (context, state) {
-        if (state is VocabularyLoading) {
-          return Scaffold(
-            appBar: AppBar(
-              title: const Text('Избранные'),
-            ),
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-        if (state is FavoritesLoaded) {
-          final favorites = state.favorites;
+    if (isLoading) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Избранные'),
+        ),
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
 
-          if (favorites.isEmpty) {
-            return Scaffold(
-              appBar: AppBar(
-                title: const Text('Избраннные'),
-              ),
-              body: Center(
-                child: Text('Нет избранных карточек'),
-              ),
-            );
-          }
-          return Scaffold(
-            appBar: AppBar(
-              leading: IconButton(
-                onPressed: () => context.router.replace(VocabularyRoute()),
-                icon: Icon(
-                  Icons.arrow_back,
-                  color: Colors.red,
-                ),
-              ),
-              title: Row(
-                children: [
-                  const Text('Избранные'),
-                  const SizedBox(width: 8),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8,
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.red.shade100,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      '${favorites.length}',
-                      style: TextStyle(
-                        color: Colors.red.shade700,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              actions: [
-                IconButton(
-                  icon: Icon(currentViewMode == ViewMode.cards
-                      ? Icons.list
-                      : Icons.style),
-                  onPressed: toggleViewMode,
-                ),
-                if (currentViewMode == ViewMode.cards)
-                  IconButton(
-                    icon: Icon(Icons.delete),
-                    onPressed: () {
-                      final card = favorites[currentIndex];
-                      removeFromFavorites(card, favorites.length);
-                    },
-                  )
-              ],
-            ),
-            body: currentViewMode == ViewMode.cards
-                ? _buildCardView(favorites)
-                : _buildListView(favorites),
-            floatingActionButton: currentViewMode == ViewMode.list
-                ? FloatingActionButton.extended(
-                    onPressed: () {
-                      setState(() {
-                        currentViewMode = ViewMode.cards;
-                      });
-                    },
-                    icon: Icon(Icons.style),
-                    label: Text('cards'),
-                    backgroundColor: Colors.blue,
-                  )
-                : null,
-          );
-        }
-        return Scaffold(
-          body: Center(
-            child: Text('no data'),
+    if (favorites.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Избранные'),
+        ),
+        body: Center(
+          child: Text('Нет избранных карточек'),
+        ),
+      );
+    }
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => context.router.pop(),
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.red,
           ),
-        );
-      },
+        ),
+        title: Row(
+          children: [
+            const Text('Избранные'),
+            const SizedBox(width: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 4,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.red.shade100,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                '${favorites.length}',
+                style: TextStyle(
+                  color: Colors.red.shade700,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(
+                currentViewMode == ViewMode.cards ? Icons.list : Icons.style),
+            onPressed: toggleViewMode,
+          ),
+          if (currentViewMode == ViewMode.cards)
+            IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () {
+                if (favorites.isNotEmpty) {
+                  final card = favorites[currentIndex];
+                  removeFromFavorites(card);
+                }
+              },
+            )
+        ],
+      ),
+      body: currentViewMode == ViewMode.cards
+          ? _buildCardView(favorites)
+          : _buildListView(favorites),
+      floatingActionButton: currentViewMode == ViewMode.list
+          ? FloatingActionButton.extended(
+              onPressed: () {
+                setState(() {
+                  currentViewMode = ViewMode.cards;
+                });
+              },
+              icon: Icon(Icons.style),
+              label: Text('cards'),
+              backgroundColor: Colors.blue,
+            )
+          : null,
     );
   }
 }

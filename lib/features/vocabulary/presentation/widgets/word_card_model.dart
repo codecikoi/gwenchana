@@ -9,9 +9,13 @@ class MyCard {
   @HiveField(1)
   final String translation;
 
+  // @HiveField(3)
+  // final String id;
+
   MyCard({
     required this.korean,
     required this.translation,
+    // required this.id,
   });
 
   Map<String, dynamic> toMap() => {

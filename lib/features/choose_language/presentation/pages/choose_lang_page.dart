@@ -27,6 +27,7 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
     {'name': 'Bahasa Indo', 'flag': 'assets/flags/id.png', 'code': 'id'},
     {'name': '简体中文', 'flag': 'assets/flags/cn.png', 'code': 'zh_CN'},
     {'name': 'Deutsch', 'flag': 'assets/flags/de.png', 'code': 'de'},
+    {'name': 'Uzbek', 'flag': 'assets/flags/uz.png', 'code': 'uz'},
   ];
 
   void _selectLanguage(String languageCode) {

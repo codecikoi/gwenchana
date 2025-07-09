@@ -9,19 +9,8 @@ import 'package:gwenchana/features/vocabulary/data/vocabulary_three_data.dart';
 import 'package:gwenchana/features/vocabulary/data/vocabulary_two_data.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/card_titles.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
-
-class VocabularyWordCard {
-  final String korean;
-  final String english;
-
-  VocabularyWordCard({
-    required this.korean,
-    required this.english,
-  });
-}
 
 @RoutePage()
 class VocabularyCardPage extends StatefulWidget {
@@ -47,6 +36,8 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
   late Animation<double> _animation;
   int currentProgress = 0;
 
+  List<MyCard> favorites = [];
+
   @override
   void initState() {
     super.initState();
@@ -59,6 +50,18 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
     );
     _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
     loadProgress();
+    loadFavorites();
+  }
+
+  Future<void> loadFavorites() async {
+    try {
+      final loadedFavorites = await getFavorites();
+      setState(() {
+        favorites = loadedFavorites;
+      });
+    } catch (e) {
+      print('error loading favorites $e');
+    }
   }
 
   void updateCardData() {
@@ -74,6 +77,7 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
         break;
       case 5:
         wordCards = allFiveDataSets[widget.setIndex];
+        break;
       default:
         wordCards = _getLevelOneSet(widget.setIndex);
         break;
@@ -87,6 +91,7 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
       updateCardData();
       loadProgress();
       setState(() {
+        currentIndex = 0;
         showEnglish = false;
         _controller.reset();
       });
@@ -131,16 +136,14 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
 
   Future<void> updateProgress() async {
     final newProgress = currentIndex + 1;
-    if (newProgress > currentProgress) {
-      currentProgress = newProgress;
-      await ProgressService.saveProgress(
-        widget.setIndex,
-        currentProgress,
-        widget.selectedLevel,
-      );
-      if (!mounted) return;
-      context.read<VocabularyBloc>().add(UpdateProgressEvent());
-    }
+    currentProgress = newProgress;
+    await ProgressService.saveProgress(
+      widget.setIndex,
+      currentProgress,
+      widget.selectedLevel,
+    );
+    if (!mounted) return;
+    context.read<VocabularyBloc>().add(UpdateProgressEvent());
   }
 
   @override
@@ -167,9 +170,10 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
         showEnglish = false;
         _controller.reset();
       });
-      if (currentIndex + 1 > currentProgress) {
-        updateProgress();
-      }
+      updateProgress();
+      // if (currentIndex + 1 > currentProgress) {
+      //    updateProgress();
+      // }
     }
   }
 
@@ -197,6 +201,30 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
         return cardTitlesLevel5[index];
       default:
         return cardTitlesLevel1[index];
+    }
+  }
+
+  Future<void> addToFavoritesLocal(MyCard card) async {
+    try {
+      await addToFavorites(card);
+      await loadFavorites();
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('added'),
+            backgroundColor: Colors.green,
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('error adding'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     }
   }
 
@@ -300,13 +328,8 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
                       ? prevCard
                       : null, // норм что нулл или сделать кнопку не кликабельной?
                 ),
-                BlocBuilder<VocabularyBloc, VocabularyState>(
-                  builder: (context, state) {
-                    List<MyCard> favorites = [];
-                    if (state is FavoritesLoaded) {
-                      favorites = state.favorites;
-                    }
-
+                Builder(
+                  builder: (context) {
                     final card = wordCards[currentIndex];
                     final myCard = MyCard(
                       korean: card.korean,
@@ -322,19 +345,8 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
                         isFavorite ? Icons.favorite : Icons.favorite_border,
                         color: isFavorite ? Colors.red : null,
                       ),
-                      onPressed: isFavorite
-                          ? null
-                          : () {
-                              context
-                                  .read<VocabularyBloc>()
-                                  .add(AddToFavoritesEvent(myCard));
-                              context
-                                  .read<VocabularyBloc>()
-                                  .add(LoadFavoritesEvent());
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Added to favorites')),
-                              );
-                            },
+                      onPressed:
+                          isFavorite ? null : () => addToFavoritesLocal(myCard),
                       tooltip: isFavorite
                           ? 'Already in favorites'
                           : 'Add to favorites',

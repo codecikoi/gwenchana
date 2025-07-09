@@ -8,8 +8,6 @@ import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/add_card_dialog.dart';
-import 'package:gwenchana/features/vocabulary/presentation/widgets/favorite_dialog.dart';
-import 'package:gwenchana/features/vocabulary/presentation/widgets/my_card_dialog.dart';
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
 @RoutePage()
@@ -61,11 +59,6 @@ class VocabularyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // попробовать
-    final bloc = context.read<VocabularyBloc>();
-    if (bloc.state is! VocabularyLoaded && bloc.state! is VocabularyLoading) {
-      bloc.add(LoadCardsEvent());
-    }
     return BlocBuilder<VocabularyBloc, VocabularyState>(
       builder: (context, state) {
         if (state is VocabularyLoading) {
@@ -120,24 +113,6 @@ class VocabularyPage extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.favorite),
-                  onPressed: () => showDialog(
-                    context: context,
-                    builder: (context) => FavoriteDialog(
-                      bloc: context.read<VocabularyBloc>(),
-                    ),
-                  ),
-                ),
-                IconButton(
-                  icon: Icon(Icons.list),
-                  onPressed: () => showDialog(
-                    context: context,
-                    builder: (context) => MyCardsDialog(
-                      bloc: context.read<VocabularyBloc>(),
-                    ),
-                  ),
-                ),
-                IconButton(
                   icon: Icon(Icons.refresh),
                   onPressed: () {
                     context.read<VocabularyBloc>().add(
@@ -161,14 +136,7 @@ class VocabularyPage extends StatelessWidget {
                 if (index == 0) {
                   // my cards
                   return GestureDetector(
-                    onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) => MyCardsDialog(
-                          bloc: context.read<VocabularyBloc>(),
-                        ),
-                      );
-                    },
+                    onTap: () => context.router.push(const MyCardsRoute()),
                     child: Card(
                       color: getCardColor(index - 3),
                       child: Center(
@@ -213,7 +181,7 @@ class VocabularyPage extends StatelessWidget {
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              'My cards',
+                              'Favorites',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -273,25 +241,34 @@ class VocabularyPage extends StatelessWidget {
             ),
           );
         }
+        if (state is CardsLoaded) {
+          context.read<VocabularyBloc>().add(LoadProgressEvent());
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+        if (state is FavoritesLoaded) {
+          context.read<VocabularyBloc>().add(LoadProgressEvent());
+          return Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+
         return Scaffold(
-          appBar: AppBar(
-            title: Text('Vocabulary Cards'),
-            backgroundColor: Colors.white,
-            foregroundColor: Colors.black,
-          ),
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('No vocabulary data available.'),
-              const SizedBox(height: 40),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 80),
-                child: BasicAppButton(
-                    onPressed: () =>
-                        context.router.pushPath('/vocabulary-page'),
-                    title: 'To vocabulary cards page'),
-              )
-            ],
+          body: Center(
+            child: BasicAppButton(
+              onPressed: () {
+                context.router.push(
+                  const VocabularyRoute(),
+                );
+                context.read<VocabularyBloc>().add(LoadProgressEvent());
+              },
+              title: 'back to vocabulary',
+            ),
           ),
         );
       },
