@@ -22,9 +22,12 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: '.env');
   await Hive.initFlutter();
-  Hive.registerAdapter(MyCardAdapter());
-  await Hive.openBox<MyCard>('my_cards');
-  await Hive.openBox('favorites');
+  await HiveStorageService.initHive();
+
+  if (!Hive.isAdapterRegistered(0)) {
+    Hive.registerAdapter(MyCardAdapter());
+  }
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

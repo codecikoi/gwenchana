@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:hive/hive.dart';
 
 enum ViewMode { cards, list }
 
@@ -32,7 +27,6 @@ class _FavoritesCardPageState extends State<FavoritesCardPage>
   @override
   void initState() {
     super.initState();
-    context.read<VocabularyBloc>().add(LoadFavoritesEvent());
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 400),
@@ -43,7 +37,7 @@ class _FavoritesCardPageState extends State<FavoritesCardPage>
 
   Future<void> loadFavoritesDirectly() async {
     try {
-      final loadedFavorites = await getFavorites();
+      final loadedFavorites = await HiveStorageService.getFavorites();
       setState(() {
         favorites = loadedFavorites;
         isLoading = false;
@@ -95,15 +89,17 @@ class _FavoritesCardPageState extends State<FavoritesCardPage>
 
   Future<void> removeFromFavorites(MyCard card, {String? source}) async {
     try {
-      final favBox = await Hive.openBox('favorites');
-      final favoritesList = favBox.values.toList();
-      final index = favoritesList.indexWhere(
-        (e) =>
-            e['korean'] == card.korean && e['translation'] == card.translation,
-      );
-      if (index != -1) {
-        await favBox.deleteAt(index);
-      }
+      await HiveStorageService.removeFromFavorites(card);
+
+      // final favBox = await Hive.openBox('favorites');
+      // final favoritesList = favBox.values.toList();
+      // final index = favoritesList.indexWhere(
+      //   (e) =>
+      //       e['korean'] == card.korean && e['translation'] == card.translation,
+      // );
+      // if (index != -1) {
+      //   await favBox.deleteAt(index);
+      // }
 
       setState(() {
         favorites.removeWhere(
@@ -140,7 +136,7 @@ class _FavoritesCardPageState extends State<FavoritesCardPage>
 
   Future<void> addToFavoritesLocal(MyCard card) async {
     try {
-      await addToFavorites(card);
+      await HiveStorageService.addToFavorites(card);
       setState(() {
         favorites.add(card);
       });

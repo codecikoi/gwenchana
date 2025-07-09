@@ -21,21 +21,34 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
     on<RemoveFromFavoritesEvent>(_onRemoveFromFavorites);
   }
 
+  // Future<void> _onRemoveFromFavorites(
+  //     RemoveFromFavoritesEvent event, Emitter<VocabularyState> emit) async {
+  //   try {
+  //     final favBox = await Hive.openBox('favorites');
+  //     final favorites = favBox.values.toList();
+  //     final index = favorites.indexWhere(
+  //       (e) =>
+  //           e['korean'] == event.card.korean &&
+  //           e['translation'] == event.card.translation,
+  //     );
+  //     if (index != -1) {
+  //       await favBox.deleteAt(index);
+  //     }
+  //     final updatedFavorites = await getFavorites();
+  //     emit(FavoritesLoaded(updatedFavorites));
+  //   } catch (e) {
+  //     emit(VocabularyError('Ошибка удаления из избранного'));
+  //   }
+  // }
+
   Future<void> _onRemoveFromFavorites(
       RemoveFromFavoritesEvent event, Emitter<VocabularyState> emit) async {
     try {
-      final favBox = await Hive.openBox('favorites');
-      final favorites = favBox.values.toList();
-      final index = favorites.indexWhere((e) =>
-          e['korean'] == event.card.korean &&
-          e['translation'] == event.card.translation);
-      if (index != -1) {
-        await favBox.deleteAt(index);
-      }
-      final updatedFavorites = await getFavorites();
-      emit(FavoritesLoaded(updatedFavorites));
+      await HiveStorageService.removeFromFavorites(event.card);
+      final updateFavorites = await HiveStorageService.getFavorites();
+      emit(FavoritesLoaded(updateFavorites));
     } catch (e) {
-      emit(VocabularyError('Ошибка удаления из избранного'));
+      emit(VocabularyError('Error deleting from favorites: $e'));
     }
   }
 
@@ -102,34 +115,28 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
       LoadCardsEvent event, Emitter<VocabularyState> emit) async {
     emit(VocabularyLoading());
     try {
-      final cards = await getAllCards();
+      final cards = await HiveStorageService.getAllCards();
       emit(CardsLoaded(cards));
     } catch (e) {
-      emit(VocabularyError('Ошибка загрузки карточек'));
+      emit(VocabularyError('Ошибка загрузки карточек $e'));
     }
   }
 
   Future<void> _onAddCard(
       AddCardEvent event, Emitter<VocabularyState> emit) async {
-    emit(VocabularyLoading());
     try {
-      final box = await Hive.openBox<MyCard>('my_cards');
-      await box.add(event.card);
-      final cards = await getAllCards();
-      emit(CardsLoaded(cards));
+      await HiveStorageService.addCard(event.card);
     } catch (e) {
-      emit(VocabularyError('Ошибка добавления карточки'));
+      emit(VocabularyError('Ошибка добавления карточки $e'));
     }
   }
 
   Future<void> _onAddToFavorites(
       AddToFavoritesEvent event, Emitter<VocabularyState> emit) async {
     try {
-      await addToFavorites(event.card);
-      // final favorites = await getFavorites();
-      // emit(FavoritesLoaded(favorites));
+      await HiveStorageService.addToFavorites(event.card);
     } catch (e) {
-      emit(VocabularyError('Ошибка добавления в избранное'));
+      emit(VocabularyError('Ошибка добавления в избранное $e'));
     }
   }
 
@@ -137,11 +144,11 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
       LoadFavoritesEvent event, Emitter<VocabularyState> emit) async {
     emit(VocabularyLoading());
     try {
-      final favorites = await getFavorites();
+      final favorites = await HiveStorageService.getFavorites();
       emit(FavoritesLoaded(favorites));
     } catch (e) {
       print('Error loading favorites: $e');
-      emit(VocabularyError('Ошибка загрузки избранного'));
+      emit(VocabularyError('Ошибка загрузки избранного $e'));
     }
   }
 }

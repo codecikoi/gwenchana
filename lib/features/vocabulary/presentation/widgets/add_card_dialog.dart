@@ -21,6 +21,7 @@ class _AddCardDialogState extends State<AddCardDialog> {
   final _formKey = GlobalKey<FormState>();
   final _koreanController = TextEditingController();
   final _translationController = TextEditingController();
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -29,14 +30,40 @@ class _AddCardDialogState extends State<AddCardDialog> {
     super.dispose();
   }
 
-  void _addCard() {
+  Future<void> _addCard() async {
     if (_formKey.currentState!.validate()) {
-      final card = MyCard(
-        korean: _koreanController.text.trim(),
-        translation: _translationController.text.trim(),
-      );
-      widget.bloc.add(AddCardEvent(card));
-      Navigator.of(context).pop();
+      setState(() {
+        _isLoading = true;
+      });
+      try {
+        final card = MyCard(
+          korean: _koreanController.text.trim(),
+          translation: _translationController.text.trim(),
+        );
+        widget.bloc.add(AddCardEvent(card));
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('card added successfully!'),
+              backgroundColor: Colors.green,
+            ),
+          );
+          Navigator.of(context).pop();
+        }
+      } catch (e) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('error adding $e'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -76,6 +103,7 @@ class _AddCardDialogState extends State<AddCardDialog> {
                 labelText: 'Translate',
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.translate),
+                enabled: !_isLoading,
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
@@ -84,19 +112,21 @@ class _AddCardDialogState extends State<AddCardDialog> {
                 return null;
               },
               textInputAction: TextInputAction.done,
-              onFieldSubmitted: (_) => _addCard(),
+              onFieldSubmitted: (_) => !_isLoading ? _addCard() : null,
             )
           ],
         ),
       ),
       actions: [
         TextButton(
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: _isLoading ? null : () => Navigator.of(context).pop(),
           child: Text('Cancel'),
         ),
         ElevatedButton(
-          onPressed: _addCard,
-          child: Text('add'),
+          onPressed: _isLoading ? null : _addCard,
+          child: _isLoading
+              ? SizedBox(child: CircularProgressIndicator(strokeWidth: 2))
+              : Text('add'),
         ),
       ],
     );

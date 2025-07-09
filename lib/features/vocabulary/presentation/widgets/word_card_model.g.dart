@@ -19,17 +19,20 @@ class MyCardAdapter extends TypeAdapter<MyCard> {
     return MyCard(
       korean: fields[0] as String,
       translation: fields[1] as String,
+      createdAt: fields[2] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, MyCard obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.korean)
       ..writeByte(1)
-      ..write(obj.translation);
+      ..write(obj.translation)
+      ..writeByte(2)
+      ..write(obj.createdAt);
   }
 
   @override
