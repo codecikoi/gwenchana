@@ -34,7 +34,6 @@
     "nameTooShort": "Nama harus minimal 2 karakter",
     "emptyConfirmPassword": "Silakan konfirmasi kata sandi Anda",
     "emptyKorean": "Kata Korea tidak boleh kosong",
-    "emptyEnglish": "Kata Inggris tidak boleh kosong",
     "invalidKorean": "Silakan masukkan karakter Korea yang valid",
     "invalidEnglish": "Silakan masukkan karakter Inggris yang valid",
     "invalidInput": "Input tidak valid",
@@ -50,5 +49,8 @@
     "fromFavorites": "dari Favorit",
     "add": "Tambah",
     "myCards": "Kartu Saya",
-    "confirmDelete": "Konfirmasi hapus"
+    "confirmDelete": "Konfirmasi hapus",
+    "translation": "Terjemahan",
+    "translationEmpty": "Terjemahan tidak boleh kosong",
+    "emptyFavorites": "Tidak ada kartu favorit"
   }

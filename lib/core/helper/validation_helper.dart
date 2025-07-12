@@ -24,15 +24,34 @@ class ValidationHelper {
 
   // валидация корейского языка (добавление карточки)
   static bool isValidKorean(String koreanText) {
-    if (koreanText.isEmpty) return false;
-    return RegExp(r'^[\uac00-\ud7af\u1100-\u11ff\u3130-\u318f\s]+$')
-        .hasMatch(koreanText.trim());
+    final trimmed = koreanText.trim();
+    if (trimmed.isEmpty) return false;
+    if (trimmed.replaceAll(' ', ' ').isEmpty) return false;
+    if (trimmed.contains(RegExp(r'\s{2,}'))) return false;
+
+    final hasKoreanChars =
+        RegExp(r'[\uac00-\ud7af\u1100-\u11ff\u3130-\u318f]').hasMatch(trimmed);
+    if (!hasKoreanChars) return false;
+
+    return RegExp(r'^[\uac00-\ud7af\u1100-\u11ff\u3130-\u318f\s?!\-,.]+$')
+        .hasMatch(trimmed);
   }
 
-  // валидация англ языка (далее делать через локализацию и привязать к choose lang page)
+  static bool isValidTranslation(String translationText) {
+    final trimmed = translationText.trim();
+    if (trimmed.isEmpty) return false;
+    if (trimmed.replaceAll(' ', ' ').isEmpty) return false;
+    if (trimmed.contains(RegExp(r'\s{2,}'))) return false;
+    return RegExp(r'^[\p{L}\s?!\-,.]+$', unicode: true).hasMatch(trimmed);
+  }
+
   static bool isValidEnglish(String englishText) {
-    if (englishText.isEmpty) return false;
-    return RegExp(r'^[a-zA-Z\s]+$').hasMatch(englishText.trim());
+    final trimmed = englishText.trim();
+    if (trimmed.isEmpty) return false;
+    if (trimmed.replaceAll(' ', ' ').isEmpty) return false;
+    if (trimmed.contains(RegExp(r'\s{2,}'))) return false;
+
+    return RegExp(r'^[a-zA-Z\s?!\-,.]+$').hasMatch(trimmed);
   }
 
   // проверка на совпадение паролей
@@ -96,6 +115,16 @@ class ValidationHelper {
   }
 
   // Получить сообщение об ошибке английского текста
+  static String? getTranslationError(String text, BuildContext context) {
+    if (text.isEmpty) {
+      return _getLocalizedMessage('translationEmpty', context);
+    }
+    if (!isValidTranslation(text)) {
+      return _getLocalizedMessage('translationInvalid', context);
+    }
+    return null;
+  }
+
   static String? getEnglishError(String text, BuildContext context) {
     if (text.isEmpty) {
       return _getLocalizedMessage('englishEmpty', context);
@@ -125,8 +154,8 @@ class ValidationHelper {
   }
 
   // Валидация словарной карточки
-  static bool isValidVocabularyCard(String korean, String english) {
-    return isValidKorean(korean) && isValidEnglish(english);
+  static bool isValidVocabularyCard(String korean, String tranlation) {
+    return isValidKorean(korean) && isValidTranslation(tranlation);
   }
 
   // Получить все ошибки формы регистрации
@@ -149,12 +178,12 @@ class ValidationHelper {
   // Получить все ошибки словарной карточки
   static Map<String, String?> getVocabularyCardErrors({
     required String korean,
-    required String english,
+    required String tranlation,
     required BuildContext context,
   }) {
     return {
       'korean': getKoreanError(korean, context),
-      'english': getEnglishError(english, context),
+      'translation': getTranslationError(tranlation, context),
     };
   }
 
@@ -187,9 +216,9 @@ class ValidationHelper {
         return AppLocalizations.of(context)!.emptyKorean;
       case 'koreanInvalid':
         return AppLocalizations.of(context)!.invalidKorean;
-      case 'englishEmpty':
-        return AppLocalizations.of(context)!.emptyEnglish;
-      case 'englishInvalid':
+      case 'translationEmpty':
+        return AppLocalizations.of(context)!.translationEmpty;
+      case 'englisInvalid':
         return AppLocalizations.of(context)!.invalidEnglish;
       default:
         return AppLocalizations.of(context)!.invalidInput;
@@ -213,6 +242,10 @@ extension ValidationExtension on TextEditingController {
 
   String? validateKorean(BuildContext context) {
     return ValidationHelper.getKoreanError(text, context);
+  }
+
+  String? validateTranslation(BuildContext context) {
+    return ValidationHelper.getTranslationError(text, context);
   }
 
   String? validateEnglish(BuildContext context) {

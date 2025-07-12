@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gwenchana/core/helper/app_colors.dart';
+import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/add_card_dialog.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
@@ -354,35 +356,24 @@ class _MyCardsPageState extends State<MyCardsPage>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                Icons.person_outline,
-                size: 64,
-                color: Colors.grey,
+              Text(
+                ';(',
+                style: TextStyle(
+                  fontSize: 28,
+                  color: Colors.grey,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 16),
-              Text(
-                'Нет ваших карточек',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.grey,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Создайте свои собственные карточки для изучения',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey.shade600,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 24),
               ElevatedButton.icon(
                 onPressed: showAddCardDialog,
-                icon: Icon(Icons.add),
-                label: Text('Добавить карточку'),
+                icon: Icon(
+                  Icons.add,
+                  size: 20,
+                ),
+                label: Text(AppLocalizations.of(context)!.addCard),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: AppColors.enableButton,
                   foregroundColor: Colors.white,
                 ),
               ),

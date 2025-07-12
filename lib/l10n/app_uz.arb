@@ -34,7 +34,6 @@
     "nameTooShort": "Ism kamida 2 ta belgidan iborat bo'lishi kerak",
     "emptyConfirmPassword": "Iltimos, parolingizni tasdiqlang",
     "emptyKorean": "Koreys so'zi bo'sh bo'lishi mumkin emas",
-    "emptyEnglish": "Ingliz so'zi bo'sh bo'lishi mumkin emas",
     "invalidKorean": "Iltimos, to'g'ri koreys belgilarini kiriting",
     "invalidEnglish": "Iltimos, to'g'ri ingliz belgilarini kiriting",
     "invalidInput": "Noto'g'ri ma'lumot",
@@ -50,5 +49,8 @@
     "fromFavorites": "Sevimlilardan",
     "add": "Qo'shish",
     "myCards": "Mening kartalarim",
-    "confirmDelete": "O'chirishni tasdiqlash"
+    "confirmDelete": "O'chirishni tasdiqlash",
+    "translation": "Tarjima",
+    "translationEmpty": "Tarjima bo'sh bo'lishi mumkin emas",
+    "emptyFavorites": "Sevimli kartalar yo'q"
   }

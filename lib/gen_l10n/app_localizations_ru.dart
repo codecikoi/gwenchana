@@ -112,9 +112,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get emptyKorean => 'Корейское слово не может быть пустым';
 
   @override
-  String get emptyEnglish => 'Английское слово не может быть пустым';
-
-  @override
   String get invalidKorean => 'Пожалуйста, введите корректные корейские символы';
 
   @override
@@ -161,4 +158,13 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get confirmDelete => 'Подтвердите удаление';
+
+  @override
+  String get translation => 'Перевод';
+
+  @override
+  String get translationEmpty => 'Перевод не может быть пустым';
+
+  @override
+  String get emptyFavorites => 'Нет избранных карточек';
 }

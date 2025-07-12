@@ -297,7 +297,7 @@ class _FavoritesCardPageState extends State<FavoritesCardPage>
           centerTitle: true,
         ),
         body: Center(
-          child: Text('Нет избранных карточек'),
+          child: Text(AppLocalizations.of(context)!.emptyFavorites),
         ),
       );
     }

@@ -34,7 +34,6 @@
   "nameTooShort": "Le nom doit contenir au moins 2 caractères",
   "emptyConfirmPassword": "Veuillez confirmer votre mot de passe",
   "emptyKorean": "Le mot coréen ne peut pas être vide",
-  "emptyEnglish": "Le mot anglais ne peut pas être vide",
   "invalidKorean": "Veuillez entrer des caractères coréens valides",
   "invalidEnglish": "Veuillez entrer des caractères anglais valides",
   "invalidInput": "Saisie invalide",
@@ -50,5 +49,8 @@
   "fromFavorites": "des Favoris",
   "add": "Ajouter",
   "myCards": "Mes cartes",
-  "confirmDelete": "Confirmer la suppression"
+  "confirmDelete": "Confirmer la suppression",
+  "translation": "Traduction",
+  "translationEmpty": "La traduction ne peut pas être vide",
+  "emptyFavorites": "Aucune carte favorite"
 }

@@ -34,7 +34,6 @@
   "nameTooShort": "Tên phải có ít nhất 2 ký tự",
   "emptyConfirmPassword": "Vui lòng xác nhận mật khẩu của bạn",
   "emptyKorean": "Từ tiếng Hàn không được để trống",
-  "emptyEnglish": "Từ tiếng Anh không được để trống",
   "invalidKorean": "Vui lòng nhập ký tự tiếng Hàn hợp lệ",
   "invalidEnglish": "Vui lòng nhập ký tự tiếng Anh hợp lệ",
   "invalidInput": "Dữ liệu nhập không hợp lệ",
@@ -50,5 +49,8 @@
   "fromFavorites": "khỏi Yêu thích",
   "add": "Thêm",
   "myCards": "Thẻ của tôi",
-  "confirmDelete": "Xác nhận xóa"
+  "confirmDelete": "Xác nhận xóa",
+  "translation": "Bản dịch",
+  "translationEmpty": "Bản dịch không thể để trống",
+  "emptyFavorites": "Không có thẻ yêu thích"
 }

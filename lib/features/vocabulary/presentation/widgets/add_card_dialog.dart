@@ -21,6 +21,7 @@ class _AddCardDialogState extends State<AddCardDialog> {
   final _formKey = GlobalKey<FormState>();
   final _koreanController = TextEditingController();
   final _translationController = TextEditingController();
+  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   bool _isLoading = false;
 
   @override
@@ -31,6 +32,10 @@ class _AddCardDialogState extends State<AddCardDialog> {
   }
 
   Future<void> _addCard() async {
+    setState(() {
+      _autovalidateMode = AutovalidateMode.onUserInteraction;
+    });
+
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;
@@ -86,9 +91,11 @@ class _AddCardDialogState extends State<AddCardDialog> {
           );
         }
       } finally {
-        setState(() {
-          _isLoading = false;
-        });
+        if (mounted) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
       }
     }
   }
@@ -113,32 +120,38 @@ class _AddCardDialogState extends State<AddCardDialog> {
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
-                  return ValidationHelper.getKoreanError(
-                    _koreanController.text,
-                    context,
-                  );
+                  return AppLocalizations.of(context)!.koreanWord;
                 }
-                return null;
+
+                return ValidationHelper.getKoreanError(
+                  value.trim(),
+                  context,
+                );
               },
               textInputAction: TextInputAction.next,
+              enabled: !_isLoading,
             ),
             const SizedBox(height: 16),
             TextFormField(
               controller: _translationController,
               decoration: InputDecoration(
-                labelText: 'Translate',
+                labelText: AppLocalizations.of(context)!.translation,
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.translate),
                 enabled: !_isLoading,
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
-                  return 'please write translate';
+                  return AppLocalizations.of(context)!.translationEmpty;
                 }
-                return null;
+                return ValidationHelper.getTranslationError(
+                  value.trim(),
+                  context,
+                );
               },
               textInputAction: TextInputAction.done,
               onFieldSubmitted: (_) => !_isLoading ? _addCard() : null,
+              enabled: !_isLoading,
             )
           ],
         ),
@@ -146,13 +159,17 @@ class _AddCardDialogState extends State<AddCardDialog> {
       actions: [
         TextButton(
           onPressed: _isLoading ? null : () => Navigator.of(context).pop(),
-          child: Text('Cancel'),
+          child: Text(
+            AppLocalizations.of(context)!.cancel,
+          ),
         ),
         ElevatedButton(
           onPressed: _isLoading ? null : _addCard,
           child: _isLoading
               ? SizedBox(child: CircularProgressIndicator(strokeWidth: 2))
-              : Text('add'),
+              : Text(
+                  AppLocalizations.of(context)!.add,
+                ),
         ),
       ],
     );

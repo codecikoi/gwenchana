@@ -34,7 +34,6 @@
   "nameTooShort": "Name muss mindestens 2 Zeichen lang sein",
   "emptyConfirmPassword": "Bitte bestätigen Sie Ihr Passwort",
   "emptyKorean": "Koreanisches Wort darf nicht leer sein",
-  "emptyEnglish": "Englisches Wort darf nicht leer sein",
   "invalidKorean": "Bitte geben Sie gültige koreanische Zeichen ein",
   "invalidEnglish": "Bitte geben Sie gültige englische Zeichen ein",
   "invalidInput": "Ungültige Eingabe",
@@ -50,5 +49,8 @@
   "fromFavorites": "aus Favoriten",
   "add": "Hinzufügen",
   "myCards": "Meine Karten",
-  "confirmDelete": "Löschen bestätigen"
+  "confirmDelete": "Löschen bestätigen",
+  "translation": "Übersetzung",
+  "translationEmpty": "Übersetzung darf nicht leer sein",
+  "emptyFavorites": "Keine Lieblingskarten"
 }

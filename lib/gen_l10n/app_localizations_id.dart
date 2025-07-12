@@ -112,9 +112,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get emptyKorean => 'Kata Korea tidak boleh kosong';
 
   @override
-  String get emptyEnglish => 'Kata Inggris tidak boleh kosong';
-
-  @override
   String get invalidKorean => 'Silakan masukkan karakter Korea yang valid';
 
   @override
@@ -161,4 +158,13 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get confirmDelete => 'Konfirmasi hapus';
+
+  @override
+  String get translation => 'Terjemahan';
+
+  @override
+  String get translationEmpty => 'Terjemahan tidak boleh kosong';
+
+  @override
+  String get emptyFavorites => 'Tidak ada kartu favorit';
 }

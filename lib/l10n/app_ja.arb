@@ -34,7 +34,6 @@
   "nameTooShort": "名前は2文字以上である必要があります",
   "emptyConfirmPassword": "パスワードを確認してください",
   "emptyKorean": "韓国語の単語を入力してください",
-  "emptyEnglish": "英語の単語を入力してください",
   "invalidKorean": "有効な韓国語文字を入力してください",
   "invalidEnglish": "有効な英語文字を入力してください",
   "invalidInput": "無効な入力です",
@@ -50,5 +49,8 @@
   "fromFavorites": "お気に入りから",
   "add": "追加",
   "myCards": "マイカード",
-  "confirmDelete": "削除確認"
+  "confirmDelete": "削除確認",
+  "translation": "翻訳",
+  "translationEmpty": "翻訳を空にすることはできません",
+  "emptyFavorites": "お気に入りのカードがありません"
 }

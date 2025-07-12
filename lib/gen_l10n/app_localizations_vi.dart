@@ -112,9 +112,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get emptyKorean => 'Từ tiếng Hàn không được để trống';
 
   @override
-  String get emptyEnglish => 'Từ tiếng Anh không được để trống';
-
-  @override
   String get invalidKorean => 'Vui lòng nhập ký tự tiếng Hàn hợp lệ';
 
   @override
@@ -161,4 +158,13 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get confirmDelete => 'Xác nhận xóa';
+
+  @override
+  String get translation => 'Bản dịch';
+
+  @override
+  String get translationEmpty => 'Bản dịch không thể để trống';
+
+  @override
+  String get emptyFavorites => 'Không có thẻ yêu thích';
 }

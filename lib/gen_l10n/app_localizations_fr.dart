@@ -112,9 +112,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get emptyKorean => 'Le mot coréen ne peut pas être vide';
 
   @override
-  String get emptyEnglish => 'Le mot anglais ne peut pas être vide';
-
-  @override
   String get invalidKorean => 'Veuillez entrer des caractères coréens valides';
 
   @override
@@ -161,4 +158,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get confirmDelete => 'Confirmer la suppression';
+
+  @override
+  String get translation => 'Traduction';
+
+  @override
+  String get translationEmpty => 'La traduction ne peut pas être vide';
+
+  @override
+  String get emptyFavorites => 'Aucune carte favorite';
 }

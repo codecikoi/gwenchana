@@ -112,7 +112,7 @@ abstract class AppLocalizations {
   /// No description provided for @chooseLanguage.
   ///
   /// In en, this message translates to:
-  /// **'Choose Language'**
+  /// **'Choose language'**
   String get chooseLanguage;
 
   /// No description provided for @next.
@@ -136,7 +136,7 @@ abstract class AppLocalizations {
   /// No description provided for @changeLanguage.
   ///
   /// In en, this message translates to:
-  /// **'Change Language'**
+  /// **'Change language'**
   String get changeLanguage;
 
   /// No description provided for @login.
@@ -160,7 +160,7 @@ abstract class AppLocalizations {
   /// No description provided for @confirmPassword.
   ///
   /// In en, this message translates to:
-  /// **'Confirm Password'**
+  /// **'Confirm password'**
   String get confirmPassword;
 
   /// No description provided for @signInWith.
@@ -319,22 +319,16 @@ abstract class AppLocalizations {
   /// **'Korean word cannot be empty'**
   String get emptyKorean;
 
-  /// No description provided for @emptyEnglish.
-  ///
-  /// In en, this message translates to:
-  /// **'English word cannot be empty'**
-  String get emptyEnglish;
-
   /// No description provided for @invalidKorean.
   ///
   /// In en, this message translates to:
-  /// **'Please enter valid Korean characters'**
+  /// **'Please enter valid korean characters'**
   String get invalidKorean;
 
   /// No description provided for @invalidEnglish.
   ///
   /// In en, this message translates to:
-  /// **'Please enter valid English characters'**
+  /// **'Please enter valid english characters'**
   String get invalidEnglish;
 
   /// No description provided for @invalidInput.
@@ -412,7 +406,7 @@ abstract class AppLocalizations {
   /// No description provided for @myCards.
   ///
   /// In en, this message translates to:
-  /// **'My Cards'**
+  /// **'My cards'**
   String get myCards;
 
   /// No description provided for @confirmDelete.
@@ -420,6 +414,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Confirm delete'**
   String get confirmDelete;
+
+  /// No description provided for @translation.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation'**
+  String get translation;
+
+  /// No description provided for @translationEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Translation can not be empty'**
+  String get translationEmpty;
+
+  /// No description provided for @emptyFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'No favorite cards'**
+  String get emptyFavorites;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

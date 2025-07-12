@@ -112,9 +112,6 @@ class AppLocalizationsUz extends AppLocalizations {
   String get emptyKorean => 'Koreys so\'zi bo\'sh bo\'lishi mumkin emas';
 
   @override
-  String get emptyEnglish => 'Ingliz so\'zi bo\'sh bo\'lishi mumkin emas';
-
-  @override
   String get invalidKorean => 'Iltimos, to\'g\'ri koreys belgilarini kiriting';
 
   @override
@@ -161,4 +158,13 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get confirmDelete => 'O\'chirishni tasdiqlash';
+
+  @override
+  String get translation => 'Tarjima';
+
+  @override
+  String get translationEmpty => 'Tarjima bo\'sh bo\'lishi mumkin emas';
+
+  @override
+  String get emptyFavorites => 'Sevimli kartalar yo\'q';
 }

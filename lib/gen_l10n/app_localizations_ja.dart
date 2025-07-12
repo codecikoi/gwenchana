@@ -112,9 +112,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get emptyKorean => '韓国語の単語を入力してください';
 
   @override
-  String get emptyEnglish => '英語の単語を入力してください';
-
-  @override
   String get invalidKorean => '有効な韓国語文字を入力してください';
 
   @override
@@ -161,4 +158,13 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get confirmDelete => '削除確認';
+
+  @override
+  String get translation => '翻訳';
+
+  @override
+  String get translationEmpty => '翻訳を空にすることはできません';
+
+  @override
+  String get emptyFavorites => 'お気に入りのカードがありません';
 }

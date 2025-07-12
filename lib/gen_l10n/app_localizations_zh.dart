@@ -112,9 +112,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get emptyKorean => '韩语单词不能为空';
 
   @override
-  String get emptyEnglish => '英语单词不能为空';
-
-  @override
   String get invalidKorean => '请输入有效的韩语字符';
 
   @override
@@ -161,4 +158,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get confirmDelete => '确认删除';
+
+  @override
+  String get translation => '翻译';
+
+  @override
+  String get translationEmpty => '翻译不能为空';
+
+  @override
+  String get emptyFavorites => '没有收藏卡片';
 }

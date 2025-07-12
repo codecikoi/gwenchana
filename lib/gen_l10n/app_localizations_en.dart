@@ -40,20 +40,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dontHaveAccount => 'Don\'t have an account?';
 
   @override
-  String get createAccount => 'Create account';
+  String get createAccount => 'Create Account';
 
   @override
-  String get forgotPassword => 'Forgot password?';
+  String get forgotPassword => 'Forgot Password?';
 
   @override
-  String get recoverPassword => 'Recover password';
+  String get recoverPassword => 'Recover Password';
 
   @override
   String get reset => 'Reset';
 
   @override
-  String get termsAndConditions =>
-      'By signing in to Gwenchana, you agree to our Terms of Service and Privacy Policy';
+  String get termsAndConditions => 'By signing in to Gwenchana, you agree to our Terms of Service and Privacy Policy';
 
   @override
   String get name => 'Name';
@@ -89,7 +88,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get listening => 'Listening';
 
   @override
-  String get chooseBook => 'Choose book';
+  String get chooseBook => 'Choose Book';
 
   @override
   String get emptyEmail => 'Email cannot be empty';
@@ -111,9 +110,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emptyKorean => 'Korean word cannot be empty';
-
-  @override
-  String get emptyEnglish => 'English word cannot be empty';
 
   @override
   String get invalidKorean => 'Please enter valid korean characters';
@@ -152,7 +148,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get delete => 'Delete';
 
   @override
-  String get fromFavorites => 'from favorites';
+  String get fromFavorites => 'from Favorites';
 
   @override
   String get add => 'Add';
@@ -162,4 +158,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get confirmDelete => 'Confirm delete';
+
+  @override
+  String get translation => 'Translation';
+
+  @override
+  String get translationEmpty => 'Translation can not be empty';
+
+  @override
+  String get emptyFavorites => 'No favorite cards';
 }

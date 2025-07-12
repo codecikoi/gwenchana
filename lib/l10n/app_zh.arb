@@ -34,7 +34,6 @@
   "nameTooShort": "姓名至少需要2个字符",
   "emptyConfirmPassword": "请确认您的密码",
   "emptyKorean": "韩语单词不能为空",
-  "emptyEnglish": "英语单词不能为空",
   "invalidKorean": "请输入有效的韩语字符",
   "invalidEnglish": "请输入有效的英语字符",
   "invalidInput": "输入无效",
@@ -50,5 +49,8 @@
   "fromFavorites": "从收藏夹",
   "add": "添加",
   "myCards": "我的卡片",
-  "confirmDelete": "确认删除"
+  "confirmDelete": "确认删除",
+  "translation": "翻译",
+  "translationEmpty": "翻译不能为空",
+  "emptyFavorites": "没有收藏卡片"
 }
