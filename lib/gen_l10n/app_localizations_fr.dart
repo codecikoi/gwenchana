@@ -140,4 +140,25 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get errorLoadCard => 'Erreur lors du chargement des cartes';
+
+  @override
+  String get favorites => 'Favoris';
+
+  @override
+  String get cancel => 'Annuler';
+
+  @override
+  String get delete => 'Supprimer';
+
+  @override
+  String get fromFavorites => 'des Favoris';
+
+  @override
+  String get add => 'Ajouter';
+
+  @override
+  String get myCards => 'Mes cartes';
+
+  @override
+  String get confirmDelete => 'Confirmer la suppression';
 }

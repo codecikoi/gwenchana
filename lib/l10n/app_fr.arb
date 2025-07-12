@@ -43,5 +43,12 @@
   "errorLoadFavorites": "Erreur lors du chargement des favoris",
   "errorAddFavorites": "Erreur lors de l'ajout aux favoris",
   "errorAddCard": "Erreur lors de l'ajout de la carte",
-  "errorLoadCard": "Erreur lors du chargement des cartes"
+  "errorLoadCard": "Erreur lors du chargement des cartes",
+  "favorites": "Favoris",
+  "cancel": "Annuler",
+  "delete": "Supprimer",
+  "fromFavorites": "des Favoris",
+  "add": "Ajouter",
+  "myCards": "Mes cartes",
+  "confirmDelete": "Confirmer la suppression"
 }

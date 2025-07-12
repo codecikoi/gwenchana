@@ -42,13 +42,39 @@ class _AddCardDialogState extends State<AddCardDialog> {
         );
         widget.bloc.add(AddCardEvent(card));
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('card added successfully!'),
-              backgroundColor: Colors.green,
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            barrierColor: Colors.black26,
+            builder: (context) => Center(
+              child: Container(
+                width: 60,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(50),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 10,
+                      offset: Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: Icon(
+                  Icons.done,
+                  color: Colors.green,
+                  size: 40,
+                ),
+              ),
             ),
           );
-          Navigator.of(context).pop();
+          Future.delayed(Duration(milliseconds: 300), () {
+            if (mounted) {
+              Navigator.of(context).pop();
+              Navigator.of(context).pop();
+            }
+          });
         }
       } catch (e) {
         if (mounted) {

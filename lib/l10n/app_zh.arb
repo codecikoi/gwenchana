@@ -43,5 +43,12 @@
   "errorLoadFavorites": "加载收藏夹时出错",
   "errorAddFavorites": "添加到收藏夹时出错",
   "errorAddCard": "添加卡片时出错",
-  "errorLoadCard": "加载卡片时出错"
+  "errorLoadCard": "加载卡片时出错",
+  "favorites": "收藏夹",
+  "cancel": "取消",
+  "delete": "删除",
+  "fromFavorites": "从收藏夹",
+  "add": "添加",
+  "myCards": "我的卡片",
+  "confirmDelete": "确认删除"
 }

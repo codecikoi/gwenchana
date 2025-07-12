@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/add_card_dialog.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
+import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
-enum ViewMode { cards, list }
+enum ViewMode { list, cards }
 
 @RoutePage()
 class MyCardsPage extends StatefulWidget {
@@ -21,7 +21,7 @@ class _MyCardsPageState extends State<MyCardsPage>
   int currentIndex = 0;
   bool showTranslation = false;
 
-  ViewMode currentViewMode = ViewMode.cards;
+  ViewMode currentViewMode = ViewMode.list;
   late AnimationController _controller;
   late Animation<double> _animation;
 
@@ -117,31 +117,8 @@ class _MyCardsPageState extends State<MyCardsPage>
           _controller.reset();
         }
       });
-
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              source == 'swipe' ? 'card deleted' : 'card deleted?',
-            ),
-            backgroundColor: Colors.orange,
-            action: SnackBarAction(
-              label: 'cancel',
-              onPressed: () => addCardBack(card),
-            ),
-          ),
-        );
-      }
     } catch (e) {
-      print('error deleting card $e');
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Text('Error deleting card'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
+      print('Error deleting card $e');
     }
   }
 
@@ -159,23 +136,8 @@ class _MyCardsPageState extends State<MyCardsPage>
   Future<void> addToFavorites(MyCard card) async {
     try {
       await HiveStorageService.addToFavorites(card);
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Card added to favorites'),
-            backgroundColor: Colors.green,
-          ),
-        );
-      }
     } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Text('Error adding card to favorites'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
+      print('error adding to favorites $e');
     }
   }
 
@@ -198,144 +160,62 @@ class _MyCardsPageState extends State<MyCardsPage>
   }
 
   Widget _buildListView(List<MyCard> cards) {
-    return ListView.builder(
+    return ListView.separated(
       itemCount: cards.length,
       padding: const EdgeInsets.all(16.0),
+      separatorBuilder: (context, index) => Divider(
+        color: Colors.grey.shade300,
+        thickness: 1,
+        height: 1,
+      ),
       itemBuilder: (context, index) {
         final card = cards[index];
+
         return Dismissible(
-          key: Key(
-              '${card.korean}_${card.translation}_${card.createdAt.millisecondsSinceEpoch}'),
+          key: Key('${card.korean}_${card.translation}_$index'),
           direction: DismissDirection.endToStart,
           onDismissed: (direction) {
             deleteCard(card, source: 'swipe');
           },
-          confirmDismiss: (direction) async {
-            return await showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: Text('Подтвердите удаление'),
-                content: Text('Delete "${card.korean}" from your cards?'),
-                actions: [
-                  TextButton(
-                    child: Text('Отмена'),
-                    onPressed: () => Navigator.of(context).pop(false),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.of(context).pop(true),
-                    style: TextButton.styleFrom(
-                      foregroundColor: Colors.red,
-                    ),
-                    child: Text('Удалить'),
-                  ),
-                ],
-              ),
-            );
+          dismissThresholds: {
+            DismissDirection.endToStart: 0.6,
           },
           background: Container(
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.only(right: 20.0),
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.delete,
-                  color: Colors.white,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  'delete',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ],
+            color: Colors.red,
+            child: Icon(
+              Icons.delete,
+              color: Colors.white,
             ),
           ),
-          child: Card(
-            margin: const EdgeInsets.only(bottom: 12),
-            elevation: 2,
-            child: ExpansionTile(
-              leading: CircleAvatar(
-                backgroundColor: Colors.blue.shade100,
-                child: Icon(
-                  Icons.person,
-                  color: Colors.blue,
-                  size: 20,
-                ),
-              ),
-              title: Text(
-                card.korean,
-                style: TextStyle(
-                  color: Colors.grey.shade600,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('нажмите чтоб посмотреть перевод'),
-                  const SizedBox(height: 4),
-                  Text(
-                    'Добавлено: ${_formatDate(card.createdAt)}',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey.shade500,
-                    ),
-                  ),
-                ],
-              ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12.0,
+              vertical: 10.0,
+            ),
+            child: Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Перевод:',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey.shade700,
-                              ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              card.translation,
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.blue.shade700,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Column(
-                        children: [
-                          IconButton(
-                            onPressed: () => addToFavorites(card),
-                            icon: Icon(
-                              Icons.favorite_border,
-                              color: Colors.red,
-                            ),
-                            tooltip: 'Add to favorites',
-                          ),
-                          IconButton(
-                            onPressed: () => deleteCard(card),
-                            icon: Icon(
-                              Icons.delete_outline,
-                              color: Colors.red,
-                            ),
-                            tooltip: 'Delete card',
-                          ),
-                        ],
-                      ),
-                    ],
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    card.korean,
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black87),
+                  ),
+                ),
+                const SizedBox(width: 15),
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    card.translation,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey.shade700,
+                    ),
                   ),
                 ),
               ],
@@ -354,29 +234,14 @@ class _MyCardsPageState extends State<MyCardsPage>
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '${currentIndex + 1} / ${cards.length}',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                _formatDate(card.createdAt),
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey.shade600,
-                ),
-              ),
-            ],
+        const SizedBox(height: 40),
+        Text(
+          '${currentIndex + 1} / ${cards.length}',
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 18),
         Expanded(
           child: GestureDetector(
             onTap: flipCard,
@@ -390,8 +255,12 @@ class _MyCardsPageState extends State<MyCardsPage>
                     ..rotateY(3.14159 * _animation.value),
                   alignment: Alignment.center,
                   child: Card(
-                    margin: const EdgeInsets.all(16.0),
-                    elevation: 4,
+                    margin: const EdgeInsets.only(
+                      left: 20.0,
+                      right: 20.0,
+                      top: 20.0,
+                      bottom: 150.0,
+                    ),
                     child: Container(
                       alignment: Alignment.center,
                       padding: const EdgeInsets.all(32.0),
@@ -406,21 +275,11 @@ class _MyCardsPageState extends State<MyCardsPage>
                             Text(
                               isBack ? card.translation : card.korean,
                               style: TextStyle(
-                                fontSize: 32.0,
+                                fontSize: 42.0,
                                 fontWeight: FontWeight.bold,
                               ),
                               textAlign: TextAlign.center,
                             ),
-                            if (!isBack) ...[
-                              const SizedBox(height: 16),
-                              Text(
-                                'нажмите для перевода',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.grey.shade600,
-                                ),
-                              ),
-                            ]
                           ],
                         ),
                       ),
@@ -446,14 +305,6 @@ class _MyCardsPageState extends State<MyCardsPage>
                 onPressed: () => addToFavorites(card),
                 icon: Icon(Icons.favorite_border),
                 iconSize: 32,
-                tooltip: 'Add to favorites',
-              ),
-              IconButton(
-                onPressed: flipCard,
-                icon: Icon(
-                  showTranslation ? Icons.flip_to_front : Icons.flip_to_back,
-                ),
-                iconSize: 32,
               ),
               IconButton(
                 onPressed: currentIndex < cards.length - 1
@@ -469,17 +320,15 @@ class _MyCardsPageState extends State<MyCardsPage>
     );
   }
 
-  String _formatDate(DateTime date) {
-    return '${date.day}/${date.month}/${date.year}';
-  }
-
   @override
   Widget build(BuildContext context) {
     // Show loading
     if (isLoading) {
       return Scaffold(
         appBar: AppBar(
-          title: const Text('Мои карточки'),
+          title: Text(
+            AppLocalizations.of(context)!.myCards,
+          ),
         ),
         body: Center(
           child: CircularProgressIndicator(),
@@ -491,7 +340,9 @@ class _MyCardsPageState extends State<MyCardsPage>
     if (myCards.isEmpty) {
       return Scaffold(
         appBar: AppBar(
-          title: const Text('Мои карточки'),
+          title: Text(
+            AppLocalizations.of(context)!.myCards,
+          ),
           actions: [
             IconButton(
               icon: Icon(Icons.add),
@@ -551,30 +402,10 @@ class _MyCardsPageState extends State<MyCardsPage>
             color: Colors.blue,
           ),
         ),
-        title: Row(
-          children: [
-            const Text('Мои карточки'),
-            const SizedBox(width: 8),
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 8,
-                vertical: 4,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.blue.shade100,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                '${myCards.length}',
-                style: TextStyle(
-                  color: Colors.blue.shade700,
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ],
+        title: Text(
+          AppLocalizations.of(context)!.myCards,
         ),
+        centerTitle: true,
         actions: [
           IconButton(
             icon: Icon(
@@ -586,37 +417,11 @@ class _MyCardsPageState extends State<MyCardsPage>
             icon: Icon(Icons.add),
             onPressed: showAddCardDialog,
           ),
-          if (currentViewMode == ViewMode.cards)
-            IconButton(
-              icon: Icon(Icons.delete),
-              onPressed: () {
-                if (myCards.isNotEmpty) {
-                  final card = myCards[currentIndex];
-                  deleteCard(card);
-                }
-              },
-            )
         ],
       ),
       body: currentViewMode == ViewMode.cards
           ? _buildCardView(myCards)
           : _buildListView(myCards),
-      floatingActionButton: currentViewMode == ViewMode.list
-          ? FloatingActionButton.extended(
-              onPressed: () {
-                setState(() {
-                  currentViewMode = ViewMode.cards;
-                });
-              },
-              icon: Icon(Icons.style),
-              label: Text('cards'),
-              backgroundColor: Colors.blue,
-            )
-          : FloatingActionButton(
-              onPressed: showAddCardDialog,
-              child: Icon(Icons.add),
-              backgroundColor: Colors.blue,
-            ),
     );
   }
 }

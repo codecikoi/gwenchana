@@ -140,4 +140,25 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get errorLoadCard => 'Kartalarni yuklashda xatolik';
+
+  @override
+  String get favorites => 'Sevimlilar';
+
+  @override
+  String get cancel => 'Bekor qilish';
+
+  @override
+  String get delete => 'O\'chirish';
+
+  @override
+  String get fromFavorites => 'Sevimlilardan';
+
+  @override
+  String get add => 'Qo\'shish';
+
+  @override
+  String get myCards => 'Mening kartalarim';
+
+  @override
+  String get confirmDelete => 'O\'chirishni tasdiqlash';
 }

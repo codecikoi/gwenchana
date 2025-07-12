@@ -140,4 +140,25 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get errorLoadCard => 'Error memuat kartu';
+
+  @override
+  String get favorites => 'Favorit';
+
+  @override
+  String get cancel => 'Batal';
+
+  @override
+  String get delete => 'Hapus';
+
+  @override
+  String get fromFavorites => 'dari Favorit';
+
+  @override
+  String get add => 'Tambah';
+
+  @override
+  String get myCards => 'Kartu Saya';
+
+  @override
+  String get confirmDelete => 'Konfirmasi hapus';
 }

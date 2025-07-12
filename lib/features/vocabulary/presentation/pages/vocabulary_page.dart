@@ -119,7 +119,6 @@ class VocabularyPage extends StatelessWidget {
                           ResetProgressEvent(state.selectedLevel),
                         );
                   },
-                  tooltip: 'Reset progress',
                 ),
               ],
             ),
@@ -150,7 +149,7 @@ class VocabularyPage extends StatelessWidget {
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              'My cards',
+                              AppLocalizations.of(context)!.myCards,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -181,7 +180,7 @@ class VocabularyPage extends StatelessWidget {
                             ),
                             const SizedBox(height: 8),
                             Text(
-                              'Favorites',
+                              AppLocalizations.of(context)!.favorites,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,

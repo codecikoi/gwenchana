@@ -43,5 +43,12 @@
   "errorLoadFavorites": "Ошибка загрузки избранного",
   "errorAddFavorites": "Ошибка добавления в избранное",
   "errorAddCard": "Ошибка добавления карточки",
-  "errorLoadCard": "Ошибка загрузки карточек"
+  "errorLoadCard": "Ошибка загрузки карточек",
+  "favorites": "Избранное",
+  "cancel": "Отмена",
+  "delete": "Удалить",
+  "fromFavorites": "из Избранного",
+  "add": "Добавить",
+  "myCards": "Мои карточки",
+  "confirmDelete": "Подтвердите удаление"
 }

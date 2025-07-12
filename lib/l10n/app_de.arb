@@ -43,5 +43,12 @@
   "errorLoadFavorites": "Fehler beim Laden der Favoriten",
   "errorAddFavorites": "Fehler beim Hinzufügen zu Favoriten",
   "errorAddCard": "Fehler beim Hinzufügen der Karte",
-  "errorLoadCard": "Fehler beim Laden der Karten"
+  "errorLoadCard": "Fehler beim Laden der Karten",
+  "favorites": "Favoriten",
+  "cancel": "Abbrechen",
+  "delete": "Löschen",
+  "fromFavorites": "aus Favoriten",
+  "add": "Hinzufügen",
+  "myCards": "Meine Karten",
+  "confirmDelete": "Löschen bestätigen"
 }

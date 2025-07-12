@@ -43,5 +43,12 @@
     "errorLoadFavorites": "Error memuat favorit",
     "errorAddFavorites": "Error menambahkan ke favorit",
     "errorAddCard": "Error menambahkan kartu",
-    "errorLoadCard": "Error memuat kartu"
+    "errorLoadCard": "Error memuat kartu",
+    "favorites": "Favorit",
+    "cancel": "Batal",
+    "delete": "Hapus",
+    "fromFavorites": "dari Favorit",
+    "add": "Tambah",
+    "myCards": "Kartu Saya",
+    "confirmDelete": "Konfirmasi hapus"
   }

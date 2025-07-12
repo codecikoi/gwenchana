@@ -140,4 +140,25 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get errorLoadCard => 'カード読み込みエラー';
+
+  @override
+  String get favorites => 'お気に入り';
+
+  @override
+  String get cancel => 'キャンセル';
+
+  @override
+  String get delete => '削除';
+
+  @override
+  String get fromFavorites => 'お気に入りから';
+
+  @override
+  String get add => '追加';
+
+  @override
+  String get myCards => 'マイカード';
+
+  @override
+  String get confirmDelete => '削除確認';
 }

@@ -140,4 +140,25 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get errorLoadCard => '加载卡片时出错';
+
+  @override
+  String get favorites => '收藏夹';
+
+  @override
+  String get cancel => '取消';
+
+  @override
+  String get delete => '删除';
+
+  @override
+  String get fromFavorites => '从收藏夹';
+
+  @override
+  String get add => '添加';
+
+  @override
+  String get myCards => '我的卡片';
+
+  @override
+  String get confirmDelete => '确认删除';
 }

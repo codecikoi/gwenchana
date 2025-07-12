@@ -43,5 +43,12 @@
   "errorLoadFavorites": "お気に入りの読み込みエラー",
   "errorAddFavorites": "お気に入りへの追加エラー",
   "errorAddCard": "カード追加エラー",
-  "errorLoadCard": "カード読み込みエラー"
+  "errorLoadCard": "カード読み込みエラー",
+  "favorites": "お気に入り",
+  "cancel": "キャンセル",
+  "delete": "削除",
+  "fromFavorites": "お気に入りから",
+  "add": "追加",
+  "myCards": "マイカード",
+  "confirmDelete": "削除確認"
 }

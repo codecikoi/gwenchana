@@ -1,13 +1,13 @@
 {
-  "chooseLanguage": "Choose Language",
+  "chooseLanguage": "Choose language",
   "next": "Next",
   "welcomeTo": "Welcome to",
   "settings": "Settings",
-  "changeLanguage": "Change Language",
+  "changeLanguage": "Change language",
   "login": "Log in",
   "email": "Email",
   "password": "Password",
-  "confirmPassword": "Confirm Password",
+  "confirmPassword": "Confirm password",
   "signInWith": "or Sign in with",
   "dontHaveAccount": "Don't have an account?",
   "createAccount": "Create Account",
@@ -43,5 +43,12 @@
   "errorLoadFavorites": "Error loading favorites",
   "errorAddFavorites": "Error adding to favorites",
   "errorAddCard": "Error adding card",
-  "errorLoadCard": "Error loading cards"
+  "errorLoadCard": "Error loading cards",
+  "favorites": "Favorites",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "fromFavorites": "from Favorites",
+  "add": "Add",
+  "myCards": "My cards",
+  "confirmDelete": "Confirm delete"
 }

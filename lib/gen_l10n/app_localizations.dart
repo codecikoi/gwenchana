@@ -378,6 +378,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Error loading cards'**
   String get errorLoadCard;
+
+  /// No description provided for @favorites.
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites'**
+  String get favorites;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @fromFavorites.
+  ///
+  /// In en, this message translates to:
+  /// **'from Favorites'**
+  String get fromFavorites;
+
+  /// No description provided for @add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get add;
+
+  /// No description provided for @myCards.
+  ///
+  /// In en, this message translates to:
+  /// **'My Cards'**
+  String get myCards;
+
+  /// No description provided for @confirmDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm delete'**
+  String get confirmDelete;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

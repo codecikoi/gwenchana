@@ -140,4 +140,25 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get errorLoadCard => 'Ошибка загрузки карточек';
+
+  @override
+  String get favorites => 'Избранное';
+
+  @override
+  String get cancel => 'Отмена';
+
+  @override
+  String get delete => 'Удалить';
+
+  @override
+  String get fromFavorites => 'из Избранного';
+
+  @override
+  String get add => 'Добавить';
+
+  @override
+  String get myCards => 'Мои карточки';
+
+  @override
+  String get confirmDelete => 'Подтвердите удаление';
 }

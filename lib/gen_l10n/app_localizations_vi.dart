@@ -140,4 +140,25 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get errorLoadCard => 'Lỗi tải thẻ';
+
+  @override
+  String get favorites => 'Yêu thích';
+
+  @override
+  String get cancel => 'Hủy';
+
+  @override
+  String get delete => 'Xóa';
+
+  @override
+  String get fromFavorites => 'khỏi Yêu thích';
+
+  @override
+  String get add => 'Thêm';
+
+  @override
+  String get myCards => 'Thẻ của tôi';
+
+  @override
+  String get confirmDelete => 'Xác nhận xóa';
 }

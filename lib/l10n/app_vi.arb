@@ -43,5 +43,12 @@
   "errorLoadFavorites": "Lỗi tải danh sách yêu thích",
   "errorAddFavorites": "Lỗi thêm vào danh sách yêu thích",
   "errorAddCard": "Lỗi thêm thẻ",
-  "errorLoadCard": "Lỗi tải thẻ"
+  "errorLoadCard": "Lỗi tải thẻ",
+  "favorites": "Yêu thích",
+  "cancel": "Hủy",
+  "delete": "Xóa",
+  "fromFavorites": "khỏi Yêu thích",
+  "add": "Thêm",
+  "myCards": "Thẻ của tôi",
+  "confirmDelete": "Xác nhận xóa"
 }

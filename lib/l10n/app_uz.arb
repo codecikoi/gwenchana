@@ -43,5 +43,12 @@
     "errorLoadFavorites": "Sevimlilarni yuklashda xatolik",
     "errorAddFavorites": "Sevimlilarga qo'shishda xatolik",
     "errorAddCard": "Karta qo'shishda xatolik",
-    "errorLoadCard": "Kartalarni yuklashda xatolik"
+    "errorLoadCard": "Kartalarni yuklashda xatolik",
+    "favorites": "Sevimlilar",
+    "cancel": "Bekor qilish",
+    "delete": "O'chirish",
+    "fromFavorites": "Sevimlilardan",
+    "add": "Qo'shish",
+    "myCards": "Mening kartalarim",
+    "confirmDelete": "O'chirishni tasdiqlash"
   }

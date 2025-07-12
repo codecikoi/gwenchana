@@ -171,9 +171,6 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
         _controller.reset();
       });
       updateProgress();
-      // if (currentIndex + 1 > currentProgress) {
-      //    updateProgress();
-      // }
     }
   }
 
@@ -204,27 +201,17 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
     }
   }
 
-  Future<void> addToFavoritesLocal(MyCard card) async {
+  Future<bool> addToFavoritesLocal(MyCard card) async {
     try {
+      if (favorites.any((fav) => fav.korean == card.korean)) {
+        return false;
+      }
       await addToFavorites(card);
       await loadFavorites();
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('added'),
-            backgroundColor: Colors.green,
-          ),
-        );
-      }
+      return true;
     } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('error adding'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
+      print('error adding $e');
+      return false;
     }
   }
 

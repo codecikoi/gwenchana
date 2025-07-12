@@ -7,7 +7,7 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get chooseLanguage => 'Choose Language';
+  String get chooseLanguage => 'Choose language';
 
   @override
   String get next => 'Next';
@@ -19,7 +19,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get settings => 'Settings';
 
   @override
-  String get changeLanguage => 'Change Language';
+  String get changeLanguage => 'Change language';
 
   @override
   String get login => 'Log in';
@@ -31,7 +31,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get confirmPassword => 'Confirm Password';
+  String get confirmPassword => 'Confirm password';
 
   @override
   String get signInWith => 'or Sign in with';
@@ -40,19 +40,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dontHaveAccount => 'Don\'t have an account?';
 
   @override
-  String get createAccount => 'Create Account';
+  String get createAccount => 'Create account';
 
   @override
-  String get forgotPassword => 'Forgot Password?';
+  String get forgotPassword => 'Forgot password?';
 
   @override
-  String get recoverPassword => 'Recover Password';
+  String get recoverPassword => 'Recover password';
 
   @override
   String get reset => 'Reset';
 
   @override
-  String get termsAndConditions => 'By signing in to Gwenchana, you agree to our Terms of Service and Privacy Policy';
+  String get termsAndConditions =>
+      'By signing in to Gwenchana, you agree to our Terms of Service and Privacy Policy';
 
   @override
   String get name => 'Name';
@@ -88,7 +89,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get listening => 'Listening';
 
   @override
-  String get chooseBook => 'Choose Book';
+  String get chooseBook => 'Choose book';
 
   @override
   String get emptyEmail => 'Email cannot be empty';
@@ -115,10 +116,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emptyEnglish => 'English word cannot be empty';
 
   @override
-  String get invalidKorean => 'Please enter valid Korean characters';
+  String get invalidKorean => 'Please enter valid korean characters';
 
   @override
-  String get invalidEnglish => 'Please enter valid English characters';
+  String get invalidEnglish => 'Please enter valid english characters';
 
   @override
   String get invalidInput => 'Invalid input';
@@ -140,4 +141,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorLoadCard => 'Error loading cards';
+
+  @override
+  String get favorites => 'Favorites';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get fromFavorites => 'from favorites';
+
+  @override
+  String get add => 'Add';
+
+  @override
+  String get myCards => 'My cards';
+
+  @override
+  String get confirmDelete => 'Confirm delete';
 }
