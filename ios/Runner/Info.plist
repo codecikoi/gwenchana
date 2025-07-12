@@ -2,50 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>fbapi</string>
-		<string>fb-messenger-share-api</string>
-	</array>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<!-- Facebook URL Scheme -->
-		<dict>
-			<key>CFBundleURLName</key>
-			<string>facebook-auth</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb1207605197591153</string>
-			</array>
-		</dict>
-		<!-- Google URL Scheme -->
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.321930392834-t7e9sq4qphgoi0v1srto8soo1equgf67</string>
-			</array>
-		</dict>
-	</array>
-	
-	<!-- Facebook настройки -->
-	<key>FacebookAppID</key>
-	<string>1207605197591153</string>
-	<key>FacebookClientToken</key>
-	<string>0c034e64c39db73150f4816d87e99e09</string>
-	<key>FacebookDisplayName</key>
-	<string>Gwenchana</string>
-	
-	<!-- Google настройки -->
-	<key>GIDClientID</key>
-	<string>321930392834-t7e9sq4qphgoi0v1srto8soo1equgf67.apps.googleusercontent.com</string>
-	
-	<!-- privacy descriptions -->
-	<key>NSCameraUsageDescription</key>
-	<string>App needs camera access for profile photos</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>App needs photo library access for profile photos</string>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -64,9 +22,47 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>facebook-auth</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1207605197591153</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.321930392834-t7e9sq4qphgoi0v1srto8soo1equgf67</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>FacebookAppID</key>
+	<string>1207605197591153</string>
+	<key>FacebookClientToken</key>
+	<string>0c034e64c39db73150f4816d87e99e09</string>
+	<key>FacebookDisplayName</key>
+	<string>Gwenchana</string>
+	<key>GIDClientID</key>
+	<string>321930392834-t7e9sq4qphgoi0v1srto8soo1equgf67.apps.googleusercontent.com</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>App needs camera access for profile photos</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App needs photo library access for profile photos</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -85,9 +81,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
 </dict>
 </plist>

@@ -6,7 +6,6 @@ import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state
 import 'package:gwenchana/features/vocabulary/presentation/widgets/card_titles.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_page.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
-import 'package:hive/hive.dart';
 
 class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
   VocabularyBloc() : super(VocabularyLoading()) {
