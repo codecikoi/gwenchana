@@ -21,7 +21,6 @@ class _AddCardDialogState extends State<AddCardDialog> {
   final _formKey = GlobalKey<FormState>();
   final _koreanController = TextEditingController();
   final _translationController = TextEditingController();
-  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   bool _isLoading = false;
 
   @override
@@ -32,10 +31,6 @@ class _AddCardDialogState extends State<AddCardDialog> {
   }
 
   Future<void> _addCard() async {
-    setState(() {
-      _autovalidateMode = AutovalidateMode.onUserInteraction;
-    });
-
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;
@@ -117,6 +112,7 @@ class _AddCardDialogState extends State<AddCardDialog> {
                 labelText: AppLocalizations.of(context)!.koreanWord,
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.language),
+                errorMaxLines: 3,
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {
@@ -139,6 +135,7 @@ class _AddCardDialogState extends State<AddCardDialog> {
                 border: OutlineInputBorder(),
                 prefixIcon: Icon(Icons.translate),
                 enabled: !_isLoading,
+                errorMaxLines: 3,
               ),
               validator: (value) {
                 if (value == null || value.trim().isEmpty) {

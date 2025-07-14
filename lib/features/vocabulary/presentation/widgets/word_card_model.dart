@@ -9,27 +9,20 @@ class MyCard {
   @HiveField(1)
   final String translation;
 
-  @HiveField(2)
-  final DateTime createdAt;
-
   MyCard({
     required this.korean,
     required this.translation,
     DateTime? createdAt,
-  }) : createdAt = createdAt ?? DateTime.now();
+  });
 
   Map<String, dynamic> toMap() => {
         "korean": korean,
         "translation": translation,
-        "createdAt": createdAt.toIso8601String(),
       };
 
   factory MyCard.fromMap(Map map) => MyCard(
         korean: map["korean"] ?? '',
         translation: map["translation"] ?? '',
-        createdAt: map["createdAt"] != null
-            ? DateTime.parse(map['createdAt'])
-            : DateTime.now(),
       );
   @override
   bool operator ==(Object other) =>
@@ -76,8 +69,7 @@ class HiveStorageService {
     final cards = box.values.toList();
     for (int i = 0; i < cards.length; i++) {
       if (cards[i].korean == card.korean &&
-          cards[i].translation == card.translation &&
-          cards[i].createdAt == card.createdAt) {
+          cards[i].translation == card.translation) {
         await box.deleteAt(i);
         break;
       }

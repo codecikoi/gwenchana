@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/core/helper/app_colors.dart';
-import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/add_card_dialog.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
@@ -28,6 +27,8 @@ class _MyCardsPageState extends State<MyCardsPage>
   late Animation<double> _animation;
 
   List<MyCard> myCards = [];
+  List<MyCard> favorites = [];
+
   bool isLoading = true;
   @override
   void initState() {
@@ -96,20 +97,14 @@ class _MyCardsPageState extends State<MyCardsPage>
     try {
       final allCards = await HiveStorageService.getAllCards();
       final index = allCards.indexWhere(
-        (c) =>
-            c.korean == card.korean &&
-            c.translation == card.translation &&
-            c.createdAt == card.createdAt,
+        (c) => c.korean == card.korean && c.translation == card.translation,
       );
       if (index != -1) {
         await HiveStorageService.deleteCard(index);
       }
       setState(() {
         myCards.removeWhere(
-          (c) =>
-              c.korean == card.korean &&
-              c.translation == card.translation &&
-              c.createdAt == card.createdAt,
+          (c) => c.korean == card.korean && c.translation == card.translation,
         );
         if (currentViewMode == ViewMode.cards && myCards.isNotEmpty) {
           if (currentIndex >= myCards.length) {
@@ -135,11 +130,17 @@ class _MyCardsPageState extends State<MyCardsPage>
     }
   }
 
-  Future<void> addToFavorites(MyCard card) async {
-    try {
+  Future<void> toggleFavorites(MyCard card) async {
+    if (favorites.contains(card)) {
+      await HiveStorageService.removeFromFavorites(card);
+      setState(() {
+        favorites.remove(card);
+      });
+    } else {
       await HiveStorageService.addToFavorites(card);
-    } catch (e) {
-      print('error adding to favorites $e');
+      setState(() {
+        favorites.add(card);
+      });
     }
   }
 
@@ -304,8 +305,13 @@ class _MyCardsPageState extends State<MyCardsPage>
                 iconSize: 40,
               ),
               IconButton(
-                onPressed: () => addToFavorites(card),
-                icon: Icon(Icons.favorite_border),
+                onPressed: () => toggleFavorites(card),
+                icon: Icon(
+                  favorites.contains(card)
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                ),
+                color: favorites.contains(card) ? Colors.red : null,
                 iconSize: 32,
               ),
               IconButton(

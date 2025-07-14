@@ -28,7 +28,7 @@ dependencies:
   hive_flutter: ^1.1.0
   path_provider: ^2.1.5
   get_it: ^8.0.3
-  auto_route_generator: ^10.0.1
+  # auto_route_generator: ^10.0.1
   
 
 dev_dependencies:
@@ -37,7 +37,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   bloc_test: ^10.0.0
   build_runner: any
-  # hive_generator: ^2.0.0
+  hive_generator: ^2.0.0
 
 
 flutter:
