@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/core/services/progress_service.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_five_data.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_four_data.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_one_data.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_three_data.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_two_data.dart';
+import 'package:gwenchana/features/vocabulary/data/vocabulary_intermediate_two.dart';
+import 'package:gwenchana/features/vocabulary/data/vocabulary_intermediate_one.dart';
+import 'package:gwenchana/features/vocabulary/data/vocabulary_elementary_data.dart';
+import 'package:gwenchana/features/vocabulary/data/vocabulary_beginner_two_data.dart';
+import 'package:gwenchana/features/vocabulary/data/vocabulary_begginer_one_data.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/card_titles.dart';
@@ -189,15 +189,15 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
   String getCardtitle(int index) {
     switch (widget.selectedLevel) {
       case 2:
-        return cardTitlesLevel2[index];
+        return cardTitlesBeginnerLevelOne[index];
       case 3:
-        return cardTitlesLevel3[index];
+        return cardTitlesBeginnerLevelTwo[index];
       case 4:
-        return cardTitlesLevel4[index];
+        return cardTitlesIntermediateLevelOne[index];
       case 5:
-        return cardTitlesLevel5[index];
+        return cardTitlesIntermediateLevelTwo[index];
       default:
-        return cardTitlesLevel1[index];
+        return cardTitlesElementaryLevel[index];
     }
   }
 

@@ -30,6 +30,7 @@ class _MyCardsPageState extends State<MyCardsPage>
   List<MyCard> favorites = [];
 
   bool isLoading = true;
+
   @override
   void initState() {
     super.initState();
@@ -39,6 +40,18 @@ class _MyCardsPageState extends State<MyCardsPage>
     );
     _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
     loadCardsDirectly();
+    loadFavorites();
+  }
+
+  Future<void> loadFavorites() async {
+    try {
+      final loadedFavorites = await HiveStorageService.getFavorites();
+      setState(() {
+        favorites = loadedFavorites;
+      });
+    } catch (e) {
+      print('error loading');
+    }
   }
 
   Future<void> loadCardsDirectly() async {

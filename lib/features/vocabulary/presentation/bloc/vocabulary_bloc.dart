@@ -96,15 +96,15 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
   String _getCardTitle(int level, int index) {
     switch (level) {
       case 2:
-        return cardTitlesLevel2[index];
+        return cardTitlesBeginnerLevelOne[index];
       case 3:
-        return cardTitlesLevel3[index];
+        return cardTitlesBeginnerLevelTwo[index];
       case 4:
-        return cardTitlesLevel4[index];
+        return cardTitlesIntermediateLevelOne[index];
       case 5:
-        return cardTitlesLevel5[index];
+        return cardTitlesIntermediateLevelTwo[index];
       default:
-        return cardTitlesLevel1[index];
+        return cardTitlesElementaryLevel[index];
     }
   }
 

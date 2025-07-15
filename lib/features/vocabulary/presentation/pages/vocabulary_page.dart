@@ -266,7 +266,7 @@ class VocabularyPage extends StatelessWidget {
                 );
                 context.read<VocabularyBloc>().add(LoadProgressEvent());
               },
-              title: 'back to vocabulary',
+              title: 'Back to vocabulary',
             ),
           ),
         );
