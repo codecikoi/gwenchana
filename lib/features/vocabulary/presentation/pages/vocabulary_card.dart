@@ -70,13 +70,13 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
         wordCards = allBeginnerOneDataSets[widget.setIndex];
         break;
       case 3:
-        wordCards = allThreeDataSets[widget.setIndex];
+        wordCards = allBeginnerTwoDataSets[widget.setIndex];
         break;
       case 4:
-        wordCards = allFourDataSets[widget.setIndex];
+        wordCards = allIntermediateLevelOneDataSets[widget.setIndex];
         break;
       case 5:
-        wordCards = allFiveDataSets[widget.setIndex];
+        wordCards = allIntermediateLevelTwoDataSets[widget.setIndex];
         break;
       default:
         wordCards = _getLevelOneSet(widget.setIndex);

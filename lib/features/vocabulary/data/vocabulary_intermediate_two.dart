@@ -7,7 +7,7 @@ class VocabularyIntermediateLevelTwoData {
 }
 
 // Set 1: Advanced Academic Research (26 words)
-final List<VocabularyIntermediateLevelTwoData> advancedResearchCards = [
+final List<VocabularyIntermediateLevelTwoData> intermediateTwoLesson1 = [
   VocabularyIntermediateLevelTwoData(
       korean: '학술연구', english: 'Academic research'),
   VocabularyIntermediateLevelTwoData(
@@ -700,39 +700,26 @@ final List<VocabularyIntermediateLevelTwoData> historicalAnalysisCards = [
 ];
 
 // Master list containing all vocabulary five data sets
-final List<List<VocabularyIntermediateLevelTwoData>> allFiveDataSets = [
-  advancedResearchCards, // Set 1: Advanced Academic Research
-  internationalRelationsCards, // Set 2: International Relations
-  philosophyEthicsCards, // Set 3: Philosophy & Ethics
-  advancedTechCards, // Set 4: Advanced Technology & AI
-  legalSystemCards, // Set 5: Legal System & Law
-  medicalSpecialtiesCards, // Set 6: Medical Specialties
-  financialMarketsCards, // Set 7: Financial Markets & Investment
-  culturalStudiesCards, // Set 8: Cultural Studies
-  advancedScienceCards, // Set 9: Advanced Science & Research
-  literatureCards, // Set 10: Literature & Literary Analysis
-  artHistoryCards, // Set 11: Art History & Criticism
-  musicTheoryCards, // Set 12: Music Theory & Composition
-  filmStudiesCards, // Set 13: Film & Cinema Studies
-  socialIssuesCards, // Set 14: Social Issues & Activism
-  businessStrategyCards, // Set 15: Advanced Business Strategy
-  environmentalPolicyCards, // Set 16: Environmental Policy
-  spaceAstronomyCards, // Set 17: Space & Astronomy
-  historicalAnalysisCards, // Set 18: Historical Analysis
+final List<List<VocabularyIntermediateLevelTwoData>>
+    allIntermediateLevelTwoDataSets = [
+  intermediateTwoLesson1,
 ];
 
 // Function to get a specific vocabulary five data set
-List<VocabularyIntermediateLevelTwoData> getFiveDataSet(int setNumber) {
+List<VocabularyIntermediateLevelTwoData> getIntermediateTwoLessonDataSet(
+    int setNumber) {
   if (setNumber >= 1 && setNumber <= 18) {
-    return allFiveDataSets[setNumber - 1];
+    return allIntermediateLevelTwoDataSets[setNumber - 1];
   }
   return [];
 }
 
 // Function to get all vocabulary five data cards as one big list
-List<VocabularyIntermediateLevelTwoData> getAllFiveDataCards() {
+List<VocabularyIntermediateLevelTwoData>
+    getIntermediateTwoAllLessonsDataCards() {
   List<VocabularyIntermediateLevelTwoData> allCards = [];
-  for (List<VocabularyIntermediateLevelTwoData> set in allFiveDataSets) {
+  for (List<VocabularyIntermediateLevelTwoData> set
+      in allIntermediateLevelTwoDataSets) {
     allCards.addAll(set);
   }
   return allCards;

@@ -9,7 +9,7 @@ class VocabularyBeginnerLevelOneData {
 }
 
 // Set 1:
-final List<VocabularyBeginnerLevelOneData> lesson1 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson1 = [
   VocabularyBeginnerLevelOneData(korean: '이름', english: 'Name'),
   VocabularyBeginnerLevelOneData(korean: '직업', english: 'Occupation'),
   VocabularyBeginnerLevelOneData(korean: '국적', english: 'Nationality'),
@@ -38,7 +38,7 @@ final List<VocabularyBeginnerLevelOneData> lesson1 = [
 ];
 
 // Set 2:
-final List<VocabularyBeginnerLevelOneData> lesson2 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson2 = [
   VocabularyBeginnerLevelOneData(korean: '회사', english: 'Company'),
   VocabularyBeginnerLevelOneData(korean: '기숙사', english: 'Dormitory'),
   VocabularyBeginnerLevelOneData(korean: '책상', english: 'Desk'),
@@ -71,7 +71,7 @@ final List<VocabularyBeginnerLevelOneData> lesson2 = [
 ];
 
 // Set 3:
-final List<VocabularyBeginnerLevelOneData> lesson3 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson3 = [
   VocabularyBeginnerLevelOneData(korean: '싸다', english: 'Cheap'),
   VocabularyBeginnerLevelOneData(korean: '비싸다', english: 'Expensive'),
   VocabularyBeginnerLevelOneData(korean: '많다', english: 'Many'),
@@ -109,7 +109,7 @@ final List<VocabularyBeginnerLevelOneData> lesson3 = [
 ];
 
 // Set 4:
-final List<VocabularyBeginnerLevelOneData> lesson4 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson4 = [
   VocabularyBeginnerLevelOneData(korean: '학교', english: 'School'),
   VocabularyBeginnerLevelOneData(korean: '편의점', english: 'Convenience store'),
   VocabularyBeginnerLevelOneData(korean: '회사', english: 'Company'),
@@ -147,7 +147,7 @@ final List<VocabularyBeginnerLevelOneData> lesson4 = [
 
 // Set 5:
 
-final List<VocabularyBeginnerLevelOneData> lesson5 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson5 = [
   VocabularyBeginnerLevelOneData(korean: '몇 월', english: 'What month'),
   VocabularyBeginnerLevelOneData(korean: '며칠', english: 'What date'),
   VocabularyBeginnerLevelOneData(korean: '일/공', english: 'One / Zero'),
@@ -184,7 +184,7 @@ final List<VocabularyBeginnerLevelOneData> lesson5 = [
 ];
 
 // set 6
-final List<VocabularyBeginnerLevelOneData> lesson6 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson6 = [
   VocabularyBeginnerLevelOneData(korean: '영/공', english: 'Zero'),
   VocabularyBeginnerLevelOneData(korean: '하나', english: 'One'),
   VocabularyBeginnerLevelOneData(korean: '둘', english: 'Two'),
@@ -229,7 +229,7 @@ final List<VocabularyBeginnerLevelOneData> lesson6 = [
   VocabularyBeginnerLevelOneData(korean: '테니스', english: 'Tennis'),
 ];
 
-final List<VocabularyBeginnerLevelOneData> lesson7 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson7 = [
   VocabularyBeginnerLevelOneData(korean: '분식집', english: 'Snack bar'),
   VocabularyBeginnerLevelOneData(korean: '김밥', english: 'Gimbap'),
   VocabularyBeginnerLevelOneData(korean: '떡볶이', english: 'Tteokbokki'),
@@ -277,7 +277,7 @@ final List<VocabularyBeginnerLevelOneData> lesson7 = [
       korean: '좀 주세요', english: 'Please give me a little'),
 ];
 
-final List<VocabularyBeginnerLevelOneData> lesson8 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson8 = [
   VocabularyBeginnerLevelOneData(
       korean: '대', english: 'Counter for vehicles/ machines/ etc.'),
   VocabularyBeginnerLevelOneData(korean: '잔', english: 'Cup, glass (counter)'),
@@ -310,7 +310,7 @@ final List<VocabularyBeginnerLevelOneData> lesson8 = [
 
 // set 9
 
-final List<VocabularyBeginnerLevelOneData> lesson9 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson9 = [
   VocabularyBeginnerLevelOneData(korean: '집에서 쉬다', english: 'To rest at home'),
   VocabularyBeginnerLevelOneData(korean: '청소를 하다', english: 'To clean'),
   VocabularyBeginnerLevelOneData(korean: '빨래를 하다', english: 'To do laundry'),
@@ -354,7 +354,7 @@ final List<VocabularyBeginnerLevelOneData> lesson9 = [
       korean: '즐겁다', english: 'To be joyful, pleasant'),
 ];
 
-final List<VocabularyBeginnerLevelOneData> lesson10 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson10 = [
   VocabularyBeginnerLevelOneData(korean: '할머니', english: 'Grandmother'),
   VocabularyBeginnerLevelOneData(korean: '할아버지', english: 'Grandfather'),
   VocabularyBeginnerLevelOneData(
@@ -394,7 +394,7 @@ final List<VocabularyBeginnerLevelOneData> lesson10 = [
       korean: '고등학생', english: 'High school student'),
 ];
 
-final List<VocabularyBeginnerLevelOneData> lesson11 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson11 = [
   VocabularyBeginnerLevelOneData(korean: '주다', english: 'To give'),
   VocabularyBeginnerLevelOneData(korean: '보내다', english: 'To send'),
   VocabularyBeginnerLevelOneData(korean: '받다', english: 'To receive'),
@@ -414,7 +414,7 @@ final List<VocabularyBeginnerLevelOneData> lesson11 = [
   VocabularyBeginnerLevelOneData(
       korean: '기분이 좋다', english: 'To be in a good mood'),
 ];
-final List<VocabularyBeginnerLevelOneData> lesson12 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson12 = [
   VocabularyBeginnerLevelOneData(korean: '휴일', english: 'Holiday'),
   VocabularyBeginnerLevelOneData(
       korean: '공원에서 농구를 하다', english: 'Play basketball in the park'),
@@ -458,7 +458,7 @@ final List<VocabularyBeginnerLevelOneData> lesson12 = [
   VocabularyBeginnerLevelOneData(korean: '인천', english: 'Incheon'),
 ];
 
-final List<VocabularyBeginnerLevelOneData> lesson13 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson13 = [
   VocabularyBeginnerLevelOneData(korean: '자동차', english: 'Car'),
   VocabularyBeginnerLevelOneData(korean: '버스', english: 'Bus'),
   VocabularyBeginnerLevelOneData(korean: '택시', english: 'Taxi'),
@@ -484,7 +484,7 @@ final List<VocabularyBeginnerLevelOneData> lesson13 = [
   VocabularyBeginnerLevelOneData(korean: '케이블카', english: 'Cable car'),
 ];
 
-final List<VocabularyBeginnerLevelOneData> lesson14 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson14 = [
   VocabularyBeginnerLevelOneData(korean: '모임', english: 'Gathering'),
   VocabularyBeginnerLevelOneData(korean: '직장 모임', english: 'Work meeting'),
   VocabularyBeginnerLevelOneData(
@@ -514,7 +514,7 @@ final List<VocabularyBeginnerLevelOneData> lesson14 = [
   VocabularyBeginnerLevelOneData(korean: '새', english: 'New'),
 ];
 
-final List<VocabularyBeginnerLevelOneData> lesson15 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson15 = [
   VocabularyBeginnerLevelOneData(korean: '날씨', english: 'Weather'),
   VocabularyBeginnerLevelOneData(korean: '계절', english: 'Season'),
   VocabularyBeginnerLevelOneData(korean: '봄', english: 'Spring'),
@@ -546,7 +546,7 @@ final List<VocabularyBeginnerLevelOneData> lesson15 = [
   VocabularyBeginnerLevelOneData(korean: '스키를 타다', english: 'Ski'),
 ];
 
-final List<VocabularyBeginnerLevelOneData> lesson16 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson16 = [
   VocabularyBeginnerLevelOneData(korean: '눈', english: 'Eye'),
   VocabularyBeginnerLevelOneData(korean: '코', english: 'Nose'),
   VocabularyBeginnerLevelOneData(korean: '이', english: 'Tooth'),
@@ -571,7 +571,7 @@ final List<VocabularyBeginnerLevelOneData> lesson16 = [
   VocabularyBeginnerLevelOneData(korean: '푹 쉬다', english: 'Get a good rest'),
 ];
 
-final List<VocabularyBeginnerLevelOneData> lesson17 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson17 = [
   VocabularyBeginnerLevelOneData(korean: '운전하다', english: 'Drive'),
   VocabularyBeginnerLevelOneData(korean: '주차장', english: 'Parking lot'),
   VocabularyBeginnerLevelOneData(korean: '주차하다', english: 'Park'),
@@ -608,7 +608,7 @@ final List<VocabularyBeginnerLevelOneData> lesson17 = [
   VocabularyBeginnerLevelOneData(korean: '동물원', english: 'Zoo'),
 ];
 
-final List<VocabularyBeginnerLevelOneData> lesson18 = [
+final List<VocabularyBeginnerLevelOneData> beginnerOneLesson18 = [
   VocabularyBeginnerLevelOneData(
       korean: '대중교통 수단을 이용하다', english: 'Use public transportation'),
   VocabularyBeginnerLevelOneData(korean: '편하다', english: 'Be comfortable'),
@@ -641,36 +641,37 @@ final List<VocabularyBeginnerLevelOneData> lesson18 = [
 
 // Master list containing all vocabulary lesson tw data sets
 final List<List<VocabularyBeginnerLevelOneData>> allBeginnerOneDataSets = [
-  lesson1,
-  lesson2,
-  lesson3,
-  lesson4,
-  lesson5,
-  lesson6,
-  lesson7,
-  lesson8,
-  lesson9,
-  lesson10,
-  lesson11,
-  lesson12,
-  lesson13,
-  lesson14,
-  lesson15,
-  lesson16,
-  lesson17,
-  lesson18,
+  beginnerOneLesson1,
+  beginnerOneLesson2,
+  beginnerOneLesson3,
+  beginnerOneLesson4,
+  beginnerOneLesson5,
+  beginnerOneLesson6,
+  beginnerOneLesson7,
+  beginnerOneLesson8,
+  beginnerOneLesson9,
+  beginnerOneLesson10,
+  beginnerOneLesson11,
+  beginnerOneLesson12,
+  beginnerOneLesson13,
+  beginnerOneLesson14,
+  beginnerOneLesson15,
+  beginnerOneLesson16,
+  beginnerOneLesson17,
+  beginnerOneLesson18,
 ];
 
-// Function to get a specific lesson tw data set
-List<VocabularyBeginnerLevelOneData> getLessonTwDataSet(int setNumber) {
+// Function to get a specific lesson two data set
+List<VocabularyBeginnerLevelOneData> getBeginnerOneLessonDataSet(
+    int setNumber) {
   if (setNumber >= 1 && setNumber <= 18) {
     return allBeginnerOneDataSets[setNumber - 1];
   }
   return [];
 }
 
-// Function to get all lesson tw data cards as one big list
-List<VocabularyBeginnerLevelOneData> getAllLessonTwDataCards() {
+// Function to get all lesson  data cards as one big list
+List<VocabularyBeginnerLevelOneData> getBeginnerOneAllLessonsDataCards() {
   List<VocabularyBeginnerLevelOneData> allCards = [];
   for (List<VocabularyBeginnerLevelOneData> set in allBeginnerOneDataSets) {
     allCards.addAll(set);
