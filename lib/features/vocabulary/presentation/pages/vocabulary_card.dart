@@ -67,7 +67,7 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
   void updateCardData() {
     switch (widget.selectedLevel) {
       case 2:
-        wordCards = allTwoDataSets[widget.setIndex];
+        wordCards = allBeginnerOneDataSets[widget.setIndex];
         break;
       case 3:
         wordCards = allThreeDataSets[widget.setIndex];

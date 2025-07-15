@@ -11,24 +11,28 @@ import 'package:gwenchana/features/vocabulary/presentation/widgets/add_card_dial
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
 @RoutePage()
-class VocabularyPage extends StatelessWidget {
+class VocabularyPage extends StatefulWidget {
   const VocabularyPage({super.key});
+
+  @override
+  State<VocabularyPage> createState() => _VocabularyPageState();
+}
+
+class _VocabularyPageState extends State<VocabularyPage> {
+  final List<String> levelNames = [
+    '기조', // 0
+    '초급 1', // 1
+    '초급 2', // 2
+    '중급 1', // 3
+    '중급 2', // 4
+  ];
 
   Color getCardColor(int index) {
     return cardColors[index % cardColors.length];
   }
 
   void showLevelDialog(BuildContext context, VocabularyBloc bloc) {
-    final levelNames = [
-      '기조', // 0
-      '초급 1', // 1
-      '초급 2', // 2
-      '중급 1', // 3
-      '중급 2', // 4
-    ];
-
-    // выбор уровня
-
+    levelNames;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -90,7 +94,9 @@ class VocabularyPage extends StatelessWidget {
             appBar: AppBar(
               title: TextButton(
                 child: Text(
-                  AppLocalizations.of(context)!.chooseBook,
+                  state.selectedLevel > 0
+                      ? levelNames[state.selectedLevel - 1]
+                      : AppLocalizations.of(context)!.chooseBook,
                   style: TextStyle(
                     fontSize: 22,
                   ),
