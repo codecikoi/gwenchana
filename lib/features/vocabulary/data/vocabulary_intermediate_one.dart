@@ -6,592 +6,966 @@ class VocabularyIntermediateLevelOneData {
       {required this.korean, required this.english});
 }
 
-// Set 1: Academic Subjects Advanced (26 words)
+// set 1
+
 final List<VocabularyIntermediateLevelOneData> intermediateOneLesson1 = [
-  VocabularyIntermediateLevelOneData(korean: '학문', english: 'Academic field'),
-  VocabularyIntermediateLevelOneData(korean: '인문학', english: 'Humanities'),
-  VocabularyIntermediateLevelOneData(korean: '사회과학', english: 'Social science'),
   VocabularyIntermediateLevelOneData(
-      korean: '자연과학', english: 'Natural science'),
+      korean: '공감대가 없다', english: 'Lack of empathy'),
   VocabularyIntermediateLevelOneData(
-      korean: '응용과학', english: 'Applied science'),
-  VocabularyIntermediateLevelOneData(korean: '심리학', english: 'Psychology'),
-  VocabularyIntermediateLevelOneData(korean: '사회학', english: 'Sociology'),
-  VocabularyIntermediateLevelOneData(korean: '인류학', english: 'Anthropology'),
+      korean: '사이가 멀어지다', english: 'To grow distant'),
   VocabularyIntermediateLevelOneData(
-      korean: '정치학', english: 'Political science'),
-  VocabularyIntermediateLevelOneData(korean: '경제학', english: 'Economics'),
-  VocabularyIntermediateLevelOneData(korean: '언어학', english: 'Linguistics'),
-  VocabularyIntermediateLevelOneData(korean: '문학', english: 'Literature'),
-  VocabularyIntermediateLevelOneData(korean: '지질학', english: 'Geology'),
-  VocabularyIntermediateLevelOneData(korean: '생물학', english: 'Biology'),
-  VocabularyIntermediateLevelOneData(korean: '생화학', english: 'Biochemistry'),
-  VocabularyIntermediateLevelOneData(korean: '유전학', english: 'Genetics'),
-  VocabularyIntermediateLevelOneData(korean: '미생물학', english: 'Microbiology'),
-  VocabularyIntermediateLevelOneData(korean: '생태학', english: 'Ecology'),
+      korean: '연락이 끊기다', english: 'To lose contact'),
+  VocabularyIntermediateLevelOneData(korean: '선배', english: 'Senior'),
   VocabularyIntermediateLevelOneData(
-      korean: '환경학', english: 'Environmental science'),
-  VocabularyIntermediateLevelOneData(korean: '공학', english: 'Engineering'),
+      korean: '대화하다', english: 'To have a conversation'),
+  VocabularyIntermediateLevelOneData(korean: '후배', english: 'Junior'),
+  VocabularyIntermediateLevelOneData(korean: '상사', english: 'Boss'),
+  VocabularyIntermediateLevelOneData(korean: '지시', english: 'Instruction'),
+  VocabularyIntermediateLevelOneData(korean: '거절하다', english: 'To refuse'),
+  VocabularyIntermediateLevelOneData(korean: '요청', english: 'Request'),
+  VocabularyIntermediateLevelOneData(korean: '불편', english: 'Inconvenience'),
+  VocabularyIntermediateLevelOneData(korean: '처리하다', english: 'To handle'),
   VocabularyIntermediateLevelOneData(
-      korean: '기계공학', english: 'Mechanical engineering'),
+      korean: '약속을 지키다', english: 'To keep a promise'),
+  VocabularyIntermediateLevelOneData(korean: '공감', english: 'Empathy'),
+  VocabularyIntermediateLevelOneData(korean: '사과', english: 'Apology'),
+  VocabularyIntermediateLevelOneData(korean: '부족하다', english: 'To be lacking'),
   VocabularyIntermediateLevelOneData(
-      korean: '전자공학', english: 'Electronic engineering'),
+      korean: '낮추다/낮추어라', english: 'To lower (yourself/speech)'),
+  VocabularyIntermediateLevelOneData(korean: '속도', english: 'Speed'),
   VocabularyIntermediateLevelOneData(
-      korean: '화학공학', english: 'Chemical engineering'),
+      korean: '관심을 갖다', english: 'To have interest'),
   VocabularyIntermediateLevelOneData(
-      korean: '컴퓨터공학', english: 'Computer engineering'),
+      korean: '사이좋다', english: 'To be on good terms'),
+  VocabularyIntermediateLevelOneData(korean: '의료', english: 'Medical care'),
+  VocabularyIntermediateLevelOneData(korean: '줄어들다', english: 'To decrease'),
   VocabularyIntermediateLevelOneData(
-      korean: '건축공학', english: 'Architectural engineering'),
-  VocabularyIntermediateLevelOneData(korean: '의학', english: 'Medicine'),
+      korean: '문제를 풀다', english: 'To solve a problem'),
+  VocabularyIntermediateLevelOneData(
+      korean: '의무다', english: 'It is an obligation'),
+  VocabularyIntermediateLevelOneData(
+      korean: '직업이다', english: 'It is an occupation'),
+  VocabularyIntermediateLevelOneData(korean: '노력 중이다', english: 'Trying hard'),
+  VocabularyIntermediateLevelOneData(
+      korean: '관심을 갖다', english: 'To take an interest'),
+  VocabularyIntermediateLevelOneData(
+      korean: '의견을 나누다', english: 'To share opinions'),
+  VocabularyIntermediateLevelOneData(korean: '충격', english: 'Shock'),
+  VocabularyIntermediateLevelOneData(korean: '도움말', english: 'Help message'),
+  VocabularyIntermediateLevelOneData(korean: '답변하다', english: 'To reply'),
+  VocabularyIntermediateLevelOneData(korean: '문제', english: 'Problem'),
+  VocabularyIntermediateLevelOneData(
+      korean: '문제가 있다', english: 'There is a problem'),
+  VocabularyIntermediateLevelOneData(korean: '대부분', english: 'Most of them'),
 ];
 
-// Set 2: Social Media & Internet Culture (26 words)
-final List<VocabularyIntermediateLevelOneData> socialMediaCards = [
-  VocabularyIntermediateLevelOneData(korean: '소셜미디어', english: 'Social media'),
-  VocabularyIntermediateLevelOneData(korean: '인스타그램', english: 'Instagram'),
-  VocabularyIntermediateLevelOneData(korean: '페이스북', english: 'Facebook'),
-  VocabularyIntermediateLevelOneData(korean: '트위터', english: 'Twitter'),
-  VocabularyIntermediateLevelOneData(korean: '틱톡', english: 'TikTok'),
-  VocabularyIntermediateLevelOneData(korean: '카카오톡', english: 'KakaoTalk'),
-  VocabularyIntermediateLevelOneData(korean: '라인', english: 'LINE'),
-  VocabularyIntermediateLevelOneData(korean: '디스코드', english: 'Discord'),
-  VocabularyIntermediateLevelOneData(korean: '팔로우', english: 'Follow'),
-  VocabularyIntermediateLevelOneData(korean: '언팔로우', english: 'Unfollow'),
-  VocabularyIntermediateLevelOneData(korean: '팔로워', english: 'Follower'),
-  VocabularyIntermediateLevelOneData(korean: '좋아요', english: 'Like'),
-  VocabularyIntermediateLevelOneData(korean: '댓글', english: 'Comment'),
-  VocabularyIntermediateLevelOneData(korean: '공유', english: 'Share'),
-  VocabularyIntermediateLevelOneData(korean: '리트윗', english: 'Retweet'),
-  VocabularyIntermediateLevelOneData(korean: '해시태그', english: 'Hashtag'),
-  VocabularyIntermediateLevelOneData(korean: '멘션', english: 'Mention'),
-  VocabularyIntermediateLevelOneData(korean: '태그', english: 'Tag'),
-  VocabularyIntermediateLevelOneData(korean: '스토리', english: 'Story'),
-  VocabularyIntermediateLevelOneData(korean: '라이브', english: 'Live'),
-  VocabularyIntermediateLevelOneData(korean: '셀카', english: 'Selfie'),
-  VocabularyIntermediateLevelOneData(korean: '밈', english: 'Meme'),
-  VocabularyIntermediateLevelOneData(korean: '바이럴', english: 'Viral'),
-  VocabularyIntermediateLevelOneData(korean: '인플루언서', english: 'Influencer'),
-  VocabularyIntermediateLevelOneData(korean: '크리에이터', english: 'Creator'),
-  VocabularyIntermediateLevelOneData(korean: '구독', english: 'Subscribe'),
+final List<VocabularyIntermediateLevelOneData> intermediateOneLesson2 = [
+  VocabularyIntermediateLevelOneData(
+      korean: '외향적이다', english: 'Be extroverted'),
+  VocabularyIntermediateLevelOneData(
+      korean: '내성적이다', english: 'Be introverted'),
+  VocabularyIntermediateLevelOneData(korean: '적극적이다', english: 'Be active'),
+  VocabularyIntermediateLevelOneData(korean: '소극적이다', english: 'Be passive'),
+  VocabularyIntermediateLevelOneData(korean: '꼼꼼하다', english: 'Be meticulous'),
+  VocabularyIntermediateLevelOneData(korean: '덜렁거리다', english: 'Be careless'),
+  VocabularyIntermediateLevelOneData(
+      korean: '다정하다', english: 'Be kind and warm-hearted'),
+  VocabularyIntermediateLevelOneData(korean: '무뚝뚝하다', english: 'Be blunt'),
+  VocabularyIntermediateLevelOneData(
+      korean: '(성격이) 느긋하다', english: 'Be relaxed (personality)'),
+  VocabularyIntermediateLevelOneData(
+      korean: '(성격이) 급하다', english: 'Be hasty (personality)'),
+  VocabularyIntermediateLevelOneData(korean: '활발하다', english: 'Be lively'),
+  VocabularyIntermediateLevelOneData(korean: '동아리', english: 'Club'),
+  VocabularyIntermediateLevelOneData(korean: '봉사', english: 'Volunteering'),
+  VocabularyIntermediateLevelOneData(korean: '습관', english: 'Habit'),
+  VocabularyIntermediateLevelOneData(
+      korean: '(계획을) 세우다', english: 'Make (a plan)'),
+  VocabularyIntermediateLevelOneData(korean: '장기 자랑', english: 'Talent show'),
+  VocabularyIntermediateLevelOneData(korean: '앞에 나서다', english: 'Step forward'),
+  VocabularyIntermediateLevelOneData(korean: '낯설다', english: 'Be unfamiliar'),
+  VocabularyIntermediateLevelOneData(korean: '공무원', english: 'Civil servant'),
+  VocabularyIntermediateLevelOneData(korean: '네일 아티스트', english: 'Nail artist'),
+  VocabularyIntermediateLevelOneData(
+      korean: '유머 감각이 많다', english: 'Have a good sense of humor'),
+  VocabularyIntermediateLevelOneData(korean: '설레다', english: 'Feel excited'),
+  VocabularyIntermediateLevelOneData(korean: '시끄럽다', english: 'Be noisy'),
+  VocabularyIntermediateLevelOneData(korean: '다투다', english: 'Argue'),
+  VocabularyIntermediateLevelOneData(korean: '동호회', english: 'Club, society'),
+  VocabularyIntermediateLevelOneData(korean: '달라지다', english: 'Change'),
+  VocabularyIntermediateLevelOneData(
+      korean: '눈을 흘기다', english: 'Glare (give a side-eye)'),
 ];
 
-// Set 3: Fashion & Beauty (26 words)
-final List<VocabularyIntermediateLevelOneData> fashionBeautyCards = [
-  VocabularyIntermediateLevelOneData(korean: '패션', english: 'Fashion'),
-  VocabularyIntermediateLevelOneData(korean: '스타일', english: 'Style'),
-  VocabularyIntermediateLevelOneData(korean: '트렌드', english: 'Trend'),
-  VocabularyIntermediateLevelOneData(korean: '디자이너', english: 'Designer'),
-  VocabularyIntermediateLevelOneData(korean: '브랜드', english: 'Brand'),
-  VocabularyIntermediateLevelOneData(korean: '컬렉션', english: 'Collection'),
-  VocabularyIntermediateLevelOneData(korean: '런웨이', english: 'Runway'),
-  VocabularyIntermediateLevelOneData(korean: '모델', english: 'Model'),
-  VocabularyIntermediateLevelOneData(korean: '포토슈트', english: 'Photo shoot'),
-  VocabularyIntermediateLevelOneData(korean: '패션쇼', english: 'Fashion show'),
-  VocabularyIntermediateLevelOneData(korean: '액세서리', english: 'Accessory'),
-  VocabularyIntermediateLevelOneData(korean: '화장품', english: 'Cosmetics'),
-  VocabularyIntermediateLevelOneData(korean: '메이크업', english: 'Makeup'),
-  VocabularyIntermediateLevelOneData(korean: '파운데이션', english: 'Foundation'),
-  VocabularyIntermediateLevelOneData(korean: '컨실러', english: 'Concealer'),
-  VocabularyIntermediateLevelOneData(korean: '아이섀도', english: 'Eye shadow'),
-  VocabularyIntermediateLevelOneData(korean: '마스카라', english: 'Mascara'),
-  VocabularyIntermediateLevelOneData(korean: '립스틱', english: 'Lipstick'),
-  VocabularyIntermediateLevelOneData(korean: '향수', english: 'Perfume'),
-  VocabularyIntermediateLevelOneData(korean: '네일', english: 'Nail'),
-  VocabularyIntermediateLevelOneData(korean: '매니큐어', english: 'Manicure'),
-  VocabularyIntermediateLevelOneData(korean: '헤어스타일', english: 'Hairstyle'),
-  VocabularyIntermediateLevelOneData(korean: '염색', english: 'Hair coloring'),
-  VocabularyIntermediateLevelOneData(korean: '퍼머', english: 'Perm'),
-  VocabularyIntermediateLevelOneData(korean: '스킨케어', english: 'Skincare'),
-  VocabularyIntermediateLevelOneData(korean: '에스테틱', english: 'Aesthetic'),
+final List<VocabularyIntermediateLevelOneData> intermediateOneLesson3 = [
+  VocabularyIntermediateLevelOneData(
+      korean: '상담을 받다', english: 'Receive counseling'),
+  VocabularyIntermediateLevelOneData(
+      korean: '통번역 서비스를 받다',
+      english: 'Receive translation/interpretation service'),
+  VocabularyIntermediateLevelOneData(
+      korean: '구직/창업 상담을 받다', english: 'Receive job/startup consultation'),
+  VocabularyIntermediateLevelOneData(
+      korean: '아이를 맡기다', english: 'Entrust a child'),
+  VocabularyIntermediateLevelOneData(korean: '장난감을 대여하다', english: 'Rent toys'),
+  VocabularyIntermediateLevelOneData(
+      korean: '육아 정보를 얻다', english: 'Get parenting information'),
+  VocabularyIntermediateLevelOneData(
+      korean: '노인을 돌보다', english: 'Take care of the elderly'),
+  VocabularyIntermediateLevelOneData(
+      korean: '한국 문화를 배우다', english: 'Learn Korean culture'),
+  VocabularyIntermediateLevelOneData(
+      korean: '건강 검진을 받다', english: 'Get a health checkup'),
+  VocabularyIntermediateLevelOneData(
+      korean: '예방 접종을 받다', english: 'Get vaccinated'),
+  VocabularyIntermediateLevelOneData(korean: '임금 체불', english: 'Unpaid wages'),
+  VocabularyIntermediateLevelOneData(
+      korean: '산업 재해', english: 'Industrial accident'),
+  VocabularyIntermediateLevelOneData(
+      korean: '근무 조건', english: 'Working conditions'),
+  VocabularyIntermediateLevelOneData(
+      korean: '의료 상담', english: 'Medical consultation'),
+  VocabularyIntermediateLevelOneData(korean: '참가 자격', english: 'Eligibility'),
+  VocabularyIntermediateLevelOneData(korean: '정착', english: 'Settlement'),
+  VocabularyIntermediateLevelOneData(korean: '교류실', english: 'Exchange room'),
+  VocabularyIntermediateLevelOneData(korean: '장', english: 'Market'),
+  VocabularyIntermediateLevelOneData(korean: '활용되다', english: 'Be utilized'),
+  VocabularyIntermediateLevelOneData(korean: '고충', english: 'Grievance'),
 ];
 
-// Set 4: Automotive & Mechanics (26 words)
-final List<VocabularyIntermediateLevelOneData> automotiveCards = [
-  VocabularyIntermediateLevelOneData(korean: '자동차', english: 'Automobile'),
-  VocabularyIntermediateLevelOneData(korean: '엔진', english: 'Engine'),
-  VocabularyIntermediateLevelOneData(korean: '모터', english: 'Motor'),
-  VocabularyIntermediateLevelOneData(korean: '배터리', english: 'Battery'),
-  VocabularyIntermediateLevelOneData(korean: '연료', english: 'Fuel'),
-  VocabularyIntermediateLevelOneData(korean: '휘발유', english: 'Gasoline'),
-  VocabularyIntermediateLevelOneData(korean: '경유', english: 'Diesel'),
-  VocabularyIntermediateLevelOneData(korean: '전기차', english: 'Electric car'),
-  VocabularyIntermediateLevelOneData(korean: '하이브리드', english: 'Hybrid'),
-  VocabularyIntermediateLevelOneData(korean: '기어', english: 'Gear'),
-  VocabularyIntermediateLevelOneData(korean: '클러치', english: 'Clutch'),
-  VocabularyIntermediateLevelOneData(korean: '브레이크', english: 'Brake'),
-  VocabularyIntermediateLevelOneData(korean: '엑셀', english: 'Accelerator'),
-  VocabularyIntermediateLevelOneData(korean: '핸들', english: 'Steering wheel'),
-  VocabularyIntermediateLevelOneData(korean: '타이어', english: 'Tire'),
-  VocabularyIntermediateLevelOneData(korean: '바퀴', english: 'Wheel'),
-  VocabularyIntermediateLevelOneData(korean: '헤드라이트', english: 'Headlight'),
-  VocabularyIntermediateLevelOneData(korean: '테일라이트', english: 'Taillight'),
-  VocabularyIntermediateLevelOneData(korean: '방향지시등', english: 'Turn signal'),
+final List<VocabularyIntermediateLevelOneData> intermediateOneLesson4 = [
   VocabularyIntermediateLevelOneData(
-      korean: '와이퍼', english: 'Windshield wiper'),
-  VocabularyIntermediateLevelOneData(korean: '에어컨', english: 'Air conditioner'),
-  VocabularyIntermediateLevelOneData(korean: '히터', english: 'Heater'),
-  VocabularyIntermediateLevelOneData(korean: '수리', english: 'Repair'),
-  VocabularyIntermediateLevelOneData(korean: '정비', english: 'Maintenance'),
-  VocabularyIntermediateLevelOneData(korean: '점검', english: 'Inspection'),
-  VocabularyIntermediateLevelOneData(korean: '교체', english: 'Replacement'),
+      korean: '사이즈가 작다', english: 'The size is small'),
+  VocabularyIntermediateLevelOneData(
+      korean: '색상이 다르다', english: 'The color is different'),
+  VocabularyIntermediateLevelOneData(
+      korean: '바지가 헐렁하다', english: 'The pants are loose'),
+  VocabularyIntermediateLevelOneData(
+      korean: '바지가 끼다', english: 'The pants are tight'),
+  VocabularyIntermediateLevelOneData(
+      korean: '얼룩이 있다', english: 'There is a stain'),
+  VocabularyIntermediateLevelOneData(
+      korean: '단추가 떨어지다', english: 'The button has fallen off'),
+  VocabularyIntermediateLevelOneData(
+      korean: '바느질이 잘못되다', english: 'The stitching is wrong'),
+  VocabularyIntermediateLevelOneData(
+      korean: '디자인이 마음에 안 들다', english: 'Don’t like the design'),
+  VocabularyIntermediateLevelOneData(korean: '교환하다', english: 'Exchange'),
+  VocabularyIntermediateLevelOneData(korean: '환불하다', english: 'Refund'),
+  VocabularyIntermediateLevelOneData(
+      korean: '고객 센터에 문의하다', english: 'Inquire at customer center'),
+  VocabularyIntermediateLevelOneData(
+      korean: '소비자 상담 센터', english: 'Consumer counseling center'),
+  VocabularyIntermediateLevelOneData(korean: '상담하다', english: 'Consult'),
+  VocabularyIntermediateLevelOneData(
+      korean: '치수', english: 'Size (measurement)'),
+  VocabularyIntermediateLevelOneData(korean: '실수', english: 'Mistake'),
+  VocabularyIntermediateLevelOneData(korean: '택배비', english: 'Delivery fee'),
+  VocabularyIntermediateLevelOneData(korean: '추천하다', english: 'Recommend'),
+  VocabularyIntermediateLevelOneData(korean: '가능하다', english: 'Be possible'),
+  VocabularyIntermediateLevelOneData(korean: '개봉하다', english: 'Unseal'),
+  VocabularyIntermediateLevelOneData(korean: '훼손하다', english: 'Damage'),
+  VocabularyIntermediateLevelOneData(korean: '구입하다', english: 'Purchase'),
+  VocabularyIntermediateLevelOneData(korean: '신선식품', english: 'Fresh food'),
+  VocabularyIntermediateLevelOneData(korean: '냉동식품', english: 'Frozen food'),
+  VocabularyIntermediateLevelOneData(korean: '파손', english: 'Damage'),
+  VocabularyIntermediateLevelOneData(korean: '수선하다', english: 'Repair'),
+  VocabularyIntermediateLevelOneData(korean: '불가능', english: 'Impossible'),
+  VocabularyIntermediateLevelOneData(korean: '증정품', english: 'Free gift'),
+  VocabularyIntermediateLevelOneData(korean: '반납하다', english: 'Return'),
+  VocabularyIntermediateLevelOneData(
+      korean: '구매점', english: 'Store of purchase'),
+  VocabularyIntermediateLevelOneData(korean: '미개봉', english: 'Unopened'),
+  VocabularyIntermediateLevelOneData(korean: '포장하다', english: 'Pack'),
+  VocabularyIntermediateLevelOneData(korean: '문의하다', english: 'Inquire'),
+  VocabularyIntermediateLevelOneData(korean: '판매자', english: 'Seller'),
+  VocabularyIntermediateLevelOneData(korean: '특별하다', english: 'Special'),
+  VocabularyIntermediateLevelOneData(korean: '세일 상품', english: 'Sale item'),
+  VocabularyIntermediateLevelOneData(korean: '소비자', english: 'Consumer'),
 ];
 
-// Set 5: Real Estate & Housing (26 words)
-final List<VocabularyIntermediateLevelOneData> realEstateCards = [
-  VocabularyIntermediateLevelOneData(korean: '부동산', english: 'Real estate'),
-  VocabularyIntermediateLevelOneData(korean: '아파트', english: 'Apartment'),
-  VocabularyIntermediateLevelOneData(korean: '빌라', english: 'Villa'),
-  VocabularyIntermediateLevelOneData(korean: '주택', english: 'House'),
-  VocabularyIntermediateLevelOneData(korean: '단독주택', english: 'Detached house'),
-  VocabularyIntermediateLevelOneData(korean: '연립주택', english: 'Townhouse'),
-  VocabularyIntermediateLevelOneData(korean: '오피스텔', english: 'Officetel'),
-  VocabularyIntermediateLevelOneData(korean: '원룸', english: 'Studio'),
-  VocabularyIntermediateLevelOneData(korean: '투룸', english: 'One bedroom'),
-  VocabularyIntermediateLevelOneData(korean: '쓰리룸', english: 'Two bedroom'),
-  VocabularyIntermediateLevelOneData(korean: '매매', english: 'Sale'),
-  VocabularyIntermediateLevelOneData(korean: '임대', english: 'Rental'),
-  VocabularyIntermediateLevelOneData(korean: '전세', english: 'Jeonse'),
-  VocabularyIntermediateLevelOneData(korean: '월세', english: 'Monthly rent'),
-  VocabularyIntermediateLevelOneData(korean: '보증금', english: 'Deposit'),
-  VocabularyIntermediateLevelOneData(korean: '관리비', english: 'Management fee'),
-  VocabularyIntermediateLevelOneData(korean: '계약', english: 'Contract'),
+final List<VocabularyIntermediateLevelOneData> intermediateOneLesson5 = [
+  VocabularyIntermediateLevelOneData(korean: '지출', english: 'Expenditure'),
   VocabularyIntermediateLevelOneData(
-      korean: '계약서', english: 'Contract document'),
+      korean: '축의금', english: 'Congratulatory money'),
+  VocabularyIntermediateLevelOneData(korean: '식비', english: 'Food expenses'),
   VocabularyIntermediateLevelOneData(
-      korean: '중개업소', english: 'Real estate agency'),
+      korean: '통신비', english: 'Communication expenses'),
   VocabularyIntermediateLevelOneData(
-      korean: '공인중개사', english: 'Licensed broker'),
-  VocabularyIntermediateLevelOneData(korean: '등기', english: 'Registration'),
-  VocabularyIntermediateLevelOneData(korean: '평수', english: 'Square footage'),
-  VocabularyIntermediateLevelOneData(korean: '층수', english: 'Floor number'),
-  VocabularyIntermediateLevelOneData(korean: '엘리베이터', english: 'Elevator'),
-  VocabularyIntermediateLevelOneData(korean: '주차장', english: 'Parking lot'),
-  VocabularyIntermediateLevelOneData(korean: '인테리어', english: 'Interior'),
-];
-
-// Set 6: Tourism & Hospitality (26 words)
-final List<VocabularyIntermediateLevelOneData> tourismCards = [
-  VocabularyIntermediateLevelOneData(korean: '관광', english: 'Tourism'),
-  VocabularyIntermediateLevelOneData(korean: '여행사', english: 'Travel agency'),
-  VocabularyIntermediateLevelOneData(korean: '가이드', english: 'Guide'),
-  VocabularyIntermediateLevelOneData(korean: '투어', english: 'Tour'),
-  VocabularyIntermediateLevelOneData(korean: '패키지', english: 'Package'),
+      korean: '교육비', english: 'Education expenses'),
   VocabularyIntermediateLevelOneData(
-      korean: '자유여행', english: 'Independent travel'),
-  VocabularyIntermediateLevelOneData(korean: '단체여행', english: 'Group travel'),
-  VocabularyIntermediateLevelOneData(korean: '숙박', english: 'Accommodation'),
-  VocabularyIntermediateLevelOneData(korean: '리조트', english: 'Resort'),
-  VocabularyIntermediateLevelOneData(korean: '펜션', english: 'Pension'),
-  VocabularyIntermediateLevelOneData(korean: '모텔', english: 'Motel'),
-  VocabularyIntermediateLevelOneData(korean: '게스트하우스', english: 'Guest house'),
-  VocabularyIntermediateLevelOneData(korean: '호스텔', english: 'Hostel'),
-  VocabularyIntermediateLevelOneData(korean: '체크인', english: 'Check-in'),
-  VocabularyIntermediateLevelOneData(korean: '체크아웃', english: 'Check-out'),
-  VocabularyIntermediateLevelOneData(korean: '예약', english: 'Reservation'),
-  VocabularyIntermediateLevelOneData(korean: '취소', english: 'Cancellation'),
-  VocabularyIntermediateLevelOneData(korean: '환불', english: 'Refund'),
-  VocabularyIntermediateLevelOneData(korean: '서비스', english: 'Service'),
-  VocabularyIntermediateLevelOneData(korean: '룸서비스', english: 'Room service'),
-  VocabularyIntermediateLevelOneData(korean: '컨시어지', english: 'Concierge'),
-  VocabularyIntermediateLevelOneData(korean: '프런트', english: 'Front desk'),
-  VocabularyIntermediateLevelOneData(korean: '라운지', english: 'Lounge'),
-  VocabularyIntermediateLevelOneData(korean: '스파', english: 'Spa'),
-  VocabularyIntermediateLevelOneData(korean: '피트니스', english: 'Fitness'),
-  VocabularyIntermediateLevelOneData(korean: '수영장', english: 'Swimming pool'),
-];
-
-// Set 7: Retail & Customer Service (26 words)
-final List<VocabularyIntermediateLevelOneData> retailCards = [
-  VocabularyIntermediateLevelOneData(korean: '소매', english: 'Retail'),
-  VocabularyIntermediateLevelOneData(korean: '매장', english: 'Store'),
-  VocabularyIntermediateLevelOneData(korean: '점원', english: 'Store clerk'),
-  VocabularyIntermediateLevelOneData(korean: '고객', english: 'Customer'),
-  VocabularyIntermediateLevelOneData(korean: '서비스', english: 'Service'),
-  VocabularyIntermediateLevelOneData(korean: '상품', english: 'Product'),
-  VocabularyIntermediateLevelOneData(korean: '진열', english: 'Display'),
-  VocabularyIntermediateLevelOneData(korean: '진열대', english: 'Display stand'),
-  VocabularyIntermediateLevelOneData(korean: '계산대', english: 'Cash register'),
-  VocabularyIntermediateLevelOneData(korean: '결제', english: 'Payment'),
-  VocabularyIntermediateLevelOneData(korean: '카드결제', english: 'Card payment'),
-  VocabularyIntermediateLevelOneData(korean: '현금결제', english: 'Cash payment'),
-  VocabularyIntermediateLevelOneData(korean: '포인트', english: 'Points'),
-  VocabularyIntermediateLevelOneData(korean: '멤버십', english: 'Membership'),
+      korean: '의료비', english: 'Medical expenses'),
+  VocabularyIntermediateLevelOneData(korean: '경조사비', english: 'Event expenses'),
+  VocabularyIntermediateLevelOneData(korean: '공과금', english: 'Utility bills'),
+  VocabularyIntermediateLevelOneData(
+      korean: '문화활동비', english: 'Cultural activity expenses'),
+  VocabularyIntermediateLevelOneData(
+      korean: '가계부', english: 'Household ledger'),
+  VocabularyIntermediateLevelOneData(
+      korean: '결제하다', english: 'To make a payment'),
+  VocabularyIntermediateLevelOneData(korean: '포인트', english: 'Point'),
   VocabularyIntermediateLevelOneData(korean: '쿠폰', english: 'Coupon'),
+  VocabularyIntermediateLevelOneData(
+      korean: '적립하다', english: 'To accumulate (points)'),
+  VocabularyIntermediateLevelOneData(korean: '충동구매', english: 'Impulse buying'),
+  VocabularyIntermediateLevelOneData(korean: '난방비', english: 'Heating costs'),
+  VocabularyIntermediateLevelOneData(korean: '수리하다', english: 'To repair'),
+  VocabularyIntermediateLevelOneData(korean: '중고차', english: 'Used car'),
+  VocabularyIntermediateLevelOneData(
+      korean: '물건을 사다', english: 'To buy things'),
+  VocabularyIntermediateLevelOneData(korean: '보일러', english: 'Boiler'),
+  VocabularyIntermediateLevelOneData(korean: '듣다', english: 'To listen'),
+  VocabularyIntermediateLevelOneData(korean: '온도', english: 'Temperature'),
+  VocabularyIntermediateLevelOneData(korean: '통신사', english: 'Telecom company'),
+  VocabularyIntermediateLevelOneData(
+      korean: '장을 보다', english: 'To go grocery shopping'),
+  VocabularyIntermediateLevelOneData(korean: '공유', english: 'Sharing'),
+  VocabularyIntermediateLevelOneData(
+      korean: '전시 상품', english: 'Display product'),
+  VocabularyIntermediateLevelOneData(
+      korean: '이월 상품', english: 'Carried-over product'),
+  VocabularyIntermediateLevelOneData(
+      korean: '합리적이다', english: 'To be reasonable'),
+  VocabularyIntermediateLevelOneData(
+      korean: '비용이 들다', english: 'To cost money'),
+  VocabularyIntermediateLevelOneData(
+      korean: '비용이 부담되다', english: 'To be burdened by cost'),
+  VocabularyIntermediateLevelOneData(
+      korean: '비용이 부담스럽다', english: 'To feel burdened by cost'),
+  VocabularyIntermediateLevelOneData(
+      korean: '비용을 줄이다', english: 'To reduce costs'),
+  VocabularyIntermediateLevelOneData(
+      korean: '공동 구매', english: 'Group purchase'),
+  VocabularyIntermediateLevelOneData(korean: '벼룩시장', english: 'Flea market'),
+  VocabularyIntermediateLevelOneData(
+      korean: '정반대', english: 'Complete opposite'),
+  VocabularyIntermediateLevelOneData(korean: '홈짐', english: 'Home gym'),
+  VocabularyIntermediateLevelOneData(korean: '육아용품', english: 'Baby products'),
+  VocabularyIntermediateLevelOneData(korean: '설문 조사', english: 'Survey'),
+  VocabularyIntermediateLevelOneData(korean: '실시하다', english: 'To implement'),
+  VocabularyIntermediateLevelOneData(korean: '차지하다', english: 'To occupy'),
+  VocabularyIntermediateLevelOneData(korean: '한편', english: 'Meanwhile'),
+];
+final List<VocabularyIntermediateLevelOneData> intermediateOneLesson6 = [
+  VocabularyIntermediateLevelOneData(
+      korean: '빌딩 숲', english: 'Concrete jungle'),
+  VocabularyIntermediateLevelOneData(
+      korean: '산업 단지', english: 'Industrial complex'),
+  VocabularyIntermediateLevelOneData(korean: '안전하다', english: 'To be safe'),
+  VocabularyIntermediateLevelOneData(
+      korean: '소음이 심하다', english: 'To be very noisy'),
+  VocabularyIntermediateLevelOneData(
+      korean: '공기가 탁하다', english: 'The air is polluted'),
+  VocabularyIntermediateLevelOneData(
+      korean: '산책로가 있다', english: 'There is a walking trail'),
+  VocabularyIntermediateLevelOneData(
+      korean: '거리가 깨끗하다', english: 'The street is clean'),
+  VocabularyIntermediateLevelOneData(
+      korean: '문화 시설이 많다', english: 'There are many cultural facilities'),
+  VocabularyIntermediateLevelOneData(
+      korean: '걸어서 공원에 갈 수 있다', english: 'Can walk to the park'),
+  VocabularyIntermediateLevelOneData(korean: '논', english: 'Rice paddy'),
+  VocabularyIntermediateLevelOneData(korean: '밭', english: 'Field'),
+  VocabularyIntermediateLevelOneData(korean: '과수원', english: 'Orchard'),
+  VocabularyIntermediateLevelOneData(korean: '비닐하우스', english: 'Greenhouse'),
+  VocabularyIntermediateLevelOneData(korean: '한적하다', english: 'To be quiet'),
+  VocabularyIntermediateLevelOneData(
+      korean: '공기가 맑다', english: 'The air is clean'),
+  VocabularyIntermediateLevelOneData(
+      korean: '직접 농사를 짓다', english: 'To farm directly'),
+  VocabularyIntermediateLevelOneData(
+      korean: '하천이 흐르다', english: 'A stream flows'),
+  VocabularyIntermediateLevelOneData(
+      korean: '경치가 좋다', english: 'The view is nice'),
+  VocabularyIntermediateLevelOneData(
+      korean: '자연환경이 좋다', english: 'The natural environment is good'),
+  VocabularyIntermediateLevelOneData(korean: '비명 소리', english: 'Scream'),
+  VocabularyIntermediateLevelOneData(korean: '지역', english: 'Region'),
+  VocabularyIntermediateLevelOneData(korean: '법인', english: 'Corporation'),
+  VocabularyIntermediateLevelOneData(korean: '놀이터', english: 'Playground'),
+  VocabularyIntermediateLevelOneData(
+      korean: '여쭤보다', english: 'To ask (honorific)'),
+  VocabularyIntermediateLevelOneData(
+      korean: '체육 센터', english: 'Fitness center'),
+  VocabularyIntermediateLevelOneData(korean: '정문', english: 'Main gate'),
+  VocabularyIntermediateLevelOneData(
+      korean: '풍경화', english: 'Landscape painting'),
+  VocabularyIntermediateLevelOneData(korean: '풍경', english: 'Scenery'),
+  VocabularyIntermediateLevelOneData(
+      korean: '자연 경관', english: 'Natural landscape'),
+  VocabularyIntermediateLevelOneData(korean: '최고급', english: 'Top class'),
+  VocabularyIntermediateLevelOneData(korean: '실크 로드', english: 'Silk Road'),
+  VocabularyIntermediateLevelOneData(korean: '현장', english: 'Site'),
+  VocabularyIntermediateLevelOneData(korean: '옛날', english: 'Old days'),
+  VocabularyIntermediateLevelOneData(korean: '건축물', english: 'Building'),
+  VocabularyIntermediateLevelOneData(korean: '간직하다', english: 'To cherish'),
+  VocabularyIntermediateLevelOneData(korean: '평지', english: 'Flat land'),
+  VocabularyIntermediateLevelOneData(korean: '펼쳐지다', english: 'To spread out'),
+  VocabularyIntermediateLevelOneData(korean: '언덕', english: 'Hill'),
+  VocabularyIntermediateLevelOneData(korean: '일정', english: 'Schedule'),
+  VocabularyIntermediateLevelOneData(korean: '포함되다', english: 'To be included'),
+  VocabularyIntermediateLevelOneData(korean: '건조하다', english: 'To be dry'),
+  VocabularyIntermediateLevelOneData(korean: '염소', english: 'Goat'),
+  VocabularyIntermediateLevelOneData(korean: '풀', english: 'Grass'),
+];
+
+final List<VocabularyIntermediateLevelOneData> intermediateOneLesson7 = [
+  VocabularyIntermediateLevelOneData(korean: '공연', english: 'Performance'),
+  VocabularyIntermediateLevelOneData(korean: '뮤지컬', english: 'Musical'),
+  VocabularyIntermediateLevelOneData(korean: '연극', english: 'Play'),
+  VocabularyIntermediateLevelOneData(
+      korean: '연주회', english: 'Concert (instrumental)'),
+  VocabularyIntermediateLevelOneData(
+      korean: '난타', english: 'Nanta (non-verbal performance)'),
+  VocabularyIntermediateLevelOneData(
+      korean: '사물놀이', english: 'Traditional percussion quartet'),
+  VocabularyIntermediateLevelOneData(
+      korean: '길거리 공연(버스킹)', english: 'Street performance (busking)'),
+  VocabularyIntermediateLevelOneData(korean: '전시회', english: 'Exhibition'),
+  VocabularyIntermediateLevelOneData(korean: '미술', english: 'Art'),
+  VocabularyIntermediateLevelOneData(korean: '사진', english: 'Photo'),
+  VocabularyIntermediateLevelOneData(korean: '공예', english: 'Craft'),
+  VocabularyIntermediateLevelOneData(korean: '콘서트', english: 'Concert'),
+  VocabularyIntermediateLevelOneData(korean: '케이팝(K-pop)', english: 'K-pop'),
+  VocabularyIntermediateLevelOneData(
+      korean: '재즈(Jazz) 콘서트', english: 'Jazz concert'),
+  VocabularyIntermediateLevelOneData(
+      korean: '토크 콘서트(강연)', english: 'Talk concert (lecture)'),
+  VocabularyIntermediateLevelOneData(
+      korean: '정보를 검색하다', english: 'To search for information'),
+  VocabularyIntermediateLevelOneData(
+      korean: '예매하다', english: 'To book (tickets)'),
+  VocabularyIntermediateLevelOneData(korean: '수령하다', english: 'To receive'),
+  VocabularyIntermediateLevelOneData(korean: '좌석', english: 'Seat'),
+  VocabularyIntermediateLevelOneData(korean: '찾다', english: 'To find'),
+  VocabularyIntermediateLevelOneData(korean: '관람하다', english: 'To watch/view'),
+  VocabularyIntermediateLevelOneData(
+      korean: '감상 소감', english: 'Impression (after viewing)'),
+  VocabularyIntermediateLevelOneData(korean: '기대하다', english: 'To expect'),
+  VocabularyIntermediateLevelOneData(
+      korean: '감동적이다', english: 'To be touching'),
+  VocabularyIntermediateLevelOneData(
+      korean: '인상적이다', english: 'To be impressive'),
+  VocabularyIntermediateLevelOneData(korean: '안내 방송', english: 'Announcement'),
+  VocabularyIntermediateLevelOneData(
+      korean: '전원을 끄다', english: 'To turn off the power'),
+  VocabularyIntermediateLevelOneData(korean: '입장하다', english: 'To enter'),
+  VocabularyIntermediateLevelOneData(korean: '택배', english: 'Parcel delivery'),
+  VocabularyIntermediateLevelOneData(korean: '참석하다', english: 'To attend'),
+  VocabularyIntermediateLevelOneData(korean: '유창하다', english: 'To be fluent'),
+  VocabularyIntermediateLevelOneData(korean: '작가', english: 'Author'),
+  VocabularyIntermediateLevelOneData(korean: '장면', english: 'Scene'),
+  VocabularyIntermediateLevelOneData(
+      korean: '표정', english: 'Facial expression'),
+  VocabularyIntermediateLevelOneData(korean: '헤어지다', english: 'To break up'),
+  VocabularyIntermediateLevelOneData(korean: '추천하다', english: 'To recommend'),
+  VocabularyIntermediateLevelOneData(
+      korean: '입장권', english: 'Admission ticket'),
+  VocabularyIntermediateLevelOneData(
+      korean: '초대권', english: 'Invitation ticket'),
+  VocabularyIntermediateLevelOneData(
+      korean: '예약 번호', english: 'Reservation number'),
   VocabularyIntermediateLevelOneData(korean: '할인', english: 'Discount'),
-  VocabularyIntermediateLevelOneData(korean: '적립', english: 'Accumulation'),
-  VocabularyIntermediateLevelOneData(korean: '교환', english: 'Exchange'),
-  VocabularyIntermediateLevelOneData(korean: '환불', english: 'Refund'),
+  VocabularyIntermediateLevelOneData(korean: '연령', english: 'Age'),
+  VocabularyIntermediateLevelOneData(korean: '유의 사항', english: 'Precautions'),
+  VocabularyIntermediateLevelOneData(korean: '무료', english: 'Free of charge'),
   VocabularyIntermediateLevelOneData(
-      korean: 'A/S', english: 'After-sales service'),
-  VocabularyIntermediateLevelOneData(korean: '보증서', english: 'Warranty'),
-  VocabularyIntermediateLevelOneData(korean: '재고', english: 'Inventory'),
-  VocabularyIntermediateLevelOneData(korean: '품절', english: 'Out of stock'),
-  VocabularyIntermediateLevelOneData(korean: '입고', english: 'Stock arrival'),
-  VocabularyIntermediateLevelOneData(korean: '매진', english: 'Sold out'),
-  VocabularyIntermediateLevelOneData(korean: '신상', english: 'New arrival'),
+      korean: '부담이 없다', english: 'To be burden-free'),
+  VocabularyIntermediateLevelOneData(
+      korean: '할인을 받다', english: 'To get a discount'),
+  VocabularyIntermediateLevelOneData(korean: '행사', english: 'Event'),
+  VocabularyIntermediateLevelOneData(korean: '박물관', english: 'Museum'),
+  VocabularyIntermediateLevelOneData(
+      korean: '경험이 쌓이다', english: 'To gain experience'),
 ];
 
-// Set 8: Manufacturing & Industry (26 words)
-final List<VocabularyIntermediateLevelOneData> manufacturingCards = [
-  VocabularyIntermediateLevelOneData(korean: '제조업', english: 'Manufacturing'),
-  VocabularyIntermediateLevelOneData(korean: '공장', english: 'Factory'),
-  VocabularyIntermediateLevelOneData(korean: '생산', english: 'Production'),
-  VocabularyIntermediateLevelOneData(korean: '제품', english: 'Product'),
-  VocabularyIntermediateLevelOneData(korean: '원료', english: 'Raw material'),
-  VocabularyIntermediateLevelOneData(korean: '부품', english: 'Component'),
-  VocabularyIntermediateLevelOneData(korean: '조립', english: 'Assembly'),
-  VocabularyIntermediateLevelOneData(korean: '포장', english: 'Packaging'),
-  VocabularyIntermediateLevelOneData(korean: '출하', english: 'Shipment'),
-  VocabularyIntermediateLevelOneData(korean: '납기', english: 'Delivery date'),
-  VocabularyIntermediateLevelOneData(korean: '품질', english: 'Quality'),
-  VocabularyIntermediateLevelOneData(korean: '검사', english: 'Inspection'),
+final List<VocabularyIntermediateLevelOneData> intermediateOneLesson8 = [
+  VocabularyIntermediateLevelOneData(korean: '고추장', english: 'Red chili paste'),
+  VocabularyIntermediateLevelOneData(korean: '간장', english: 'Soy sauce'),
+  VocabularyIntermediateLevelOneData(korean: '된장', english: 'Soybean paste'),
+  VocabularyIntermediateLevelOneData(korean: '참기름', english: 'Sesame oil'),
+  VocabularyIntermediateLevelOneData(korean: '식초', english: 'Vinegar'),
   VocabularyIntermediateLevelOneData(
-      korean: '불량품', english: 'Defective product'),
-  VocabularyIntermediateLevelOneData(korean: '양산', english: 'Mass production'),
-  VocabularyIntermediateLevelOneData(korean: '시제품', english: 'Prototype'),
-  VocabularyIntermediateLevelOneData(korean: '설비', english: 'Equipment'),
-  VocabularyIntermediateLevelOneData(korean: '기계', english: 'Machine'),
-  VocabularyIntermediateLevelOneData(korean: '자동화', english: 'Automation'),
-  VocabularyIntermediateLevelOneData(korean: '로봇', english: 'Robot'),
-  VocabularyIntermediateLevelOneData(korean: '공정', english: 'Process'),
-  VocabularyIntermediateLevelOneData(korean: '효율', english: 'Efficiency'),
-  VocabularyIntermediateLevelOneData(korean: '생산성', english: 'Productivity'),
-  VocabularyIntermediateLevelOneData(korean: '안전', english: 'Safety'),
+      korean: '고춧가루', english: 'Red pepper powder'),
+  VocabularyIntermediateLevelOneData(korean: '깨', english: 'Sesame seeds'),
+  VocabularyIntermediateLevelOneData(korean: '후추', english: 'Black pepper'),
+  VocabularyIntermediateLevelOneData(
+      korean: '당근을 씻다', english: 'To wash a carrot'),
+  VocabularyIntermediateLevelOneData(
+      korean: '양파 껍질을 벗기다', english: 'To peel onion skin'),
+  VocabularyIntermediateLevelOneData(
+      korean: '감자를 칼로 썰다', english: 'To slice potato with a knife'),
+  VocabularyIntermediateLevelOneData(
+      korean: '마늘을 다지다', english: 'To mince garlic'),
+  VocabularyIntermediateLevelOneData(
+      korean: '물을 끓이다', english: 'To boil water'),
+  VocabularyIntermediateLevelOneData(
+      korean: '기름에 튀기다', english: 'To deep-fry in oil'),
+  VocabularyIntermediateLevelOneData(
+      korean: '만두를 찌다', english: 'To steam dumplings'),
+  VocabularyIntermediateLevelOneData(
+      korean: '계란을 삶다', english: 'To boil an egg'),
+  VocabularyIntermediateLevelOneData(
+      korean: '밥을 볶다', english: 'To stir-fry rice'),
+  VocabularyIntermediateLevelOneData(
+      korean: '나물을 무치다', english: 'To season vegetables'),
+  VocabularyIntermediateLevelOneData(
+      korean: '고기를 굽다', english: 'To grill meat'),
+  VocabularyIntermediateLevelOneData(
+      korean: '시금치를 데치다', english: 'To blanch spinach'),
+  VocabularyIntermediateLevelOneData(korean: '토끼', english: 'Rabbit'),
+  VocabularyIntermediateLevelOneData(korean: '유조차', english: 'Oil tanker'),
+  VocabularyIntermediateLevelOneData(korean: '냉동실', english: 'Freezer'),
+  VocabularyIntermediateLevelOneData(korean: '죽', english: 'Porridge'),
+  VocabularyIntermediateLevelOneData(
+      korean: '익다', english: 'To ripen / be cooked'),
+  VocabularyIntermediateLevelOneData(korean: '믹서기', english: 'Blender'),
+  VocabularyIntermediateLevelOneData(korean: '환자', english: 'Patient'),
+  VocabularyIntermediateLevelOneData(korean: '이유식', english: 'Baby food'),
+  VocabularyIntermediateLevelOneData(korean: '뷔페', english: 'Buffet'),
+  VocabularyIntermediateLevelOneData(
+      korean: '군침이 돌다', english: 'To make one’s mouth water'),
+  VocabularyIntermediateLevelOneData(korean: '뿌리다', english: 'To sprinkle'),
+  VocabularyIntermediateLevelOneData(korean: '채를 썰다', english: 'To shred'),
+  VocabularyIntermediateLevelOneData(
+      korean: '얇게 썰다', english: 'To slice thinly'),
+  VocabularyIntermediateLevelOneData(korean: '깍둑썰다', english: 'To dice'),
+  VocabularyIntermediateLevelOneData(korean: '절이다', english: 'To pickle'),
+  VocabularyIntermediateLevelOneData(korean: '담다', english: 'To put in'),
+  VocabularyIntermediateLevelOneData(
+      korean: '간을 맞추다', english: 'To season to taste'),
+  VocabularyIntermediateLevelOneData(
+      korean: '양을 맞추다', english: 'To adjust the quantity'),
+  VocabularyIntermediateLevelOneData(
+      korean: '시간을 맞추다', english: 'To adjust time'),
+  VocabularyIntermediateLevelOneData(korean: '부침 가루', english: 'Batter mix'),
+  VocabularyIntermediateLevelOneData(korean: '부치다', english: 'To pan-fry'),
+  VocabularyIntermediateLevelOneData(
+      korean: '둘이 먹다가 하나가 죽어도 모른다',
+      english: 'So delicious someone could die eating'),
+  VocabularyIntermediateLevelOneData(
+      korean: '식용유를 두르다', english: 'To pour cooking oil'),
+];
+
+final List<VocabularyIntermediateLevelOneData> intermediateOneLesson9 = [
+  VocabularyIntermediateLevelOneData(
+      korean: '고장이 나다', english: 'To break down'),
+  VocabularyIntermediateLevelOneData(
+      korean: '하수구가 막히다', english: 'To have a clogged drain'),
+  VocabularyIntermediateLevelOneData(
+      korean: '변기가 막히다', english: 'Toilet is clogged'),
+  VocabularyIntermediateLevelOneData(
+      korean: '물이 안 나오다', english: 'No water comes out'),
+  VocabularyIntermediateLevelOneData(korean: '물이 새다', english: 'Water leaks'),
+  VocabularyIntermediateLevelOneData(
+      korean: '전등이 나가다', english: 'Light goes out'),
+  VocabularyIntermediateLevelOneData(
+      korean: '문이 잠기다', english: 'The door is locked'),
+  VocabularyIntermediateLevelOneData(
+      korean: '가스불이 안 들어오다', english: 'Gas flame does not come on'),
+  VocabularyIntermediateLevelOneData(
+      korean: '냉동이 안 되다', english: 'Freezing doesn’t work'),
+  VocabularyIntermediateLevelOneData(
+      korean: '와이파이 연결이 안 되다', english: 'Wi-Fi doesn’t connect'),
+  VocabularyIntermediateLevelOneData(
+      korean: '액정이 깨지다', english: 'The screen is cracked'),
+  VocabularyIntermediateLevelOneData(
+      korean: '부팅이 안 되다', english: 'Booting fails'),
+  VocabularyIntermediateLevelOneData(
+      korean: '전원이 안 켜지다', english: 'Power won’t turn on'),
+  VocabularyIntermediateLevelOneData(
+      korean: '서비스 센터에 문의하다', english: 'To inquire at the service center'),
+  VocabularyIntermediateLevelOneData(
+      korean: '출장 서비스를 신청하다', english: 'To request a home visit service'),
+  VocabularyIntermediateLevelOneData(
+      korean: '서비스 센터에 방문하다', english: 'To visit a service center'),
+  VocabularyIntermediateLevelOneData(korean: '고치다', english: 'To fix'),
+  VocabularyIntermediateLevelOneData(korean: '수리하다', english: 'To repair'),
+  VocabularyIntermediateLevelOneData(
+      korean: '수리 비용을 내다', english: 'To pay repair costs'),
+  VocabularyIntermediateLevelOneData(
+      korean: '무상 수리를 받다', english: 'To receive free repair'),
+  VocabularyIntermediateLevelOneData(korean: '딱딱하다', english: 'To be hard'),
+  VocabularyIntermediateLevelOneData(korean: '바닥', english: 'Floor'),
+  VocabularyIntermediateLevelOneData(korean: '떨어뜨리다', english: 'To drop'),
+  VocabularyIntermediateLevelOneData(korean: '속도', english: 'Speed'),
+  VocabularyIntermediateLevelOneData(korean: '예방 주사', english: 'Vaccination'),
+  VocabularyIntermediateLevelOneData(korean: '냉기', english: 'Cold air'),
+  VocabularyIntermediateLevelOneData(korean: '조절하다', english: 'To adjust'),
+  VocabularyIntermediateLevelOneData(korean: '점검하다', english: 'To inspect'),
+  VocabularyIntermediateLevelOneData(
+      korean: '보험에 가입하다', english: 'To enroll in insurance'),
+  VocabularyIntermediateLevelOneData(
+      korean: '고객 부담금', english: 'Customer deductible'),
+  VocabularyIntermediateLevelOneData(korean: '제외하다', english: 'To exclude'),
+  VocabularyIntermediateLevelOneData(
+      korean: '환불받다', english: 'To receive a refund'),
+  VocabularyIntermediateLevelOneData(korean: '갈등', english: 'Conflict'),
+  VocabularyIntermediateLevelOneData(korean: '일시적', english: 'Temporary'),
+  VocabularyIntermediateLevelOneData(korean: '플러그', english: 'Plug'),
+  VocabularyIntermediateLevelOneData(korean: '뽑다', english: 'To pull out'),
+  VocabularyIntermediateLevelOneData(korean: '꽃다', english: 'To plug in'),
+  VocabularyIntermediateLevelOneData(korean: '벨트', english: 'Belt'),
+  VocabularyIntermediateLevelOneData(korean: '잠그다', english: 'To lock'),
+  VocabularyIntermediateLevelOneData(korean: '펌프질', english: 'Pumping'),
+  VocabularyIntermediateLevelOneData(korean: '충돌하다', english: 'To crash'),
+  VocabularyIntermediateLevelOneData(korean: '뚫다', english: 'To unclog'),
+  VocabularyIntermediateLevelOneData(
+      korean: '이물질', english: 'Foreign substance'),
+];
+
+final List<VocabularyIntermediateLevelOneData> intermediateOneLesson10 = [
+  VocabularyIntermediateLevelOneData(
+      korean: '학원 강사', english: 'Academy instructor'),
+  VocabularyIntermediateLevelOneData(
+      korean: '다문화 언어 강사', english: 'Multicultural language instructor'),
+  VocabularyIntermediateLevelOneData(
+      korean: '편의점 아르바이트', english: 'Convenience store part-time job'),
+  VocabularyIntermediateLevelOneData(
+      korean: '시간제', english: 'Part-time (hourly basis)'),
+  VocabularyIntermediateLevelOneData(
+      korean: '사업하다', english: 'To run a business'),
+  VocabularyIntermediateLevelOneData(
+      korean: '가게를 차리다', english: 'To open a store'),
+  VocabularyIntermediateLevelOneData(korean: '통역', english: 'Interpretation'),
+  VocabularyIntermediateLevelOneData(korean: '번역', english: 'Translation'),
+  VocabularyIntermediateLevelOneData(korean: '전문성', english: 'Professionalism'),
+  VocabularyIntermediateLevelOneData(korean: '안정적이다', english: 'To be stable'),
+  VocabularyIntermediateLevelOneData(
+      korean: '근무 환경', english: 'Work environment'),
+  VocabularyIntermediateLevelOneData(korean: '월급', english: 'Monthly salary'),
+  VocabularyIntermediateLevelOneData(
+      korean: '출퇴근이 자유롭다', english: 'Flexible commute'),
+  VocabularyIntermediateLevelOneData(
+      korean: '발전 가능성', english: 'Potential for growth'),
+  VocabularyIntermediateLevelOneData(
+      korean: '사회에 기여하다', english: 'To contribute to society'),
+  VocabularyIntermediateLevelOneData(
+      korean: '자기 계발', english: 'Self-development'),
+  VocabularyIntermediateLevelOneData(
+      korean: '보람을 느끼다', english: 'To feel fulfilled'),
+  VocabularyIntermediateLevelOneData(
+      korean: '구인 광고', english: 'Job advertisement'),
+  VocabularyIntermediateLevelOneData(korean: '이력서', english: 'Resume'),
+  VocabularyIntermediateLevelOneData(
+      korean: '지원서', english: 'Application form'),
+  VocabularyIntermediateLevelOneData(
+      korean: '서류를 제출하다', english: 'To submit documents'),
+  VocabularyIntermediateLevelOneData(
+      korean: '필기시험을 보다', english: 'To take a written test'),
+  VocabularyIntermediateLevelOneData(
+      korean: '면접을 보다', english: 'To have a job interview'),
+  VocabularyIntermediateLevelOneData(korean: '분야', english: 'Field (of work)'),
+  VocabularyIntermediateLevelOneData(korean: '인원', english: 'Personnel'),
+  VocabularyIntermediateLevelOneData(korean: '제출', english: 'Submission'),
+  VocabularyIntermediateLevelOneData(korean: '문의', english: 'Inquiry'),
+  VocabularyIntermediateLevelOneData(
+      korean: '지원', english: 'Application / Support'),
+  VocabularyIntermediateLevelOneData(korean: '증명서', english: 'Certificate'),
+  VocabularyIntermediateLevelOneData(korean: '사본', english: 'Copy'),
+  VocabularyIntermediateLevelOneData(korean: '자격증', english: 'Certification'),
+];
+
+final List<VocabularyIntermediateLevelOneData> intermediateOneLesson11 = [
+  VocabularyIntermediateLevelOneData(korean: '주택', english: 'Housing'),
+  VocabularyIntermediateLevelOneData(korean: '아파트', english: 'Apartment'),
+  VocabularyIntermediateLevelOneData(
+      korean: '오피스텔', english: 'Studio apartment (officetel)'),
+  VocabularyIntermediateLevelOneData(korean: '빌라', english: 'Villa'),
+  VocabularyIntermediateLevelOneData(korean: '원룸', english: 'One-room'),
+  VocabularyIntermediateLevelOneData(korean: '기숙사', english: 'Dormitory'),
+  VocabularyIntermediateLevelOneData(
+      korean: '매매', english: 'Buying and selling'),
+  VocabularyIntermediateLevelOneData(korean: '임대', english: 'Lease'),
+  VocabularyIntermediateLevelOneData(
+      korean: '전세', english: 'Jeonse (lump-sum deposit lease)'),
+  VocabularyIntermediateLevelOneData(korean: '월세', english: 'Monthly rent'),
+  VocabularyIntermediateLevelOneData(
+      korean: '편의 시설', english: 'Convenient facilities'),
+  VocabularyIntermediateLevelOneData(korean: '산책로', english: 'Walking path'),
+  VocabularyIntermediateLevelOneData(korean: '전망', english: 'View'),
+  VocabularyIntermediateLevelOneData(korean: '햇빛', english: 'Sunlight'),
+  VocabularyIntermediateLevelOneData(korean: '내부', english: 'Interior'),
   VocabularyIntermediateLevelOneData(korean: '환경', english: 'Environment'),
-  VocabularyIntermediateLevelOneData(korean: '규정', english: 'Regulation'),
-  VocabularyIntermediateLevelOneData(korean: '표준', english: 'Standard'),
+  VocabularyIntermediateLevelOneData(korean: '형태', english: 'Form / Type'),
+  VocabularyIntermediateLevelOneData(korean: '선호하다', english: 'To prefer'),
+  VocabularyIntermediateLevelOneData(korean: '테라스', english: 'Terrace'),
+  VocabularyIntermediateLevelOneData(
+      korean: '층간 소음', english: 'Noise between floors'),
+  VocabularyIntermediateLevelOneData(korean: '도보', english: 'On foot'),
+  VocabularyIntermediateLevelOneData(
+      korean: '동/부/동본', english: 'Building/Floor/Room number'),
+  VocabularyIntermediateLevelOneData(
+      korean: '부동산 중개소', english: 'Real estate agency'),
+  VocabularyIntermediateLevelOneData(korean: '신축', english: 'Newly built'),
+  VocabularyIntermediateLevelOneData(
+      korean: '역세권', english: 'Area near a subway station'),
+  VocabularyIntermediateLevelOneData(korean: '잔금', english: 'Balance payment'),
+  VocabularyIntermediateLevelOneData(
+      korean: '전입 신고', english: 'Move-in report'),
+  VocabularyIntermediateLevelOneData(
+      korean: '특약 사항', english: 'Special agreement'),
+  VocabularyIntermediateLevelOneData(
+      korean: '풀 옵션', english: 'Fully furnished'),
 ];
 
-// Set 9: Environmental Science (26 words)
-final List<VocabularyIntermediateLevelOneData> environmentalCards = [
+final List<VocabularyIntermediateLevelOneData> intermediateOneLesson12 = [
+  VocabularyIntermediateLevelOneData(korean: '설날', english: 'Lunar New Year'),
   VocabularyIntermediateLevelOneData(
-      korean: '환경과학', english: 'Environmental science'),
-  VocabularyIntermediateLevelOneData(korean: '생태계', english: 'Ecosystem'),
-  VocabularyIntermediateLevelOneData(korean: '생물다양성', english: 'Biodiversity'),
-  VocabularyIntermediateLevelOneData(korean: '서식지', english: 'Habitat'),
-  VocabularyIntermediateLevelOneData(korean: '멸종', english: 'Extinction'),
-  VocabularyIntermediateLevelOneData(korean: '보존', english: 'Conservation'),
+      korean: '정월 대보름', english: 'First full moon of the year'),
   VocabularyIntermediateLevelOneData(
-      korean: '지속가능성', english: 'Sustainability'),
-  VocabularyIntermediateLevelOneData(korean: '온실가스', english: 'Greenhouse gas'),
+      korean: '추석', english: 'Chuseok (Korean Thanksgiving)'),
+  VocabularyIntermediateLevelOneData(korean: '동지', english: 'Winter solstice'),
+  VocabularyIntermediateLevelOneData(korean: '음력', english: 'Lunar calendar'),
   VocabularyIntermediateLevelOneData(
-      korean: '탄소배출', english: 'Carbon emission'),
+      korean: '부럼', english: 'Nuts (eaten on Daeboreum)'),
   VocabularyIntermediateLevelOneData(
-      korean: '지구온난화', english: 'Global warming'),
-  VocabularyIntermediateLevelOneData(korean: '기후변화', english: 'Climate change'),
-  VocabularyIntermediateLevelOneData(korean: '오존층', english: 'Ozone layer'),
-  VocabularyIntermediateLevelOneData(korean: '산성비', english: 'Acid rain'),
-  VocabularyIntermediateLevelOneData(korean: '대기오염', english: 'Air pollution'),
+      korean: '팔죽', english: 'Red bean porridge'),
   VocabularyIntermediateLevelOneData(
-      korean: '수질오염', english: 'Water pollution'),
-  VocabularyIntermediateLevelOneData(korean: '토양오염', english: 'Soil pollution'),
+      korean: '송편', english: 'Half-moon rice cake'),
+  VocabularyIntermediateLevelOneData(korean: '떡국', english: 'Rice cake soup'),
   VocabularyIntermediateLevelOneData(
-      korean: '소음공해', english: 'Noise pollution'),
-  VocabularyIntermediateLevelOneData(korean: '폐기물', english: 'Waste'),
-  VocabularyIntermediateLevelOneData(korean: '재활용', english: 'Recycling'),
-  VocabularyIntermediateLevelOneData(korean: '분해', english: 'Decomposition'),
-  VocabularyIntermediateLevelOneData(korean: '친환경', english: 'Eco-friendly'),
+      korean: '기원하다', english: 'To wish / pray for'),
+  VocabularyIntermediateLevelOneData(korean: '피부병', english: 'Skin disease'),
   VocabularyIntermediateLevelOneData(
-      korean: '신재생에너지', english: 'Renewable energy'),
-  VocabularyIntermediateLevelOneData(korean: '태양에너지', english: 'Solar energy'),
-  VocabularyIntermediateLevelOneData(korean: '풍력에너지', english: 'Wind energy'),
-  VocabularyIntermediateLevelOneData(korean: '수력에너지', english: 'Hydro energy'),
-  VocabularyIntermediateLevelOneData(korean: '복원', english: 'Restoration'),
+      korean: '생기다', english: 'To arise / occur'),
+  VocabularyIntermediateLevelOneData(korean: '붉은색', english: 'Red color'),
+  VocabularyIntermediateLevelOneData(korean: '쫓다', english: 'To chase away'),
+  VocabularyIntermediateLevelOneData(
+      korean: '가족과 친척들이 모여 윷놀이를 하다',
+      english: 'Family and relatives gather to play Yutnori'),
+  VocabularyIntermediateLevelOneData(
+      korean: '연날리기, 제기차기 놀이를 즐기다', english: 'Enjoy kite flying and jegichagi'),
+  VocabularyIntermediateLevelOneData(
+      korean: '보름달을 보며 소원을 빌다',
+      english: 'Make a wish while watching the full moon'),
+  VocabularyIntermediateLevelOneData(
+      korean: '햇곡식과 햇과일로 차례를 지내다',
+      english: 'Hold ancestral rites with new grains and fruits'),
+  VocabularyIntermediateLevelOneData(korean: '풍습', english: 'Custom'),
+  VocabularyIntermediateLevelOneData(
+      korean: '한가위', english: 'Hangawi (another name for Chuseok)'),
+  VocabularyIntermediateLevelOneData(korean: '황금연휴', english: 'Golden holiday'),
+  VocabularyIntermediateLevelOneData(
+      korean: '귀성 전쟁', english: 'Holiday travel rush'),
+  VocabularyIntermediateLevelOneData(
+      korean: '귀성객', english: 'People returning home for holidays'),
+  VocabularyIntermediateLevelOneData(korean: '고속 도로', english: 'Expressway'),
+  VocabularyIntermediateLevelOneData(korean: '붐비다', english: 'To be crowded'),
+  VocabularyIntermediateLevelOneData(
+      korean: '근하신년', english: 'New Year’s greeting'),
+  VocabularyIntermediateLevelOneData(korean: '가득하다', english: 'To be full'),
+  VocabularyIntermediateLevelOneData(korean: '빌다', english: 'To wish'),
+  VocabularyIntermediateLevelOneData(korean: '친지들', english: 'Relatives'),
+  VocabularyIntermediateLevelOneData(
+      korean: '보람', english: 'Rewarding feeling / Worth'),
+  VocabularyIntermediateLevelOneData(
+      korean: '넉넉하다', english: 'To be abundant / sufficient'),
+  VocabularyIntermediateLevelOneData(
+      korean: '풍성하다', english: 'To be rich / plentiful'),
+  VocabularyIntermediateLevelOneData(
+      korean: '덕담을 하다', english: 'To give words of blessing'),
+  VocabularyIntermediateLevelOneData(
+      korean: '세배하다', english: 'To bow (New Year’s greeting)'),
+  VocabularyIntermediateLevelOneData(
+      korean: '설빔을 입다', english: 'To wear New Year’s clothes'),
+  VocabularyIntermediateLevelOneData(
+      korean: '세뱃돈을 받다', english: 'To receive New Year’s money'),
 ];
 
-// Set 10: Psychology & Mental Health (26 words)
-final List<VocabularyIntermediateLevelOneData> psychologyCards = [
-  VocabularyIntermediateLevelOneData(korean: '심리학', english: 'Psychology'),
-  VocabularyIntermediateLevelOneData(korean: '정신건강', english: 'Mental health'),
-  VocabularyIntermediateLevelOneData(korean: '상담', english: 'Counseling'),
-  VocabularyIntermediateLevelOneData(korean: '치료', english: 'Therapy'),
-  VocabularyIntermediateLevelOneData(korean: '심리치료', english: 'Psychotherapy'),
+final List<VocabularyIntermediateLevelOneData> intermediateOneLesson13 = [
+  VocabularyIntermediateLevelOneData(korean: '업무', english: 'Task / Work'),
+  VocabularyIntermediateLevelOneData(korean: '지시', english: 'Instruction'),
   VocabularyIntermediateLevelOneData(
-      korean: '인지치료', english: 'Cognitive therapy'),
+      korean: '작성하다', english: 'To fill out / write'),
+  VocabularyIntermediateLevelOneData(korean: '결재', english: 'Approval'),
   VocabularyIntermediateLevelOneData(
-      korean: '행동치료', english: 'Behavioral therapy'),
+      korean: '정비하다', english: 'To maintain / repair'),
+  VocabularyIntermediateLevelOneData(korean: '작동', english: 'Operation'),
+  VocabularyIntermediateLevelOneData(korean: '공구', english: 'Tool'),
+  VocabularyIntermediateLevelOneData(korean: '재고', english: 'Inventory'),
+  VocabularyIntermediateLevelOneData(korean: '자재', english: 'Materials'),
+  VocabularyIntermediateLevelOneData(korean: '제출하다', english: 'To submit'),
+  VocabularyIntermediateLevelOneData(korean: '작업', english: 'Work / Operation'),
+  VocabularyIntermediateLevelOneData(korean: '마무리하다', english: 'To finish up'),
+  VocabularyIntermediateLevelOneData(korean: '스스로', english: 'By oneself'),
+  VocabularyIntermediateLevelOneData(korean: '거주하다', english: 'To reside'),
+  VocabularyIntermediateLevelOneData(korean: '창고', english: 'Warehouse'),
+  VocabularyIntermediateLevelOneData(korean: '적응하다', english: 'To adapt'),
+  VocabularyIntermediateLevelOneData(korean: '방식', english: 'Method / Way'),
+  VocabularyIntermediateLevelOneData(
+      korean: '파악하다', english: 'To grasp / understand'),
+  VocabularyIntermediateLevelOneData(
+      korean: '허락을 받다', english: 'To get permission'),
+  VocabularyIntermediateLevelOneData(
+      korean: '상의하다', english: 'To consult / discuss'),
+  VocabularyIntermediateLevelOneData(korean: '반반씩', english: 'Fifty-fifty'),
+  VocabularyIntermediateLevelOneData(
+      korean: '모집 공고', english: 'Recruitment notice'),
+  VocabularyIntermediateLevelOneData(korean: '직종', english: 'Occupation'),
+  VocabularyIntermediateLevelOneData(korean: '사무직', english: 'Clerical job'),
+  VocabularyIntermediateLevelOneData(korean: '생산직', english: 'Production job'),
+  VocabularyIntermediateLevelOneData(
+      korean: '관리직', english: 'Managerial position'),
+  VocabularyIntermediateLevelOneData(korean: '영업직', english: 'Sales position'),
+  VocabularyIntermediateLevelOneData(korean: '판매직', english: 'Retail job'),
+  VocabularyIntermediateLevelOneData(korean: '일용직', english: 'Daily laborer'),
+  VocabularyIntermediateLevelOneData(korean: '급여', english: 'Salary / Wages'),
+  VocabularyIntermediateLevelOneData(korean: '연봉', english: 'Annual salary'),
+  VocabularyIntermediateLevelOneData(korean: '주급', english: 'Weekly pay'),
+  VocabularyIntermediateLevelOneData(korean: '일당', english: 'Daily wage'),
+  VocabularyIntermediateLevelOneData(korean: '시급', english: 'Hourly wage'),
+  VocabularyIntermediateLevelOneData(
+      korean: '수당(보너스)', english: 'Allowance (bonus)'),
+  VocabularyIntermediateLevelOneData(
+      korean: '해소하다', english: 'To relieve / resolve'),
+  VocabularyIntermediateLevelOneData(korean: '성과', english: 'Result / Outcome'),
+  VocabularyIntermediateLevelOneData(korean: '피로', english: 'Fatigue'),
+  VocabularyIntermediateLevelOneData(korean: '정확하다', english: 'To be accurate'),
+  VocabularyIntermediateLevelOneData(korean: '이겨 내다', english: 'To overcome'),
+  VocabularyIntermediateLevelOneData(korean: '상사', english: 'Superior / Boss'),
+  VocabularyIntermediateLevelOneData(korean: '상하 관계', english: 'Hierarchy'),
+  VocabularyIntermediateLevelOneData(korean: '재충전하다', english: 'To recharge'),
+  VocabularyIntermediateLevelOneData(
+      korean: '책임감', english: 'Sense of responsibility'),
+  VocabularyIntermediateLevelOneData(
+      korean: '원만하다', english: 'To be harmonious / smooth'),
+];
+
+final List<VocabularyIntermediateLevelOneData> intermediateOneLesson14 = [
+  VocabularyIntermediateLevelOneData(
+      korean: '정보를 검색하다', english: 'To search for information'),
+  VocabularyIntermediateLevelOneData(
+      korean: '인터넷 뱅킹을 하다', english: 'To do internet banking'),
+  VocabularyIntermediateLevelOneData(
+      korean: '인터넷 쇼핑을 하다', english: 'To shop online'),
+  VocabularyIntermediateLevelOneData(
+      korean: '이메일을 보내다', english: 'To send an email'),
+  VocabularyIntermediateLevelOneData(
+      korean: '인터넷 강의를 듣다', english: 'To take online lectures'),
+  VocabularyIntermediateLevelOneData(
+      korean: '영화를 감상하다', english: 'To appreciate a movie'),
+  VocabularyIntermediateLevelOneData(
+      korean: '에스엔에스(SNS)를 하다', english: 'To use social media'),
+  VocabularyIntermediateLevelOneData(
+      korean: '댓글을 남기다', english: 'To leave a comment'),
+  VocabularyIntermediateLevelOneData(
+      korean: '유튜브(Youtube)를 보다', english: 'To watch YouTube'),
+  VocabularyIntermediateLevelOneData(
+      korean: '사진/동영상을 촬영하다', english: 'To take photos/videos'),
+  VocabularyIntermediateLevelOneData(
+      korean: '영상 통화를 하다', english: 'To make a video call'),
+  VocabularyIntermediateLevelOneData(
+      korean: '문자를 보내다', english: 'To send a text message'),
+  VocabularyIntermediateLevelOneData(
+      korean: '어휘 뜻을 찾다', english: 'To look up word meanings'),
+  VocabularyIntermediateLevelOneData(
+      korean: '게임을 하다', english: 'To play games'),
+  VocabularyIntermediateLevelOneData(
+      korean: '앱(App)을 설치하다', english: 'To install an app'),
+  VocabularyIntermediateLevelOneData(korean: '최신', english: 'Latest'),
+  VocabularyIntermediateLevelOneData(
+      korean: '간편하다', english: 'To be simple and convenient'),
+  VocabularyIntermediateLevelOneData(korean: '세계적', english: 'Global'),
+  VocabularyIntermediateLevelOneData(
+      korean: '출장을 가다', english: 'To go on a business trip'),
+  VocabularyIntermediateLevelOneData(korean: '홈페이지', english: 'Homepage'),
+  VocabularyIntermediateLevelOneData(
+      korean: '회원 가입을 하다 / 회원으로 가입하다', english: 'To sign up for membership'),
+  VocabularyIntermediateLevelOneData(
+      korean: '본인 확인', english: 'Identity verification'),
+  VocabularyIntermediateLevelOneData(
+      korean: '개통하다', english: 'To activate (a phone/service)'),
+  VocabularyIntermediateLevelOneData(
+      korean: '접속하다', english: 'To connect / log in'),
+  VocabularyIntermediateLevelOneData(korean: '영상', english: 'Video'),
+  VocabularyIntermediateLevelOneData(korean: '추천하다', english: 'To recommend'),
+  VocabularyIntermediateLevelOneData(korean: '긍정적', english: 'Positive'),
+  VocabularyIntermediateLevelOneData(
+      korean: '고립감', english: 'Feeling of isolation'),
+  VocabularyIntermediateLevelOneData(korean: '대중화', english: 'Popularization'),
+  VocabularyIntermediateLevelOneData(korean: '부정적', english: 'Negative'),
+  VocabularyIntermediateLevelOneData(
+      korean: '인터넷 중독', english: 'Internet addiction'),
+  VocabularyIntermediateLevelOneData(korean: '불면증', english: 'Insomnia'),
+  VocabularyIntermediateLevelOneData(
+      korean: '시력 저하', english: 'Decline in eyesight'),
+  VocabularyIntermediateLevelOneData(
+      korean: '족 운전', english: 'Texting while driving'),
+  VocabularyIntermediateLevelOneData(
+      korean: '악성 댓글', english: 'Malicious comment'),
+  VocabularyIntermediateLevelOneData(korean: '소통하다', english: 'To communicate'),
+  VocabularyIntermediateLevelOneData(korean: '신속하다', english: 'To be prompt'),
+  VocabularyIntermediateLevelOneData(korean: '해결하다', english: 'To resolve'),
+  VocabularyIntermediateLevelOneData(
+      korean: '의존도', english: 'Degree of dependence'),
+  VocabularyIntermediateLevelOneData(
+      korean: '수시로', english: 'Frequently / at any time'),
+  VocabularyIntermediateLevelOneData(korean: '데이터', english: 'Data'),
+  VocabularyIntermediateLevelOneData(korean: '보편화', english: 'Generalization'),
+  VocabularyIntermediateLevelOneData(
+      korean: '소통이 단절되다', english: 'Communication is cut off'),
+  VocabularyIntermediateLevelOneData(
+      korean: '개인 정보 유출', english: 'Personal information leakage'),
+  VocabularyIntermediateLevelOneData(
+      korean: '사생활 노출', english: 'Exposure of private life'),
+  VocabularyIntermediateLevelOneData(
+      korean: '과유불급', english: 'Too much is as bad as too little'),
+  VocabularyIntermediateLevelOneData(korean: '지혜', english: 'Wisdom'),
+  VocabularyIntermediateLevelOneData(korean: '활용하다', english: 'To make use of'),
+];
+
+final List<VocabularyIntermediateLevelOneData> intermediateOneLesson15 = [
+  VocabularyIntermediateLevelOneData(
+      korean: '인간관계', english: 'Human relationships'),
+  VocabularyIntermediateLevelOneData(
+      korean: '성격이 안 맞다', english: 'To have incompatible personalities'),
+  VocabularyIntermediateLevelOneData(
+      korean: '극적 취득', english: 'Acquisition of nationality'),
+  VocabularyIntermediateLevelOneData(
+      korean: '제자리걸음', english: 'Staying in place / stagnation'),
+  VocabularyIntermediateLevelOneData(
+      korean: '병행하다', english: 'To do simultaneously'),
+  VocabularyIntermediateLevelOneData(korean: '두렵다', english: 'To be afraid'),
+  VocabularyIntermediateLevelOneData(
+      korean: '고부간',
+      english: 'Relationship between mother-in-law and daughter-in-law'),
+  VocabularyIntermediateLevelOneData(
+      korean: '불투명하다', english: 'To be uncertain / unclear'),
+  VocabularyIntermediateLevelOneData(korean: '되풀이하다', english: 'To repeat'),
+  VocabularyIntermediateLevelOneData(
+      korean: '만성 피로', english: 'Chronic fatigue'),
+  VocabularyIntermediateLevelOneData(korean: '불면증', english: 'Insomnia'),
+  VocabularyIntermediateLevelOneData(
+      korean: '일정하다', english: 'To be consistent / fixed'),
+  VocabularyIntermediateLevelOneData(
+      korean: '재테크', english: 'Financial technology / wealth management'),
+  VocabularyIntermediateLevelOneData(
+      korean: '머리가 복잡하다', english: 'To have a lot on one’s mind'),
+  VocabularyIntermediateLevelOneData(
+      korean: '신경이 쓰이다', english: 'To be bothered'),
+  VocabularyIntermediateLevelOneData(
+      korean: '속이 타다', english: 'To feel anxious / distressed'),
+  VocabularyIntermediateLevelOneData(
+      korean: '귓가가 아프다', english: 'To have a toothache'),
+  VocabularyIntermediateLevelOneData(
+      korean: '눈앞이 캄캄하다',
+      english: 'To feel hopeless / dark in front of the eyes'),
+  VocabularyIntermediateLevelOneData(
+      korean: '발을 못 뻗고 자다', english: 'To sleep uncomfortably (due to worry)'),
+  VocabularyIntermediateLevelOneData(
+      korean: '고민을 털어놓다', english: 'To open up about one’s worries'),
+  VocabularyIntermediateLevelOneData(
+      korean: '고민을 나누다', english: 'To share one’s worries'),
+  VocabularyIntermediateLevelOneData(
+      korean: '조언을 구하다', english: 'To seek advice'),
+  VocabularyIntermediateLevelOneData(
+      korean: '상담을 받다', english: 'To receive counseling'),
+  VocabularyIntermediateLevelOneData(
+      korean: '고민을 덜다', english: 'To reduce one’s worries'),
+  VocabularyIntermediateLevelOneData(
+      korean: '고민을 해결하다', english: 'To resolve one’s worries'),
+  VocabularyIntermediateLevelOneData(
+      korean: '고민을 털어버리다', english: 'To get rid of one’s worries'),
+  VocabularyIntermediateLevelOneData(korean: '급여', english: 'Salary'),
+  VocabularyIntermediateLevelOneData(korean: '일당', english: 'Daily wage'),
   VocabularyIntermediateLevelOneData(korean: '우울증', english: 'Depression'),
   VocabularyIntermediateLevelOneData(
-      korean: '불안장애', english: 'Anxiety disorder'),
-  VocabularyIntermediateLevelOneData(korean: '공황장애', english: 'Panic disorder'),
-  VocabularyIntermediateLevelOneData(korean: '강박장애', english: 'OCD'),
-  VocabularyIntermediateLevelOneData(korean: '외상후스트레스', english: 'PTSD'),
-  VocabularyIntermediateLevelOneData(korean: '조현병', english: 'Schizophrenia'),
-  VocabularyIntermediateLevelOneData(
-      korean: '양극성장애', english: 'Bipolar disorder'),
-  VocabularyIntermediateLevelOneData(
-      korean: '성격장애', english: 'Personality disorder'),
-  VocabularyIntermediateLevelOneData(
-      korean: '섭식장애', english: 'Eating disorder'),
-  VocabularyIntermediateLevelOneData(korean: '중독', english: 'Addiction'),
-  VocabularyIntermediateLevelOneData(korean: '의존', english: 'Dependency'),
-  VocabularyIntermediateLevelOneData(korean: '회복', english: 'Recovery'),
-  VocabularyIntermediateLevelOneData(korean: '재활', english: 'Rehabilitation'),
-  VocabularyIntermediateLevelOneData(korean: '자존감', english: 'Self-esteem'),
-  VocabularyIntermediateLevelOneData(korean: '자아', english: 'Self/Ego'),
-  VocabularyIntermediateLevelOneData(korean: '무의식', english: 'Unconscious'),
-  VocabularyIntermediateLevelOneData(korean: '트라우마', english: 'Trauma'),
-  VocabularyIntermediateLevelOneData(korean: '회복력', english: 'Resilience'),
-  VocabularyIntermediateLevelOneData(korean: '마음챙김', english: 'Mindfulness'),
+      korean: '고혈압', english: 'High blood pressure'),
+  VocabularyIntermediateLevelOneData(korean: '당뇨', english: 'Diabetes'),
+  VocabularyIntermediateLevelOneData(korean: '일시적', english: 'Temporary'),
+  VocabularyIntermediateLevelOneData(korean: '의심하다', english: 'To doubt'),
+  VocabularyIntermediateLevelOneData(korean: '보고되다', english: 'To be reported'),
 ];
 
-// Set 11: Nutrition & Dietetics (26 words)
-final List<VocabularyIntermediateLevelOneData> nutritionCards = [
-  VocabularyIntermediateLevelOneData(korean: '영양학', english: 'Nutrition'),
-  VocabularyIntermediateLevelOneData(korean: '영양사', english: 'Nutritionist'),
-  VocabularyIntermediateLevelOneData(korean: '식단', english: 'Diet'),
-  VocabularyIntermediateLevelOneData(korean: '칼로리', english: 'Calorie'),
-  VocabularyIntermediateLevelOneData(korean: '탄수화물', english: 'Carbohydrate'),
-  VocabularyIntermediateLevelOneData(korean: '단백질', english: 'Protein'),
-  VocabularyIntermediateLevelOneData(korean: '지방', english: 'Fat'),
-  VocabularyIntermediateLevelOneData(korean: '포화지방', english: 'Saturated fat'),
+final List<VocabularyIntermediateLevelOneData> intermediateOneLesson16 = [
   VocabularyIntermediateLevelOneData(
-      korean: '불포화지방', english: 'Unsaturated fat'),
-  VocabularyIntermediateLevelOneData(korean: '콜레스테롤', english: 'Cholesterol'),
-  VocabularyIntermediateLevelOneData(korean: '식이섬유', english: 'Dietary fiber'),
-  VocabularyIntermediateLevelOneData(korean: '비타민', english: 'Vitamin'),
-  VocabularyIntermediateLevelOneData(korean: '미네랄', english: 'Mineral'),
-  VocabularyIntermediateLevelOneData(korean: '항산화제', english: 'Antioxidant'),
-  VocabularyIntermediateLevelOneData(korean: '보충제', english: 'Supplement'),
-  VocabularyIntermediateLevelOneData(korean: '영양소', english: 'Nutrient'),
-  VocabularyIntermediateLevelOneData(korean: '영양실조', english: 'Malnutrition'),
-  VocabularyIntermediateLevelOneData(korean: '과영양', english: 'Overnutrition'),
-  VocabularyIntermediateLevelOneData(korean: '균형식', english: 'Balanced diet'),
-  VocabularyIntermediateLevelOneData(korean: '유기농', english: 'Organic'),
-  VocabularyIntermediateLevelOneData(korean: 'GMO', english: 'GMO'),
-  VocabularyIntermediateLevelOneData(korean: '첨가물', english: 'Additive'),
-  VocabularyIntermediateLevelOneData(korean: '방부제', english: 'Preservative'),
+      korean: '체감 온도', english: 'Perceived temperature'),
+  VocabularyIntermediateLevelOneData(korean: '습도', english: 'Humidity'),
   VocabularyIntermediateLevelOneData(
-      korean: '인공감미료', english: 'Artificial sweetener'),
-  VocabularyIntermediateLevelOneData(korean: '글루텐', english: 'Gluten'),
-  VocabularyIntermediateLevelOneData(korean: '식품알레르기', english: 'Food allergy'),
-];
-
-// Set 12: Architecture & Design (26 words)
-final List<VocabularyIntermediateLevelOneData> architectureCards = [
-  VocabularyIntermediateLevelOneData(korean: '건축', english: 'Architecture'),
-  VocabularyIntermediateLevelOneData(korean: '설계', english: 'Design'),
-  VocabularyIntermediateLevelOneData(korean: '청사진', english: 'Blueprint'),
-  VocabularyIntermediateLevelOneData(korean: '도면', english: 'Drawing'),
-  VocabularyIntermediateLevelOneData(korean: '입면도', english: 'Elevation'),
-  VocabularyIntermediateLevelOneData(korean: '평면도', english: 'Floor plan'),
-  VocabularyIntermediateLevelOneData(korean: '단면도', english: 'Cross-section'),
-  VocabularyIntermediateLevelOneData(korean: '구조', english: 'Structure'),
-  VocabularyIntermediateLevelOneData(korean: '양식', english: 'Style'),
-  VocabularyIntermediateLevelOneData(korean: '고전주의', english: 'Classicism'),
-  VocabularyIntermediateLevelOneData(korean: '모더니즘', english: 'Modernism'),
-  VocabularyIntermediateLevelOneData(korean: '포스트모던', english: 'Postmodern'),
-  VocabularyIntermediateLevelOneData(korean: '미니멀리즘', english: 'Minimalism'),
-  VocabularyIntermediateLevelOneData(korean: '기능주의', english: 'Functionalism'),
-  VocabularyIntermediateLevelOneData(korean: '공간', english: 'Space'),
-  VocabularyIntermediateLevelOneData(korean: '배치', english: 'Layout'),
-  VocabularyIntermediateLevelOneData(korean: '동선', english: 'Circulation'),
-  VocabularyIntermediateLevelOneData(korean: '채광', english: 'Lighting'),
-  VocabularyIntermediateLevelOneData(korean: '환기', english: 'Ventilation'),
-  VocabularyIntermediateLevelOneData(korean: '조경', english: 'Landscaping'),
-  VocabularyIntermediateLevelOneData(korean: '인테리어', english: 'Interior'),
-  VocabularyIntermediateLevelOneData(korean: '외관', english: 'Exterior'),
-  VocabularyIntermediateLevelOneData(korean: '파사드', english: 'Facade'),
-  VocabularyIntermediateLevelOneData(korean: '비례', english: 'Proportion'),
-  VocabularyIntermediateLevelOneData(korean: '대칭', english: 'Symmetry'),
-  VocabularyIntermediateLevelOneData(korean: '조화', english: 'Harmony'),
-];
-
-// Set 13: Journalism & Media (26 words)
-final List<VocabularyIntermediateLevelOneData> journalismCards = [
-  VocabularyIntermediateLevelOneData(korean: '언론', english: 'Media/Press'),
-  VocabularyIntermediateLevelOneData(korean: '저널리즘', english: 'Journalism'),
-  VocabularyIntermediateLevelOneData(korean: '기자', english: 'Reporter'),
-  VocabularyIntermediateLevelOneData(korean: '편집자', english: 'Editor'),
-  VocabularyIntermediateLevelOneData(korean: '편집장', english: 'Editor-in-chief'),
-  VocabularyIntermediateLevelOneData(korean: '발행인', english: 'Publisher'),
-  VocabularyIntermediateLevelOneData(korean: '기사', english: 'Article'),
-  VocabularyIntermediateLevelOneData(korean: '헤드라인', english: 'Headline'),
-  VocabularyIntermediateLevelOneData(korean: '사설', english: 'Editorial'),
-  VocabularyIntermediateLevelOneData(korean: '칼럼', english: 'Column'),
-  VocabularyIntermediateLevelOneData(korean: '인터뷰', english: 'Interview'),
-  VocabularyIntermediateLevelOneData(korean: '특종', english: 'Scoop'),
-  VocabularyIntermediateLevelOneData(korean: '취재', english: 'News gathering'),
-  VocabularyIntermediateLevelOneData(korean: '보도', english: 'Report'),
-  VocabularyIntermediateLevelOneData(korean: '속보', english: 'Breaking news'),
-  VocabularyIntermediateLevelOneData(korean: '특보', english: 'Special report'),
-  VocabularyIntermediateLevelOneData(korean: '생방송', english: 'Live broadcast'),
-  VocabularyIntermediateLevelOneData(korean: '녹화', english: 'Recording'),
-  VocabularyIntermediateLevelOneData(korean: '편집', english: 'Editing'),
-  VocabularyIntermediateLevelOneData(korean: '검열', english: 'Censorship'),
+      korean: '비 올 확률', english: 'Chance of rain'),
+  VocabularyIntermediateLevelOneData(korean: '미세 먼지', english: 'Fine dust'),
   VocabularyIntermediateLevelOneData(
-      korean: '언론자유', english: 'Freedom of press'),
-  VocabularyIntermediateLevelOneData(korean: '객관성', english: 'Objectivity'),
-  VocabularyIntermediateLevelOneData(korean: '공정성', english: 'Fairness'),
-  VocabularyIntermediateLevelOneData(korean: '신뢰성', english: 'Credibility'),
-  VocabularyIntermediateLevelOneData(korean: '정확성', english: 'Accuracy'),
-  VocabularyIntermediateLevelOneData(korean: '윤리', english: 'Ethics'),
-];
-
-// Set 14: Government & Politics (26 words)
-final List<VocabularyIntermediateLevelOneData> governmentCards = [
-  VocabularyIntermediateLevelOneData(korean: '정부', english: 'Government'),
-  VocabularyIntermediateLevelOneData(korean: '정치', english: 'Politics'),
-  VocabularyIntermediateLevelOneData(korean: '민주주의', english: 'Democracy'),
-  VocabularyIntermediateLevelOneData(korean: '독재', english: 'Dictatorship'),
-  VocabularyIntermediateLevelOneData(korean: '공화제', english: 'Republic'),
-  VocabularyIntermediateLevelOneData(korean: '군주제', english: 'Monarchy'),
-  VocabularyIntermediateLevelOneData(korean: '대통령', english: 'President'),
-  VocabularyIntermediateLevelOneData(korean: '총리', english: 'Prime Minister'),
-  VocabularyIntermediateLevelOneData(korean: '장관', english: 'Minister'),
+      korean: '최저 기온', english: 'Lowest temperature'),
   VocabularyIntermediateLevelOneData(
-      korean: '국회', english: 'National Assembly'),
+      korean: '최고 기온', english: 'Highest temperature'),
   VocabularyIntermediateLevelOneData(
-      korean: '의원', english: 'Member of Parliament'),
-  VocabularyIntermediateLevelOneData(korean: '선거', english: 'Election'),
-  VocabularyIntermediateLevelOneData(korean: '투표', english: 'Vote'),
-  VocabularyIntermediateLevelOneData(korean: '공약', english: 'Campaign promise'),
-  VocabularyIntermediateLevelOneData(korean: '정책', english: 'Policy'),
-  VocabularyIntermediateLevelOneData(korean: '법안', english: 'Bill'),
-  VocabularyIntermediateLevelOneData(korean: '법률', english: 'Law'),
-  VocabularyIntermediateLevelOneData(korean: '조례', english: 'Ordinance'),
-  VocabularyIntermediateLevelOneData(korean: '시민', english: 'Citizen'),
-  VocabularyIntermediateLevelOneData(korean: '국민', english: 'People/Nation'),
-  VocabularyIntermediateLevelOneData(korean: '주권', english: 'Sovereignty'),
-  VocabularyIntermediateLevelOneData(korean: '권력', english: 'Power'),
-  VocabularyIntermediateLevelOneData(korean: '부패', english: 'Corruption'),
-  VocabularyIntermediateLevelOneData(korean: '투명성', english: 'Transparency'),
-  VocabularyIntermediateLevelOneData(korean: '책임', english: 'Responsibility'),
-  VocabularyIntermediateLevelOneData(korean: '개혁', english: 'Reform'),
-];
-
-// Set 15: Economics & Trade (26 words)
-final List<VocabularyIntermediateLevelOneData> economicsCards = [
-  VocabularyIntermediateLevelOneData(korean: '경제', english: 'Economy'),
-  VocabularyIntermediateLevelOneData(korean: '경제학', english: 'Economics'),
-  VocabularyIntermediateLevelOneData(korean: '시장', english: 'Market'),
-  VocabularyIntermediateLevelOneData(korean: '수요', english: 'Demand'),
-  VocabularyIntermediateLevelOneData(korean: '공급', english: 'Supply'),
-  VocabularyIntermediateLevelOneData(korean: '인플레이션', english: 'Inflation'),
-  VocabularyIntermediateLevelOneData(korean: '디플레이션', english: 'Deflation'),
-  VocabularyIntermediateLevelOneData(korean: '경기침체', english: 'Recession'),
+      korean: '일교차가 크다', english: 'To have a large daily temperature range'),
+  VocabularyIntermediateLevelOneData(korean: '비가 그치다', english: 'Rain stops'),
   VocabularyIntermediateLevelOneData(
-      korean: '경기회복', english: 'Economic recovery'),
-  VocabularyIntermediateLevelOneData(korean: 'GDP', english: 'GDP'),
-  VocabularyIntermediateLevelOneData(korean: '성장률', english: 'Growth rate'),
+      korean: '날이 개다', english: 'Weather clears up'),
   VocabularyIntermediateLevelOneData(
-      korean: '실업률', english: 'Unemployment rate'),
-  VocabularyIntermediateLevelOneData(korean: '금리', english: 'Interest rate'),
-  VocabularyIntermediateLevelOneData(korean: '환율', english: 'Exchange rate'),
-  VocabularyIntermediateLevelOneData(korean: '무역', english: 'Trade'),
-  VocabularyIntermediateLevelOneData(korean: '수출', english: 'Export'),
-  VocabularyIntermediateLevelOneData(korean: '수입', english: 'Import'),
-  VocabularyIntermediateLevelOneData(korean: '관세', english: 'Tariff'),
-  VocabularyIntermediateLevelOneData(korean: '자유무역', english: 'Free trade'),
-  VocabularyIntermediateLevelOneData(korean: '보호무역', english: 'Protectionism'),
-  VocabularyIntermediateLevelOneData(korean: '세계화', english: 'Globalization'),
+      korean: '기온이 영하로 떨어지다', english: 'Temperature drops below zero'),
   VocabularyIntermediateLevelOneData(
-      korean: '다국적기업', english: 'Multinational company'),
-  VocabularyIntermediateLevelOneData(korean: '주식시장', english: 'Stock market'),
+      korean: '폭염 주의보', english: 'Heat wave advisory'),
   VocabularyIntermediateLevelOneData(
-      korean: '증권거래소', english: 'Stock exchange'),
+      korean: '호우/한파 경보', english: 'Heavy rain/cold wave warning'),
   VocabularyIntermediateLevelOneData(
-      korean: '선물거래', english: 'Futures trading'),
-  VocabularyIntermediateLevelOneData(korean: '거시경제', english: 'Macroeconomics'),
-];
-
-// Set 16: Sports Equipment & Terms (26 words)
-final List<VocabularyIntermediateLevelOneData> sportsEquipmentCards = [
+      korean: '마스크를 쓰다', english: 'To wear a mask'),
+  VocabularyIntermediateLevelOneData(korean: '대피하다', english: 'To evacuate'),
+  VocabularyIntermediateLevelOneData(korean: '시간을 내다', english: 'To make time'),
   VocabularyIntermediateLevelOneData(
-      korean: '운동용품', english: 'Sports equipment'),
-  VocabularyIntermediateLevelOneData(korean: '운동화', english: 'Athletic shoes'),
-  VocabularyIntermediateLevelOneData(korean: '운동복', english: 'Sportswear'),
-  VocabularyIntermediateLevelOneData(korean: '체육관', english: 'Gymnasium'),
-  VocabularyIntermediateLevelOneData(korean: '운동장', english: 'Athletic field'),
-  VocabularyIntermediateLevelOneData(korean: '경기장', english: 'Stadium'),
-  VocabularyIntermediateLevelOneData(korean: '선수', english: 'Athlete'),
-  VocabularyIntermediateLevelOneData(korean: '코치', english: 'Coach'),
-  VocabularyIntermediateLevelOneData(korean: '감독', english: 'Manager'),
-  VocabularyIntermediateLevelOneData(korean: '심판', english: 'Referee'),
-  VocabularyIntermediateLevelOneData(korean: '경기', english: 'Game/Match'),
-  VocabularyIntermediateLevelOneData(korean: '토너먼트', english: 'Tournament'),
-  VocabularyIntermediateLevelOneData(korean: '리그', english: 'League'),
-  VocabularyIntermediateLevelOneData(korean: '시즌', english: 'Season'),
-  VocabularyIntermediateLevelOneData(korean: '우승', english: 'Championship'),
-  VocabularyIntermediateLevelOneData(korean: '준우승', english: 'Runner-up'),
-  VocabularyIntermediateLevelOneData(korean: '메달', english: 'Medal'),
-  VocabularyIntermediateLevelOneData(korean: '트로피', english: 'Trophy'),
-  VocabularyIntermediateLevelOneData(korean: '기록', english: 'Record'),
-  VocabularyIntermediateLevelOneData(korean: '세계기록', english: 'World record'),
-  VocabularyIntermediateLevelOneData(korean: '올림픽', english: 'Olympics'),
-  VocabularyIntermediateLevelOneData(korean: '패럴림픽', english: 'Paralympics'),
-  VocabularyIntermediateLevelOneData(korean: '월드컵', english: 'World Cup'),
-  VocabularyIntermediateLevelOneData(korean: '아시안게임', english: 'Asian Games'),
-  VocabularyIntermediateLevelOneData(korean: '도핑', english: 'Doping'),
-  VocabularyIntermediateLevelOneData(korean: '페어플레이', english: 'Fair play'),
-];
-
-// Set 17: Photography & Videography (26 words)
-final List<VocabularyIntermediateLevelOneData> photographyCards = [
-  VocabularyIntermediateLevelOneData(korean: '사진', english: 'Photography'),
-  VocabularyIntermediateLevelOneData(korean: '사진가', english: 'Photographer'),
-  VocabularyIntermediateLevelOneData(korean: '카메라', english: 'Camera'),
-  VocabularyIntermediateLevelOneData(korean: '렌즈', english: 'Lens'),
-  VocabularyIntermediateLevelOneData(korean: '셔터', english: 'Shutter'),
-  VocabularyIntermediateLevelOneData(korean: '조리개', english: 'Aperture'),
-  VocabularyIntermediateLevelOneData(korean: '초점', english: 'Focus'),
-  VocabularyIntermediateLevelOneData(korean: '노출', english: 'Exposure'),
-  VocabularyIntermediateLevelOneData(korean: '화각', english: 'Angle of view'),
-  VocabularyIntermediateLevelOneData(korean: '심도', english: 'Depth of field'),
-  VocabularyIntermediateLevelOneData(korean: '구도', english: 'Composition'),
-  VocabularyIntermediateLevelOneData(korean: '조명', english: 'Lighting'),
-  VocabularyIntermediateLevelOneData(korean: '플래시', english: 'Flash'),
-  VocabularyIntermediateLevelOneData(korean: '삼각대', english: 'Tripod'),
-  VocabularyIntermediateLevelOneData(korean: '필터', english: 'Filter'),
-  VocabularyIntermediateLevelOneData(korean: '편집', english: 'Editing'),
-  VocabularyIntermediateLevelOneData(korean: '보정', english: 'Retouching'),
-  VocabularyIntermediateLevelOneData(korean: '현상', english: 'Development'),
-  VocabularyIntermediateLevelOneData(korean: '인화', english: 'Printing'),
-  VocabularyIntermediateLevelOneData(korean: '디지털', english: 'Digital'),
-  VocabularyIntermediateLevelOneData(korean: '아날로그', english: 'Analog'),
-  VocabularyIntermediateLevelOneData(korean: '해상도', english: 'Resolution'),
-  VocabularyIntermediateLevelOneData(korean: '화질', english: 'Image quality'),
-  VocabularyIntermediateLevelOneData(korean: '영상', english: 'Video'),
-  VocabularyIntermediateLevelOneData(korean: '촬영', english: 'Filming'),
-  VocabularyIntermediateLevelOneData(korean: '스튜디오', english: 'Studio'),
-];
-
-// Set 18: Events & Celebrations (26 words)
-final List<VocabularyIntermediateLevelOneData> eventsCards = [
-  VocabularyIntermediateLevelOneData(korean: '행사', english: 'Event'),
-  VocabularyIntermediateLevelOneData(korean: '축제', english: 'Festival'),
-  VocabularyIntermediateLevelOneData(korean: '기념일', english: 'Anniversary'),
-  VocabularyIntermediateLevelOneData(korean: '생일', english: 'Birthday'),
-  VocabularyIntermediateLevelOneData(korean: '결혼식', english: 'Wedding'),
-  VocabularyIntermediateLevelOneData(korean: '졸업식', english: 'Graduation'),
+      korean: '소나기가 내리다', english: 'A shower falls'),
+  VocabularyIntermediateLevelOneData(korean: '야외 행사', english: 'Outdoor event'),
   VocabularyIntermediateLevelOneData(
-      korean: '입학식', english: 'Entrance ceremony'),
+      korean: '체육 대회', english: 'Sports competition'),
+  VocabularyIntermediateLevelOneData(korean: '연기하다', english: 'To postpone'),
+  VocabularyIntermediateLevelOneData(korean: '우리', english: 'We / us'),
   VocabularyIntermediateLevelOneData(
-      korean: '개업식', english: 'Opening ceremony'),
+      korean: '야유회', english: 'Company picnic / outing'),
+  VocabularyIntermediateLevelOneData(korean: '열대야', english: 'Tropical night'),
   VocabularyIntermediateLevelOneData(
-      korean: '준공식', english: 'Completion ceremony'),
-  VocabularyIntermediateLevelOneData(korean: '시상식', english: 'Award ceremony'),
-  VocabularyIntermediateLevelOneData(korean: '콘서트', english: 'Concert'),
-  VocabularyIntermediateLevelOneData(korean: '공연', english: 'Performance'),
-  VocabularyIntermediateLevelOneData(korean: '전시회', english: 'Exhibition'),
-  VocabularyIntermediateLevelOneData(korean: '박람회', english: 'Expo'),
-  VocabularyIntermediateLevelOneData(korean: '세미나', english: 'Seminar'),
-  VocabularyIntermediateLevelOneData(korean: '컨퍼런스', english: 'Conference'),
-  VocabularyIntermediateLevelOneData(korean: '워크숍', english: 'Workshop'),
-  VocabularyIntermediateLevelOneData(korean: '파티', english: 'Party'),
-  VocabularyIntermediateLevelOneData(korean: '연회', english: 'Banquet'),
-  VocabularyIntermediateLevelOneData(korean: '리셉션', english: 'Reception'),
-  VocabularyIntermediateLevelOneData(korean: '모임', english: 'Gathering'),
-  VocabularyIntermediateLevelOneData(korean: '동창회', english: 'Alumni meeting'),
-  VocabularyIntermediateLevelOneData(korean: '회식', english: 'Company dinner'),
-  VocabularyIntermediateLevelOneData(korean: '송년회', english: 'Year-end party'),
-  VocabularyIntermediateLevelOneData(korean: '신년회', english: 'New Year party'),
-  VocabularyIntermediateLevelOneData(korean: '환영회', english: 'Welcome party'),
+      korean: '찬바람이 불다', english: 'Cold wind blows'),
+  VocabularyIntermediateLevelOneData(
+      korean: '옷차림', english: 'Clothing / attire'),
+  VocabularyIntermediateLevelOneData(korean: '춘곤증', english: 'Spring fatigue'),
+  VocabularyIntermediateLevelOneData(
+      korean: '우울하다', english: 'To feel depressed'),
+  VocabularyIntermediateLevelOneData(
+      korean: '봄/가을을 타다', english: 'To be affected by seasonal changes'),
+  VocabularyIntermediateLevelOneData(korean: '고열', english: 'High fever'),
+  VocabularyIntermediateLevelOneData(korean: '근육통', english: 'Muscle pain'),
+  VocabularyIntermediateLevelOneData(korean: '독감', english: 'Flu'),
+  VocabularyIntermediateLevelOneData(
+      korean: '의심되다', english: 'To be suspected'),
+  VocabularyIntermediateLevelOneData(
+      korean: '몸이 나른하다', english: 'To feel sluggish'),
+  VocabularyIntermediateLevelOneData(
+      korean: '피로를 느끼다', english: 'To feel fatigue'),
+  VocabularyIntermediateLevelOneData(korean: '기운이 없다', english: 'To feel weak'),
+  VocabularyIntermediateLevelOneData(
+      korean: '졸음이 오다', english: 'To feel sleepy'),
+  VocabularyIntermediateLevelOneData(
+      korean: '집중력이 떨어지다', english: 'To lose concentration'),
+  VocabularyIntermediateLevelOneData(korean: '적응하다', english: 'To adapt'),
+  VocabularyIntermediateLevelOneData(
+      korean: '익숙하다', english: 'To be familiar with'),
+  VocabularyIntermediateLevelOneData(
+      korean: '스트레칭을 하다', english: 'To do stretching'),
+  VocabularyIntermediateLevelOneData(korean: '수면 시간', english: 'Sleeping time'),
+  VocabularyIntermediateLevelOneData(korean: '건조하다', english: 'To be dry'),
 ];
 
 // Master list containing all vocabulary four data sets
 final List<List<VocabularyIntermediateLevelOneData>>
-    allIntermediateLevelOneDataSets = [intermediateOneLesson1];
+    allIntermediateLevelOneDataSets = [
+  intermediateOneLesson1,
+  intermediateOneLesson2,
+  intermediateOneLesson3,
+  intermediateOneLesson4,
+  intermediateOneLesson5,
+  intermediateOneLesson6,
+  intermediateOneLesson7,
+  intermediateOneLesson8,
+  intermediateOneLesson9,
+  intermediateOneLesson10,
+  intermediateOneLesson11,
+  intermediateOneLesson12,
+  intermediateOneLesson13,
+  intermediateOneLesson14,
+  intermediateOneLesson15,
+  intermediateOneLesson16,
+];
 
 // Function to get a specific vocabulary four data set
 List<VocabularyIntermediateLevelOneData> getIntermediateOneLessonDataSet(
