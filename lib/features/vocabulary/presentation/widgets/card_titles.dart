@@ -82,8 +82,6 @@ const List<String> cardTitlesIntermediateLevelOne = [
   '인터넷과 스마트폰',
   '고민과 상담',
   '기후와 날씨',
-  '기후와 날씨',
-  '기후와 날씨',
 ];
 
 // intermediate (Level 4)
@@ -103,7 +101,5 @@ const List<String> cardTitlesIntermediateLevelTwo = [
   '환경 보호',
   '생활과 경제',
   '법과 질서',
-  '이민 생활',
-  '이민 생활',
   '이민 생활',
 ];

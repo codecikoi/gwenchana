@@ -1,6 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:gwenchana/core/services/progress_service.dart';
+import 'package:gwenchana/features/vocabulary/data/vocabulary_begginer_one_data.dart';
+import 'package:gwenchana/features/vocabulary/data/vocabulary_beginner_two_data.dart';
+import 'package:gwenchana/features/vocabulary/data/vocabulary_elementary_data.dart';
+import 'package:gwenchana/features/vocabulary/data/vocabulary_intermediate_one.dart';
+import 'package:gwenchana/features/vocabulary/data/vocabulary_intermediate_two.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/card_titles.dart';
@@ -20,26 +25,6 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
     on<RemoveFromFavoritesEvent>(_onRemoveFromFavorites);
   }
 
-  // Future<void> _onRemoveFromFavorites(
-  //     RemoveFromFavoritesEvent event, Emitter<VocabularyState> emit) async {
-  //   try {
-  //     final favBox = await Hive.openBox('favorites');
-  //     final favorites = favBox.values.toList();
-  //     final index = favorites.indexWhere(
-  //       (e) =>
-  //           e['korean'] == event.card.korean &&
-  //           e['translation'] == event.card.translation,
-  //     );
-  //     if (index != -1) {
-  //       await favBox.deleteAt(index);
-  //     }
-  //     final updatedFavorites = await getFavorites();
-  //     emit(FavoritesLoaded(updatedFavorites));
-  //   } catch (e) {
-  //     emit(VocabularyError('Ошибка удаления из избранного'));
-  //   }
-  // }
-
   Future<void> _onRemoveFromFavorites(
       RemoveFromFavoritesEvent event, Emitter<VocabularyState> emit) async {
     try {
@@ -51,20 +36,51 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
     }
   }
 
+  int _getWordCount(int level, int index) {
+    switch (level) {
+      case 2:
+        return allBeginnerOneDataSets[index].length;
+      case 3:
+        return allBeginnerTwoDataSets[index].length;
+      case 4:
+        return allIntermediateLevelOneDataSets[index].length;
+      case 5:
+        return allIntermediateLevelTwoDataSets[index].length;
+      default:
+        return allElementaryLevelDataSets[index].length;
+    }
+  }
+
   Future<void> _onLoadProgress(
       LoadProgressEvent event, Emitter<VocabularyState> emit) async {
     emit(VocabularyLoading());
     final selectedLevel = await ProgressService.getSelectedLevel();
     final progress = await ProgressService.getAllProgress(selectedLevel);
     final completed = await ProgressService.getAllCompleted(selectedLevel);
+    int cardCount;
+    switch (selectedLevel) {
+      case 4:
+        cardCount = cardTitlesIntermediateLevelOne.length;
+        break;
+      case 5:
+        cardCount = cardTitlesIntermediateLevelTwo.length;
+        break;
+      case 2:
+        cardCount = cardTitlesBeginnerLevelOne.length;
+        break;
+      case 3:
+        cardCount = cardTitlesBeginnerLevelTwo.length;
+        break;
+      default:
+        cardCount = cardTitlesElementaryLevel.length;
+    }
     final cards = List.generate(
-      18,
+      cardCount,
       (i) => VocabularyCardData(
-        title: 'Card ${i + 1}',
-        mainTitle:
-            _getCardTitle(selectedLevel, i), // название карт (далее корейский)
+        title: 'Card  ${i + 1}',
+        mainTitle: _getCardTitle(selectedLevel, i),
         progress: progress[i],
-        total: 26, // количество слов в каждой тема (26 карт)
+        total: _getWordCount(selectedLevel, i),
         isCompleted: completed[i],
       ),
     );

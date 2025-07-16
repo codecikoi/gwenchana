@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:gwenchana/core/helper/basic_appbar.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
@@ -15,6 +16,18 @@ class _AppPageState extends State<AppPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('${AppLocalizations.of(context)!.welcomeTo} Gwenchana'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.account_box,
+            ),
+            iconSize: 34,
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 120),

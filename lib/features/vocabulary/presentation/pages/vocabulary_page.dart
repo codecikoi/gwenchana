@@ -20,11 +20,11 @@ class VocabularyPage extends StatefulWidget {
 
 class _VocabularyPageState extends State<VocabularyPage> {
   final List<String> levelNames = [
-    '기조', // 0
-    '초급 1', // 1
-    '초급 2', // 2
-    '중급 1', // 3
-    '중급 2', // 4
+    '기조', // elementary
+    '초급 1', // beginner I
+    '초급 2', // beginner II
+    '중급 1', // intermediate I
+    '중급 2', // intermediate II
   ];
 
   Color getCardColor(int index) {

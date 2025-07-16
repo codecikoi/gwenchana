@@ -970,7 +970,7 @@ final List<List<VocabularyIntermediateLevelOneData>>
 // Function to get a specific vocabulary four data set
 List<VocabularyIntermediateLevelOneData> getIntermediateOneLessonDataSet(
     int setNumber) {
-  if (setNumber >= 1 && setNumber <= 18) {
+  if (setNumber >= 1 && setNumber <= allIntermediateLevelOneDataSets.length) {
     return allIntermediateLevelOneDataSets[setNumber - 1];
   }
   return [];

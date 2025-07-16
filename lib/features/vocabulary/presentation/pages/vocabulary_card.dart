@@ -250,7 +250,6 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
                 _controller.reset();
               });
             },
-            tooltip: 'reset progress',
           ),
         ],
       ),

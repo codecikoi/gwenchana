@@ -1,4 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:gwenchana/features/vocabulary/presentation/widgets/card_titles.dart';
 
 class ProgressService {
   static const String _progressPrefix = 'vocabulary_progress';
@@ -14,6 +15,7 @@ class ProgressService {
     await prefs.setInt(key, progress);
 
     // for completed sets
+// TODO: change countity of words in card. it is different
 
     if (progress >= 26) {
       final completedKey = '${_completedPrefix}level${level}_set$setIndex';
@@ -39,9 +41,27 @@ class ProgressService {
 
   // getting all progress for a specific level
 
+  static int getSetCountForLevel(int level) {
+    switch (level) {
+      case 1:
+        return cardTitlesElementaryLevel.length;
+      case 2:
+        return cardTitlesBeginnerLevelOne.length;
+      case 3:
+        return cardTitlesBeginnerLevelTwo.length;
+      case 4:
+        return cardTitlesIntermediateLevelOne.length;
+      case 5:
+        return cardTitlesIntermediateLevelTwo.length;
+      default:
+        return 0;
+    }
+  }
+
   static Future<List<int>> getAllProgress(int level) async {
     List<int> progressList = [];
-    for (int i = 0; i < 18; i++) {
+    final setCount = getSetCountForLevel(level);
+    for (int i = 0; i < setCount; i++) {
       progressList.add(await getProgress(i, level));
     }
     return progressList;
@@ -51,7 +71,8 @@ class ProgressService {
 
   static Future<List<bool>> getAllCompleted(int level) async {
     List<bool> completedList = [];
-    for (int i = 0; i < 18; i++) {
+    final setCount = getSetCountForLevel(level);
+    for (int i = 0; i < setCount; i++) {
       completedList.add(await isCompleted(i, level));
     }
     return completedList;
@@ -71,7 +92,8 @@ class ProgressService {
 
   static Future<void> resetAllProgress(int level) async {
     final prefs = await SharedPreferences.getInstance();
-    for (int i = 0; i < 18; i++) {
+    final setCount = getSetCountForLevel(level);
+    for (int i = 0; i < setCount; i++) {
       final progressKey = '${_progressPrefix}level${level}_set$i';
       final completedKey = '${_completedPrefix}level${level}_set$i';
       await prefs.remove(progressKey);
@@ -109,7 +131,7 @@ class ProgressService {
       final progress = await getAllProgress(level);
       final completed = await getAllCompleted(level);
 
-      final totalCards = 18 * 26; // 18 наборов по 26 карточек
+      final totalCards = getSetCountForLevel(level) * 26;
       final completedCards = progress.fold(0, (sum, p) => sum + p);
       final completedSets = completed.where((c) => c).length;
 

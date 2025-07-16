@@ -551,7 +551,7 @@ final List<VocabularyElementaryLevelData> activitiesCards = [
 ];
 
 // Master list containing all vocabulary sets
-final List<List<VocabularyElementaryLevelData>> allVocabularySets = [
+final List<List<VocabularyElementaryLevelData>> allElementaryLevelDataSets = [
   familyCards, // Set 1: Family & Relationships
   foodCards, // Set 2: Food & Drinks
   colorsCards, // Set 3: Colors & Shapes
@@ -573,17 +573,17 @@ final List<List<VocabularyElementaryLevelData>> allVocabularySets = [
 ];
 
 // Function to get a specific vocabulary set
-List<VocabularyElementaryLevelData> getVocabularySet(int setNumber) {
+List<VocabularyElementaryLevelData> getElementaryLessonDataSet(int setNumber) {
   if (setNumber >= 1 && setNumber <= 18) {
-    return allVocabularySets[setNumber - 1];
+    return allElementaryLevelDataSets[setNumber - 1];
   }
   return [];
 }
 
 // Function to get all vocabulary cards as one big list
-List<VocabularyElementaryLevelData> getAllVocabularyCards() {
+List<VocabularyElementaryLevelData> getElementaryAllLessonsDataCards() {
   List<VocabularyElementaryLevelData> allCards = [];
-  for (List<VocabularyElementaryLevelData> set in allVocabularySets) {
+  for (List<VocabularyElementaryLevelData> set in allElementaryLevelDataSets) {
     allCards.addAll(set);
   }
   return allCards;

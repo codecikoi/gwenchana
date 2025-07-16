@@ -42,7 +42,7 @@ final List<VocabularyIntermediateLevelTwoData> intermediateTwoLesson1 = [
   VocabularyIntermediateLevelTwoData(korean: '환경', english: 'Environment'),
   VocabularyIntermediateLevelTwoData(korean: '다행히', english: 'Fortunately'),
   VocabularyIntermediateLevelTwoData(
-      korean: '머리를 감다', english: 'To wash one’s hair'),
+      korean: '머리를 감다', english: 'To wash one\'s hair'),
   VocabularyIntermediateLevelTwoData(
       korean: '앞만 보고 달리다', english: 'To run forward without looking back'),
   VocabularyIntermediateLevelTwoData(
@@ -85,12 +85,12 @@ final List<VocabularyIntermediateLevelTwoData> intermediateTwoLesson1 = [
       korean: '계기', english: 'Motivation / trigger'),
   VocabularyIntermediateLevelTwoData(korean: '이주', english: 'Migration'),
   VocabularyIntermediateLevelTwoData(
-      korean: '마음을 먹다', english: 'To make up one’s mind'),
+      korean: '마음을 먹다', english: 'To make up one\'s mind'),
   VocabularyIntermediateLevelTwoData(
       korean: '기초', english: 'Foundation / basics'),
   VocabularyIntermediateLevelTwoData(korean: '꽤', english: 'Quite / fairly'),
   VocabularyIntermediateLevelTwoData(
-      korean: '적성에 맞다', english: 'To suit one’s aptitude'),
+      korean: '적성에 맞다', english: 'To suit one\'s aptitude'),
   VocabularyIntermediateLevelTwoData(
       korean: '겁이 나다', english: 'To feel scared'),
   VocabularyIntermediateLevelTwoData(korean: '어쩌면', english: 'Maybe / perhaps'),
@@ -153,12 +153,12 @@ final List<VocabularyIntermediateLevelTwoData> intermediateTwoLesson2 = [
   VocabularyIntermediateLevelTwoData(korean: '핵가족', english: 'Nuclear family'),
   VocabularyIntermediateLevelTwoData(
       korean: '부모님을 모시다',
-      english: 'To live with one’s parents (care for them)'),
+      english: 'To live with one\'s parents (care for them)'),
   VocabularyIntermediateLevelTwoData(korean: '세대', english: 'Generation'),
   VocabularyIntermediateLevelTwoData(
       korean: '유대가 깊다', english: 'To have a strong bond'),
   VocabularyIntermediateLevelTwoData(
-      korean: '분가하다', english: 'To move out (of parents’ house)'),
+      korean: '분가하다', english: 'To move out (of parents\' house)'),
   VocabularyIntermediateLevelTwoData(
       korean: '가사를 분담하다', english: 'To share household chores'),
   VocabularyIntermediateLevelTwoData(korean: '존중', english: 'Respect'),
@@ -316,7 +316,7 @@ final List<VocabularyIntermediateLevelTwoData> intermediateTwoLesson4 = [
   VocabularyIntermediateLevelTwoData(
       korean: '장수를 기원하다', english: 'To wish for longevity'),
   VocabularyIntermediateLevelTwoData(
-      korean: '자리를 빛내다', english: 'To honor (someone’s presence)'),
+      korean: '자리를 빛내다', english: 'To honor (someone\'s presence)'),
   VocabularyIntermediateLevelTwoData(
       korean: '돌잡이', english: 'First birthday fortune-telling event'),
   VocabularyIntermediateLevelTwoData(
@@ -431,7 +431,7 @@ final List<VocabularyIntermediateLevelTwoData> intermediateTwoLesson6 = [
   VocabularyIntermediateLevelTwoData(
       korean: '낯설어 하다', english: 'Feel unfamiliar'),
   VocabularyIntermediateLevelTwoData(
-      korean: '생각을 넓히다', english: 'Broaden one’s thinking'),
+      korean: '생각을 넓히다', english: 'Broaden one\'s thinking'),
   VocabularyIntermediateLevelTwoData(
       korean: '체류하다', english: 'Stay (temporarily)'),
   VocabularyIntermediateLevelTwoData(
@@ -1119,7 +1119,7 @@ final List<List<VocabularyIntermediateLevelTwoData>>
 // Function to get a specific vocabulary five data set
 List<VocabularyIntermediateLevelTwoData> getIntermediateTwoLessonDataSet(
     int setNumber) {
-  if (setNumber >= 1 && setNumber <= 18) {
+  if (setNumber >= 1 && setNumber <= allIntermediateLevelTwoDataSets.length) {
     return allIntermediateLevelTwoDataSets[setNumber - 1];
   }
   return [];
