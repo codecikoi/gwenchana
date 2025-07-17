@@ -35,7 +35,7 @@ class AuthGuard extends AutoRouteGuard {
             path == '/create-account' ||
             path == '/recover-password' ||
             path == '/choose-lang')) {
-      router.replacePath('/app-page');
+      router.replacePath('/skill-choosing-page');
       return;
     }
     resolver.next(true);

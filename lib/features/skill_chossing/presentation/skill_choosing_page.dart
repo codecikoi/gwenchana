@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:gwenchana/features/account_setttings/presentation/account_settings_page.dart';
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
 @RoutePage()
@@ -47,7 +48,10 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
     final List<SkillCard> skills = [
       SkillCard(
         title: AppLocalizations.of(context)!.vocabulary,
-        gradient: [Color(0xFFffecd2), Color(0xFFfcb69f)],
+        gradient: [
+          Color.fromARGB(255, 136, 216, 139),
+          Color.fromARGB(255, 5, 157, 58)
+        ],
         icon: Icons.book,
       ),
       SkillCard(
@@ -84,6 +88,20 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Row(
+                children: [
+                  Text(
+                    'Gwenchana',
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                  SettingsButton(),
+                ],
+              ),
               const SizedBox(height: 40),
               Text(
                 'Choose Skill',

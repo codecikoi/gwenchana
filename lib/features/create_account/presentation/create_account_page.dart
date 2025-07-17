@@ -82,7 +82,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
         await userCredential.user!
             .updateDisplayName(_nameController.text.trim());
         if (mounted) {
-          context.router.pushPath('/app-page');
+          context.router.pushPath('/skill-choosing-page');
         }
       }
     } catch (e) {
