@@ -11,22 +11,6 @@
 part of 'app_router.dart';
 
 /// generated route for
-/// [AppPage]
-class AppRoute extends PageRouteInfo<void> {
-  const AppRoute({List<PageRouteInfo>? children})
-    : super(AppRoute.name, initialChildren: children);
-
-  static const String name = 'AppRoute';
-
-  static PageInfo page = PageInfo(
-    name,
-    builder: (data) {
-      return const AppPage();
-    },
-  );
-}
-
-/// generated route for
 /// [ChooseLangPage]
 class ChooseLangRoute extends PageRouteInfo<void> {
   const ChooseLangRoute({List<PageRouteInfo>? children})
@@ -134,6 +118,22 @@ class RecoverPasswordRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const RecoverPasswordPage();
+    },
+  );
+}
+
+/// generated route for
+/// [SkillChoosingPage]
+class SkillChoosingRoute extends PageRouteInfo<void> {
+  const SkillChoosingRoute({List<PageRouteInfo>? children})
+    : super(SkillChoosingRoute.name, initialChildren: children);
+
+  static const String name = 'SkillChoosingRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SkillChoosingPage();
     },
   );
 }

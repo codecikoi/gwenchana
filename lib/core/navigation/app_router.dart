@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gwenchana/core/navigation/guards.dart';
-import 'package:gwenchana/features/app_page/presentation/app_page.dart';
+import 'package:gwenchana/features/skill_chossing/presentation/skill_choosing_page.dart';
 import 'package:gwenchana/features/choose_language/presentation/pages/choose_lang_page.dart';
 import 'package:gwenchana/features/create_account/presentation/create_account_page.dart';
 import 'package:gwenchana/features/authentication/presentation/pages/login_page.dart';
@@ -20,9 +20,6 @@ part 'app_router.gr.dart';
 class AppRouter extends RootStackRouter {
   final AuthGuard _authGuard = AuthGuard();
 
-  // @override
-  // RouteType get defaulRouteType => RouteType.material();
-
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
@@ -39,7 +36,6 @@ class AppRouter extends RootStackRouter {
             page: RecoverPasswordRoute.page,
             path: '/recover-password',
             guards: [_authGuard]),
-        AutoRoute(page: AppRoute.page, path: '/app-page', guards: [_authGuard]),
         AutoRoute(
             page: ReadingRoute.page,
             path: '/reading-page',
@@ -69,6 +65,11 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: MyCardsRoute.page,
           path: '/my-cards-page',
+          guards: [_authGuard],
+        ),
+        AutoRoute(
+          page: SkillChoosingRoute.page,
+          path: '/skill-choosing-page',
           guards: [_authGuard],
         ),
         RedirectRoute(path: '/', redirectTo: '/choose-lang'),
