@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 @RoutePage()
 class SettingsButton extends StatelessWidget {
-  const SettingsButton({Key? key}) : super(key: key);
+  const SettingsButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,16 +11,18 @@ class SettingsButton extends StatelessWidget {
       onTap: () {
         _showSettingsBottomSheet(context);
       },
-      child: Container(
-        padding: EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Icon(
-          Icons.settings,
-          color: Colors.white,
-          size: 24,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 20.0),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Icon(
+            Icons.person,
+            color: Colors.white,
+            size: 36,
+          ),
         ),
       ),
     );
@@ -33,7 +35,11 @@ class SettingsButton extends StatelessWidget {
       builder: (context) => Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(
+              20,
+            ),
+          ),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

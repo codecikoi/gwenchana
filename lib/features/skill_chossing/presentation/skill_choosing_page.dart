@@ -71,6 +71,21 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
       ),
     ];
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Gwenchana',
+          style: TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            letterSpacing: 1.2,
+          ),
+        ),
+        actions: [
+          SettingsButton(),
+        ],
+        backgroundColor: Color(0xFF667eea),
+      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -88,29 +103,6 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Text(
-                    'Gwenchana',
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      letterSpacing: 1.2,
-                    ),
-                  ),
-                  SettingsButton(),
-                ],
-              ),
-              const SizedBox(height: 40),
-              Text(
-                'Choose Skill',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
               const SizedBox(height: 40),
               Expanded(
                 child: ListView.builder(
