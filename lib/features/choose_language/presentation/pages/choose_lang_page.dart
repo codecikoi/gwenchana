@@ -19,15 +19,13 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
   String selectedLanguage = '';
 
   final List<Map<String, dynamic>> languages = [
-    {'name': 'Русский', 'flag': 'assets/flags/ru.png', 'code': 'ru'},
     {'name': 'English', 'flag': 'assets/flags/us.png', 'code': 'en'},
-    {'name': 'Tiếng Việt', 'flag': 'assets/flags/vn.png', 'code': 'vi'},
-    {'name': '日本語', 'flag': 'assets/flags/jp.png', 'code': 'ja'},
-    {'name': 'Français', 'flag': 'assets/flags/fr.png', 'code': 'fr'},
-    {'name': 'Bahasa Indo', 'flag': 'assets/flags/id.png', 'code': 'id'},
-    {'name': '简体中文', 'flag': 'assets/flags/cn.png', 'code': 'zh_CN'},
-    {'name': 'Deutsch', 'flag': 'assets/flags/de.png', 'code': 'de'},
     {'name': 'Uzbek', 'flag': 'assets/flags/uz.png', 'code': 'uz'},
+    {'name': 'Tiếng Việt', 'flag': 'assets/flags/vn.png', 'code': 'vi'},
+    {'name': 'Русский', 'flag': 'assets/flags/ru.png', 'code': 'ru'},
+    {'name': 'ไทย', 'flag': 'assets/flags/th.png', 'code': 'th'},
+    {'name': 'Filipino', 'flag': 'assets/flags/fr.png', 'code': 'fil'},
+    {'name': '简体中文', 'flag': 'assets/flags/cn.png', 'code': 'zh_CN'},
   ];
 
   void _selectLanguage(String languageCode) {

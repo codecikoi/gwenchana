@@ -90,11 +90,6 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
             ),
             onTap: () => context.router.pushPath('/account-settings-page'),
           ),
-
-          //       backgroundImage: profileImage != null
-          // ? FileImage(profileImage!)
-          // : const AssetImage('assets/logo/main_logo.png')
-          //     as ImageProvider,
         ],
         backgroundColor: Color(0xFFfab1a0),
       ),

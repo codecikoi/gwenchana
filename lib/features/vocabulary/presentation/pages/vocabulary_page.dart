@@ -98,7 +98,7 @@ class _VocabularyPageState extends State<VocabularyPage> {
                       ? levelNames[state.selectedLevel - 1]
                       : AppLocalizations.of(context)!.chooseBook,
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 20,
                   ),
                 ),
                 onPressed: () => showLevelDialog(
@@ -129,12 +129,12 @@ class _VocabularyPageState extends State<VocabularyPage> {
               ],
             ),
             body: GridView.builder(
-              padding: EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(6.0),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                mainAxisSpacing: 16.0,
                 childAspectRatio: 1.0,
-                crossAxisSpacing: 16.0,
+                crossAxisSpacing: 6.0,
+                mainAxisSpacing: 6.0,
               ),
               itemCount: state.cards.length + 2,
               itemBuilder: (context, index) {
@@ -143,6 +143,9 @@ class _VocabularyPageState extends State<VocabularyPage> {
                   return GestureDetector(
                     onTap: () => context.router.push(const MyCardsRoute()),
                     child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6),
+                      ),
                       color: getCardColor(index - 3),
                       child: Center(
                         child: Column(
@@ -174,6 +177,9 @@ class _VocabularyPageState extends State<VocabularyPage> {
                       FavoritesCardRoute(),
                     ),
                     child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6),
+                      ),
                       color: getCardColor(index - 7),
                       child: Center(
                         child: Column(
@@ -207,22 +213,25 @@ class _VocabularyPageState extends State<VocabularyPage> {
                     context.read<VocabularyBloc>(),
                   ),
                   child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(6),
+                    ),
                     color: getCardColor(index - 2),
                     child: Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: EdgeInsets.all(14.0),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             card.mainTitle,
-                            textAlign: TextAlign.center,
+                            textAlign: TextAlign.start,
                             style: TextStyle(
-                              fontSize: 16.0,
+                              fontSize: 18.0,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
                           ),
-                          SizedBox(height: 8.0),
+                          SizedBox(height: 4.0),
                           if (card.isCompleted)
                             Icon(
                               Icons.check_circle,
@@ -233,7 +242,7 @@ class _VocabularyPageState extends State<VocabularyPage> {
                             Text(
                               '${card.progress}/${card.total}',
                               style: TextStyle(
-                                fontSize: 16.0,
+                                fontSize: 18.0,
                                 color: Colors.white,
                               ),
                             ),
