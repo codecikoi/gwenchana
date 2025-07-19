@@ -167,4 +167,61 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get emptyFavorites => 'Keine Lieblingskarten';
+
+  @override
+  String get takePhoto => 'Foto aufnehmen';
+
+  @override
+  String get chooseFrommGallery => 'Aus Galerie wählen';
+
+  @override
+  String get accountSettings => 'Einstellungen';
+
+  @override
+  String get editFullName => 'Vollständigen Namen bearbeiten';
+
+  @override
+  String get enterFullName => 'Geben Sie Ihren vollständigen Namen ein';
+
+  @override
+  String get save => 'Speichern';
+
+  @override
+  String get language => 'Sprache';
+
+  @override
+  String get terms => 'Nutzungsbedingungen & Datenschutz';
+
+  @override
+  String get faq => 'FAQ';
+
+  @override
+  String get contactUs => 'Kontaktieren Sie uns';
+
+  @override
+  String get darkMode => 'Dunkler Modus';
+
+  @override
+  String get notifications => 'Benachrichtigungen';
+
+  @override
+  String get selectLanguage => 'Sprache auswählen';
+
+  @override
+  String get changePassword => 'Passwort ändern';
+
+  @override
+  String get deleteAccount => 'Konto löschen';
+
+  @override
+  String get logOut => 'Abmelden';
+
+  @override
+  String get sureLogOut => 'Sind Sie sicher, dass Sie sich abmelden möchten?';
+
+  @override
+  String get sureDelete => 'Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.';
+
+  @override
+  String get fullName => 'Vollständiger Name';
 }

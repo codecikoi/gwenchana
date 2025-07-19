@@ -82,9 +82,9 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
           ),
         ),
         actions: [
-          SettingsButton(),
+          AccountSettingsPage(),
         ],
-        backgroundColor: Color(0xFF667eea),
+        backgroundColor: Color(0xFFfab1a0),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -92,8 +92,10 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFF667eea),
-              Color(0xFF764ba2),
+              // Color(0xFF667eea),
+              // Color(0xFF764ba2),
+              Color(0xFFfab1a0),
+              Color(0xffc67c4e),
             ],
           ),
         ),
@@ -106,6 +108,7 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
               const SizedBox(height: 40),
               Expanded(
                 child: ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: skills.length,
                   itemBuilder: (context, index) {
                     return AnimatedContainer(
@@ -151,7 +154,7 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(0.3),
+                                  color: Colors.black.withAlpha(40),
                                   spreadRadius: 0,
                                   blurRadius: 20,
                                   offset: Offset(0, 10),
@@ -167,7 +170,7 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
                                     width: 100,
                                     height: 100,
                                     decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.1),
+                                      color: Colors.white.withAlpha(30),
                                       shape: BoxShape.circle,
                                     ),
                                   ),
@@ -179,7 +182,7 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
                                     width: 60,
                                     height: 60,
                                     decoration: BoxDecoration(
-                                      color: Colors.white.withOpacity(0.1),
+                                      color: Colors.white.withAlpha(30),
                                       shape: BoxShape.circle,
                                     ),
                                   ),
@@ -208,8 +211,7 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
                                           Container(
                                             width: 40,
                                             height: 3,
-                                            color:
-                                                Colors.white.withOpacity(0.7),
+                                            color: Colors.white.withAlpha(80),
                                           )
                                         ],
                                       ),
@@ -239,9 +241,8 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(20),
-                                          color: Colors.white.withOpacity(
-                                            0.1 * _animation.value,
-                                          ),
+                                          color: Colors.white.withAlpha(
+                                              (30 * _animation.value).toInt()),
                                         ),
                                       );
                                     },

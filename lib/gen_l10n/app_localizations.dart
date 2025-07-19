@@ -432,6 +432,120 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No favorite cards'**
   String get emptyFavorites;
+
+  /// No description provided for @takePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Take photo'**
+  String get takePhoto;
+
+  /// No description provided for @chooseFrommGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from Gallery'**
+  String get chooseFrommGallery;
+
+  /// No description provided for @accountSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get accountSettings;
+
+  /// No description provided for @editFullName.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit full name'**
+  String get editFullName;
+
+  /// No description provided for @enterFullName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your full name'**
+  String get enterFullName;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @terms.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms & Privacy'**
+  String get terms;
+
+  /// No description provided for @faq.
+  ///
+  /// In en, this message translates to:
+  /// **'FAQ'**
+  String get faq;
+
+  /// No description provided for @contactUs.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact us'**
+  String get contactUs;
+
+  /// No description provided for @darkMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark mode'**
+  String get darkMode;
+
+  /// No description provided for @notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
+  /// No description provided for @selectLanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Select language'**
+  String get selectLanguage;
+
+  /// No description provided for @changePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Change password'**
+  String get changePassword;
+
+  /// No description provided for @deleteAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get deleteAccount;
+
+  /// No description provided for @logOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get logOut;
+
+  /// No description provided for @sureLogOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure to log out'**
+  String get sureLogOut;
+
+  /// No description provided for @sureDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure to delete your account? This action cannot be undone.'**
+  String get sureDelete;
+
+  /// No description provided for @fullName.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get fullName;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

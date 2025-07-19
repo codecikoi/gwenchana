@@ -167,4 +167,61 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emptyFavorites => 'No favorite cards';
+
+  @override
+  String get takePhoto => 'Take photo';
+
+  @override
+  String get chooseFrommGallery => 'Choose from Gallery';
+
+  @override
+  String get accountSettings => 'Settings';
+
+  @override
+  String get editFullName => 'Edit full name';
+
+  @override
+  String get enterFullName => 'Enter your full name';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get terms => 'Terms & Privacy';
+
+  @override
+  String get faq => 'FAQ';
+
+  @override
+  String get contactUs => 'Contact us';
+
+  @override
+  String get darkMode => 'Dark mode';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get selectLanguage => 'Select language';
+
+  @override
+  String get changePassword => 'Change password';
+
+  @override
+  String get deleteAccount => 'Delete account';
+
+  @override
+  String get logOut => 'Log out';
+
+  @override
+  String get sureLogOut => 'Are you sure to log out';
+
+  @override
+  String get sureDelete => 'Are you sure to delete your account? This action cannot be undone.';
+
+  @override
+  String get fullName => 'Full name';
 }

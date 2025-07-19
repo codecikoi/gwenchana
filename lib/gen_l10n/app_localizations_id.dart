@@ -167,4 +167,61 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get emptyFavorites => 'Tidak ada kartu favorit';
+
+  @override
+  String get takePhoto => 'Ambil foto';
+
+  @override
+  String get chooseFrommGallery => 'Pilih dari Galeri';
+
+  @override
+  String get accountSettings => 'Pengaturan';
+
+  @override
+  String get editFullName => 'Edit nama lengkap';
+
+  @override
+  String get enterFullName => 'Masukkan nama lengkap Anda';
+
+  @override
+  String get save => 'Simpan';
+
+  @override
+  String get language => 'Bahasa';
+
+  @override
+  String get terms => 'Syarat & Privasi';
+
+  @override
+  String get faq => 'FAQ';
+
+  @override
+  String get contactUs => 'Hubungi kami';
+
+  @override
+  String get darkMode => 'Mode gelap';
+
+  @override
+  String get notifications => 'Notifikasi';
+
+  @override
+  String get selectLanguage => 'Pilih bahasa';
+
+  @override
+  String get changePassword => 'Ubah kata sandi';
+
+  @override
+  String get deleteAccount => 'Hapus akun';
+
+  @override
+  String get logOut => 'Keluar';
+
+  @override
+  String get sureLogOut => 'Apakah Anda yakin ingin keluar?';
+
+  @override
+  String get sureDelete => 'Apakah Anda yakin ingin menghapus akun Anda? Tindakan ini tidak dapat dibatalkan.';
+
+  @override
+  String get fullName => 'Nama lengkap';
 }

@@ -11,6 +11,22 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [AccountSettingsPage]
+class AccountSettingsRoute extends PageRouteInfo<void> {
+  const AccountSettingsRoute({List<PageRouteInfo>? children})
+    : super(AccountSettingsRoute.name, initialChildren: children);
+
+  static const String name = 'AccountSettingsRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AccountSettingsPage();
+    },
+  );
+}
+
+/// generated route for
 /// [ChooseLangPage]
 class ChooseLangRoute extends PageRouteInfo<void> {
   const ChooseLangRoute({List<PageRouteInfo>? children})

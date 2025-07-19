@@ -167,4 +167,61 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get emptyFavorites => '没有收藏卡片';
+
+  @override
+  String get takePhoto => '拍照';
+
+  @override
+  String get chooseFrommGallery => '从相册选择';
+
+  @override
+  String get accountSettings => '设置';
+
+  @override
+  String get editFullName => '编辑全名';
+
+  @override
+  String get enterFullName => '请输入您的全名';
+
+  @override
+  String get save => '保存';
+
+  @override
+  String get language => '语言';
+
+  @override
+  String get terms => '条款与隐私';
+
+  @override
+  String get faq => '常见问题';
+
+  @override
+  String get contactUs => '联系我们';
+
+  @override
+  String get darkMode => '深色模式';
+
+  @override
+  String get notifications => '通知';
+
+  @override
+  String get selectLanguage => '选择语言';
+
+  @override
+  String get changePassword => '更改密码';
+
+  @override
+  String get deleteAccount => '删除账户';
+
+  @override
+  String get logOut => '退出登录';
+
+  @override
+  String get sureLogOut => '您确定要退出登录吗？';
+
+  @override
+  String get sureDelete => '您确定要删除您的账户吗？此操作无法撤销。';
+
+  @override
+  String get fullName => '全名';
 }

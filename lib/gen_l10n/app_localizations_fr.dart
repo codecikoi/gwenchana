@@ -167,4 +167,61 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get emptyFavorites => 'Aucune carte favorite';
+
+  @override
+  String get takePhoto => 'Prendre une photo';
+
+  @override
+  String get chooseFrommGallery => 'Choisir depuis la galerie';
+
+  @override
+  String get accountSettings => 'Paramètres';
+
+  @override
+  String get editFullName => 'Modifier le nom complet';
+
+  @override
+  String get enterFullName => 'Entrez votre nom complet';
+
+  @override
+  String get save => 'Enregistrer';
+
+  @override
+  String get language => 'Langue';
+
+  @override
+  String get terms => 'Conditions & Confidentialité';
+
+  @override
+  String get faq => 'FAQ';
+
+  @override
+  String get contactUs => 'Contactez-nous';
+
+  @override
+  String get darkMode => 'Mode sombre';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get selectLanguage => 'Sélectionner la langue';
+
+  @override
+  String get changePassword => 'Changer le mot de passe';
+
+  @override
+  String get deleteAccount => 'Supprimer le compte';
+
+  @override
+  String get logOut => 'Se déconnecter';
+
+  @override
+  String get sureLogOut => 'Êtes-vous sûr de vouloir vous déconnecter ?';
+
+  @override
+  String get sureDelete => 'Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.';
+
+  @override
+  String get fullName => 'Nom complet';
 }

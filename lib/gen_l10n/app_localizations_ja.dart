@@ -167,4 +167,61 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get emptyFavorites => 'お気に入りのカードがありません';
+
+  @override
+  String get takePhoto => '写真を撮る';
+
+  @override
+  String get chooseFrommGallery => 'ギャラリーから選択';
+
+  @override
+  String get accountSettings => '設定';
+
+  @override
+  String get editFullName => '氏名を編集';
+
+  @override
+  String get enterFullName => '氏名を入力してください';
+
+  @override
+  String get save => '保存';
+
+  @override
+  String get language => '言語';
+
+  @override
+  String get terms => '利用規約とプライバシー';
+
+  @override
+  String get faq => 'よくある質問';
+
+  @override
+  String get contactUs => 'お問い合わせ';
+
+  @override
+  String get darkMode => 'ダークモード';
+
+  @override
+  String get notifications => '通知';
+
+  @override
+  String get selectLanguage => '言語を選択';
+
+  @override
+  String get changePassword => 'パスワードを変更';
+
+  @override
+  String get deleteAccount => 'アカウントを削除';
+
+  @override
+  String get logOut => 'ログアウト';
+
+  @override
+  String get sureLogOut => 'ログアウトしてもよろしいですか？';
+
+  @override
+  String get sureDelete => 'アカウントを削除してもよろしいですか？この操作は元に戻せません。';
+
+  @override
+  String get fullName => '氏名';
 }

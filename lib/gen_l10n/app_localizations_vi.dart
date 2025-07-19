@@ -167,4 +167,61 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get emptyFavorites => 'Không có thẻ yêu thích';
+
+  @override
+  String get takePhoto => 'Chụp ảnh';
+
+  @override
+  String get chooseFrommGallery => 'Chọn từ thư viện';
+
+  @override
+  String get accountSettings => 'Cài đặt';
+
+  @override
+  String get editFullName => 'Chỉnh sửa họ tên';
+
+  @override
+  String get enterFullName => 'Nhập họ tên của bạn';
+
+  @override
+  String get save => 'Lưu';
+
+  @override
+  String get language => 'Ngôn ngữ';
+
+  @override
+  String get terms => 'Điều khoản & Bảo mật';
+
+  @override
+  String get faq => 'FAQ';
+
+  @override
+  String get contactUs => 'Liên hệ chúng tôi';
+
+  @override
+  String get darkMode => 'Chế độ tối';
+
+  @override
+  String get notifications => 'Thông báo';
+
+  @override
+  String get selectLanguage => 'Chọn ngôn ngữ';
+
+  @override
+  String get changePassword => 'Đổi mật khẩu';
+
+  @override
+  String get deleteAccount => 'Xóa tài khoản';
+
+  @override
+  String get logOut => 'Đăng xuất';
+
+  @override
+  String get sureLogOut => 'Bạn có chắc chắn muốn đăng xuất không?';
+
+  @override
+  String get sureDelete => 'Bạn có chắc chắn muốn xóa tài khoản của mình không? Hành động này không thể hoàn tác.';
+
+  @override
+  String get fullName => 'Họ tên';
 }

@@ -167,4 +167,61 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get emptyFavorites => 'Нет избранных карточек';
+
+  @override
+  String get takePhoto => 'Сделать фото';
+
+  @override
+  String get chooseFrommGallery => 'Выбрать из галереи';
+
+  @override
+  String get accountSettings => 'Настройки';
+
+  @override
+  String get editFullName => 'Редактировать полное имя';
+
+  @override
+  String get enterFullName => 'Введите полное имя';
+
+  @override
+  String get save => 'Сохранить';
+
+  @override
+  String get language => 'Язык';
+
+  @override
+  String get terms => 'Условия и конфиденциальность';
+
+  @override
+  String get faq => 'Вопросы и ответы';
+
+  @override
+  String get contactUs => 'Связаться с нами';
+
+  @override
+  String get darkMode => 'Тёмная тема';
+
+  @override
+  String get notifications => 'Уведомления';
+
+  @override
+  String get selectLanguage => 'Выберите язык';
+
+  @override
+  String get changePassword => 'Сменить пароль';
+
+  @override
+  String get deleteAccount => 'Удалить аккаунт';
+
+  @override
+  String get logOut => 'Выйти';
+
+  @override
+  String get sureLogOut => 'Вы уверены, что хотите выйти?';
+
+  @override
+  String get sureDelete => 'Вы уверены, что хотите удалить аккаунт? Это действие необратимо.';
+
+  @override
+  String get fullName => 'Полное имя';
 }

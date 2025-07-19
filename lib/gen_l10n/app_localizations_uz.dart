@@ -167,4 +167,61 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get emptyFavorites => 'Sevimli kartalar yo\'q';
+
+  @override
+  String get takePhoto => 'Rasmga olish';
+
+  @override
+  String get chooseFrommGallery => 'Galereyadan tanlash';
+
+  @override
+  String get accountSettings => 'Sozlamalar';
+
+  @override
+  String get editFullName => 'To\'liq ismni tahrirlash';
+
+  @override
+  String get enterFullName => 'To\'liq ismingizni kiriting';
+
+  @override
+  String get save => 'Saqlash';
+
+  @override
+  String get language => 'Til';
+
+  @override
+  String get terms => 'Shartlar va Maxfiylik';
+
+  @override
+  String get faq => 'FAQ';
+
+  @override
+  String get contactUs => 'Biz bilan bog\'lanish';
+
+  @override
+  String get darkMode => 'Qorong\'u rejim';
+
+  @override
+  String get notifications => 'Bildirishnomalar';
+
+  @override
+  String get selectLanguage => 'Tilni tanlang';
+
+  @override
+  String get changePassword => 'Parolni o\'zgartirish';
+
+  @override
+  String get deleteAccount => 'Akkauntni o\'chirish';
+
+  @override
+  String get logOut => 'Chiqish';
+
+  @override
+  String get sureLogOut => 'Chiqishni xohlaysizmi?';
+
+  @override
+  String get sureDelete => 'Akkauntingizni o\'chirishga ishonchingiz komilmi? Bu amal qaytarilmaydi.';
+
+  @override
+  String get fullName => 'To\'liq ism';
 }

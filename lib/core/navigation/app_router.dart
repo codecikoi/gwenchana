@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gwenchana/core/navigation/guards.dart';
+import 'package:gwenchana/features/account_setttings/presentation/account_settings_page.dart';
 import 'package:gwenchana/features/skill_chossing/presentation/skill_choosing_page.dart';
 import 'package:gwenchana/features/choose_language/presentation/pages/choose_lang_page.dart';
 import 'package:gwenchana/features/create_account/presentation/create_account_page.dart';
@@ -23,40 +24,51 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
-            initial: true,
-            page: ChooseLangRoute.page,
-            path: '/choose-lang',
-            guards: [_authGuard]),
-        AutoRoute(page: LoginRoute.page, path: '/login', guards: [_authGuard]),
+          initial: true,
+          page: ChooseLangRoute.page,
+          path: '/choose-lang',
+          guards: [_authGuard],
+        ),
         AutoRoute(
-            page: CreateAccountRoute.page,
-            path: '/create-account',
-            guards: [_authGuard]),
+          page: LoginRoute.page,
+          path: '/login',
+          guards: [_authGuard],
+        ),
         AutoRoute(
-            page: RecoverPasswordRoute.page,
-            path: '/recover-password',
-            guards: [_authGuard]),
+          page: CreateAccountRoute.page,
+          path: '/create-account',
+          guards: [_authGuard],
+        ),
         AutoRoute(
-            page: ReadingRoute.page,
-            path: '/reading-page',
-            guards: [_authGuard]),
+          page: RecoverPasswordRoute.page,
+          path: '/recover-password',
+          guards: [_authGuard],
+        ),
         AutoRoute(
-            page: WritingRoute.page,
-            path: '/writing-page',
-            guards: [_authGuard]),
+          page: ReadingRoute.page,
+          path: '/reading-page',
+          guards: [_authGuard],
+        ),
         AutoRoute(
-            page: VocabularyRoute.page,
-            path: '/vocabulary-page',
-            guards: [_authGuard]),
+          page: WritingRoute.page,
+          path: '/writing-page',
+          guards: [_authGuard],
+        ),
+        AutoRoute(
+          page: VocabularyRoute.page,
+          path: '/vocabulary-page',
+          guards: [_authGuard],
+        ),
         AutoRoute(
           page: VocabularyCardRoute.page,
           path: '/vocabulary-card/:setIndex',
           guards: [_authGuard],
         ),
         AutoRoute(
-            page: SpeakingRoute.page,
-            path: '/speaking-page',
-            guards: [_authGuard]),
+          page: SpeakingRoute.page,
+          path: '/speaking-page',
+          guards: [_authGuard],
+        ),
         AutoRoute(
           page: FavoritesCardRoute.page,
           path: '/favorites-page',
@@ -70,6 +82,11 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: SkillChoosingRoute.page,
           path: '/skill-choosing-page',
+          guards: [_authGuard],
+        ),
+        AutoRoute(
+          page: AccountSettingsRoute.page,
+          path: '/account-settings-page',
           guards: [_authGuard],
         ),
         RedirectRoute(path: '/', redirectTo: '/choose-lang'),
