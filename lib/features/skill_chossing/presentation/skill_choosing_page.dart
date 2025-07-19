@@ -82,7 +82,19 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
           ),
         ),
         actions: [
-          AccountSettingsPage(),
+          GestureDetector(
+            child: SizedBox(
+              height: 40,
+              width: 40,
+              child: Image.asset('assets/logo/main_logo.png'),
+            ),
+            onTap: () => context.router.pushPath('/account-settings-page'),
+          ),
+
+          //       backgroundImage: profileImage != null
+          // ? FileImage(profileImage!)
+          // : const AssetImage('assets/logo/main_logo.png')
+          //     as ImageProvider,
         ],
         backgroundColor: Color(0xFFfab1a0),
       ),

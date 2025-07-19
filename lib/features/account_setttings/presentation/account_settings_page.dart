@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:gwenchana/core/helper/app_colors.dart';
+import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -14,7 +16,7 @@ class AccountSettingsPage extends StatefulWidget {
 }
 
 class _AccountSettingsPageState extends State<AccountSettingsPage> {
-  String fullName = 'Example Name';
+  String userName = 'Example Name';
   File? profileImage;
   bool isDarkMode = false;
   bool notificationsEnabled = true;
@@ -75,7 +77,7 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
 
   void _editFullName() {
     TextEditingController fullNameController =
-        TextEditingController(text: fullName);
+        TextEditingController(text: userName);
 
     showDialog(
       context: context,
@@ -97,7 +99,7 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
-                  fullName = fullNameController.text;
+                  userName = fullNameController.text;
                 });
                 Navigator.pop(context);
               },
@@ -116,25 +118,27 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
         return AlertDialog(
           title: Text(AppLocalizations.of(context)!.selectLanguage),
           content: SizedBox(
-            width: double.infinity,
-            child: ListView.builder(
-              itemCount: languages.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                String langCode = languages.keys.elementAt(index);
-                String langName = languages[langCode]!;
-                return RadioListTile<String>(
-                  title: Text(langName),
-                  value: langCode,
-                  groupValue: selectedLanguage,
-                  onChanged: (String? value) {
-                    setState(() {
-                      selectedLanguage = value!;
-                    });
-                    Navigator.pop(context);
-                  },
-                );
-              },
+            width: double.maxFinite,
+            child: SingleChildScrollView(
+              child: ListView.builder(
+                itemCount: languages.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  String langCode = languages.keys.elementAt(index);
+                  String langName = languages[langCode]!;
+                  return RadioListTile<String>(
+                    title: Text(langName),
+                    value: langCode,
+                    groupValue: selectedLanguage,
+                    onChanged: (String? value) {
+                      setState(() {
+                        selectedLanguage = value!;
+                      });
+                      Navigator.pop(context);
+                    },
+                  );
+                },
+              ),
             ),
           ),
         );
@@ -231,7 +235,7 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
           'Gwenchana',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 20,
+            fontSize: 24,
           ),
         ),
         centerTitle: true,
@@ -240,42 +244,46 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
         elevation: 0,
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 16.0),
+            padding: const EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: _changeProfilePhoto,
-              child: Stack(
-                children: [
-                  CircleAvatar(
-                    radius: 20,
-                    backgroundImage: profileImage != null
-                        ? FileImage(profileImage!)
-                        : const AssetImage('assets/logo/main_logo.png')
-                            as ImageProvider,
-                    backgroundColor: Colors.grey[300],
-                    child: profileImage == null
-                        ? const Icon(
-                            Icons.person,
-                            color: Colors.grey,
-                          )
-                        : null,
-                  ),
-                  Positioned(
-                    bottom: -2,
-                    right: -2,
-                    child: Container(
-                      padding: const EdgeInsets.all(2),
-                      decoration: const BoxDecoration(
-                        color: Colors.blue,
-                        shape: BoxShape.circle,
-                      ),
-                      child: const Icon(
-                        Icons.edit,
-                        size: 12,
-                        color: Colors.white,
+              child: SizedBox(
+                width: 60,
+                height: 60,
+                child: Stack(
+                  children: [
+                    CircleAvatar(
+                      radius: 50,
+                      backgroundImage: profileImage != null
+                          ? FileImage(profileImage!)
+                          : const AssetImage('assets/logo/main_logo.png')
+                              as ImageProvider,
+                      backgroundColor: Colors.grey[300],
+                      child: profileImage == null
+                          ? const Icon(
+                              Icons.person,
+                              color: Colors.grey,
+                            )
+                          : null,
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.edit,
+                          size: 14,
+                          color: Color(0xFF667eea),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -287,454 +295,174 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //full name
-            Card(
-              elevation: 0,
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+            _accountSettingsItem(
+              icon: Icons.person,
+              title: AppLocalizations.of(context)!.fullName,
+              subtitle: Text(
+                userName,
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black87,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
-              child: ListTile(
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 8,
-                ),
-                title: Text(
-                  AppLocalizations.of(context)!.fullName,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                subtitle: Text(
-                  fullName,
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black87,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                trailing: IconButton(
-                  onPressed: _editFullName,
-                  icon: const Icon(
-                    Icons.edit,
-                    color: Colors.blue,
-                  ),
+              trailing: IconButton(
+                onPressed: _editFullName,
+                icon: const Icon(
+                  Icons.edit,
+                  color: Color(0xFF667eea),
                 ),
               ),
             ),
-            const SizedBox(height: 24),
 
-            // settings section
-            Card(
-              elevation: 0,
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Column(
-                children: [
-                  // dark mode
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 4,
-                    ),
-                    leading: const Icon(
-                      Icons.dark_mode,
-                      color: Colors.blue,
-                    ),
-                    title: Text(
-                      AppLocalizations.of(context)!.darkMode,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: Switch(
-                      value: isDarkMode,
-                      onChanged: (bool value) {
-                        setState(() {
-                          isDarkMode = value;
-                        });
-                      },
-                    ),
-                  ),
-                  const Divider(height: 1),
-
-                  // notifications
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 4,
-                    ),
-                    leading: const Icon(
-                      Icons.notifications,
-                      color: Colors.blue,
-                    ),
-                    title: Text(
-                      AppLocalizations.of(context)!.notifications,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: Switch(
-                      value: notificationsEnabled,
-                      onChanged: (bool value) {
-                        setState(() {
-                          notificationsEnabled = value;
-                        });
-                      },
-                    ),
-                  ),
-                  const Divider(height: 1),
-
-                  //language
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 4,
-                    ),
-                    leading: const Icon(
-                      Icons.language,
-                      color: Colors.blue,
-                    ),
-                    title: Text(
-                      AppLocalizations.of(context)!.language,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: const Icon(Icons.chevron_right),
-                    onTap: _showLanguageDialog,
-                  ),
-                  const Divider(height: 1),
-
-                  // Privacy
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 4,
-                    ),
-                    leading: const Icon(
-                      Icons.privacy_tip,
-                      color: Colors.blue,
-                    ),
-                    title: Text(
-                      AppLocalizations.of(context)!.terms,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: const Icon(Icons.chevron_right),
-                    onTap: () {
-                      // Navigate to NOTION (TERMS TEXT)
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('terms and privacy')),
-                      );
-                    },
-                  ),
-                  const Divider(height: 1),
-
-                  // faq
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 4,
-                    ),
-                    leading: const Icon(
-                      Icons.help_outline,
-                      color: Colors.blue,
-                    ),
-                    title: Text(
-                      AppLocalizations.of(context)!.faq,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: const Icon(Icons.chevron_right),
-                    onTap: () {
-                      // Navigate to NOTION (faq TEXT)
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('faq page')),
-                      );
-                    },
-                  ),
-                  const Divider(height: 1),
-
-                  // contact us
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 4,
-                    ),
-                    leading: const Icon(
-                      Icons.contact_support,
-                      color: Colors.blue,
-                    ),
-                    title: Text(
-                      AppLocalizations.of(context)!.contactUs,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: const Icon(Icons.chevron_right),
-                    onTap: () {
-                      // Navigate to telegram? or gmail
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('contact us')),
-                      );
-                    },
-                  ),
-                ],
+            // dark mode
+            _accountSettingsItem(
+              icon: Icons.dark_mode,
+              title: AppLocalizations.of(context)!.darkMode,
+              trailing: Switch(
+                activeColor: AppColors.enableButton,
+                activeTrackColor: AppColors.disableButton,
+                inactiveTrackColor: Colors.white,
+                inactiveThumbColor: AppColors.disableButton,
+                value: isDarkMode,
+                onChanged: (bool value) {
+                  setState(() {
+                    isDarkMode = value;
+                  });
+                },
               ),
             ),
 
-            const SizedBox(height: 24),
-
-            // account action section
-
-            Card(
-              elevation: 0,
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Column(
-                children: [
-                  // change password
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 4,
-                    ),
-                    leading: const Icon(
-                      Icons.lock_outline,
-                      color: Colors.blue,
-                    ),
-                    title: Text(
-                      AppLocalizations.of(context)!.changePassword,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: const Icon(Icons.chevron_right),
-                    onTap: _changePassword,
-                  ),
-                  const Divider(height: 1),
-
-                  // delete account
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 4,
-                    ),
-                    leading: const Icon(
-                      Icons.delete_outline,
-                      color: Colors.red,
-                    ),
-                    title: Text(
-                      AppLocalizations.of(context)!.deleteAccount,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.red,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    trailing: const Icon(Icons.chevron_right),
-                    onTap: _deleteAccount,
-                  ),
-                ],
+            // notifications
+            _accountSettingsItem(
+              icon: Icons.notifications,
+              title: AppLocalizations.of(context)!.notifications,
+              trailing: Switch(
+                activeColor: AppColors.enableButton,
+                activeTrackColor: AppColors.disableButton,
+                inactiveTrackColor: Colors.white,
+                inactiveThumbColor: AppColors.disableButton,
+                value: notificationsEnabled,
+                onChanged: (bool value) {
+                  setState(() {
+                    notificationsEnabled = value;
+                  });
+                },
               ),
             ),
 
-            const SizedBox(height: 24),
-
-            // logout button
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: _logOut,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 16,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
+            //language
+            _accountSettingsItem(
+              icon: Icons.language,
+              title: AppLocalizations.of(context)!.language,
+              trailing: TextButton(
+                onPressed: _showLanguageDialog,
                 child: Text(
-                  AppLocalizations.of(context)!.logOut,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  AppLocalizations.of(context)!.selectLanguage,
                 ),
               ),
             ),
-            const SizedBox(height: 24),
+
+            // terms and privacy
+            _accountSettingsItem(
+              icon: Icons.privacy_tip,
+              title: AppLocalizations.of(context)!.terms,
+              onTap: () {
+                // Navigate to NOTION (TERMS TEXT)
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('terms and privacy')),
+                );
+              },
+            ),
+
+            // faq
+            _accountSettingsItem(
+              icon: Icons.help_outline,
+              title: AppLocalizations.of(context)!.faq,
+              onTap: () {
+                // Navigate to NOTION (TERMS TEXT)
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('faq page')),
+                );
+              },
+            ),
+
+            // contact us
+
+            _accountSettingsItem(
+              icon: Icons.mail,
+              title: AppLocalizations.of(context)!.contactUs,
+              onTap: () {
+                // Navigate to NOTION (TERMS TEXT)
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('contact us')),
+                );
+              },
+            ),
+
+            // change passsword
+            _accountSettingsItem(
+                icon: Icons.lock_outline,
+                title: AppLocalizations.of(context)!.changePassword,
+                onTap: _changePassword),
+
+            // delete account
+
+            _accountSettingsItem(
+              icon: Icons.delete_outline,
+              color: AppColors.enableButton,
+              title: AppLocalizations.of(context)!.deleteAccount,
+              onTap: _deleteAccount,
+            ),
           ],
+        ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 30,
+        ),
+        child: BasicAppButton(
+          onPressed: _logOut,
+          title: AppLocalizations.of(context)!.logOut,
         ),
       ),
     );
   }
+
+  Widget _accountSettingsItem({
+    required IconData icon,
+    required String title,
+    VoidCallback? onTap,
+    Widget? subtitle,
+    Widget? trailing,
+    Color? color,
+  }) {
+    return Column(
+      children: [
+        ListTile(
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 4,
+          ),
+          title: Text(
+            title,
+            style: TextStyle(
+              fontSize: 16,
+              color: color ?? Colors.black87,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          leading: Icon(
+            icon,
+            color: color ?? Color(0xFF667eea),
+          ),
+          subtitle: subtitle,
+          trailing: trailing,
+          onTap: onTap,
+        ),
+        const Divider(height: 1),
+      ],
+    );
+  }
 }
-
-//   void _showSettingsBottomSheet(BuildContext context) {
-//     showModalBottomSheet(
-//       context: context,
-//       backgroundColor: Colors.transparent,
-//       builder: (context) => Container(
-//         decoration: BoxDecoration(
-//           color: Colors.white,
-//           borderRadius: BorderRadius.vertical(
-//             top: Radius.circular(
-//               20,
-//             ),
-//           ),
-//         ),
-//         child: SingleChildScrollView(
-//           child: Column(
-//             mainAxisSize: MainAxisSize.min,
-//             children: [
-//               SizedBox(height: 20),
-//               Container(
-//                 width: 40,
-//                 height: 4,
-//                 decoration: BoxDecoration(
-//                   color: Colors.grey[300],
-//                   borderRadius: BorderRadius.circular(2),
-//                 ),
-//               ),
-//               SizedBox(height: 20),
-//               Text(
-//                 AppLocalizations.of(context)!.accountSettings,
-//                 style: TextStyle(
-//                   fontSize: 24,
-//                   fontWeight: FontWeight.bold,
-//                   color: Colors.black87,
-//                 ),
-//               ),
-//               SizedBox(height: 30),
-//               _buildSettingsItem(
-//                 icon: Icons.language,
-//                 title: 'Language',
-//                 subtitle: 'English',
-//                 onTap: () {
-//                   Navigator.pop(context);
-//                   // Логика выбора языка
-//                 },
-//               ),
-//               _buildSettingsItem(
-//                 icon: Icons.volume_up,
-//                 title: 'Sound',
-//                 subtitle: 'On',
-//                 onTap: () {
-//                   Navigator.pop(context);
-//                   // Логика настройки звука
-//                 },
-//               ),
-//               _buildSettingsItem(
-//                 icon: Icons.notifications,
-//                 title: 'Notifications',
-//                 subtitle: 'Enabled',
-//                 onTap: () {
-//                   Navigator.pop(context);
-//                   // Логика настройки уведомлений
-//                 },
-//               ),
-//               _buildSettingsItem(
-//                 icon: Icons.lock,
-//                 title: 'Change Password',
-//                 subtitle: '',
-//                 onTap: () {
-//                   Navigator.pop(context);
-//                   // Логика смены пароля
-//                 },
-//               ),
-//               _buildSettingsItem(
-//                 icon: Icons.info_outline,
-//                 title: 'About',
-//                 subtitle: 'Version 1.0.0',
-//                 onTap: () {
-//                   Navigator.pop(context);
-//                   // Логика показа информации о приложении
-//                 },
-//               ),
-//               _buildSettingsItem(
-//                 icon: Icons.logout,
-//                 title: 'Logout',
-//                 subtitle: '',
-//                 onTap: () {
-//                   Navigator.pop(context);
-//                   // Логика выхода из аккаунта
-//                 },
-//               ),
-//               SizedBox(height: 30),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _buildSettingsItem({
-//     required IconData icon,
-//     required String title,
-//     required String subtitle,
-//     required VoidCallback onTap,
-//   }) {
-//     return ListTile(
-//       leading: Container(
-//         padding: EdgeInsets.all(8),
-//         decoration: BoxDecoration(
-//           color: Color(0xFF667eea).withAlpha(30),
-//           borderRadius: BorderRadius.circular(8),
-//         ),
-//         child: Icon(
-//           icon,
-//           color: Color(0xFF667eea),
-//           size: 24,
-//         ),
-//       ),
-//       title: Text(
-//         title,
-//         style: TextStyle(
-//           fontSize: 16,
-//           fontWeight: FontWeight.w500,
-//           color: Colors.black87,
-//         ),
-//       ),
-//       subtitle: subtitle.isNotEmpty
-//           ? Text(
-//               subtitle,
-//               style: TextStyle(
-//                 fontSize: 14,
-//                 color: Colors.grey[600],
-//               ),
-//             )
-//           : null,
-//       trailing: Icon(
-//         Icons.arrow_forward_ios,
-//         color: Colors.grey[400],
-//         size: 16,
-//       ),
-//       onTap: onTap,
-//     );
-//   }
-// }
