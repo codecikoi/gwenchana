@@ -128,6 +128,18 @@ class _WritingSkillPageState extends State<WritingSkillPage> {
     });
   }
 
+  void previousWord() {
+    setState(() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        userInput = '';
+        _controller.clear();
+        hasStudied = false;
+        showResult = false;
+      }
+    });
+  }
+
   void skipWord() {
     setState(() {
       hasStudied = false;
@@ -206,13 +218,49 @@ class _WritingSkillPageState extends State<WritingSkillPage> {
                 const SizedBox(height: 60),
                 Align(
                   alignment: Alignment.topRight,
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.tips_and_updates_rounded,
-                    ),
-                    iconSize: 32,
-                    color: Colors.orangeAccent,
+                  child: Builder(
+                    builder: (context) {
+                      return IconButton(
+                        onPressed: () async {
+                          final button =
+                              context.findRenderObject() as RenderBox;
+                          final overlay = Overlay.of(context)
+                              .context
+                              .findRenderObject() as RenderBox;
+                          final position = button.localToGlobal(Offset.zero,
+                              ancestor: overlay);
+                          await showMenu(
+                            context: context,
+                            position: RelativeRect.fromLTRB(
+                              position.dx,
+                              position.dy + button.size.height,
+                              overlay.size.width -
+                                  position.dx -
+                                  button.size.width,
+                              overlay.size.height - position.dy,
+                            ),
+                            items: [
+                              PopupMenuItem(
+                                enabled: false,
+                                child: Text(
+                                  'Correct answer:\n ${words[currentIndex]['korean']}',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
+                            color: Colors.black87,
+                            elevation: 8.0,
+                          );
+                        },
+                        icon: Icon(
+                          Icons.tips_and_updates_rounded,
+                        ),
+                        iconSize: 24,
+                        color: Colors.orangeAccent,
+                      );
+                    },
                   ),
                 ),
 
@@ -271,18 +319,30 @@ class _WritingSkillPageState extends State<WritingSkillPage> {
                   ),
                 ),
                 const SizedBox(height: 20),
+                //spelling // TODO: spelling
+                // IconButton(
+                //   onPressed: () {},
+                //   icon: Icon(
+                //     Icons.volume_up,
+                //     color: Color(0xFF00D4AA),
+                //     size: 28,
+                //   ),
+                // ),
                 //action button
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    IconButton(
-                      onPressed: () {
-                        // Undo functionality
-                      },
-                      icon: Icon(
-                        Icons.undo,
-                        color: Color(0xFF00D4AA),
-                        size: 28,
+                    TextButton(
+                      onPressed: previousWord,
+                      child: Text(
+                        'Back',
+                        style: TextStyle(
+                          color: currentIndex > 1
+                              ? Color(0xFF00D4AA)
+                              : Colors.grey[600],
+                          fontSize: 16,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ),
 
@@ -295,98 +355,61 @@ class _WritingSkillPageState extends State<WritingSkillPage> {
                         });
                       },
                       icon: Icon(
-                        Icons.delete_outline,
+                        Icons.delete_outline_outlined,
                         color: Color(0xFF00D4AA),
                         size: 28,
                       ),
                     ),
-
-                    //spelling
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.volume_up,
-                        color: Color(0xFF00D4AA),
-                        size: 28,
+                    TextButton(
+                      onPressed: skipWord,
+                      child: Text(
+                        'Skip',
+                        style: TextStyle(
+                          color: currentIndex == words.length - 1
+                              ? Colors.grey[600]
+                              : Color(0xFF00D4AA),
+                          fontSize: 16,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ),
                   ],
                 ),
-
-                const SizedBox(height: 20),
-                if (showResult)
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: Text(
-                      isCorrect
-                          ? '정답입니다! 🎉'
-                          : '틀렸습니다. 정답: ${words[currentIndex]['korean']}',
-                      style: TextStyle(
-                        color: isCorrect ? Colors.green : Colors.red,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-
-                // Study warning
-                if (!hasStudied && !showResult && userInput.isNotEmpty)
-                  Text(
-                    'Haizz, you haven\'t studied!',
-                    style: TextStyle(
-                      color: Colors.red,
-                      fontSize: 16,
-                    ),
-                  ),
-
-                SizedBox(height: 20),
-
+                const SizedBox(height: 70),
                 // Test and Skip buttons
-                SizedBox(
+                Container(
                   width: double.infinity,
+                  color: Colors.grey[700],
                   child: ElevatedButton(
                     onPressed: showResult
                         ? (currentIndex < words.length - 1 ? nextWord : null)
                         : (userInput.isNotEmpty ? checkAnswer : null),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          showResult ? Colors.amber : Color(0xFF00D4AA),
-                      foregroundColor: Colors.black,
+                      backgroundColor: !showResult
+                          ? (userInput.isNotEmpty ? Colors.green : Colors.grey)
+                          : (isCorrect ? Colors.green : Colors.deepOrange),
+                      foregroundColor: Colors.white,
                       padding: EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(6),
                       ),
                     ),
                     child: Text(
-                      showResult
-                          ? (currentIndex < words.length - 1
-                              ? 'Next'
-                              : 'Finish')
-                          : 'Test',
+                      !showResult
+                          ? 'Check'
+                          : (isCorrect
+                              ? (currentIndex < words.length - 1
+                                  ? 'Next'
+                                  : 'Finish')
+                              : 'Retry'),
                       style: TextStyle(
-                        fontSize: 18,
+                        color: Colors.white,
+                        fontSize: 14,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                 ),
-
-                SizedBox(height: 10),
-
-                TextButton(
-                  onPressed: skipWord,
-                  child: Text(
-                    'Skip',
-                    style: TextStyle(
-                      color: Colors.grey[400],
-                      fontSize: 16,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: 20),
               ],
             ),
           ),
