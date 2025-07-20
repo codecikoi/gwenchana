@@ -1,5 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
+
+class KoreanTextInputFormatter extends TextInputFormatter {
+  static final _koreanRegExp =
+      RegExp(r'[\uac00-\ud7af\u1100-\u11ff\u3130-\u318f\s?!\-,.]+');
+
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    final filtered =
+        _koreanRegExp.allMatches(newValue.text).map((m) => m.group(0)).join();
+    return TextEditingValue(
+      text: filtered,
+      selection: TextSelection.collapsed(offset: filtered.length),
+    );
+  }
+}
 
 class ValidationHelper {
   // маил валидация
@@ -157,6 +176,9 @@ class ValidationHelper {
   static bool isValidVocabularyCard(String korean, String tranlation) {
     return isValidKorean(korean) && isValidTranslation(tranlation);
   }
+
+  static List<TextInputFormatter> get koreanInputFormatters =>
+      [KoreanTextInputFormatter()];
 
   // Получить все ошибки формы регистрации
   static Map<String, String?> getSignUpFormErrors({
