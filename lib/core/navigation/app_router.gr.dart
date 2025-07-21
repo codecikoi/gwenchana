@@ -258,11 +258,11 @@ class VocabularyRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [WritingSkillPage]
-class WritingRoute extends PageRouteInfo<void> {
-  const WritingRoute({List<PageRouteInfo>? children})
-      : super(WritingRoute.name, initialChildren: children);
+class WritingSkillRoute extends PageRouteInfo<void> {
+  const WritingSkillRoute({List<PageRouteInfo>? children})
+      : super(WritingSkillRoute.name, initialChildren: children);
 
-  static const String name = 'WritingRoute';
+  static const String name = 'WritingSkillRoute';
 
   static PageInfo page = PageInfo(
     name,

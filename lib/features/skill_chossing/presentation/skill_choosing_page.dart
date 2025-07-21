@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:gwenchana/features/account_setttings/presentation/account_settings_page.dart';
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
 @RoutePage()
@@ -83,10 +82,13 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
         ),
         actions: [
           GestureDetector(
-            child: SizedBox(
-              height: 40,
-              width: 40,
-              child: Image.asset('assets/logo/main_logo.png'),
+            child: Padding(
+              padding: const EdgeInsets.only(right: 16.0),
+              child: CircleAvatar(
+                radius: 14,
+                backgroundImage: AssetImage('assets/logo/main_logo.png'),
+                backgroundColor: Colors.grey[300],
+              ),
             ),
             onTap: () => context.router.pushPath('/account-settings-page'),
           ),
@@ -99,8 +101,6 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              // Color(0xFF667eea),
-              // Color(0xFF764ba2),
               Color(0xFFfab1a0),
               Color(0xffc67c4e),
             ],
@@ -141,7 +141,7 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
                               context.router.pushPath('/reading-page');
                               break;
                             case 2:
-                              context.router.pushPath('/writing-page');
+                              context.router.pushPath('/writing-skill-page');
                               break;
                             case 3:
                               context.router.pushPath('/speaking-page');
