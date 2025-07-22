@@ -224,4 +224,31 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get fullName => 'Полное имя';
+
+  @override
+  String get back => 'Назад';
+
+  @override
+  String get skip => 'Пропустить';
+
+  @override
+  String get check => 'Проверить';
+
+  @override
+  String get tryAgain => 'Попробовать';
+
+  @override
+  String get startAgain => 'Начать заново';
+
+  @override
+  String get chooseAnotherLesson => 'Выбрать другой урок';
+
+  @override
+  String get congratsText => 'Поздравляем! Продолжайте — у вас отлично получается ㅋㅋ';
+
+  @override
+  String get onlyKorean => 'Пожалуйста, введите только корейские буквы';
+
+  @override
+  String get correctAnswer => 'Правильный ответ';
 }

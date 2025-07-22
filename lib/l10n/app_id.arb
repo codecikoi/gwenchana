@@ -71,5 +71,14 @@
     "logOut": "Keluar",
     "sureLogOut": "Apakah Anda yakin ingin keluar?",
     "sureDelete": "Apakah Anda yakin ingin menghapus akun Anda? Tindakan ini tidak dapat dibatalkan.",
-    "fullName": "Nama lengkap"
+    "fullName": "Nama lengkap",
+    "back": "Kembali",
+    "skip": "Lewati",
+    "check": "Periksa",
+    "tryAgain": "Coba",
+    "startAgain": "Mulai lagi",
+    "chooseAnotherLesson": "Pilih pelajaran lain",
+    "congratsText": "Selamat! Teruskan — kamu hebat ㅋㅋ",
+    "onlyKorean": "Masukkan hanya huruf Korea",
+    "correctAnswer": "Jawaban benar"
   }

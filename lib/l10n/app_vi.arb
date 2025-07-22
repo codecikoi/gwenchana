@@ -71,5 +71,14 @@
   "logOut": "Đăng xuất",
   "sureLogOut": "Bạn có chắc chắn muốn đăng xuất không?",
   "sureDelete": "Bạn có chắc chắn muốn xóa tài khoản của mình không? Hành động này không thể hoàn tác.",
-  "fullName": "Họ tên"
+  "fullName": "Họ tên",
+  "back": "Quay lại",
+  "skip": "Bỏ qua",
+  "check": "Kiểm tra",
+  "tryAgain": "Thử",
+  "startAgain": "Bắt đầu lại",
+  "chooseAnotherLesson": "Chọn bài khác",
+  "congratsText": "Chúc mừng! Tiếp tục nhé — bạn làm rất tốt ㅋㅋ",
+  "onlyKorean": "Vui lòng chỉ nhập chữ cái tiếng Hàn",
+  "correctAnswer": "Đáp án đúng"
 }

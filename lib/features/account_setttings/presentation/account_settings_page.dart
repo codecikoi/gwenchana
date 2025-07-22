@@ -1,10 +1,13 @@
 import 'dart:io';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/core/helper/app_colors.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
+import 'package:gwenchana/features/choose_language/presentation/bloc/language_bloc.dart';
+import 'package:gwenchana/features/choose_language/presentation/bloc/language_event.dart';
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
+import 'package:gwenchana/l10n/languages_list.dart';
 import 'package:image_picker/image_picker.dart';
 
 @RoutePage()
@@ -20,19 +23,7 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
   File? profileImage;
   bool isDarkMode = false;
   bool notificationsEnabled = true;
-  String selectedLanguage = 'en';
-
-  final Map<String, String> languages = {
-    'en': 'English',
-    'ru': 'Русский',
-    'vi': 'Tiếng Việt',
-    'ja': '日本語',
-    'fr': 'Français',
-    'id': 'Bahasa Indonesia',
-    'zh_CN': '中文 (简体)',
-    'de': 'Deutsch',
-    'uz': 'O\'zbek',
-  };
+  String selectedLanguage = '';
 
   Future<void> _pickImage(ImageSource source) async {
     final ImagePicker picker = ImagePicker();
@@ -124,16 +115,23 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
                 itemCount: languages.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  String langCode = languages.keys.elementAt(index);
-                  String langName = languages[langCode]!;
+                  final language = languages[index];
+                  final langName = language['name'];
+                  final langCode = language['code'];
                   return RadioListTile<String>(
                     title: Text(langName),
                     value: langCode,
                     groupValue: selectedLanguage,
                     onChanged: (String? value) {
-                      setState(() {
-                        selectedLanguage = value!;
-                      });
+                      if (value != null) {
+                        setState(() {
+                          selectedLanguage = value;
+                        });
+                        // Отправляем событие в LanguageBloc
+                        context
+                            .read<LanguageBloc>()
+                            .add(LanguageSelected(value));
+                      }
                       Navigator.pop(context);
                     },
                   );

@@ -5,12 +5,16 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
-import 'app_localizations_fr.dart';
+import 'app_localizations_es.dart';
+import 'app_localizations_fil.dart';
 import 'app_localizations_id.dart';
-import 'app_localizations_ja.dart';
+import 'app_localizations_ko.dart';
+import 'app_localizations_pt.dart';
 import 'app_localizations_ru.dart';
+import 'app_localizations_th.dart';
+import 'app_localizations_tr.dart';
+import 'app_localizations_uk.dart';
 import 'app_localizations_uz.dart';
 import 'app_localizations_vi.dart';
 import 'app_localizations_zh.dart';
@@ -98,12 +102,16 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
-    Locale('de'),
     Locale('en'),
-    Locale('fr'),
+    Locale('es'),
+    Locale('fil'),
     Locale('id'),
-    Locale('ja'),
+    Locale('ko'),
+    Locale('pt'),
     Locale('ru'),
+    Locale('th'),
+    Locale('tr'),
+    Locale('uk'),
     Locale('uz'),
     Locale('vi'),
     Locale('zh')
@@ -546,6 +554,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Full name'**
   String get fullName;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// No description provided for @check.
+  ///
+  /// In en, this message translates to:
+  /// **'Check'**
+  String get check;
+
+  /// No description provided for @tryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Try'**
+  String get tryAgain;
+
+  /// No description provided for @startAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Start again'**
+  String get startAgain;
+
+  /// No description provided for @chooseAnotherLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Change lesson'**
+  String get chooseAnotherLesson;
+
+  /// No description provided for @congratsText.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations! Keep going — you’re doing great ㅋㅋ'**
+  String get congratsText;
+
+  /// No description provided for @onlyKorean.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter only korean letters'**
+  String get onlyKorean;
+
+  /// No description provided for @correctAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct answer'**
+  String get correctAnswer;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -557,7 +619,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['de', 'en', 'fr', 'id', 'ja', 'ru', 'uz', 'vi', 'zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'es', 'fil', 'id', 'ko', 'pt', 'ru', 'th', 'tr', 'uk', 'uz', 'vi', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -568,12 +630,16 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
 
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'de': return AppLocalizationsDe();
     case 'en': return AppLocalizationsEn();
-    case 'fr': return AppLocalizationsFr();
+    case 'es': return AppLocalizationsEs();
+    case 'fil': return AppLocalizationsFil();
     case 'id': return AppLocalizationsId();
-    case 'ja': return AppLocalizationsJa();
+    case 'ko': return AppLocalizationsKo();
+    case 'pt': return AppLocalizationsPt();
     case 'ru': return AppLocalizationsRu();
+    case 'th': return AppLocalizationsTh();
+    case 'tr': return AppLocalizationsTr();
+    case 'uk': return AppLocalizationsUk();
     case 'uz': return AppLocalizationsUz();
     case 'vi': return AppLocalizationsVi();
     case 'zh': return AppLocalizationsZh();

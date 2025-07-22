@@ -1,0 +1,15 @@
+final List<Map<String, dynamic>> languages = [
+  {'name': '한국어', 'flag': 'assets/flags/kr.png', 'code': 'ko'},
+  {'name': 'English', 'flag': 'assets/flags/us.png', 'code': 'en'},
+  {'name': 'O\'zbek', 'flag': 'assets/flags/uz.png', 'code': 'uz'},
+  {'name': 'Tiếng Việt', 'flag': 'assets/flags/vn.png', 'code': 'vi'},
+  {'name': 'Русский', 'flag': 'assets/flags/ru.png', 'code': 'ru'},
+  {'name': 'ไทย', 'flag': 'assets/flags/th.png', 'code': 'th'},
+  {'name': 'Indonesia', 'flag': 'assets/flags/id.png', 'code': 'id'},
+  {'name': 'Filipino', 'flag': 'assets/flags/fr.png', 'code': 'fil'},
+  {'name': 'Українська', 'flag': 'assets/flags/uk.png', 'code': 'uk'},
+  {'name': '简体中文', 'flag': 'assets/flags/cn.png', 'code': 'zh_CN'},
+  {'name': 'Español', 'flag': 'assets/flags/es.png', 'code': 'es'},
+  {'name': 'Türkçe', 'flag': 'assets/flags/tr.png', 'code': 'tr'},
+  {'name': 'Português', 'flag': 'assets/flags/pt.png', 'code': 'pt'},
+];

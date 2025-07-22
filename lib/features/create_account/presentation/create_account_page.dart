@@ -115,192 +115,194 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 14.0,
-          vertical: 10.0,
-        ),
-        child: Column(
-          children: [
-            TextField(
-              controller: _nameController,
-              decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.name,
-                border: OutlineInputBorder(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 14.0,
+            vertical: 10.0,
+          ),
+          child: Column(
+            children: [
+              TextField(
+                controller: _nameController,
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.name,
+                  border: OutlineInputBorder(),
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.email,
-                border: OutlineInputBorder(),
-                errorText: _emailController.text.isNotEmpty &&
-                        ValidationHelper.isValidEmail(
-                            _emailController.text.trim())
-                    ? AppLocalizations.of(context)!.pleaseEnterValidEmail
-                    : null,
+              const SizedBox(height: 16),
+              TextField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.email,
+                  border: OutlineInputBorder(),
+                  errorText: _emailController.text.isNotEmpty &&
+                          ValidationHelper.isValidEmail(
+                              _emailController.text.trim())
+                      ? AppLocalizations.of(context)!.pleaseEnterValidEmail
+                      : null,
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.password,
-                border: OutlineInputBorder(),
+              const SizedBox(height: 16),
+              TextField(
+                controller: _passwordController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.password,
+                  border: OutlineInputBorder(),
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _confirmPasswordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: AppLocalizations.of(context)!.confirmPassword,
-                border: OutlineInputBorder(),
-                errorText: _confirmPasswordController.text.isNotEmpty &&
-                        _passwordController.text !=
-                            _confirmPasswordController.text
-                    ? AppLocalizations.of(context)!.passwordsNotMatch
-                    : null,
+              const SizedBox(height: 16),
+              TextField(
+                controller: _confirmPasswordController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context)!.confirmPassword,
+                  border: OutlineInputBorder(),
+                  errorText: _confirmPasswordController.text.isNotEmpty &&
+                          _passwordController.text !=
+                              _confirmPasswordController.text
+                      ? AppLocalizations.of(context)!.passwordsNotMatch
+                      : null,
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                Icon(Icons.check_box, color: Colors.teal),
-                SizedBox(width: 4),
-                Expanded(
-                  child: Text(
-                    AppLocalizations.of(context)!.termsAndConditions,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  Icon(Icons.check_box, color: Colors.teal),
+                  SizedBox(width: 4),
+                  Expanded(
+                    child: Text(
+                      AppLocalizations.of(context)!.termsAndConditions,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            BasicAppButton(
-              onPressed: _isFormValid ? _handleCreateAccount : null,
-              title: _isLoading
-                  ? 'Creating account ...'
-                  : AppLocalizations.of(context)!.createAccount,
-            ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                Expanded(
-                  child: Divider(
-                    color: AppColors.black,
-                    thickness: 1,
+                ],
+              ),
+              const SizedBox(height: 20),
+              BasicAppButton(
+                onPressed: _isFormValid ? _handleCreateAccount : null,
+                title: _isLoading
+                    ? 'Creating account ...'
+                    : AppLocalizations.of(context)!.createAccount,
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Expanded(
+                    child: Divider(
+                      color: AppColors.black,
+                      thickness: 1,
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8.0,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8.0,
+                    ),
+                    child: Text(
+                      AppLocalizations.of(context)!.signInWith,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.black,
+                      ),
+                    ),
                   ),
-                  child: Text(
-                    AppLocalizations.of(context)!.signInWith,
+                  Expanded(
+                    child: Divider(
+                      color: AppColors.black,
+                      thickness: 1,
+                    ),
+                  ),
+                ],
+              ),
+
+              // google sign in button
+
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: () => AuthServiceImpl().signInWithGoogle(),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.black,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      icon: Image.asset(
+                        'assets/logo/google_logo.png',
+                        width: 28,
+                        height: 28,
+                      ),
+                      label: Text(
+                        'Google',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.black,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      icon: Image.asset(
+                        'assets/logo/facebook_logo.png',
+                        width: 28,
+                        height: 28,
+                      ),
+                      label: Text(
+                        'Facebook',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.doHaveAccount,
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
-                      color: AppColors.black,
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Divider(
-                    color: AppColors.black,
-                    thickness: 1,
-                  ),
-                ),
-              ],
-            ),
-
-            // google sign in button
-
-            const SizedBox(height: 8),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton.icon(
-                    onPressed: () => AuthServiceImpl().signInWithGoogle(),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.black,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    icon: Image.asset(
-                      'assets/logo/google_logo.png',
-                      width: 28,
-                      height: 28,
-                    ),
-                    label: Text(
-                      'Google',
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
+                  TextButton(
+                    onPressed: () => context.router.pushPath('/login'),
+                    child: Text(
+                      AppLocalizations.of(context)!.signIn,
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.enableButton),
                     ),
                   ),
-                ),
-                const SizedBox(width: 20),
-                Expanded(
-                  child: ElevatedButton.icon(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.black,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    icon: Image.asset(
-                      'assets/logo/facebook_logo.png',
-                      width: 28,
-                      height: 28,
-                    ),
-                    label: Text(
-                      'Facebook',
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.doHaveAccount,
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () => context.router.pushPath('/login'),
-                  child: Text(
-                    AppLocalizations.of(context)!.signIn,
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.enableButton),
-                  ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

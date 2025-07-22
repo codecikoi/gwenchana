@@ -71,5 +71,14 @@
   "logOut": "Log out",
   "sureLogOut": "Are you sure to log out",
   "sureDelete": "Are you sure to delete your account? This action cannot be undone.",
-  "fullName": "Full name"
+  "fullName": "Full name",
+  "back": "Back",
+  "skip": "Skip",
+  "check": "Check",
+  "tryAgain": "Try",
+  "startAgain": "Start again",
+  "chooseAnotherLesson": "Change lesson",
+  "congratsText": "Congratulations! Keep going — you’re doing great ㅋㅋ",
+  "onlyKorean": "Please enter only korean letters",
+  "correctAnswer": "Correct answer"
 }

@@ -71,5 +71,14 @@
   "logOut": "退出登录",
   "sureLogOut": "您确定要退出登录吗？",
   "sureDelete": "您确定要删除您的账户吗？此操作无法撤销。",
-  "fullName": "全名"
+  "fullName": "全名",
+  "back": "返回",
+  "skip": "跳过",
+  "check": "检查",
+  "tryAgain": "尝试",
+  "startAgain": "重新开始",
+  "chooseAnotherLesson": "选择其他课程",
+  "congratsText": "恭喜！继续加油 — 你做得很好 ㅋㅋ",
+  "onlyKorean": "请输入韩文字母",
+  "correctAnswer": "正确答案"
 }

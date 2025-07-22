@@ -224,4 +224,31 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get fullName => 'Nama lengkap';
+
+  @override
+  String get back => 'Kembali';
+
+  @override
+  String get skip => 'Lewati';
+
+  @override
+  String get check => 'Periksa';
+
+  @override
+  String get tryAgain => 'Coba';
+
+  @override
+  String get startAgain => 'Mulai lagi';
+
+  @override
+  String get chooseAnotherLesson => 'Pilih pelajaran lain';
+
+  @override
+  String get congratsText => 'Selamat! Teruskan — kamu hebat ㅋㅋ';
+
+  @override
+  String get onlyKorean => 'Masukkan hanya huruf Korea';
+
+  @override
+  String get correctAnswer => 'Jawaban benar';
 }

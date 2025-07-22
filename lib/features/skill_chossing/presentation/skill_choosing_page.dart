@@ -151,6 +151,7 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
                         child: Transform.scale(
                           scale: selectedIndex == index ? 1.05 : 1.0,
                           child: Container(
+                            clipBehavior: Clip.hardEdge,
                             height: 120,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),

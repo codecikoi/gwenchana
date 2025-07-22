@@ -71,5 +71,14 @@
     "logOut": "Chiqish",
     "sureLogOut": "Chiqishni xohlaysizmi?",
     "sureDelete": "Akkauntingizni o'chirishga ishonchingiz komilmi? Bu amal qaytarilmaydi.",
-    "fullName": "To'liq ism"
+    "fullName": "To'liq ism",
+    "back": "Orqaga",
+    "skip": "O‘tkazib yuborish",
+    "check": "Tekshirish",
+    "tryAgain": "Urinish",
+    "startAgain": "Qaytadan boshlash",
+    "chooseAnotherLesson": "Boshqa dars tanlash",
+    "congratsText": "Tabriklaymiz! Davom eting — siz zo‘rsiz ㅋㅋ",
+    "onlyKorean": "Iltimos, faqat koreys harflarini kiriting",
+    "correctAnswer": "To‘g‘ri javob"
   }

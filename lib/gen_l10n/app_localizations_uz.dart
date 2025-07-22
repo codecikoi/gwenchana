@@ -224,4 +224,31 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get fullName => 'To\'liq ism';
+
+  @override
+  String get back => 'Orqaga';
+
+  @override
+  String get skip => 'O‘tkazib yuborish';
+
+  @override
+  String get check => 'Tekshirish';
+
+  @override
+  String get tryAgain => 'Urinish';
+
+  @override
+  String get startAgain => 'Qaytadan boshlash';
+
+  @override
+  String get chooseAnotherLesson => 'Boshqa dars tanlash';
+
+  @override
+  String get congratsText => 'Tabriklaymiz! Davom eting — siz zo‘rsiz ㅋㅋ';
+
+  @override
+  String get onlyKorean => 'Iltimos, faqat koreys harflarini kiriting';
+
+  @override
+  String get correctAnswer => 'To‘g‘ri javob';
 }

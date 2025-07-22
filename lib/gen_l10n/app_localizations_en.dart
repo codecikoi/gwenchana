@@ -224,4 +224,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get fullName => 'Full name';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get skip => 'Skip';
+
+  @override
+  String get check => 'Check';
+
+  @override
+  String get tryAgain => 'Try';
+
+  @override
+  String get startAgain => 'Start again';
+
+  @override
+  String get chooseAnotherLesson => 'Change lesson';
+
+  @override
+  String get congratsText => 'Congratulations! Keep going — you’re doing great ㅋㅋ';
+
+  @override
+  String get onlyKorean => 'Please enter only korean letters';
+
+  @override
+  String get correctAnswer => 'Correct answer';
 }

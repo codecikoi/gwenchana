@@ -224,4 +224,31 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get fullName => '全名';
+
+  @override
+  String get back => '返回';
+
+  @override
+  String get skip => '跳过';
+
+  @override
+  String get check => '检查';
+
+  @override
+  String get tryAgain => '尝试';
+
+  @override
+  String get startAgain => '重新开始';
+
+  @override
+  String get chooseAnotherLesson => '选择其他课程';
+
+  @override
+  String get congratsText => '恭喜！继续加油 — 你做得很好 ㅋㅋ';
+
+  @override
+  String get onlyKorean => '请输入韩文字母';
+
+  @override
+  String get correctAnswer => '正确答案';
 }

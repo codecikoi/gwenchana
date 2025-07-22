@@ -1,0 +1,16 @@
+// languages
+{
+   '한국어', code: 'ko'
+   'O\'zbek', code: 'uz'
+   'English', code: 'en'
+   'Tiếng Việt', code: 'vi'
+   'Русский', code: 'ru'
+   'ไทย', code: 'th'
+   'Indonesia', code: 'id'
+   'Filipino', code: 'fil'
+   'Українська', code: 'ukr'
+   '简体中文', code: 'zh_CN'
+   'Español', code: 'es'
+   'Türkçe', code: 'tr'
+   'Português', code: 'pt'
+}

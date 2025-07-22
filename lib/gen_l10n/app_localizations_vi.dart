@@ -224,4 +224,31 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get fullName => 'Họ tên';
+
+  @override
+  String get back => 'Quay lại';
+
+  @override
+  String get skip => 'Bỏ qua';
+
+  @override
+  String get check => 'Kiểm tra';
+
+  @override
+  String get tryAgain => 'Thử';
+
+  @override
+  String get startAgain => 'Bắt đầu lại';
+
+  @override
+  String get chooseAnotherLesson => 'Chọn bài khác';
+
+  @override
+  String get congratsText => 'Chúc mừng! Tiếp tục nhé — bạn làm rất tốt ㅋㅋ';
+
+  @override
+  String get onlyKorean => 'Vui lòng chỉ nhập chữ cái tiếng Hàn';
+
+  @override
+  String get correctAnswer => 'Đáp án đúng';
 }
