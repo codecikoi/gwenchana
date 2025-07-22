@@ -251,6 +251,7 @@ class _WritingSkillViewState extends State<WritingSkillView>
                         ),
                       ),
                       const SizedBox(height: 20),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -293,6 +294,7 @@ class _WritingSkillViewState extends State<WritingSkillView>
                                         .add(WritingSkipWord()),
                             child: Text(
                               AppLocalizations.of(context)!.skip,
+                              maxLines: 2,
                               style: TextStyle(
                                 color:
                                     state.currentIndex == state.totalWords - 1

@@ -99,7 +99,7 @@ class _MyAppState extends State<MyApp> {
               Locale('th'),
               Locale('id'),
               Locale('fil'),
-              Locale('ukr'),
+              Locale('uk'),
               Locale('zh'),
               Locale('es'),
               Locale('tr'),
@@ -138,6 +138,8 @@ class _MyAppState extends State<MyApp> {
         return Locale('tr');
       case 'pt':
         return Locale('pt');
+      case 'th':
+        return Locale('th');
       default:
         return Locale('en');
     }
