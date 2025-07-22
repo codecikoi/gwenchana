@@ -7,6 +7,7 @@ import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_bloc.
 import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_event.dart';
 import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_state.dart';
 import 'package:gwenchana/features/writing/presentation/widgets/grid_painter.dart';
+import 'package:gwenchana/gen_l10n/app_localizations.dart';
 
 @RoutePage()
 class WritingSkillPage extends StatelessWidget {
@@ -174,7 +175,7 @@ class _WritingSkillViewState extends State<WritingSkillView>
                                     PopupMenuItem(
                                       enabled: false,
                                       child: Text(
-                                        'Correct answer:\n ${state.currentWord['korean']}',
+                                        '${AppLocalizations.of(context)!.correctAnswer}:\n ${state.currentWord['korean']}',
                                         style: const TextStyle(
                                           color: Colors.white,
                                         ),
@@ -260,7 +261,7 @@ class _WritingSkillViewState extends State<WritingSkillView>
                                     .add(WritingPreviousWord())
                                 : null,
                             child: Text(
-                              'Back',
+                              AppLocalizations.of(context)!.back,
                               style: TextStyle(
                                 color: state.currentIndex > 0
                                     ? const Color(0xFF00D4AA)
@@ -291,7 +292,7 @@ class _WritingSkillViewState extends State<WritingSkillView>
                                         .read<WritingSkillBloc>()
                                         .add(WritingSkipWord()),
                             child: Text(
-                              'Skip',
+                              AppLocalizations.of(context)!.skip,
                               style: TextStyle(
                                 color:
                                     state.currentIndex == state.totalWords - 1
@@ -345,12 +346,12 @@ class _WritingSkillViewState extends State<WritingSkillView>
                           ),
                           child: Text(
                             !state.showResult
-                                ? 'Check'
+                                ? AppLocalizations.of(context)!.check
                                 : (state.isCorrect
                                     ? (state.currentIndex < state.totalWords - 1
-                                        ? 'Next'
-                                        : 'Finish')
-                                    : 'Retry'),
+                                        ? AppLocalizations.of(context)!.next
+                                        : AppLocalizations.of(context)!.finish)
+                                    : AppLocalizations.of(context)!.tryAgain),
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 14,
@@ -388,8 +389,8 @@ class _WritingSkillViewState extends State<WritingSkillView>
                       // TODO: localization
                       ScaleTransition(
                         scale: _scaleAnimation,
-                        child: const Text(
-                          'congrats! you finished',
+                        child: Text(
+                          AppLocalizations.of(context)!.congratsText,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 22,
@@ -405,7 +406,7 @@ class _WritingSkillViewState extends State<WritingSkillView>
                               .read<WritingSkillBloc>()
                               .add(WritingResetProgress());
                         },
-                        child: const Text('start again'),
+                        child: Text(AppLocalizations.of(context)!.startAgain),
                       ),
                     ],
                   ),

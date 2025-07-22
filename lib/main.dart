@@ -91,15 +91,19 @@ class _MyAppState extends State<MyApp> {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: [
-              Locale('en'),
-              Locale('ru'),
-              Locale('vi'),
-              Locale('ja'),
-              Locale('fr'),
-              Locale('id'),
-              Locale('zh'),
-              Locale('de'),
+              Locale('ko'),
               Locale('uz'),
+              Locale('en'),
+              Locale('vi'),
+              Locale('ru'),
+              Locale('th'),
+              Locale('id'),
+              Locale('fil'),
+              Locale('ukr'),
+              Locale('zh'),
+              Locale('es'),
+              Locale('tr'),
+              Locale('pt'),
             ],
             // TODO: main fontfamily SORA
           );
@@ -110,24 +114,30 @@ class _MyAppState extends State<MyApp> {
 
   Locale _getLocaleFromLanguageCode(String languageCode) {
     switch (languageCode) {
-      case 'en':
-        return Locale('en');
-      case 'ru':
-        return Locale('ru');
-      case 'vi':
-        return Locale('vi');
-      case 'ja':
-        return Locale('ja');
-      case 'fr':
-        return Locale('fr');
-      case 'id':
-        return Locale('id');
-      case 'zh_CN':
-        return Locale('zh', 'CN');
-      case 'de':
-        return Locale('de');
+      case 'ko':
+        return Locale('ko');
       case 'uz':
         return Locale('uz');
+      case 'en':
+        return Locale('en');
+      case 'vi':
+        return Locale('vi');
+      case 'ru':
+        return Locale('ru');
+      case 'id':
+        return Locale('id');
+      case 'fil':
+        return Locale('fil');
+      case 'uk':
+        return Locale('uk');
+      case 'zh_CN':
+        return Locale('zh', 'CN');
+      case 'es':
+        return Locale('es');
+      case 'tr':
+        return Locale('tr');
+      case 'pt':
+        return Locale('pt');
       default:
         return Locale('en');
     }

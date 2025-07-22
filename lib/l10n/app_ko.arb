@@ -80,5 +80,6 @@
   "chooseAnotherLesson": "레슨 변경",
   "congratsText": "축하합니다! 계속 진행하세요 — 잘하고 있어요 ㅋㅋ",
   "onlyKorean": "한글만 입력하세요",
-  "correctAnswer": "정답"
+  "correctAnswer": "정답",
+  "finish": "완료"
 }

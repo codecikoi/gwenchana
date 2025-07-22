@@ -251,4 +251,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get correctAnswer => 'Doğru cevap';
+
+  @override
+  String get finish => 'Bitir';
 }

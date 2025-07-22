@@ -6,7 +6,7 @@ import 'package:gwenchana/features/choose_language/presentation/bloc/language_st
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/features/choose_language/presentation/bloc/language_event.dart';
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
-import 'package:gwenchana/l10n/languages_list.dart';
+import 'package:gwenchana/languages_list.dart';
 
 @RoutePage()
 class ChooseLangPage extends StatefulWidget {
@@ -74,9 +74,9 @@ class _ChooseLangPageState extends State<ChooseLangPage> {
                     // Список языков
                     Expanded(
                       child: ListView.builder(
-                        itemCount: languages.length,
+                        itemCount: languagesList.length,
                         itemBuilder: (context, index) {
-                          final language = languages[index];
+                          final language = languagesList[index];
                           final isSelected =
                               selectedLanguage == language['code'];
                           return Container(

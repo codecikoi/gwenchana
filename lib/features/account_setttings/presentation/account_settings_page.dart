@@ -6,8 +6,9 @@ import 'package:gwenchana/core/helper/app_colors.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/features/choose_language/presentation/bloc/language_bloc.dart';
 import 'package:gwenchana/features/choose_language/presentation/bloc/language_event.dart';
+import 'package:gwenchana/features/choose_language/presentation/bloc/language_state.dart';
 import 'package:gwenchana/gen_l10n/app_localizations.dart';
-import 'package:gwenchana/l10n/languages_list.dart';
+import 'package:gwenchana/languages_list.dart';
 import 'package:image_picker/image_picker.dart';
 
 @RoutePage()
@@ -23,7 +24,6 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
   File? profileImage;
   bool isDarkMode = false;
   bool notificationsEnabled = true;
-  String selectedLanguage = '';
 
   Future<void> _pickImage(ImageSource source) async {
     final ImagePicker picker = ImagePicker();
@@ -103,6 +103,14 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
   }
 
   void _showLanguageDialog() {
+    final state = context.read<LanguageBloc>().state;
+    String? selectedLanguage;
+
+    if (state is LanguageSelectedState) {
+      selectedLanguage = state.languageCode;
+    } else {
+      selectedLanguage = '';
+    }
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -112,10 +120,10 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
             width: double.maxFinite,
             child: SingleChildScrollView(
               child: ListView.builder(
-                itemCount: languages.length,
+                itemCount: languagesList.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  final language = languages[index];
+                  final language = languagesList[index];
                   final langName = language['name'];
                   final langCode = language['code'];
                   return RadioListTile<String>(
@@ -124,10 +132,6 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
                     groupValue: selectedLanguage,
                     onChanged: (String? value) {
                       if (value != null) {
-                        setState(() {
-                          selectedLanguage = value;
-                        });
-                        // Отправляем событие в LanguageBloc
                         context
                             .read<LanguageBloc>()
                             .add(LanguageSelected(value));
@@ -353,11 +357,23 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
             _accountSettingsItem(
               icon: Icons.language,
               title: AppLocalizations.of(context)!.language,
-              trailing: TextButton(
-                onPressed: _showLanguageDialog,
-                child: Text(
-                  AppLocalizations.of(context)!.selectLanguage,
-                ),
+              trailing: BlocBuilder<LanguageBloc, LanguageState>(
+                builder: (context, state) {
+                  String? selectedLanguage;
+                  if (state is LanguageSelectedState) {
+                    selectedLanguage = state.languageCode;
+                  }
+                  return TextButton(
+                    onPressed: _showLanguageDialog,
+                    child: Text(
+                      (selectedLanguage == null || selectedLanguage.isEmpty)
+                          ? AppLocalizations.of(context)!.selectLanguage
+                          : languagesList.firstWhere(
+                              (lang) => lang['code'] == selectedLanguage,
+                              orElse: () => {'name': selectedLanguage})['name'],
+                    ),
+                  );
+                },
               ),
             ),
 

@@ -251,4 +251,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get correctAnswer => 'Jawaban benar';
+
+  @override
+  String get finish => 'Selesai';
 }

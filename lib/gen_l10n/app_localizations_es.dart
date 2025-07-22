@@ -235,7 +235,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get check => 'Comprobar';
 
   @override
-  String get tryAgain => 'Try';
+  String get tryAgain => 'Intentar';
 
   @override
   String get startAgain => 'Comenzar de nuevo';
@@ -251,4 +251,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get correctAnswer => 'Respuesta correcta';
+
+  @override
+  String get finish => 'Finalizar';
 }

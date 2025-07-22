@@ -251,4 +251,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get correctAnswer => '正确答案';
+
+  @override
+  String get finish => '完成';
 }

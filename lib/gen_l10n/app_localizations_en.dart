@@ -251,4 +251,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get correctAnswer => 'Correct answer';
+
+  @override
+  String get finish => 'Finish';
 }

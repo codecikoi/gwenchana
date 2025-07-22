@@ -251,4 +251,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get correctAnswer => 'Правильный ответ';
+
+  @override
+  String get finish => 'Завершить';
 }

@@ -251,4 +251,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get correctAnswer => 'Resposta correta';
+
+  @override
+  String get finish => 'Finalizar';
 }

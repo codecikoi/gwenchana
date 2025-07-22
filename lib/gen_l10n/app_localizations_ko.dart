@@ -251,4 +251,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get correctAnswer => '정답';
+
+  @override
+  String get finish => '완료';
 }

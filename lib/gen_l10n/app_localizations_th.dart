@@ -251,4 +251,7 @@ class AppLocalizationsTh extends AppLocalizations {
 
   @override
   String get correctAnswer => 'คำตอบถูกต้อง';
+
+  @override
+  String get finish => 'เสร็จสิ้น';
 }

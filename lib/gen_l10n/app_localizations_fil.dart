@@ -251,4 +251,7 @@ class AppLocalizationsFil extends AppLocalizations {
 
   @override
   String get correctAnswer => 'Tamang sagot';
+
+  @override
+  String get finish => 'Tapusin';
 }

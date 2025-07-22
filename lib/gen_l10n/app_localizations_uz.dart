@@ -251,4 +251,7 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get correctAnswer => 'To‘g‘ri javob';
+
+  @override
+  String get finish => 'Tugatish';
 }

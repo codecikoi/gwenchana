@@ -251,4 +251,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get correctAnswer => 'Правильна відповідь';
+
+  @override
+  String get finish => 'Завершити';
 }

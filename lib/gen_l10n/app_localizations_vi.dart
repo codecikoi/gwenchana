@@ -251,4 +251,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get correctAnswer => 'Đáp án đúng';
+
+  @override
+  String get finish => 'Hoàn thành';
 }
