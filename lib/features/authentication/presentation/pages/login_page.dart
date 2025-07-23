@@ -297,8 +297,9 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Text(
                     AppLocalizations.of(context)!.dontHaveAccount,
+                    maxLines: 3,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 12,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -306,8 +307,9 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () => context.router.pushPath('/create-account'),
                     child: Text(
                       AppLocalizations.of(context)!.createAccount,
+                      maxLines: 3,
                       style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 12,
                           fontWeight: FontWeight.w500,
                           color: AppColors.enableButton),
                     ),

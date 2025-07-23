@@ -1,3 +1,8 @@
+import 'package:gwenchana/features/vocabulary/data/vocabulary_begginer_one_data.dart';
+import 'package:gwenchana/features/vocabulary/data/vocabulary_beginner_two_data.dart';
+import 'package:gwenchana/features/vocabulary/data/vocabulary_elementary_data.dart';
+import 'package:gwenchana/features/vocabulary/data/vocabulary_intermediate_one.dart';
+import 'package:gwenchana/features/vocabulary/data/vocabulary_intermediate_two.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/card_titles.dart';
 
@@ -9,7 +14,7 @@ class ProgressService {
   // saveProgress
 
   static Future<void> saveProgress(
-      int setIndex, int progress, int level) async {
+      int setIndex, int progress, int level, int total) async {
     final prefs = await SharedPreferences.getInstance();
     final key = '${_progressPrefix}level${level}_set$setIndex';
     await prefs.setInt(key, progress);
@@ -17,7 +22,7 @@ class ProgressService {
     // for completed sets
 // TODO: change countity of words in card. it is different
 
-    if (progress >= 26) {
+    if (progress >= total) {
       final completedKey = '${_completedPrefix}level${level}_set$setIndex';
       await prefs.setBool(completedKey, true);
     }
@@ -53,6 +58,28 @@ class ProgressService {
         return cardTitlesIntermediateLevelOne.length;
       case 5:
         return cardTitlesIntermediateLevelTwo.length;
+      default:
+        return 0;
+    }
+  }
+
+  static int getTotalCardsForLevel(int level) {
+    switch (level) {
+      case 1:
+        return allElementaryLevelDataSets.fold(
+            0, (sum, set) => sum + set.length);
+      case 2:
+        return allBeginnerLevelOneDataSets.fold(
+            0, (sum, set) => sum + set.length);
+      case 3:
+        return allBeginnerLevelTwoDataSets.fold(
+            0, (sum, set) => sum + set.length);
+      case 4:
+        return allIntermediateLevelOneDataSets.fold(
+            0, (sum, set) => sum + set.length);
+      case 5:
+        return allIntermediateLevelTwoDataSets.fold(
+            0, (sum, set) => sum + set.length);
       default:
         return 0;
     }
@@ -131,7 +158,7 @@ class ProgressService {
       final progress = await getAllProgress(level);
       final completed = await getAllCompleted(level);
 
-      final totalCards = getSetCountForLevel(level) * 26;
+      final totalCards = getTotalCardsForLevel(level);
       final completedCards = progress.fold(0, (sum, p) => sum + p);
       final completedSets = completed.where((c) => c).length;
 

@@ -67,10 +67,10 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
   void updateCardData() {
     switch (widget.selectedLevel) {
       case 2:
-        wordCards = allBeginnerOneDataSets[widget.setIndex];
+        wordCards = allBeginnerLevelOneDataSets[widget.setIndex];
         break;
       case 3:
-        wordCards = allBeginnerTwoDataSets[widget.setIndex];
+        wordCards = allBeginnerLevelTwoDataSets[widget.setIndex];
         break;
       case 4:
         wordCards = allIntermediateLevelOneDataSets[widget.setIndex];
@@ -79,7 +79,7 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
         wordCards = allIntermediateLevelTwoDataSets[widget.setIndex];
         break;
       default:
-        wordCards = _getLevelOneSet(widget.setIndex);
+        wordCards = allElementaryLevelDataSets[widget.setIndex];
         break;
     }
   }
@@ -96,30 +96,6 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
         _controller.reset();
       });
     }
-  }
-
-  List<dynamic> _getLevelOneSet(int setIndex) {
-    final allSets = [
-      familyCards,
-      foodCards,
-      colorsCards,
-      numbersCards,
-      bodyCards,
-      weatherCards,
-      transportCards,
-      homeCards,
-      clothingCards,
-      animalCards,
-      schoolCards,
-      workCards,
-      sportsCards,
-      technologyCards,
-      travelCards,
-      healthCards,
-      emotionsCards,
-      activitiesCards,
-    ];
-    return allSets[setIndex];
   }
 
   Future<void> loadProgress() async {
@@ -141,6 +117,7 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
       widget.setIndex,
       currentProgress,
       widget.selectedLevel,
+      wordCards.length,
     );
     if (!mounted) return;
     context.read<VocabularyBloc>().add(UpdateProgressEvent());

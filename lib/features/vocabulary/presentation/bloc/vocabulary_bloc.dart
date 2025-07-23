@@ -39,9 +39,9 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
   int _getWordCount(int level, int index) {
     switch (level) {
       case 2:
-        return allBeginnerOneDataSets[index].length;
+        return allBeginnerLevelOneDataSets[index].length;
       case 3:
-        return allBeginnerTwoDataSets[index].length;
+        return allBeginnerLevelTwoDataSets[index].length;
       case 4:
         return allIntermediateLevelOneDataSets[index].length;
       case 5:

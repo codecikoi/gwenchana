@@ -640,7 +640,7 @@ final List<VocabularyBeginnerLevelOneData> beginnerOneLesson18 = [
 ];
 
 // Master list containing all vocabulary lesson tw data sets
-final List<List<VocabularyBeginnerLevelOneData>> allBeginnerOneDataSets = [
+final List<List<VocabularyBeginnerLevelOneData>> allBeginnerLevelOneDataSets = [
   beginnerOneLesson1,
   beginnerOneLesson2,
   beginnerOneLesson3,
@@ -664,8 +664,8 @@ final List<List<VocabularyBeginnerLevelOneData>> allBeginnerOneDataSets = [
 // Function to get a specific lesson two data set
 List<VocabularyBeginnerLevelOneData> getBeginnerOneLessonDataSet(
     int setNumber) {
-  if (setNumber >= 1 && setNumber <= 18) {
-    return allBeginnerOneDataSets[setNumber - 1];
+  if (setNumber >= 1 && setNumber <= allBeginnerLevelOneDataSets.length) {
+    return allBeginnerLevelOneDataSets[setNumber - 1];
   }
   return [];
 }
@@ -673,7 +673,8 @@ List<VocabularyBeginnerLevelOneData> getBeginnerOneLessonDataSet(
 // Function to get all lesson  data cards as one big list
 List<VocabularyBeginnerLevelOneData> getBeginnerOneAllLessonsDataCards() {
   List<VocabularyBeginnerLevelOneData> allCards = [];
-  for (List<VocabularyBeginnerLevelOneData> set in allBeginnerOneDataSets) {
+  for (List<VocabularyBeginnerLevelOneData> set
+      in allBeginnerLevelOneDataSets) {
     allCards.addAll(set);
   }
   return allCards;
