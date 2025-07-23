@@ -7,14 +7,24 @@ import 'package:gwenchana/features/skill_choosing/presentation/bloc/skill_choosi
 import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 
 @RoutePage()
-class SkillChoosingPage extends StatefulWidget {
+class SkillChoosingPage extends StatelessWidget {
   const SkillChoosingPage({super.key});
 
   @override
-  State<SkillChoosingPage> createState() => _SkillChoosingPageState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+        create: (_) => SkillChoosingBloc(), child: SkillChoosingView());
+  }
 }
 
-class _SkillChoosingPageState extends State<SkillChoosingPage>
+class SkillChoosingView extends StatefulWidget {
+  const SkillChoosingView({super.key});
+
+  @override
+  State<SkillChoosingView> createState() => _SkillChoosingViewState();
+}
+
+class _SkillChoosingViewState extends State<SkillChoosingView>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
