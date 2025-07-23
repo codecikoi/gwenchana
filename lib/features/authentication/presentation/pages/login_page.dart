@@ -7,7 +7,7 @@ import 'package:gwenchana/core/services/preferences_service.dart';
 import 'package:gwenchana/core/helper/basic_appbar.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/core/services/auth_service_impl.dart';
-import 'package:gwenchana/gen_l10n/app_localizations.dart';
+import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 
 @RoutePage()
 class LoginPage extends StatefulWidget {
@@ -109,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           child: Column(
             children: [
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
               ClipOval(
                 child: SizedBox(
                   width: 160,
@@ -293,26 +293,31 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
               const SizedBox(height: 10),
-              Row(
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.dontHaveAccount,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () => context.router.pushPath('/create-account'),
-                    child: Text(
-                      AppLocalizations.of(context)!.createAccount,
+              SizedBox(
+                width: double.infinity,
+                child: Row(
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.dontHaveAccount,
                       style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.enableButton),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                ],
+                    TextButton(
+                      onPressed: () =>
+                          context.router.pushPath('/create-account'),
+                      child: Text(
+                        AppLocalizations.of(context)!.createAccount,
+                        maxLines: 2,
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.enableButton),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               if (_errorMessage != null)
                 Padding(

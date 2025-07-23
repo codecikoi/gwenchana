@@ -14,7 +14,7 @@ part of 'app_router.dart';
 /// [AccountSettingsPage]
 class AccountSettingsRoute extends PageRouteInfo<void> {
   const AccountSettingsRoute({List<PageRouteInfo>? children})
-    : super(AccountSettingsRoute.name, initialChildren: children);
+      : super(AccountSettingsRoute.name, initialChildren: children);
 
   static const String name = 'AccountSettingsRoute';
 
@@ -30,7 +30,7 @@ class AccountSettingsRoute extends PageRouteInfo<void> {
 /// [ChooseLangPage]
 class ChooseLangRoute extends PageRouteInfo<void> {
   const ChooseLangRoute({List<PageRouteInfo>? children})
-    : super(ChooseLangRoute.name, initialChildren: children);
+      : super(ChooseLangRoute.name, initialChildren: children);
 
   static const String name = 'ChooseLangRoute';
 
@@ -46,7 +46,7 @@ class ChooseLangRoute extends PageRouteInfo<void> {
 /// [CreateAccountPage]
 class CreateAccountRoute extends PageRouteInfo<void> {
   const CreateAccountRoute({List<PageRouteInfo>? children})
-    : super(CreateAccountRoute.name, initialChildren: children);
+      : super(CreateAccountRoute.name, initialChildren: children);
 
   static const String name = 'CreateAccountRoute';
 
@@ -62,7 +62,7 @@ class CreateAccountRoute extends PageRouteInfo<void> {
 /// [FavoritesCardPage]
 class FavoritesCardRoute extends PageRouteInfo<void> {
   const FavoritesCardRoute({List<PageRouteInfo>? children})
-    : super(FavoritesCardRoute.name, initialChildren: children);
+      : super(FavoritesCardRoute.name, initialChildren: children);
 
   static const String name = 'FavoritesCardRoute';
 
@@ -78,7 +78,7 @@ class FavoritesCardRoute extends PageRouteInfo<void> {
 /// [LoginPage]
 class LoginRoute extends PageRouteInfo<void> {
   const LoginRoute({List<PageRouteInfo>? children})
-    : super(LoginRoute.name, initialChildren: children);
+      : super(LoginRoute.name, initialChildren: children);
 
   static const String name = 'LoginRoute';
 
@@ -94,7 +94,7 @@ class LoginRoute extends PageRouteInfo<void> {
 /// [MyCardsPage]
 class MyCardsRoute extends PageRouteInfo<void> {
   const MyCardsRoute({List<PageRouteInfo>? children})
-    : super(MyCardsRoute.name, initialChildren: children);
+      : super(MyCardsRoute.name, initialChildren: children);
 
   static const String name = 'MyCardsRoute';
 
@@ -110,7 +110,7 @@ class MyCardsRoute extends PageRouteInfo<void> {
 /// [ReadingPage]
 class ReadingRoute extends PageRouteInfo<void> {
   const ReadingRoute({List<PageRouteInfo>? children})
-    : super(ReadingRoute.name, initialChildren: children);
+      : super(ReadingRoute.name, initialChildren: children);
 
   static const String name = 'ReadingRoute';
 
@@ -126,7 +126,7 @@ class ReadingRoute extends PageRouteInfo<void> {
 /// [RecoverPasswordPage]
 class RecoverPasswordRoute extends PageRouteInfo<void> {
   const RecoverPasswordRoute({List<PageRouteInfo>? children})
-    : super(RecoverPasswordRoute.name, initialChildren: children);
+      : super(RecoverPasswordRoute.name, initialChildren: children);
 
   static const String name = 'RecoverPasswordRoute';
 
@@ -139,17 +139,17 @@ class RecoverPasswordRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [SkillChoosingPage]
+/// [SkillChoosingView]
 class SkillChoosingRoute extends PageRouteInfo<void> {
   const SkillChoosingRoute({List<PageRouteInfo>? children})
-    : super(SkillChoosingRoute.name, initialChildren: children);
+      : super(SkillChoosingRoute.name, initialChildren: children);
 
   static const String name = 'SkillChoosingRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const SkillChoosingPage();
+      return const SkillChoosingView();
     },
   );
 }
@@ -158,7 +158,7 @@ class SkillChoosingRoute extends PageRouteInfo<void> {
 /// [SpeakingPage]
 class SpeakingRoute extends PageRouteInfo<void> {
   const SpeakingRoute({List<PageRouteInfo>? children})
-    : super(SpeakingRoute.name, initialChildren: children);
+      : super(SpeakingRoute.name, initialChildren: children);
 
   static const String name = 'SpeakingRoute';
 
@@ -179,15 +179,15 @@ class VocabularyCardRoute extends PageRouteInfo<VocabularyCardRouteArgs> {
     int selectedLevel = 1,
     List<PageRouteInfo>? children,
   }) : super(
-         VocabularyCardRoute.name,
-         args: VocabularyCardRouteArgs(
-           key: key,
-           setIndex: setIndex,
-           selectedLevel: selectedLevel,
-         ),
-         rawPathParams: {'setIndex': setIndex},
-         initialChildren: children,
-       );
+          VocabularyCardRoute.name,
+          args: VocabularyCardRouteArgs(
+            key: key,
+            setIndex: setIndex,
+            selectedLevel: selectedLevel,
+          ),
+          rawPathParams: {'setIndex': setIndex},
+          initialChildren: children,
+        );
 
   static const String name = 'VocabularyCardRoute';
 
@@ -196,10 +196,9 @@ class VocabularyCardRoute extends PageRouteInfo<VocabularyCardRouteArgs> {
     builder: (data) {
       final pathParams = data.inheritedPathParams;
       final args = data.argsAs<VocabularyCardRouteArgs>(
-        orElse:
-            () => VocabularyCardRouteArgs(
-              setIndex: pathParams.getInt('setIndex', 0),
-            ),
+        orElse: () => VocabularyCardRouteArgs(
+          setIndex: pathParams.getInt('setIndex', 0),
+        ),
       );
       return VocabularyCardPage(
         key: args.key,
@@ -245,7 +244,7 @@ class VocabularyCardRouteArgs {
 /// [VocabularyPage]
 class VocabularyRoute extends PageRouteInfo<void> {
   const VocabularyRoute({List<PageRouteInfo>? children})
-    : super(VocabularyRoute.name, initialChildren: children);
+      : super(VocabularyRoute.name, initialChildren: children);
 
   static const String name = 'VocabularyRoute';
 
@@ -261,7 +260,7 @@ class VocabularyRoute extends PageRouteInfo<void> {
 /// [WritingSkillPage]
 class WritingSkillRoute extends PageRouteInfo<void> {
   const WritingSkillRoute({List<PageRouteInfo>? children})
-    : super(WritingSkillRoute.name, initialChildren: children);
+      : super(WritingSkillRoute.name, initialChildren: children);
 
   static const String name = 'WritingSkillRoute';
 
