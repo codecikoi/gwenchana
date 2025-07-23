@@ -5,7 +5,7 @@ import 'package:gwenchana/core/helper/basic_appbar.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/core/helper/validation_helper.dart';
 import 'package:gwenchana/core/services/auth_service_impl.dart';
-import 'package:gwenchana/gen_l10n/app_localizations.dart';
+import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 
 //TODO: validation to fix
 @RoutePage()

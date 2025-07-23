@@ -7,7 +7,7 @@ import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_bloc.
 import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_event.dart';
 import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_state.dart';
 import 'package:gwenchana/features/writing/presentation/widgets/grid_painter.dart';
-import 'package:gwenchana/gen_l10n/app_localizations.dart';
+import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 
 @RoutePage()
 class WritingSkillPage extends StatelessWidget {

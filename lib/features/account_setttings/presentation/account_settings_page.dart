@@ -7,7 +7,7 @@ import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/features/choose_language/presentation/bloc/language_bloc.dart';
 import 'package:gwenchana/features/choose_language/presentation/bloc/language_event.dart';
 import 'package:gwenchana/features/choose_language/presentation/bloc/language_state.dart';
-import 'package:gwenchana/gen_l10n/app_localizations.dart';
+import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 import 'package:gwenchana/languages_list.dart';
 import 'package:image_picker/image_picker.dart';
 
