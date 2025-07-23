@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/core/helper/app_colors.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
+import 'package:gwenchana/core/services/preferences_service.dart';
 import 'package:gwenchana/features/choose_language/presentation/bloc/language_bloc.dart';
 import 'package:gwenchana/features/choose_language/presentation/bloc/language_event.dart';
 import 'package:gwenchana/features/choose_language/presentation/bloc/language_state.dart';
@@ -20,7 +21,8 @@ class AccountSettingsPage extends StatefulWidget {
 }
 
 class _AccountSettingsPageState extends State<AccountSettingsPage> {
-  String userName = 'Example Name';
+  final PreferencesService _preferencesService = PreferencesService();
+  String userName = '';
   File? profileImage;
   bool isDarkMode = false;
   bool notificationsEnabled = true;
@@ -88,10 +90,11 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
               child: Text(AppLocalizations.of(context)!.cancel),
             ),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 setState(() {
                   userName = fullNameController.text;
                 });
+                await _preferencesService.setUserName(fullNameController.text);
                 Navigator.pop(context);
               },
               child: Text(AppLocalizations.of(context)!.save),
@@ -218,6 +221,19 @@ class _AccountSettingsPageState extends State<AccountSettingsPage> {
         );
       },
     );
+  }
+
+  void _loadUserName() async {
+    final name = await _preferencesService.getUserName();
+    setState(() {
+      userName = name ?? '';
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserName();
   }
 
   @override

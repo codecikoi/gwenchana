@@ -5,6 +5,7 @@ import 'package:gwenchana/core/helper/basic_appbar.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/core/helper/validation_helper.dart';
 import 'package:gwenchana/core/services/auth_service_impl.dart';
+import 'package:gwenchana/core/services/preferences_service.dart';
 import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 
 //TODO: validation to fix
@@ -26,6 +27,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
       TextEditingController();
 
   final AuthServiceImpl _authService = AuthServiceImpl();
+  final PreferencesService _preferencesService = PreferencesService();
 
   // переменная для проверки валидности формы
   bool _isFormValid = false;
@@ -81,6 +83,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
 
         await userCredential.user!
             .updateDisplayName(_nameController.text.trim());
+        await _preferencesService.setUserName(_nameController.text.trim());
         if (mounted) {
           context.router.pushPath('/skill-choosing-page');
         }

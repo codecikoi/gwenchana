@@ -4,7 +4,7 @@ import 'package:gwenchana/core/navigation/guards.dart';
 import 'package:gwenchana/features/account_setttings/presentation/account_settings_page.dart';
 import 'package:gwenchana/features/skill_choosing/presentation/skill_choosing_page.dart';
 import 'package:gwenchana/features/choose_language/presentation/pages/choose_lang_page.dart';
-import 'package:gwenchana/features/create_account/presentation/create_account_page.dart';
+import 'package:gwenchana/features/create_account/presentation/pages/create_account_page.dart';
 import 'package:gwenchana/features/authentication/presentation/pages/login_page.dart';
 import 'package:gwenchana/features/reading/presentation/reading_page.dart';
 import 'package:gwenchana/features/recover_password/presentation/recover_password_page.dart';

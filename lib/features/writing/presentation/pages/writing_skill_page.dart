@@ -206,48 +206,71 @@ class _WritingSkillViewState extends State<WritingSkillView>
                             width: 1,
                           ),
                         ),
-                        child: CustomPaint(
-                          painter: GridPainter(),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 20,
-                              ),
-                              child: TextField(
-                                controller: _controller,
-                                maxLength: 75,
-                                maxLines: 4,
-                                inputFormatters:
-                                    ValidationHelper.koreanInputFormatters,
-                                style: const TextStyle(
-                                  color: Color(0xFF00D4AA),
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                textAlign: TextAlign.center,
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: '여기에 쓰세요',
-                                  hintStyle: TextStyle(
-                                    color: Colors.grey[500],
-                                    fontSize: 28,
+                        child: Stack(
+                          children: [
+                            CustomPaint(
+                              painter: GridPainter(),
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 20,
                                   ),
-                                  errorText: _controller.text.isEmpty
-                                      ? null
-                                      : ValidationHelper.getKoreanError(
-                                          _controller.text, context),
+                                  child: TextField(
+                                    controller: _controller,
+                                    maxLength: 75,
+                                    maxLines: 4,
+                                    inputFormatters:
+                                        ValidationHelper.koreanInputFormatters,
+                                    style: const TextStyle(
+                                      color: Color(0xFF00D4AA),
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: '여기에 쓰세요',
+                                      hintStyle: TextStyle(
+                                        color: Colors.grey[500],
+                                        fontSize: 28,
+                                      ),
+                                      errorText: _controller.text.isEmpty
+                                          ? null
+                                          : ValidationHelper.getKoreanError(
+                                              _controller.text, context),
+                                    ),
+                                    onChanged: (value) {
+                                      if (_shouldUpdateController) {
+                                        context
+                                            .read<WritingSkillBloc>()
+                                            .add(WritingInputChanged(value));
+                                      }
+                                      _shouldUpdateController = true;
+                                    },
+                                  ),
                                 ),
-                                onChanged: (value) {
-                                  if (_shouldUpdateController) {
-                                    context
-                                        .read<WritingSkillBloc>()
-                                        .add(WritingInputChanged(value));
-                                  }
-                                  _shouldUpdateController = true;
-                                },
                               ),
                             ),
-                          ),
+                            Positioned(
+                              bottom: 8,
+                              right: 8,
+                              child: IconButton(
+                                onPressed: () {
+                                  context
+                                      .read<WritingSkillBloc>()
+                                      .add(const WritingInputChanged(''));
+                                  _controller.clear();
+                                },
+                                icon: Icon(
+                                  Icons.delete_outline_outlined,
+                                  color: _controller.text.isEmpty
+                                      ? Colors.grey[600]
+                                      : Colors.red,
+                                  size: 28,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -269,19 +292,6 @@ class _WritingSkillViewState extends State<WritingSkillView>
                                 fontSize: 16,
                                 decoration: TextDecoration.underline,
                               ),
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              context
-                                  .read<WritingSkillBloc>()
-                                  .add(const WritingInputChanged(''));
-                              _controller.clear();
-                            },
-                            icon: const Icon(
-                              Icons.delete_outline_outlined,
-                              color: Color(0xFF00D4AA),
-                              size: 28,
                             ),
                           ),
                           TextButton(
