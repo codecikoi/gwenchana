@@ -14,3 +14,8 @@ class SkillSelected extends SkillChoosingEvent {
   @override
   List<Object?> get props => [index];
 }
+
+class SkillAnimationStarted extends SkillChoosingEvent {}
+
+class SkillAnimationEnded extends SkillChoosingEvent {}
+
