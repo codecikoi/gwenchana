@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/features/skill_choosing/presentation/bloc/skill_choosing_bloc.dart';
 import 'package:gwenchana/features/skill_choosing/presentation/bloc/skill_choosing_event.dart';
 import 'package:gwenchana/features/skill_choosing/presentation/bloc/skill_choosing_state.dart';
-import 'package:gwenchana/gen_l10n/app_localizations.dart';
+import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 
 @RoutePage()
 class SkillChoosingPage extends StatefulWidget {

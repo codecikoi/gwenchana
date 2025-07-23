@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gwenchana/gen_l10n/app_localizations.dart';
+import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 
 class KoreanTextInputFormatter extends TextInputFormatter {
   static final _koreanRegExp =
