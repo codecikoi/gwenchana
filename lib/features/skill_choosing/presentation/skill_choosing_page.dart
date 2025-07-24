@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 
 @RoutePage()
@@ -90,7 +91,7 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
                 backgroundColor: Colors.grey[300],
               ),
             ),
-            onTap: () => context.router.pushPath('/account-settings-page'),
+            onTap: () => context.router.push(AccountSettingsRoute()),
           ),
         ],
         backgroundColor: Color(0xFFfab1a0),

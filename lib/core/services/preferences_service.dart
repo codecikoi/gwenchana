@@ -4,6 +4,17 @@ class PreferencesService {
   static const String languageKey = 'selected_language';
   static const String authTokenKey = 'auth_token';
   static const String userNameKey = 'user_name';
+  static const String avatarFileKey = 'avatar_file';
+
+  Future<void> setAvatarFile(String fileName) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(avatarFileKey, fileName);
+  }
+
+  Future<String?> getAvatarFile() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(avatarFileKey);
+  }
 
   Future<void> setUserName(String name) async {
     final prefs = await SharedPreferences.getInstance();
