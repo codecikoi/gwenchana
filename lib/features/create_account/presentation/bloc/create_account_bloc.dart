@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/core/helper/validation_helper.dart';
 import 'package:gwenchana/core/services/auth_service_impl.dart';
@@ -41,6 +42,10 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
           state.password,
         );
         if (userCredential != null && userCredential.user != null) {
+          final token = await userCredential.user!.getIdToken();
+          if (token != null) {
+            await preferencesService.setAuthToken(token);
+          }
           await userCredential.user!.updateDisplayName(state.name.trim());
           await preferencesService.setUserName(state.name.trim());
           emit(state.copyWith(

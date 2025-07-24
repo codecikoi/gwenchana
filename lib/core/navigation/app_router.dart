@@ -27,7 +27,6 @@ class AppRouter extends RootStackRouter {
           initial: true,
           page: ChooseLangRoute.page,
           path: '/choose-lang',
-          guards: [_authGuard],
         ),
         AutoRoute(
           page: LoginRoute.page,
