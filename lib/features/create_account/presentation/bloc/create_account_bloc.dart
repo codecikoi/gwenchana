@@ -17,9 +17,24 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
       final newState = state.copyWith(name: event.name);
       emit(_validate(newState));
     });
+    on<EmailChanged>((event, emit) {
+      final newstate = state.copyWith(email: event.email, isSuccess: false);
+      emit(_validate(newstate));
+    });
+    on<PasswordChanged>((event, emit) {
+      final newState =
+          state.copyWith(password: event.password, isSuccess: false);
+      emit(_validate(newState));
+    });
+    on<ConfirmPasswordChanged>((event, emit) {
+      final newState = state.copyWith(
+          confirmPassword: event.confirmPassword, isSuccess: false);
+      emit(_validate(newState));
+    });
     on<Submitted>((event, emit) async {
       if (!state.isValid) return;
-      emit(state.copyWith(isLoading: true, errorMessage: null));
+      emit(state.copyWith(
+          isLoading: true, errorMessage: null, isSuccess: false));
       try {
         final userCredential = await authService.signUpWithEmailPassword(
           state.email.trim(),
@@ -28,11 +43,19 @@ class CreateAccountBloc extends Bloc<CreateAccountEvent, CreateAccountState> {
         if (userCredential != null && userCredential.user != null) {
           await userCredential.user!.updateDisplayName(state.name.trim());
           await preferencesService.setUserName(state.name.trim());
-          emit(state.copyWith(isLoading: false, errorMessage: null));
+          emit(state.copyWith(
+            isLoading: false,
+            errorMessage: null,
+            isSuccess: true,
+          ));
           // Навигацию делаем через BlocListener в UI
         }
       } catch (e) {
-        emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
+        emit(state.copyWith(
+          isLoading: false,
+          errorMessage: e.toString(),
+          isSuccess: false,
+        ));
       }
     });
   }

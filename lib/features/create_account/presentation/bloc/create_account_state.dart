@@ -8,6 +8,7 @@ class CreateAccountState extends Equatable {
   final bool isValid;
   final bool isLoading;
   final String? errorMessage;
+  final bool isSuccess;
 
   const CreateAccountState({
     this.name = '',
@@ -17,6 +18,7 @@ class CreateAccountState extends Equatable {
     this.isValid = false,
     this.isLoading = false,
     this.errorMessage,
+    this.isSuccess = false,
   });
 
   CreateAccountState copyWith({
@@ -27,6 +29,7 @@ class CreateAccountState extends Equatable {
     bool? isValid,
     bool? isLoading,
     String? errorMessage,
+    bool? isSuccess,
   }) {
     return CreateAccountState(
       name: name ?? this.name,
@@ -36,6 +39,7 @@ class CreateAccountState extends Equatable {
       isValid: isValid ?? this.isValid,
       isLoading: isLoading ?? this.isLoading,
       errorMessage: errorMessage ?? this.errorMessage,
+      isSuccess: isSuccess ?? this.isSuccess,
     );
   }
 
@@ -48,5 +52,6 @@ class CreateAccountState extends Equatable {
         isValid,
         isLoading,
         errorMessage,
+        isSuccess,
       ];
 }
