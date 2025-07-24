@@ -4,6 +4,13 @@ import 'package:gwenchana/core/services/auth_service_impl.dart';
 
 final GetIt locator = GetIt.instance;
 
-void setupLocator() {
+Future<void> setupLocator() async {
   locator.registerLazySingleton<IAuthService>(() => AuthServiceImpl());
+
+  // locator.registerLazySingleton<PreferencesService>(() => PreferencesService());
+
+  // locator.registerFactory<AccountSettingsBloc>(() => AccountSettingsBloc(
+  //       authService: locator<AuthServiceImpl>(),
+  //       preferencesService: locator<PreferencesService>(),
+  //     ));
 }

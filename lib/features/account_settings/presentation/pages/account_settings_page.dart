@@ -271,91 +271,97 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
   }
 
   void _showAvatarPicker(BuildContext context, String currentAvatar) {
+    final bloc = context.read<AccountSettingsBloc>();
     showModalBottomSheet(
       context: context,
-      builder: (context) => GridView.builder(
-        itemCount: avatarFiles.length,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3,
-        ),
-        itemBuilder: (context, index) {
-          final fileName = avatarFiles[index];
-          return GestureDetector(
-            onTap: () {
-              context.read<AccountSettingsBloc>().add(
-                    UserAvatarChanged(fileName),
-                  );
-              Navigator.pop(context);
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/avatars/$fileName'),
-                radius: 30,
-                child: fileName == currentAvatar
-                    ? const Icon(Icons.check, color: Colors.green)
-                    : null,
+      builder: (context) => BlocProvider.value(
+        value: bloc,
+        child: GridView.builder(
+          itemCount: avatarFiles.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+          ),
+          itemBuilder: (context, index) {
+            final fileName = avatarFiles[index];
+            return GestureDetector(
+              onTap: () {
+                bloc.add(UserAvatarChanged(fileName));
+                Navigator.pop(context);
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('assets/avatars/$fileName'),
+                  radius: 30,
+                  child: fileName == currentAvatar
+                      ? const Icon(Icons.check, color: Colors.green)
+                      : null,
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
 
   void _editFullName(BuildContext context, String currentName) {
+    final bloc = context.read<AccountSettingsBloc>();
     final controller = TextEditingController(text: currentName);
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(
-          AppLocalizations.of(context)!.editFullName,
-        ),
-        content: TextField(
-          controller: controller,
-          decoration: InputDecoration(
-            labelText: AppLocalizations.of(context)!.name,
+      builder: (context) => BlocProvider.value(
+        value: bloc,
+        child: AlertDialog(
+          title: Text(
+            AppLocalizations.of(context)!.editFullName,
           ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(
-              AppLocalizations.of(context)!.cancel,
+          content: TextField(
+            controller: controller,
+            decoration: InputDecoration(
+              labelText: AppLocalizations.of(context)!.name,
             ),
           ),
-          TextButton(
-            onPressed: () {
-              context
-                  .read<AccountSettingsBloc>()
-                  .add(NameChanged(controller.text));
-              Navigator.pop(context);
-            },
-            child: Text(
-              AppLocalizations.of(context)!.save,
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(
+                AppLocalizations.of(context)!.cancel,
+              ),
             ),
-          ),
-        ],
+            TextButton(
+              onPressed: () {
+                bloc.add(NameChanged(controller.text));
+                Navigator.pop(context);
+              },
+              child: Text(
+                AppLocalizations.of(context)!.save,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
 
   void _showLanguageDialog(BuildContext context, String currentLanguage) {
+    final bloc = context.read<AccountSettingsBloc>();
     showDialog(
       context: context,
-      builder: (context) => SimpleDialog(
-        title: Text(AppLocalizations.of(context)!.selectLanguage),
-        children: languagesList.map((lang) {
-          return SimpleDialogOption(
-            onPressed: () {
-              context
-                  .read<AccountSettingsBloc>()
-                  .add(ChangeLanguageRequested(lang['code']!));
-              Navigator.pop(context);
-            },
-            child: Text(lang['name']),
-          );
-        }).toList(),
+      builder: (context) => BlocProvider.value(
+        value: bloc,
+        child: SimpleDialog(
+          title: Text(AppLocalizations.of(context)!.selectLanguage),
+          children: languagesList.map((lang) {
+            return SimpleDialogOption(
+              onPressed: () {
+                bloc.add(ChangeLanguageRequested(lang['code']!));
+                Navigator.pop(context);
+              },
+              child: Text(lang['name']),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
