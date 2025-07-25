@@ -54,9 +54,10 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
         backgroundColor: Colors.grey[50],
         appBar: AppBar(
           title: Text(
-            'Profile settings',
+            AppLocalizations.of(context)!.accountSettings,
             style: TextStyle(
               fontSize: 20,
+              letterSpacing: 1.2,
             ),
           ),
           centerTitle: true,

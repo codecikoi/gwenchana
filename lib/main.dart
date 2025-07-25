@@ -105,7 +105,6 @@ class _MyAppState extends State<MyApp> {
               Locale('tr'),
               Locale('pt'),
             ],
-            // TODO: main fontfamily SORA
           );
         },
       ),

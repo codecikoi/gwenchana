@@ -20,7 +20,6 @@ class ProgressService {
     await prefs.setInt(key, progress);
 
     // for completed sets
-// TODO: change countity of words in card. it is different
 
     if (progress >= total) {
       final completedKey = '${_completedPrefix}level${level}_set$setIndex';

@@ -149,7 +149,7 @@ class SkillChoosingRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const SkillChoosingPage();
+      return WrappedRoute(child: const SkillChoosingPage());
     },
   );
 }
