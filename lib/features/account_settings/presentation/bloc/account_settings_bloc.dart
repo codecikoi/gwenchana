@@ -50,23 +50,25 @@ class AccountSettingsBloc
       emit(state.copyWith(isSuccess: true));
     });
 
-    on<ChangePasswordRequested>((event, emit) async {
-      emit(state.copyWith(
-          isLoading: true, errorMessage: null, isSuccess: false));
-      try {
-        final user = authService.currentUser;
-        if (user == null) throw 'User not found';
-        final card = EmailAuthProvider.credential(
-          email: user.email!,
-          password: event.oldPassword,
-        );
-        await user.reauthenticateWithCredential(card);
-        await user.updatePassword(event.newPassword);
-        emit(state.copyWith(isLoading: false, isSuccess: true));
-      } catch (e) {
-        emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
-      }
-    });
+// TODO: need?
+
+    // on<ChangePasswordRequested>((event, emit) async {
+    //   emit(state.copyWith(
+    //       isLoading: true, errorMessage: null, isSuccess: false));
+    //   try {
+    //     final user = authService.currentUser;
+    //     if (user == null) throw 'User not found';
+    //     final card = EmailAuthProvider.credential(
+    //       email: user.email!,
+    //       password: event.oldPassword,
+    //     );
+    //     await user.reauthenticateWithCredential(card);
+    //     await user.updatePassword(event.newPassword);
+    //     emit(state.copyWith(isLoading: false, isSuccess: true));
+    //   } catch (e) {
+    //     emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
+    //   }
+    // });
 
     on<DeleteAccountRequested>((event, emit) async {
       emit(state.copyWith(isLoading: true, errorMessage: null));
@@ -77,6 +79,36 @@ class AccountSettingsBloc
           await preferencesService.clearAuthToken();
           emit(state.copyWith(isLoading: false, isAccountDeleted: true));
         }
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'requires-recent-login') {
+          emit(state.copyWith(
+            isLoading: false,
+            errorMessage: 'requires-recent-login',
+          ));
+        } else {
+          emit(state.copyWith(isLoading: false, errorMessage: e.message));
+        }
+      } catch (e) {
+        emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
+      }
+    });
+
+    on<ReauthenticateandDelete>((event, emit) async {
+      emit(state.copyWith(isLoading: false, errorMessage: null));
+      try {
+        final user = authService.currentUser;
+        if (user == null || user.email == null)
+          throw Exception('user not found');
+        final cred = EmailAuthProvider.credential(
+          email: user.email!,
+          password: event.password,
+        );
+        await user.reauthenticateWithCredential(cred);
+        await user.delete();
+        await preferencesService.clearAuthToken();
+        emit(state.copyWith(isLoading: false, isAccountDeleted: true));
+      } on FirebaseAuthException catch (e) {
+        emit(state.copyWith(isLoading: false, errorMessage: e.message));
       } catch (e) {
         emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
       }

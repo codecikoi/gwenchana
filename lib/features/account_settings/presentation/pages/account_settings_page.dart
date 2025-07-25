@@ -34,7 +34,13 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     return BlocListener<AccountSettingsBloc, AccountSettingsState>(
       listener: (context, state) {
-        if (state.errorMessage != null) {
+        if (state.errorMessage == 'requires-recent-login') {
+          _showAccountDeleteDialog(context, (password) {
+            context
+                .read<AccountSettingsBloc>()
+                .add(ReauthenticateandDelete(password));
+          });
+        } else if (state.errorMessage != null) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.errorMessage!),
@@ -47,7 +53,7 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
           context.router.replaceAll([LoginRoute()]);
         }
         if (state.isAccountDeleted) {
-          context.router.replaceAll([CreateAccountRoute()]);
+          context.router.replaceAll([LoginRoute()]);
         }
       },
       child: Scaffold(
@@ -199,7 +205,7 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
                             OpenExternalLink('mailto:wowdobryy@gmail.com'),
                           )),
 
-                  // change passsword
+                  // // change passsword
                   // _accountSettingsItem(
                   //   icon: Icons.lock_outline,
                   //   title: AppLocalizations.of(context)!.changePassword,
@@ -212,9 +218,9 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
                     icon: Icons.delete_outline,
                     color: AppColors.enableButton,
                     title: AppLocalizations.of(context)!.deleteAccount,
-                    onTap: () => context.read<AccountSettingsBloc>().add(
-                          DeleteAccountRequested(),
-                        ),
+                    onTap: () => context
+                        .read<AccountSettingsBloc>()
+                        .add(DeleteAccountRequested()),
                   ),
                 ],
               ),
@@ -270,6 +276,43 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
         ),
         const Divider(height: 1),
       ],
+    );
+  }
+
+  void _showAccountDeleteDialog(
+      BuildContext context, void Function(String password) onConfirm) {
+    final passwordController = TextEditingController();
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          AppLocalizations.of(context)!.confirmPassword,
+        ),
+        content: TextField(
+          controller: passwordController,
+          obscureText: true,
+          decoration: InputDecoration(
+            labelText: AppLocalizations.of(context)!.password,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(
+              AppLocalizations.of(context)!.cancel,
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              onConfirm(passwordController.text);
+              Navigator.pop(context);
+            },
+            child: Text(
+              'Подтвердить',
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -372,7 +415,5 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
     );
   }
 
-// void _changePassword(BuildContext context) {
-//   // TODO: implement logic
-// }
+  // void _changePassword(BuildContext context) {}
 }

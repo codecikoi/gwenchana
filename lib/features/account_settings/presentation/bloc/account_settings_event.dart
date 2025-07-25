@@ -54,6 +54,11 @@ class ChangePasswordRequested extends AccountSettingsEvent {
 
 class DeleteAccountRequested extends AccountSettingsEvent {}
 
+class ReauthenticateandDelete extends AccountSettingsEvent {
+  final String password;
+  ReauthenticateandDelete(this.password);
+}
+
 class LogoutRequested extends AccountSettingsEvent {}
 
 class OpenExternalLink extends AccountSettingsEvent {

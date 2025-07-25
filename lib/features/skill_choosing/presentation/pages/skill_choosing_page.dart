@@ -61,7 +61,7 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
   Future<void> _loadAvatar() async {
     final fileName = await PreferencesService().getAvatarFile();
     setState(() {
-      _avatarFile = fileName ?? '29-c.png';
+      _avatarFile = fileName ?? '27-c.png';
     });
   }
 
@@ -118,7 +118,7 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
               child: CircleAvatar(
                 radius: 20,
                 backgroundImage: AssetImage(
-                  'assets/avatars/${_avatarFile ?? '29-c.png'}',
+                  'assets/avatars/${_avatarFile ?? '27-c.png'}',
                 ),
               ),
             ),
