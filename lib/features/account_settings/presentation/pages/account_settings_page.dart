@@ -10,6 +10,8 @@ import 'package:gwenchana/features/account_settings/data/avatar_files.dart';
 import 'package:gwenchana/features/account_settings/presentation/bloc/account_settings_bloc.dart';
 import 'package:gwenchana/features/account_settings/presentation/bloc/account_settings_event.dart';
 import 'package:gwenchana/features/account_settings/presentation/bloc/account_settings_state.dart';
+import 'package:gwenchana/features/choose_language/presentation/bloc/language_bloc.dart';
+import 'package:gwenchana/features/choose_language/presentation/bloc/language_event.dart';
 import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 import 'package:gwenchana/languages_list.dart';
 
@@ -42,10 +44,10 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
         }
         if (state.isLoggedOut) {
           // replace
-          context.router.replace(LoginRoute());
+          context.router.replaceAll([LoginRoute()]);
         }
         if (state.isAccountDeleted) {
-          context.router.replacePath('/create-account');
+          context.router.replaceAll([CreateAccountRoute()]);
         }
       },
       child: Scaffold(
@@ -356,6 +358,9 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
             return SimpleDialogOption(
               onPressed: () {
                 bloc.add(ChangeLanguageRequested(lang['code']!));
+                context.read<LanguageBloc>().add(
+                      LanguageSelected(lang['code']!),
+                    );
                 Navigator.pop(context);
               },
               child: Text(lang['name']),
