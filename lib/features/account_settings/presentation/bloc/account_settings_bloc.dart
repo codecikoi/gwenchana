@@ -123,7 +123,7 @@ class AccountSettingsBloc
     on<OpenExternalLink>((event, emit) async {
       final url = Uri.parse(event.url);
       if (await canLaunchUrl(url)) {
-        await launchUrl(url, mode: LaunchMode.externalApplication);
+        await launchUrl(url);
       } else {
         emit(state.copyWith(errorMessage: "Link not foud"));
       }

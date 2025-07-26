@@ -27,6 +27,26 @@ class WritingSkillInProgress extends WritingSkillState {
     required this.currentWord,
   });
 
+  WritingSkillInProgress copyWith({
+    int? currentIndex,
+    String? userInput,
+    bool? showResult,
+    bool? isCorrect,
+    bool? hasStudied,
+    int? totalWords,
+    Map<String, String>? currentWord,
+  }) {
+    return WritingSkillInProgress(
+      currentIndex: currentIndex ?? this.currentIndex,
+      userInput: userInput ?? this.userInput,
+      showResult: showResult ?? this.showResult,
+      isCorrect: isCorrect ?? this.isCorrect,
+      hasStudied: hasStudied ?? this.hasStudied,
+      totalWords: totalWords ?? this.totalWords,
+      currentWord: currentWord ?? this.currentWord,
+    );
+  }
+
   @override
   List<Object?> get props => [
         currentIndex,

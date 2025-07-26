@@ -115,265 +115,270 @@ class _WritingSkillViewState extends State<WritingSkillView>
                 ),
               ],
             ),
-            body: Column(
-              children: [
-                // progress indicator
-                Container(
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 8,
-                  ),
-                  child: LinearProgressIndicator(
-                    value: (state.currentIndex + 1) / state.totalWords,
-                    backgroundColor: Colors.grey[700],
-                    valueColor: const AlwaysStoppedAnimation<Color>(
-                      Color(0xFF00D4AA),
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  // progress indicator
+                  Container(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    child: LinearProgressIndicator(
+                      value: (state.currentIndex + 1) / state.totalWords,
+                      backgroundColor: Colors.grey[700],
+                      valueColor: const AlwaysStoppedAnimation<Color>(
+                        Color(0xFF00D4AA),
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: [
-                      Center(
-                        child: Text(
-                          state.currentWord['english']!,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      children: [
+                        Center(
+                          child: Text(
+                            state.currentWord['english']!,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            maxLines: 3,
                           ),
-                          maxLines: 3,
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Builder(
-                          builder: (context) {
-                            return IconButton(
-                              onPressed: () async {
-                                final button =
-                                    context.findRenderObject() as RenderBox;
-                                final overlay = Overlay.of(context)
-                                    .context
-                                    .findRenderObject() as RenderBox;
-                                final position = button.localToGlobal(
-                                    Offset.zero,
-                                    ancestor: overlay);
-                                await showMenu(
-                                  context: context,
-                                  position: RelativeRect.fromLTRB(
-                                    position.dx,
-                                    position.dy + button.size.height,
-                                    overlay.size.width -
-                                        position.dx -
-                                        button.size.width,
-                                    overlay.size.height - position.dy,
-                                  ),
-                                  items: [
-                                    PopupMenuItem(
-                                      enabled: false,
-                                      child: Text(
-                                        '${AppLocalizations.of(context)!.correctAnswer}:\n ${state.currentWord['korean']}',
-                                        style: const TextStyle(
-                                          color: Colors.white,
+                        const SizedBox(height: 16),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: Builder(
+                            builder: (context) {
+                              return IconButton(
+                                onPressed: () async {
+                                  final button =
+                                      context.findRenderObject() as RenderBox;
+                                  final overlay = Overlay.of(context)
+                                      .context
+                                      .findRenderObject() as RenderBox;
+                                  final position = button.localToGlobal(
+                                      Offset.zero,
+                                      ancestor: overlay);
+                                  await showMenu(
+                                    context: context,
+                                    position: RelativeRect.fromLTRB(
+                                      position.dx,
+                                      position.dy + button.size.height,
+                                      overlay.size.width -
+                                          position.dx -
+                                          button.size.width,
+                                      overlay.size.height - position.dy,
+                                    ),
+                                    items: [
+                                      PopupMenuItem(
+                                        enabled: false,
+                                        child: Text(
+                                          '${AppLocalizations.of(context)!.correctAnswer}:\n ${state.currentWord['korean']}',
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                  color: Colors.black87,
-                                  elevation: 8.0,
-                                );
-                              },
-                              icon: const Icon(
-                                Icons.tips_and_updates_rounded,
-                              ),
-                              iconSize: 24,
-                              color: Colors.orangeAccent,
-                            );
-                          },
-                        ),
-                      ),
-                      Container(
-                        height: 350,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF3C3C3E),
-                          borderRadius: BorderRadius.circular(6),
-                          border: Border.all(
-                            color: Colors.grey[600]!,
-                            width: 1,
+                                    ],
+                                    color: Colors.black87,
+                                    elevation: 8.0,
+                                  );
+                                },
+                                icon: const Icon(
+                                  Icons.tips_and_updates_rounded,
+                                ),
+                                iconSize: 24,
+                                color: Colors.orangeAccent,
+                              );
+                            },
                           ),
                         ),
-                        child: Stack(
-                          children: [
-                            CustomPaint(
-                              painter: GridPainter(),
-                              child: Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 20,
-                                  ),
-                                  child: TextField(
-                                    controller: _controller,
-                                    maxLength: 75,
-                                    maxLines: 4,
-                                    inputFormatters:
-                                        ValidationHelper.koreanInputFormatters,
-                                    style: const TextStyle(
-                                      color: Color(0xFF00D4AA),
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.bold,
+                        Container(
+                          height: 350,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF3C3C3E),
+                            borderRadius: BorderRadius.circular(6),
+                            border: Border.all(
+                              color: Colors.grey[600]!,
+                              width: 1,
+                            ),
+                          ),
+                          child: Stack(
+                            children: [
+                              CustomPaint(
+                                painter: GridPainter(),
+                                child: Center(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20,
                                     ),
-                                    textAlign: TextAlign.center,
-                                    decoration: InputDecoration(
-                                      border: InputBorder.none,
-                                      hintText: '여기에 쓰세요',
-                                      hintStyle: TextStyle(
-                                        color: Colors.grey[500],
-                                        fontSize: 28,
+                                    child: TextField(
+                                      controller: _controller,
+                                      maxLength: 75,
+                                      maxLines: 4,
+                                      inputFormatters: ValidationHelper
+                                          .koreanInputFormatters,
+                                      style: const TextStyle(
+                                        color: Color(0xFF00D4AA),
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                      errorText: _controller.text.isEmpty
-                                          ? null
-                                          : ValidationHelper.getKoreanError(
-                                              _controller.text, context),
+                                      textAlign: TextAlign.center,
+                                      decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        hintText: '여기에 쓰세요',
+                                        hintStyle: TextStyle(
+                                          color: Colors.grey[500],
+                                          fontSize: 28,
+                                        ),
+                                        errorText: _controller.text.isEmpty
+                                            ? null
+                                            : ValidationHelper.getKoreanError(
+                                                _controller.text, context),
+                                      ),
+                                      onChanged: (value) {
+                                        if (_shouldUpdateController) {
+                                          context
+                                              .read<WritingSkillBloc>()
+                                              .add(WritingInputChanged(value));
+                                        }
+                                        _shouldUpdateController = true;
+                                      },
                                     ),
-                                    onChanged: (value) {
-                                      if (_shouldUpdateController) {
-                                        context
-                                            .read<WritingSkillBloc>()
-                                            .add(WritingInputChanged(value));
-                                      }
-                                      _shouldUpdateController = true;
-                                    },
                                   ),
                                 ),
                               ),
-                            ),
-                            Positioned(
-                              bottom: 8,
-                              right: 8,
-                              child: IconButton(
-                                onPressed: () {
-                                  context
+                              Positioned(
+                                bottom: 8,
+                                right: 8,
+                                child: IconButton(
+                                  onPressed: () {
+                                    context
+                                        .read<WritingSkillBloc>()
+                                        .add(const WritingInputChanged(''));
+                                    _controller.clear();
+                                  },
+                                  icon: Icon(
+                                    Icons.delete_outline_outlined,
+                                    color: _controller.text.isEmpty
+                                        ? Colors.grey[600]
+                                        : Colors.red,
+                                    size: 28,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            TextButton(
+                              onPressed: state.currentIndex > 0
+                                  ? () => context
                                       .read<WritingSkillBloc>()
-                                      .add(const WritingInputChanged(''));
-                                  _controller.clear();
-                                },
-                                icon: Icon(
-                                  Icons.delete_outline_outlined,
-                                  color: _controller.text.isEmpty
-                                      ? Colors.grey[600]
-                                      : Colors.red,
-                                  size: 28,
+                                      .add(WritingPreviousWord())
+                                  : null,
+                              child: Text(
+                                AppLocalizations.of(context)!.back,
+                                style: TextStyle(
+                                  color: state.currentIndex > 0
+                                      ? const Color(0xFF00D4AA)
+                                      : Colors.grey[600],
+                                  fontSize: 16,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed:
+                                  state.currentIndex == state.totalWords - 1
+                                      ? null
+                                      : () => context
+                                          .read<WritingSkillBloc>()
+                                          .add(WritingSkipWord()),
+                              child: Text(
+                                AppLocalizations.of(context)!.skip,
+                                style: TextStyle(
+                                  color:
+                                      state.currentIndex == state.totalWords - 1
+                                          ? Colors.grey[600]
+                                          : const Color(0xFF00D4AA),
+                                  fontSize: 16,
+                                  decoration: TextDecoration.underline,
                                 ),
                               ),
                             ),
                           ],
                         ),
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          TextButton(
-                            onPressed: state.currentIndex > 0
-                                ? () => context
-                                    .read<WritingSkillBloc>()
-                                    .add(WritingPreviousWord())
-                                : null,
-                            child: Text(
-                              AppLocalizations.of(context)!.back,
-                              style: TextStyle(
-                                color: state.currentIndex > 0
-                                    ? const Color(0xFF00D4AA)
-                                    : Colors.grey[600],
-                                fontSize: 16,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                          TextButton(
-                            onPressed:
-                                state.currentIndex == state.totalWords - 1
-                                    ? null
-                                    : () => context
-                                        .read<WritingSkillBloc>()
-                                        .add(WritingSkipWord()),
-                            child: Text(
-                              AppLocalizations.of(context)!.skip,
-                              style: TextStyle(
-                                color:
-                                    state.currentIndex == state.totalWords - 1
-                                        ? Colors.grey[600]
-                                        : const Color(0xFF00D4AA),
-                                fontSize: 16,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 70),
-
-                      // main button
-                      Container(
-                        width: double.infinity,
-                        color: Colors.grey[700],
-                        child: ElevatedButton(
-                          onPressed: state.showResult
-                              ? (state.isCorrect
-                                  ? (state.currentIndex < state.totalWords - 1
-                                      ? () => context
-                                          .read<WritingSkillBloc>()
-                                          .add(WritingNextWord())
-                                      : null)
-                                  : () {
-                                      context
-                                          .read<WritingSkillBloc>()
-                                          .add(const WritingInputChanged(''));
-                                      _controller.clear();
-                                    })
-                              : (state.userInput.isNotEmpty
-                                  ? () => context
-                                      .read<WritingSkillBloc>()
-                                      .add(WritingCheckAnswer())
-                                  : null),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: !state.showResult
-                                ? (state.userInput.isNotEmpty
-                                    ? Colors.yellow[700]
-                                    : Colors.grey)
-                                : (state.isCorrect
-                                    ? Colors.green
-                                    : Colors.deepOrange),
-                            foregroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(vertical: 16),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                          ),
-                          child: Text(
-                            !state.showResult
-                                ? AppLocalizations.of(context)!.check
-                                : (state.isCorrect
+                        const SizedBox(
+                            height:
+                                20), // TODO: // размеры экрана изменить под телефон
+                        // main button
+                        Container(
+                          width: double.infinity,
+                          color: Colors.grey[700],
+                          child: ElevatedButton(
+                            onPressed: state.showResult
+                                ? (state.isCorrect
                                     ? (state.currentIndex < state.totalWords - 1
-                                        ? AppLocalizations.of(context)!.next
-                                        : AppLocalizations.of(context)!.finish)
-                                    : AppLocalizations.of(context)!.tryAgain),
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
+                                        ? () => context
+                                            .read<WritingSkillBloc>()
+                                            .add(WritingNextWord())
+                                        : null)
+                                    : () {
+                                        context
+                                            .read<WritingSkillBloc>()
+                                            .add(const WritingInputChanged(''));
+                                        _controller.clear();
+                                      })
+                                : (state.userInput.isNotEmpty
+                                    ? () => context
+                                        .read<WritingSkillBloc>()
+                                        .add(WritingCheckAnswer())
+                                    : null),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: !state.showResult
+                                  ? (state.userInput.isNotEmpty
+                                      ? Colors.yellow[700]
+                                      : Colors.grey)
+                                  : (state.isCorrect
+                                      ? Colors.green
+                                      : Colors.deepOrange),
+                              foregroundColor: Colors.white,
+                              padding: const EdgeInsets.symmetric(vertical: 16),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                            ),
+                            child: Text(
+                              !state.showResult
+                                  ? AppLocalizations.of(context)!.check
+                                  : (state.isCorrect
+                                      ? (state.currentIndex <
+                                              state.totalWords - 1
+                                          ? AppLocalizations.of(context)!.next
+                                          : AppLocalizations.of(context)!
+                                              .finish)
+                                      : AppLocalizations.of(context)!.tryAgain),
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         } else if (state is WritingSkillFinished) {

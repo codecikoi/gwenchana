@@ -16,81 +16,90 @@ class WritingSkillBloc extends Bloc<WritingSkillEvent, WritingSkillState> {
     add(WritingResetProgress());
   }
 
-  int _currentIndex = 0;
-  String _userInput = '';
-  bool _showResult = false;
-  bool _isCorrect = false;
-  bool _hasStudied = false;
-
-  void _emitCurrentState(Emitter<WritingSkillState> emit) {
-    emit(WritingSkillInProgress(
-      currentIndex: _currentIndex,
-      userInput: _userInput,
-      showResult: _showResult,
-      isCorrect: _isCorrect,
-      hasStudied: _hasStudied,
-      totalWords: words.length,
-      currentWord: words[_currentIndex],
-    ));
-  }
-
   void _onInputChanged(
       WritingInputChanged event, Emitter<WritingSkillState> emit) {
-    _userInput = event.input;
-    _showResult = false;
-    _emitCurrentState(emit);
+    if (state is WritingSkillInProgress) {
+      final s = state as WritingSkillInProgress;
+      emit(s.copyWith(
+        userInput: event.input,
+        showResult: false,
+      ));
+    }
   }
 
   void _onCheckAnswer(
       WritingCheckAnswer event, Emitter<WritingSkillState> emit) {
-    final correct = words[_currentIndex]['korean']?.trim() ?? '';
-    _isCorrect = _userInput.trim() == correct;
-    _showResult = true;
-    _hasStudied = true;
-    _emitCurrentState(emit);
-    if (_currentIndex == words.length - 1 && _isCorrect) {
-      add(WritingNextWord());
+    if (state is WritingSkillInProgress) {
+      final s = state as WritingSkillInProgress;
+      final correct = s.currentWord['korean']?.trim() ?? '';
+      final isCorrect = s.userInput.trim() == correct;
+      emit(s.copyWith(
+        isCorrect: isCorrect,
+        showResult: true,
+        hasStudied: true,
+      ));
+      if (s.currentIndex == s.totalWords - 1 && isCorrect) {
+        add(WritingNextWord());
+      }
     }
   }
 
   void _onNextWord(WritingNextWord event, Emitter<WritingSkillState> emit) {
-    if (_currentIndex < words.length - 1) {
-      _currentIndex++;
-      _userInput = '';
-      _showResult = false;
-      _isCorrect = false;
-      _hasStudied = false;
-      _emitCurrentState(emit);
-    } else {
-      emit(WritingSkillFinished());
+    if (state is WritingSkillInProgress) {
+      final s = state as WritingSkillInProgress;
+      if (s.currentIndex < words.length - 1) {
+        emit(s.copyWith(
+          currentIndex: s.currentIndex + 1,
+          userInput: '',
+          showResult: false,
+          isCorrect: false,
+          hasStudied: false,
+          currentWord: words[s.currentIndex + 1],
+        ));
+      } else {
+        emit(WritingSkillFinished());
+      }
     }
   }
 
   void _onPreviousWord(
       WritingPreviousWord event, Emitter<WritingSkillState> emit) {
-    if (_currentIndex > 0) {
-      _currentIndex--;
-      _userInput = '';
-      _showResult = false;
-      _isCorrect = false;
-      _hasStudied = false;
-      _emitCurrentState(emit);
+    if (state is WritingSkillInProgress) {
+      final s = state as WritingSkillInProgress;
+      if (s.currentIndex > 0) {
+        emit(s.copyWith(
+          currentIndex: s.currentIndex - 1,
+          userInput: '',
+          showResult: false,
+          isCorrect: false,
+          hasStudied: false,
+          currentWord: words[s.currentIndex - 1],
+        ));
+      }
     }
   }
 
   void _onSkipWord(WritingSkipWord event, Emitter<WritingSkillState> emit) {
-    _hasStudied = false;
-    _showResult = false;
-    add(WritingNextWord());
+    if (state is WritingSkillInProgress) {
+      final s = state as WritingSkillInProgress;
+      emit(s.copyWith(
+        hasStudied: false,
+        showResult: false,
+      ));
+      add(WritingNextWord());
+    }
   }
 
   void _onResetProgress(
       WritingResetProgress event, Emitter<WritingSkillState> emit) {
-    _currentIndex = 0;
-    _userInput = '';
-    _showResult = false;
-    _isCorrect = false;
-    _hasStudied = false;
-    _emitCurrentState(emit);
+    emit(WritingSkillInProgress(
+      currentIndex: 0,
+      userInput: '',
+      showResult: false,
+      isCorrect: false,
+      hasStudied: false,
+      totalWords: words.length,
+      currentWord: words[0],
+    ));
   }
 }
