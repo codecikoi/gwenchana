@@ -259,16 +259,64 @@ class VocabularyRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [WritingSkillPage]
-class WritingSkillRoute extends PageRouteInfo<void> {
-  const WritingSkillRoute({List<PageRouteInfo>? children})
-    : super(WritingSkillRoute.name, initialChildren: children);
+class WritingSkillRoute extends PageRouteInfo<WritingSkillRouteArgs> {
+  WritingSkillRoute({
+    Key? key,
+    required int level,
+    required int setIndex,
+    List<PageRouteInfo>? children,
+  }) : super(
+         WritingSkillRoute.name,
+         args: WritingSkillRouteArgs(
+           key: key,
+           level: level,
+           setIndex: setIndex,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'WritingSkillRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const WritingSkillPage();
+      final args = data.argsAs<WritingSkillRouteArgs>();
+      return WritingSkillPage(
+        key: args.key,
+        level: args.level,
+        setIndex: args.setIndex,
+      );
     },
   );
+}
+
+class WritingSkillRouteArgs {
+  const WritingSkillRouteArgs({
+    this.key,
+    required this.level,
+    required this.setIndex,
+  });
+
+  final Key? key;
+
+  final int level;
+
+  final int setIndex;
+
+  @override
+  String toString() {
+    return 'WritingSkillRouteArgs{key: $key, level: $level, setIndex: $setIndex}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! WritingSkillRouteArgs) return false;
+    return key == other.key &&
+        level == other.level &&
+        setIndex == other.setIndex;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ level.hashCode ^ setIndex.hashCode;
 }

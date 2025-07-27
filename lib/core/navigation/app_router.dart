@@ -51,7 +51,7 @@ class AppRouter extends RootStackRouter {
         ),
         AutoRoute(
           page: WritingSkillRoute.page,
-          path: '/writing-skill-page',
+          path: '/writing-skill-page/:level/:setIndex',
           guards: [_authGuard],
         ),
         AutoRoute(

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/core/services/progress_service.dart';
 import 'package:gwenchana/features/vocabulary/data/vocabulary_intermediate_two.dart';
 import 'package:gwenchana/features/vocabulary/data/vocabulary_intermediate_one.dart';
@@ -82,6 +83,15 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
         wordCards = allElementaryLevelDataSets[widget.setIndex];
         break;
     }
+  }
+
+  void _startWritingPractice(BuildContext context) {
+    context.router.push(
+      WritingSkillRoute(
+        level: widget.selectedLevel,
+        setIndex: widget.setIndex,
+      ),
+    );
   }
 
   @override
@@ -324,7 +334,11 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
                 ),
               ],
             ),
-          )
+          ),
+          ElevatedButton(
+            onPressed: () => _startWritingPractice(context),
+            child: Text('practice writing'),
+          ),
         ],
       ),
     );

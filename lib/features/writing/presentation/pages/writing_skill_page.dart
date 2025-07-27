@@ -11,12 +11,22 @@ import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 
 @RoutePage()
 class WritingSkillPage extends StatelessWidget {
-  const WritingSkillPage({super.key});
+  final int level;
+  final int setIndex;
+
+  const WritingSkillPage({
+    super.key,
+    required this.level,
+    required this.setIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => WritingSkillBloc(),
+      create: (_) => WritingSkillBloc(
+        level: level,
+        setIndex: setIndex,
+      ),
       child: const WritingSkillView(),
     );
   }

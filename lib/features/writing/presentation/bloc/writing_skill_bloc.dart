@@ -1,12 +1,20 @@
 import 'package:bloc/bloc.dart';
+import 'package:gwenchana/core/services/vocabulary_service.dart';
 import 'package:gwenchana/features/writing/data/words.dart';
 import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_event.dart';
 import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_state.dart';
 
 class WritingSkillBloc extends Bloc<WritingSkillEvent, WritingSkillState> {
-  final List<Map<String, String>> words = writingSkillWords;
+  final int level;
+  final int setIndex;
+  late List<Map<String, String>> words;
 
-  WritingSkillBloc() : super(WritingSkillInitial()) {
+  WritingSkillBloc({
+    required this.level,
+    required this.setIndex,
+  }) : super(WritingSkillInitial()) {
+    words = VocabularyService.getWordsForWriting(level, setIndex);
+
     on<WritingInputChanged>(_onInputChanged);
     on<WritingCheckAnswer>(_onCheckAnswer);
     on<WritingNextWord>(_onNextWord);
