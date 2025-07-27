@@ -143,6 +143,7 @@ class _VocabularyPageState extends State<VocabularyPage> {
                   return GestureDetector(
                     onTap: () => context.router.push(const MyCardsRoute()),
                     child: Card(
+                      elevation: 4,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(6),
                       ),
