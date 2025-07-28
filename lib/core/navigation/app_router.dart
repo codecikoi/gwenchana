@@ -14,6 +14,7 @@ import 'package:gwenchana/features/vocabulary/presentation/pages/my_cards_page.d
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_card.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_page.dart';
 import 'package:gwenchana/features/writing/presentation/pages/writing_skill_page.dart';
+import 'package:gwenchana/features/writing/presentation/pages/writing_skill_titles.dart';
 
 part 'app_router.gr.dart';
 
@@ -47,6 +48,11 @@ class AppRouter extends RootStackRouter {
         AutoRoute(
           page: ReadingRoute.page,
           path: '/reading-page',
+          guards: [_authGuard],
+        ),
+        AutoRoute(
+          page: WritingSkillTitlesRoute.page,
+          path: '/writing-skill-titles-page',
           guards: [_authGuard],
         ),
         AutoRoute(

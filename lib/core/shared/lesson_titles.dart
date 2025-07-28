@@ -1,5 +1,5 @@
 // elementary (level 0)
-const List<String> cardTitlesElementaryLevel = [
+const List<String> lessonTitlesElementaryLevel = [
   '한글의 기초',
   '모음과 자음 I',
   '모음과 자음 II',
@@ -7,7 +7,7 @@ const List<String> cardTitlesElementaryLevel = [
 ];
 
 // beginner 1 (Level 1)
-const List<String> cardTitlesBeginnerLevelOne = [
+const List<String> lessonTitlesBeginnerLevelOne = [
   '안녕하세요?',
   '방에 책상이 있어요',
   '한국어를 배워요',
@@ -29,7 +29,7 @@ const List<String> cardTitlesBeginnerLevelOne = [
 ];
 
 // beginner 2 (Level 2)
-const List<String> cardTitlesBeginnerLevelTwo = [
+const List<String> lessonTitlesBeginnerLevelTwo = [
   '제 고향은 경치가 아름다운 곳이에요',
   '쓰레기는 내가 버릴게요',
   '이걸로 한번 입어 보세요',
@@ -51,7 +51,7 @@ const List<String> cardTitlesBeginnerLevelTwo = [
 ];
 
 // intermediate 1 (Level 3)
-const List<String> cardTitlesIntermediateLevelOne = [
+const List<String> lessonTitlesIntermediateLevelOne = [
   '대인 관계',
   '성격',
   '지역 복지 서비스',
@@ -71,7 +71,7 @@ const List<String> cardTitlesIntermediateLevelOne = [
 ];
 
 // intermediate (Level 4)
-const List<String> cardTitlesIntermediateLevelTwo = [
+const List<String> lessonTitlesIntermediateLevelTwo = [
   '한국 생활 적응',
   '가족의 변화',
   '생활 속의 과학',

@@ -1,14 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:gwenchana/core/services/progress_service.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_begginer_one_data.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_beginner_two_data.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_elementary_data.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_intermediate_one.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_intermediate_two.dart';
+import 'package:gwenchana/core/shared_data/level_begginer_one_words_data.dart';
+import 'package:gwenchana/core/shared_data/level_beginner_two_words_data.dart';
+import 'package:gwenchana/core/shared_data/level_elementary_words_data.dart';
+import 'package:gwenchana/core/shared_data/level_intermediate_one_words_data.dart';
+import 'package:gwenchana/core/shared_data/level_intermediate_two_words_data.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
-import 'package:gwenchana/features/vocabulary/presentation/widgets/card_titles.dart';
+import 'package:gwenchana/core/shared/lesson_titles.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_page.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 
@@ -60,19 +60,19 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
     int cardCount;
     switch (selectedLevel) {
       case 4:
-        cardCount = cardTitlesIntermediateLevelOne.length;
+        cardCount = lessonTitlesIntermediateLevelOne.length;
         break;
       case 5:
-        cardCount = cardTitlesIntermediateLevelTwo.length;
+        cardCount = lessonTitlesIntermediateLevelTwo.length;
         break;
       case 2:
-        cardCount = cardTitlesBeginnerLevelOne.length;
+        cardCount = lessonTitlesBeginnerLevelOne.length;
         break;
       case 3:
-        cardCount = cardTitlesBeginnerLevelTwo.length;
+        cardCount = lessonTitlesBeginnerLevelTwo.length;
         break;
       default:
-        cardCount = cardTitlesElementaryLevel.length;
+        cardCount = lessonTitlesElementaryLevel.length;
     }
     final cards = List.generate(
       cardCount,
@@ -112,15 +112,15 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
   String _getCardTitle(int level, int index) {
     switch (level) {
       case 2:
-        return cardTitlesBeginnerLevelOne[index];
+        return lessonTitlesBeginnerLevelOne[index];
       case 3:
-        return cardTitlesBeginnerLevelTwo[index];
+        return lessonTitlesBeginnerLevelTwo[index];
       case 4:
-        return cardTitlesIntermediateLevelOne[index];
+        return lessonTitlesIntermediateLevelOne[index];
       case 5:
-        return cardTitlesIntermediateLevelTwo[index];
+        return lessonTitlesIntermediateLevelTwo[index];
       default:
-        return cardTitlesElementaryLevel[index];
+        return lessonTitlesElementaryLevel[index];
     }
   }
 

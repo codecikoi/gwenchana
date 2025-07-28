@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:gwenchana/core/services/vocabulary_service.dart';
-import 'package:gwenchana/features/writing/data/words.dart';
+import 'package:gwenchana/core/services/get_words_from_data.dart';
 import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_event.dart';
 import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_state.dart';
 
@@ -13,7 +12,7 @@ class WritingSkillBloc extends Bloc<WritingSkillEvent, WritingSkillState> {
     required this.level,
     required this.setIndex,
   }) : super(WritingSkillInitial()) {
-    words = VocabularyService.getWordsForWriting(level, setIndex);
+    words = GetWordsFromDataService.getWordsForWriting(level, setIndex);
 
     on<WritingInputChanged>(_onInputChanged);
     on<WritingCheckAnswer>(_onCheckAnswer);

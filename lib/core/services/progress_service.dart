@@ -1,10 +1,10 @@
-import 'package:gwenchana/features/vocabulary/data/vocabulary_begginer_one_data.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_beginner_two_data.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_elementary_data.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_intermediate_one.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_intermediate_two.dart';
+import 'package:gwenchana/core/shared_data/level_begginer_one_words_data.dart';
+import 'package:gwenchana/core/shared_data/level_beginner_two_words_data.dart';
+import 'package:gwenchana/core/shared_data/level_elementary_words_data.dart';
+import 'package:gwenchana/core/shared_data/level_intermediate_one_words_data.dart';
+import 'package:gwenchana/core/shared_data/level_intermediate_two_words_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:gwenchana/features/vocabulary/presentation/widgets/card_titles.dart';
+import 'package:gwenchana/core/shared/lesson_titles.dart';
 
 class ProgressService {
   static const String _progressPrefix = 'vocabulary_progress';
@@ -48,15 +48,15 @@ class ProgressService {
   static int getSetCountForLevel(int level) {
     switch (level) {
       case 1:
-        return cardTitlesElementaryLevel.length;
+        return lessonTitlesElementaryLevel.length;
       case 2:
-        return cardTitlesBeginnerLevelOne.length;
+        return lessonTitlesBeginnerLevelOne.length;
       case 3:
-        return cardTitlesBeginnerLevelTwo.length;
+        return lessonTitlesBeginnerLevelTwo.length;
       case 4:
-        return cardTitlesIntermediateLevelOne.length;
+        return lessonTitlesIntermediateLevelOne.length;
       case 5:
-        return cardTitlesIntermediateLevelTwo.length;
+        return lessonTitlesIntermediateLevelTwo.length;
       default:
         return 0;
     }

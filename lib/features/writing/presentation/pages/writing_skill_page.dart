@@ -16,8 +16,8 @@ class WritingSkillPage extends StatelessWidget {
 
   const WritingSkillPage({
     super.key,
-    required this.level,
-    required this.setIndex,
+    @PathParam() required this.level,
+    @PathParam() required this.setIndex,
   });
 
   @override
@@ -184,7 +184,6 @@ class _WritingSkillViewState extends State<WritingSkillView>
                                     ),
                                     items: [
                                       PopupMenuItem(
-                                        enabled: false,
                                         child: Text(
                                           '${AppLocalizations.of(context)!.correctAnswer}:\n ${state.currentWord['korean']}',
                                           style: const TextStyle(

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/core/helper/card_colors.dart';
 import 'package:gwenchana/core/navigation/app_router.dart';
+import 'package:gwenchana/core/shared/level_names.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
@@ -19,14 +20,6 @@ class VocabularyPage extends StatefulWidget {
 }
 
 class _VocabularyPageState extends State<VocabularyPage> {
-  final List<String> levelNames = [
-    '기조', // elementary
-    '초급 1', // beginner I
-    '초급 2', // beginner II
-    '중급 1', // intermediate I
-    '중급 2', // intermediate II
-  ];
-
   Color getCardColor(int index) {
     return cardColors[index % cardColors.length];
   }
@@ -67,11 +60,6 @@ class _VocabularyPageState extends State<VocabularyPage> {
       builder: (context, state) {
         if (state is VocabularyLoading) {
           return Scaffold(
-            appBar: AppBar(
-              title: Text('Vocabulary Cards'),
-              backgroundColor: Colors.white,
-              foregroundColor: Colors.black,
-            ),
             body: Center(
               child: CircularProgressIndicator(),
             ),

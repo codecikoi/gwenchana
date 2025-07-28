@@ -1,16 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/core/services/progress_service.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_intermediate_two.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_intermediate_one.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_elementary_data.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_beginner_two_data.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_begginer_one_data.dart';
+import 'package:gwenchana/core/shared_data/level_intermediate_two_words_data.dart';
+import 'package:gwenchana/core/shared_data/level_intermediate_one_words_data.dart';
+import 'package:gwenchana/core/shared_data/level_elementary_words_data.dart';
+import 'package:gwenchana/core/shared_data/level_beginner_two_words_data.dart';
+import 'package:gwenchana/core/shared_data/level_begginer_one_words_data.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
-import 'package:gwenchana/features/vocabulary/presentation/widgets/card_titles.dart';
+import 'package:gwenchana/core/shared/lesson_titles.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 
 @RoutePage()
@@ -85,14 +84,14 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
     }
   }
 
-  void _startWritingPractice(BuildContext context) {
-    context.router.push(
-      WritingSkillRoute(
-        level: widget.selectedLevel,
-        setIndex: widget.setIndex,
-      ),
-    );
-  }
+  // void _startWritingPractice(BuildContext context) {
+  //   context.router.push(
+  //     WritingSkillRoute(
+  //       level: widget.selectedLevel,
+  //       setIndex: widget.setIndex,
+  //     ),
+  //   );
+  // }
 
   @override
   void didUpdateWidget(VocabularyCardPage oldWidget) {
@@ -176,15 +175,15 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
   String getCardtitle(int index) {
     switch (widget.selectedLevel) {
       case 2:
-        return cardTitlesBeginnerLevelOne[index];
+        return lessonTitlesBeginnerLevelOne[index];
       case 3:
-        return cardTitlesBeginnerLevelTwo[index];
+        return lessonTitlesBeginnerLevelTwo[index];
       case 4:
-        return cardTitlesIntermediateLevelOne[index];
+        return lessonTitlesIntermediateLevelOne[index];
       case 5:
-        return cardTitlesIntermediateLevelTwo[index];
+        return lessonTitlesIntermediateLevelTwo[index];
       default:
-        return cardTitlesElementaryLevel[index];
+        return lessonTitlesElementaryLevel[index];
     }
   }
 
@@ -335,10 +334,10 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
               ],
             ),
           ),
-          ElevatedButton(
-            onPressed: () => _startWritingPractice(context),
-            child: Text('practice writing'),
-          ),
+          // ElevatedButton(
+          //   onPressed: () => _startWritingPractice(context),
+          //   child: Text('practice writing'),
+          // ),
         ],
       ),
     );

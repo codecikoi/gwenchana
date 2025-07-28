@@ -272,6 +272,7 @@ class WritingSkillRoute extends PageRouteInfo<WritingSkillRouteArgs> {
            level: level,
            setIndex: setIndex,
          ),
+         rawPathParams: {'level': level, 'setIndex': setIndex},
          initialChildren: children,
        );
 
@@ -280,7 +281,14 @@ class WritingSkillRoute extends PageRouteInfo<WritingSkillRouteArgs> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<WritingSkillRouteArgs>();
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<WritingSkillRouteArgs>(
+        orElse:
+            () => WritingSkillRouteArgs(
+              level: pathParams.getInt('level'),
+              setIndex: pathParams.getInt('setIndex'),
+            ),
+      );
       return WritingSkillPage(
         key: args.key,
         level: args.level,
@@ -319,4 +327,20 @@ class WritingSkillRouteArgs {
 
   @override
   int get hashCode => key.hashCode ^ level.hashCode ^ setIndex.hashCode;
+}
+
+/// generated route for
+/// [WritingSkillTitlesPage]
+class WritingSkillTitlesRoute extends PageRouteInfo<void> {
+  const WritingSkillTitlesRoute({List<PageRouteInfo>? children})
+    : super(WritingSkillTitlesRoute.name, initialChildren: children);
+
+  static const String name = 'WritingSkillTitlesRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const WritingSkillTitlesPage();
+    },
+  );
 }

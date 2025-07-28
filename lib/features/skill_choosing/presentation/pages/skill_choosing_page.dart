@@ -185,8 +185,8 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
                                       context.router.pushPath('/reading-page');
                                       break;
                                     case 2:
-                                      context.router
-                                          .pushPath('/writing-skill-page');
+                                      context.router.pushPath(
+                                          '/writing-skill-titles-page');
                                       break;
                                     case 3:
                                       context.router.pushPath('/speaking-page');
