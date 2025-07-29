@@ -1,8 +1,38 @@
-class ElementaryLevelWordsData {
-  final String korean;
-  final String english;
+class Book {
+  final String title;
+  final List<Lesson> lessons;
 
-  ElementaryLevelWordsData({required this.korean, required this.english});
+  Book({
+    required this.title,
+    required this.lessons,
+  });
+}
+
+class Lesson {
+  final String title;
+
+  final List<WordsData> words;
+
+  Lesson({
+    required this.title,
+    required this.words,
+  });
+}
+
+class BookRepository {
+  final List<Book> _books = [
+    Book(
+      title: '기조', // elementary,
+      lessons: [
+        Lesson(title: '한글의 기초', words: elementaryLesson1),
+        Lesson(title: '모음과 자음 I', words: elementaryLesson2),
+        Lesson(title: '모음과 자음 II', words: elementaryLesson3),
+        Lesson(title: '받침과 유용한 표현', words: elementaryLesson4),
+      ],
+    ),
+  ];
+
+  Book getBook(int index) {}
 }
 
 // Set 1:

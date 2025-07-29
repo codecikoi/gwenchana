@@ -1,3 +1,24 @@
+class Book {
+  final String title;
+  final List<Lesson> lessons;
+
+  Book({
+    required this.title,
+    required this.lessons,
+  });
+}
+
+class Lesson {
+  final String title;
+
+  final List<BeginnerLevelOneWordsData> words;
+
+  Lesson({
+    required this.title,
+    required this.words,
+  });
+}
+
 class BeginnerLevelOneWordsData {
   final String korean;
   final String english;
@@ -6,6 +27,22 @@ class BeginnerLevelOneWordsData {
     required this.korean,
     required this.english,
   });
+}
+
+class BookRepository {
+  final List<Book> _books = [
+    Book(
+      title: '기조', // elementary,
+      lessons: [
+        Lesson(title: '한글의 기초', words: beginnerOneLesson1),
+        Lesson(title: '모음과 자음 I', words: beginnerOneLesson2),
+        Lesson(title: '모음과 자음 II', words: beginnerOneLesson3),
+        Lesson(title: '받침과 유용한 표현', words: beginnerOneLesson4),
+      ],
+    ),
+  ];
+
+  Book getBook(int index) {}
 }
 
 // Set 1:
