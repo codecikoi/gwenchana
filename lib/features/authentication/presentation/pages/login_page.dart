@@ -158,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
-                      color: AppColors.enableButton,
+                      color: AppColors.mainColor,
                     ),
                   ),
                 ),
@@ -311,7 +311,7 @@ class _LoginPageState extends State<LoginPage> {
                       style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
-                          color: AppColors.enableButton),
+                          color: AppColors.mainColor),
                     ),
                   ),
                 ],

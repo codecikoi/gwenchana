@@ -147,10 +147,10 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
                     icon: Icons.notifications,
                     title: AppLocalizations.of(context)!.notifications,
                     trailing: Switch(
-                      activeColor: AppColors.enableButton,
-                      activeTrackColor: AppColors.disableButton,
+                      activeColor: AppColors.mainColor,
+                      activeTrackColor: AppColors.secondaryColor,
                       inactiveTrackColor: Colors.white,
-                      inactiveThumbColor: AppColors.disableButton,
+                      inactiveThumbColor: AppColors.secondaryColor,
                       value: state.notificationsEnabled,
                       onChanged: (bool value) {
                         context.read<AccountSettingsBloc>().add(
@@ -215,7 +215,7 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
 
                   _accountSettingsItem(
                     icon: Icons.delete_outline,
-                    color: AppColors.enableButton,
+                    color: AppColors.mainColor,
                     title: AppLocalizations.of(context)!.deleteAccount,
                     onTap: () => context
                         .read<AccountSettingsBloc>()

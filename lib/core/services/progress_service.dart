@@ -24,6 +24,9 @@ class ProgressService {
     if (progress >= total) {
       final completedKey = '${_completedPrefix}level${level}_set$setIndex';
       await prefs.setBool(completedKey, true);
+    } else {
+      final completedKey = '${_completedPrefix}level${level}_set$setIndex';
+      await prefs.setBool(completedKey, false);
     }
   }
 

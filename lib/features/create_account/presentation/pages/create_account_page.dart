@@ -254,7 +254,7 @@ class CreateAccountPage extends StatelessWidget implements AutoRouteWrapper {
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
-                                color: AppColors.enableButton),
+                                color: AppColors.mainColor),
                           ),
                         ),
                       ],

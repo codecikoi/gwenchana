@@ -37,7 +37,7 @@ class WritingSkillTitlesPage extends StatelessWidget
           children: [
             Icon(
               Icons.menu_book,
-              color: AppColors.enableButton,
+              color: AppColors.mainColor,
               size: 20,
             ),
             const SizedBox(width: 6),
@@ -59,11 +59,11 @@ class WritingSkillTitlesPage extends StatelessWidget
               margin: const EdgeInsets.only(bottom: 4),
               decoration: BoxDecoration(
                 color: state.selectedLevel == i
-                    ? AppColors.disableButton.withAlpha(40)
+                    ? AppColors.secondaryColor.withAlpha(40)
                     : Colors.transparent,
                 borderRadius: BorderRadius.circular(6),
                 border: state.selectedLevel == i
-                    ? Border.all(color: AppColors.enableButton)
+                    ? Border.all(color: AppColors.mainColor)
                     : Border.all(color: Colors.grey.shade400),
               ),
               child: ListTile(
@@ -75,7 +75,7 @@ class WritingSkillTitlesPage extends StatelessWidget
                         ? FontWeight.w600
                         : FontWeight.normal,
                     color: state.selectedLevel == i
-                        ? AppColors.enableButton
+                        ? AppColors.mainColor
                         : AppColors.black,
                     fontSize: 12,
                   ),
@@ -83,7 +83,7 @@ class WritingSkillTitlesPage extends StatelessWidget
                 trailing: state.selectedLevel == i
                     ? Icon(
                         Icons.check_circle,
-                        color: AppColors.enableButton,
+                        color: AppColors.mainColor,
                         size: 20,
                       )
                     : null,
@@ -114,7 +114,7 @@ class WritingSkillTitlesPage extends StatelessWidget
                 border: Border(
                     bottom: BorderSide(
                   width: 1,
-                  color: AppColors.enableButton,
+                  color: AppColors.mainColor,
                 )),
               ),
               child: Material(

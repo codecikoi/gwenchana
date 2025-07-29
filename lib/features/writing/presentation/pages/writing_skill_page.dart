@@ -240,10 +240,12 @@ class _WritingSkillViewState extends State<WritingSkillView>
                                       textAlign: TextAlign.center,
                                       decoration: InputDecoration(
                                         border: InputBorder.none,
-                                        hintText: '여기에 쓰세요',
+                                        hintText: state.currentIndex == 0
+                                            ? '여기에 쓰세요\n\n ${AppLocalizations.of(context)!.onlyKorean}'
+                                            : '여기에 쓰세요',
                                         hintStyle: TextStyle(
                                           color: Colors.grey[500],
-                                          fontSize: 28,
+                                          fontSize: 22,
                                         ),
                                         errorText: _controller.text.isEmpty
                                             ? null
