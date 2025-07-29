@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/core/helper/app_colors.dart';
 import 'package:gwenchana/core/navigation/app_router.dart';
-import 'package:gwenchana/core/services/get_words_from_data.dart';
 import 'package:gwenchana/core/shared/level_names.dart';
 import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_bloc.dart';
 import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_event.dart';
@@ -26,80 +25,79 @@ class WritingSkillTitlesPage extends StatelessWidget
     );
   }
 
-  // void showLevelDialog(BuildContext context) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) => AlertDialog(
-  //       shape: RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.circular(8),
-  //       ),
-  //       title: Row(
-  //         children: [
-  //           Icon(
-  //             Icons.menu_book,
-  //             color: AppColors.enableButton,
-  //             size: 20,
-  //           ),
-  //           const SizedBox(width: 6),
-  //           Text(
-  //             AppLocalizations.of(context)!.chooseBook,
-  //             style: TextStyle(
-  //               fontSize: 14,
-  //               fontWeight: FontWeight.bold,
-  //               color: AppColors.black,
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //       content: Column(
-  //         mainAxisSize: MainAxisSize.min,
-  //         children: List.generate(
-  //           5,
-  //           (i) => Container(
-  //             margin: const EdgeInsets.only(bottom: 4),
-  //             decoration: BoxDecoration(
-  //               color: selectedLevel == i
-  //                   ? AppColors.disableButton.withAlpha(40)
-  //                   : Colors.transparent,
-  //               borderRadius: BorderRadius.circular(6),
-  //               border: selectedLevel == i
-  //                   ? Border.all(color: AppColors.enableButton)
-  //                   : Border.all(color: Colors.grey.shade400),
-  //             ),
-  //             child: ListTile(
-  //               dense: true,
-  //               title: Text(
-  //                 '${levelNames[i]}', // TODO: add localization of level
-  //                 style: TextStyle(
-  //                   fontWeight: selectedLevel == i
-  //                       ? FontWeight.w600
-  //                       : FontWeight.normal,
-  //                   color: selectedLevel == i
-  //                       ? AppColors.enableButton
-  //                       : AppColors.black,
-  //                   fontSize: 12,
-  //                 ),
-  //               ),
-  //               trailing: selectedLevel == i
-  //                   ? Icon(
-  //                       Icons.check_circle,
-  //                       color: AppColors.enableButton,
-  //                       size: 20,
-  //                     )
-  //                   : null,
-  //               onTap: () {
-  //                 setState(() {
-  //                   selectedLevel = i;
-  //                 });
-  //                 Navigator.of(context).pop();
-  //               },
-  //             ),
-  //           ),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
+  void showLevelDialog(
+      BuildContext context, WritingLevelsLoaded state, WritingSkillBloc bloc) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        title: Row(
+          children: [
+            Icon(
+              Icons.menu_book,
+              color: AppColors.enableButton,
+              size: 20,
+            ),
+            const SizedBox(width: 6),
+            Text(
+              AppLocalizations.of(context)!.chooseBook,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: AppColors.black,
+              ),
+            ),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: List.generate(
+            5,
+            (i) => Container(
+              margin: const EdgeInsets.only(bottom: 4),
+              decoration: BoxDecoration(
+                color: state.selectedLevel == i
+                    ? AppColors.disableButton.withAlpha(40)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(6),
+                border: state.selectedLevel == i
+                    ? Border.all(color: AppColors.enableButton)
+                    : Border.all(color: Colors.grey.shade400),
+              ),
+              child: ListTile(
+                dense: true,
+                title: Text(
+                  levelNames[i], // TODO: add localization of level
+                  style: TextStyle(
+                    fontWeight: state.selectedLevel == i
+                        ? FontWeight.w600
+                        : FontWeight.normal,
+                    color: state.selectedLevel == i
+                        ? AppColors.enableButton
+                        : AppColors.black,
+                    fontSize: 12,
+                  ),
+                ),
+                trailing: state.selectedLevel == i
+                    ? Icon(
+                        Icons.check_circle,
+                        color: AppColors.enableButton,
+                        size: 20,
+                      )
+                    : null,
+                onTap: () {
+                  bloc.add(ChangeWritingLevel(i));
+                  Navigator.of(context).pop();
+                },
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,68 +109,49 @@ class WritingSkillTitlesPage extends StatelessWidget
       if (state is WritingLevelsLoaded) {
         return Scaffold(
           appBar: AppBar(
-            title: DropdownButton<int>(
-              value: state.selectedLevel,
-              items: List.generate(
-                state.levelNames.length,
-                (i) => DropdownMenuItem(
-                  value: i,
-                  child: Text(state.levelNames[i]),
+            title: Container(
+              decoration: BoxDecoration(
+                border: Border(
+                    bottom: BorderSide(
+                  width: 1,
+                  color: AppColors.enableButton,
+                )),
+              ),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(16),
+                  onTap: () => showLevelDialog(
+                      context, state, context.read<WritingSkillBloc>()),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0, vertical: 6.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          state.selectedLevel >= 0 &&
+                                  state.selectedLevel < levelNames.length
+                              ? levelNames[state.selectedLevel]
+                              : AppLocalizations.of(context)!.chooseBook,
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(width: 6),
+                        Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.black87,
+                          size: 18,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-              onChanged: (level) {
-                if (level != null) {
-                  context
-                      .read<WritingSkillBloc>()
-                      .add(ChangeWritingLevel(level));
-                }
-              },
             ),
-
-            // Container(
-            //   decoration: BoxDecoration(
-            //     borderRadius: BorderRadius.circular(10),
-            //     boxShadow: [
-            //       BoxShadow(
-            //         color: Colors.black.withAlpha(10),
-            //         blurRadius: 1,
-            //       ),
-            //     ],
-            //   ),
-            //   child: Material(
-            //     color: Colors.transparent,
-            //     child: InkWell(
-            //       borderRadius: BorderRadius.circular(16),
-            //       onTap: () => showLevelDialog(context),
-            //       child: Padding(
-            //         padding: const EdgeInsets.symmetric(
-            //             horizontal: 10.0, vertical: 6.0),
-            //         child: Row(
-            //           mainAxisSize: MainAxisSize.min,
-            //           children: [
-            //             Text(
-            //               selectedLevel >= 0 &&
-            //                       selectedLevel < levelNames.length
-            //                   ? levelNames[selectedLevel]
-            //                   : AppLocalizations.of(context)!.chooseBook,
-            //               style: TextStyle(
-            //                 color: Colors.black87,
-            //                 fontSize: 14,
-            //                 fontWeight: FontWeight.w600,
-            //               ),
-            //             ),
-            //             const SizedBox(width: 6),
-            //             Icon(
-            //               Icons.keyboard_arrow_down,
-            //               color: Colors.black87,
-            //               size: 16,
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
           ),
           body: ListView.separated(
             itemCount: state.lessonTitles.length,
@@ -193,12 +172,6 @@ class WritingSkillTitlesPage extends StatelessWidget
                 ),
                 subtitle: Text('Lesson ${index + 1}'),
                 onTap: () {
-                  context.read<WritingSkillBloc>().add(
-                        StartWritingSkill(
-                          level: state.selectedLevel,
-                          setIndex: index,
-                        ),
-                      );
                   context.router.push(WritingSkillRoute(
                     level: state.selectedLevel,
                     setIndex: index,

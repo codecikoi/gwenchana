@@ -433,6 +433,13 @@ class _WritingSkillViewState extends State<WritingSkillView>
                         },
                         child: Text(AppLocalizations.of(context)!.startAgain),
                       ),
+                      ElevatedButton(
+                        onPressed: () {
+                          context.router
+                              .replacePath('/writing-skill-titles-page');
+                        },
+                        child: Text('Back to titles'),
+                      ),
                     ],
                   ),
                 ),

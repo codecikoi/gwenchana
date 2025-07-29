@@ -78,28 +78,27 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
                 return GestureDetector(
                   onTap: () => _showAvatarPicker(context, state.avatarFile),
                   child: SizedBox(
-                    width: 60,
-                    height: 60,
+                    width: 40,
+                    height: 40,
                     child: Stack(
                       children: [
                         CircleAvatar(
-                          radius: 50,
                           backgroundImage:
                               AssetImage('assets/avatars/${state.avatarFile}'),
                           backgroundColor: Colors.grey[300],
                         ),
                         Positioned(
-                          bottom: 0,
-                          right: 0,
+                          bottom: -4,
+                          right: -4,
                           child: Container(
                             padding: const EdgeInsets.all(2),
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               color: Colors.white,
                               shape: BoxShape.circle,
                             ),
                             child: const Icon(
                               Icons.edit,
-                              size: 14,
+                              size: 12,
                               color: Color(0xFF667eea),
                             ),
                           ),
