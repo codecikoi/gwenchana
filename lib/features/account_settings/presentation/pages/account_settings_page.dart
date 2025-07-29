@@ -268,7 +268,7 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
           ),
           leading: Icon(
             icon,
-            color: color ?? Color(0xFF667eea),
+            color: color ?? AppColors.iconColor,
           ),
           subtitle: subtitle,
           trailing: trailing,

@@ -40,19 +40,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dontHaveAccount => 'Don\'t have an account?';
 
   @override
-  String get createAccount => 'Create Account';
+  String get createAccount => 'Create account';
 
   @override
-  String get forgotPassword => 'Forgot Password?';
+  String get forgotPassword => 'Forgot password?';
 
   @override
-  String get recoverPassword => 'Recover Password';
+  String get recoverPassword => 'Recover password';
 
   @override
   String get reset => 'Reset';
 
   @override
-  String get termsAndConditions => 'By signing in to Gwenchana, you agree to our Terms of Service and Privacy Policy';
+  String get termsAndConditions => 'By signing in to Gwenchana, you agree to our Terms of service and Privacy policy';
 
   @override
   String get name => 'Name';
@@ -88,7 +88,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get listening => 'Listening';
 
   @override
-  String get chooseBook => 'Choose Book';
+  String get chooseBook => 'Choose book';
 
   @override
   String get emptyEmail => 'Email cannot be empty';

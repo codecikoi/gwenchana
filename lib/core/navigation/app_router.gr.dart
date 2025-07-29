@@ -340,7 +340,7 @@ class WritingSkillTitlesRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const WritingSkillTitlesPage();
+      return WrappedRoute(child: const WritingSkillTitlesPage());
     },
   );
 }

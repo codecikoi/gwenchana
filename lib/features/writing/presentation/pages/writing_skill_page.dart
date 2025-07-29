@@ -23,10 +23,11 @@ class WritingSkillPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => WritingSkillBloc(
-        level: level,
-        setIndex: setIndex,
-      ),
+      create: (_) => WritingSkillBloc()
+        ..add(StartWritingSkill(
+          level: level,
+          setIndex: setIndex,
+        )),
       child: const WritingSkillView(),
     );
   }
@@ -97,7 +98,7 @@ class _WritingSkillViewState extends State<WritingSkillView>
               elevation: 0,
               backgroundColor: const Color(0xFF2C2C2E),
               leading: IconButton(
-                onPressed: () => Navigator.pop(context),
+                onPressed: () => context.router.pop(),
                 icon: const Icon(
                   Icons.arrow_back,
                   color: Colors.white,

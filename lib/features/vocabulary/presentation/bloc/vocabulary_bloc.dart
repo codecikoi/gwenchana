@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:gwenchana/core/services/progress_service.dart';
-import 'package:gwenchana/core/shared_data/level_begginer_one_words_data.dart';
+import 'package:gwenchana/core/shared_data/level_beginner_one_words_data.dart';
 import 'package:gwenchana/core/shared_data/level_beginner_two_words_data.dart';
 import 'package:gwenchana/core/shared_data/level_elementary_words_data.dart';
 import 'package:gwenchana/core/shared_data/level_intermediate_one_words_data.dart';

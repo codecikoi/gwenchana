@@ -1,4 +1,4 @@
-import 'package:gwenchana/core/shared_data/level_begginer_one_words_data.dart';
+import 'package:gwenchana/core/shared_data/level_beginner_one_words_data.dart';
 import 'package:gwenchana/core/shared_data/level_beginner_two_words_data.dart';
 import 'package:gwenchana/core/shared_data/level_elementary_words_data.dart';
 import 'package:gwenchana/core/shared_data/level_intermediate_one_words_data.dart';
