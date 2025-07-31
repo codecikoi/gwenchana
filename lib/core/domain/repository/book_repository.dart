@@ -149,6 +149,7 @@ class BookRepository {
       );
     } catch (e) {
       print('getlesson ${e.toString()}');
+      return null;
     }
   }
 
@@ -172,6 +173,7 @@ class BookRepository {
       return lessons;
     } catch (e) {
       print('getlesson ${e.toString()}');
+      return null;
     }
   }
 
