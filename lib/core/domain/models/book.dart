@@ -12,7 +12,6 @@ class Book {
 
 class Lesson {
   final String title;
-
   final List<WordsData> words;
 
   Lesson({

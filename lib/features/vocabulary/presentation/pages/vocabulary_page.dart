@@ -1,15 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gwenchana/core/domain/repository/book_repository.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/core/helper/card_colors.dart';
 import 'package:gwenchana/core/navigation/app_router.dart';
-import 'package:gwenchana/core/shared/level_names.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/add_card_dialog.dart';
 import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
+import '../../../../core/di/locator.dart';
 
 @RoutePage()
 class VocabularyPage extends StatefulWidget {
@@ -20,6 +21,9 @@ class VocabularyPage extends StatefulWidget {
 }
 
 class _VocabularyPageState extends State<VocabularyPage> {
+  final BookRepository _bookRepository = locator<BookRepository>();
+  List<String> get levelNames => _bookRepository.getAllBookTitles();
+
   Color getCardColor(int index) {
     return cardColors[index % cardColors.length];
   }

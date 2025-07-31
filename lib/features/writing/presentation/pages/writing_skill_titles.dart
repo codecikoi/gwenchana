@@ -1,9 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gwenchana/core/di/locator.dart';
+import 'package:gwenchana/core/domain/repository/book_repository.dart';
 import 'package:gwenchana/core/helper/app_colors.dart';
 import 'package:gwenchana/core/navigation/app_router.dart';
-import 'package:gwenchana/core/shared/level_names.dart';
 import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_bloc.dart';
 import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_event.dart';
 import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_state.dart';
@@ -12,7 +13,10 @@ import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 @RoutePage()
 class WritingSkillTitlesPage extends StatelessWidget
     implements AutoRouteWrapper {
-  const WritingSkillTitlesPage({super.key});
+  WritingSkillTitlesPage({super.key});
+
+  final BookRepository _bookRepository = locator<BookRepository>();
+  List<String> get levelNames => _bookRepository.getAllBookTitles();
 
   @override
   Widget wrappedRoute(BuildContext context) {

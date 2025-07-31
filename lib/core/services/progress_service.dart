@@ -1,15 +1,14 @@
-import 'package:gwenchana/core/shared_data/level_beginner_one_words_data.dart';
-import 'package:gwenchana/core/shared_data/level_beginner_two_words_data.dart';
-import 'package:gwenchana/core/shared_data/level_elementary_words_data.dart';
-import 'package:gwenchana/core/shared_data/level_intermediate_one_words_data.dart';
-import 'package:gwenchana/core/shared_data/level_intermediate_two_words_data.dart';
+import 'package:gwenchana/core/di/locator.dart';
+import 'package:gwenchana/core/domain/repository/book_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:gwenchana/core/shared/lesson_titles.dart';
+import '../domain/models/level.dart';
 
 class ProgressService {
   static const String _progressPrefix = 'vocabulary_progress';
   static const String _completedPrefix = 'vocabulary_completed';
   static const String _selectedLevel = 'selected_level';
+
+  static final BookRepository _bookRepository = locator<BookRepository>();
 
   // saveProgress
 
@@ -49,41 +48,32 @@ class ProgressService {
   // getting all progress for a specific level
 
   static int getSetCountForLevel(int level) {
-    switch (level) {
-      case 1:
-        return lessonTitlesElementaryLevel.length;
-      case 2:
-        return lessonTitlesBeginnerLevelOne.length;
-      case 3:
-        return lessonTitlesBeginnerLevelTwo.length;
-      case 4:
-        return lessonTitlesIntermediateLevelOne.length;
-      case 5:
-        return lessonTitlesIntermediateLevelTwo.length;
-      default:
-        return 0;
-    }
+    final levelEnum = _intToLevel(level);
+    final lessonTitles = _bookRepository.getLessonTitlesForLevel(levelEnum);
+    return lessonTitles.length;
   }
 
   static int getTotalCardsForLevel(int level) {
-    switch (level) {
+    final levelEnum = _intToLevel(level);
+    final lessons = _bookRepository.getAllLessons(level: levelEnum);
+    if (lessons == null) return 0;
+    return lessons.fold(0, (sum, lesson) => sum + lesson.words.length);
+  }
+
+  static Level _intToLevel(int levelIndex) {
+    switch (levelIndex) {
       case 1:
-        return allElementaryLevelDataSets.fold(
-            0, (sum, set) => sum + set.length);
+        return Level.elementary;
       case 2:
-        return allBeginnerLevelOneDataSets.fold(
-            0, (sum, set) => sum + set.length);
+        return Level.beginnerLevelOne;
       case 3:
-        return allBeginnerLevelTwoDataSets.fold(
-            0, (sum, set) => sum + set.length);
+        return Level.beginnerLevelTwo;
       case 4:
-        return allIntermediateLevelOneDataSets.fold(
-            0, (sum, set) => sum + set.length);
+        return Level.intermediateLevelOne;
       case 5:
-        return allIntermediateLevelTwoDataSets.fold(
-            0, (sum, set) => sum + set.length);
+        return Level.intermediateLevelTwo;
       default:
-        return 0;
+        throw ArgumentError('Invalid level index: $levelIndex');
     }
   }
 

@@ -1,16 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gwenchana/core/di/locator.dart';
+import 'package:gwenchana/core/domain/repository/book_repository.dart';
 import 'package:gwenchana/core/services/progress_service.dart';
-import 'package:gwenchana/core/shared_data/level_intermediate_two_words_data.dart';
-import 'package:gwenchana/core/shared_data/level_intermediate_one_words_data.dart';
-import 'package:gwenchana/core/shared_data/level_elementary_words_data.dart';
-import 'package:gwenchana/core/shared_data/level_beginner_two_words_data.dart';
-import 'package:gwenchana/core/shared_data/level_beginner_one_words_data.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
-import 'package:gwenchana/core/shared/lesson_titles.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
+
+import '../../../../core/domain/models/level.dart';
 
 @RoutePage()
 class VocabularyCardPage extends StatefulWidget {
@@ -37,6 +35,7 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
   int currentProgress = 0;
 
   List<MyCard> favorites = [];
+  final BookRepository _bookRepository = locator<BookRepository>();
 
   @override
   void initState() {
@@ -65,33 +64,23 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
   }
 
   void updateCardData() {
-    switch (widget.selectedLevel) {
-      case 2:
-        wordCards = allBeginnerLevelOneDataSets[widget.setIndex];
-        break;
-      case 3:
-        wordCards = allBeginnerLevelTwoDataSets[widget.setIndex];
-        break;
-      case 4:
-        wordCards = allIntermediateLevelOneDataSets[widget.setIndex];
-        break;
-      case 5:
-        wordCards = allIntermediateLevelTwoDataSets[widget.setIndex];
-        break;
-      default:
-        wordCards = allElementaryLevelDataSets[widget.setIndex];
-        break;
+    final levelEnum = _intToLevel(widget.selectedLevel);
+    final lesson = _bookRepository.getLesson(
+      level: levelEnum,
+      lessonIndex: widget.setIndex,
+    );
+
+    if (lesson != null) {
+      wordCards = lesson.words
+          .map((word) => {
+                'korean': word.korean,
+                'english': word.english,
+              })
+          .toList();
+    } else {
+      wordCards = [];
     }
   }
-
-  // void _startWritingPractice(BuildContext context) {
-  //   context.router.push(
-  //     WritingSkillRoute(
-  //       level: widget.selectedLevel,
-  //       setIndex: widget.setIndex,
-  //     ),
-  //   );
-  // }
 
   @override
   void didUpdateWidget(VocabularyCardPage oldWidget) {
@@ -116,7 +105,6 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
       0,
       wordCards.length - 1,
     );
-    setState(() {});
   }
 
   Future<void> updateProgress() async {
@@ -173,18 +161,10 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
   }
 
   String getCardtitle(int index) {
-    switch (widget.selectedLevel) {
-      case 2:
-        return lessonTitlesBeginnerLevelOne[index];
-      case 3:
-        return lessonTitlesBeginnerLevelTwo[index];
-      case 4:
-        return lessonTitlesIntermediateLevelOne[index];
-      case 5:
-        return lessonTitlesIntermediateLevelTwo[index];
-      default:
-        return lessonTitlesElementaryLevel[index];
-    }
+    final levelEnum = _intToLevel(widget.selectedLevel);
+    final lessonTitles = _bookRepository.getLessonTitlesForLevel(levelEnum);
+    if (index >= lessonTitles.length) return '';
+    return lessonTitles[index];
   }
 
   Future<bool> addToFavoritesLocal(MyCard card) async {
@@ -198,6 +178,23 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
     } catch (e) {
       print('error adding $e');
       return false;
+    }
+  }
+
+  Level _intToLevel(int levelIndex) {
+    switch (levelIndex) {
+      case 1:
+        return Level.elementary;
+      case 2:
+        return Level.beginnerLevelOne;
+      case 3:
+        return Level.beginnerLevelTwo;
+      case 4:
+        return Level.intermediateLevelOne;
+      case 5:
+        return Level.intermediateLevelTwo;
+      default:
+        throw ArgumentError('Invalid level index: $levelIndex');
     }
   }
 
@@ -278,7 +275,7 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
                               isBack ? 3.14159 : 0.0,
                             ),
                             child: Text(
-                              isBack ? card.english : card.korean,
+                              isBack ? card['english'] : card['korean'],
                               style: TextStyle(fontSize: 32.0),
                               textAlign: TextAlign.center,
                             ),
@@ -304,8 +301,8 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
                   builder: (context) {
                     final card = wordCards[currentIndex];
                     final myCard = MyCard(
-                      korean: card.korean,
-                      translation: card.english,
+                      korean: card['korean'],
+                      translation: card['english'],
                     );
                     final isFavorite = favorites.any(
                       (fav) =>

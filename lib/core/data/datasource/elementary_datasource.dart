@@ -1,14 +1,14 @@
 import 'package:gwenchana/core/data/models/words_data_raw.dart';
 
 class ElementaryDataSource {
+  final String title = '기조';
+
   final List<List<WordsDataRaw>> lessons = [
     _elementaryLesson1,
     _elementaryLesson2,
     _elementaryLesson3,
     _elementaryLesson4,
   ];
-
-  final String title = '기조';
 
   final List<String> lessonTitles = [
     '한글의 기초',

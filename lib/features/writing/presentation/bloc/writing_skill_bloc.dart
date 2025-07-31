@@ -1,19 +1,17 @@
 import 'package:bloc/bloc.dart';
+import 'package:gwenchana/core/di/locator.dart';
+import 'package:gwenchana/core/domain/models/level.dart';
+import 'package:gwenchana/core/domain/repository/book_repository.dart';
 import 'package:gwenchana/core/services/get_words_from_data.dart';
-import 'package:gwenchana/core/shared/level_names.dart';
 import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_event.dart';
 import 'package:gwenchana/features/writing/presentation/bloc/writing_skill_state.dart';
 
 class WritingSkillBloc extends Bloc<WritingSkillEvent, WritingSkillState> {
-  // final int level;
-  // final int setIndex;
   List<Map<String, String>> words = [];
+  final BookRepository _bookRepository = locator<BookRepository>();
+  List<String> get levelNames => _bookRepository.getAllBookTitles();
 
-  WritingSkillBloc(
-      // required this.level,
-      // required this.setIndex,
-      )
-      : super(WritingLevelsLoading()) {
+  WritingSkillBloc() : super(WritingLevelsLoading()) {
     on<LoadWritingLevels>(_onLoadWritingLevels);
     on<ChangeWritingLevel>(_onChangeWritngWritingLevel);
     on<StartWritingSkill>(_onStartWritingSkill);
@@ -30,7 +28,8 @@ class WritingSkillBloc extends Bloc<WritingSkillEvent, WritingSkillState> {
     emit(WritingLevelsLoaded(
       selectedLevel: 0,
       levelNames: levelNames,
-      lessonTitles: GetWordsFromDataService.getCardTitlesForLevel(0),
+      lessonTitles:
+          GetWordsFromDataService.getLessonTitlesForLevel(Level.elementary),
     ));
   }
 
@@ -38,18 +37,19 @@ class WritingSkillBloc extends Bloc<WritingSkillEvent, WritingSkillState> {
       ChangeWritingLevel event, Emitter<WritingSkillState> emit) {
     if (state is WritingLevelsLoaded) {
       final currentState = state as WritingLevelsLoaded;
+      final level = _intToLevel(event.level);
       emit(currentState.copyWith(
         selectedLevel: event.level,
-        lessonTitles:
-            GetWordsFromDataService.getCardTitlesForLevel(event.level),
+        lessonTitles: GetWordsFromDataService.getLessonTitlesForLevel(level),
       ));
     }
   }
 
   void _onStartWritingSkill(
       StartWritingSkill event, Emitter<WritingSkillState> emit) {
-    words =
-        GetWordsFromDataService.getWordsForWriting(event.level, event.setIndex);
+    final level = _intToLevel(event.level);
+
+    words = GetWordsFromDataService.getWordsForWriting(level, event.setIndex);
     emit(WritingSkillInProgress(
       currentIndex: 0,
       userInput: '',
@@ -146,5 +146,22 @@ class WritingSkillBloc extends Bloc<WritingSkillEvent, WritingSkillState> {
       totalWords: words.length,
       currentWord: words[0],
     ));
+  }
+
+  Level _intToLevel(int levelIndex) {
+    switch (levelIndex) {
+      case 0:
+        return Level.elementary;
+      case 1:
+        return Level.beginnerLevelOne;
+      case 2:
+        return Level.beginnerLevelTwo;
+      case 3:
+        return Level.intermediateLevelOne;
+      case 4:
+        return Level.intermediateLevelTwo;
+      default:
+        throw ArgumentError('Invalid level index: $levelIndex');
+    }
   }
 }
