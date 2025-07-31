@@ -10,8 +10,8 @@ import 'package:gwenchana/features/account_settings/data/avatar_files.dart';
 import 'package:gwenchana/features/account_settings/presentation/bloc/account_settings_bloc.dart';
 import 'package:gwenchana/features/account_settings/presentation/bloc/account_settings_event.dart';
 import 'package:gwenchana/features/account_settings/presentation/bloc/account_settings_state.dart';
-import 'package:gwenchana/features/choose_language/presentation/bloc/language_bloc.dart';
-import 'package:gwenchana/features/choose_language/presentation/bloc/language_event.dart';
+import 'package:gwenchana/features/choose_language/presentation/bloc/app_language_bloc.dart';
+import 'package:gwenchana/features/choose_language/presentation/bloc/app_language_event.dart';
 import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 import 'package:gwenchana/core/domain/repository/config_repository.dart';
 
@@ -168,7 +168,7 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
                       onPressed: () =>
                           _showLanguageDialog(context, state.languageCode),
                       child: Text(
-                        languagesList.firstWhere(
+                        appLanguagesList.firstWhere(
                           (lang) => lang['code'] == state.languageCode,
                           orElse: () => {'name': state.languageCode},
                         )['name'],
@@ -389,12 +389,12 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
         value: bloc,
         child: SimpleDialog(
           title: Text(AppLocalizations.of(context)!.selectLanguage),
-          children: languagesList.map((lang) {
+          children: appLanguagesList.map((lang) {
             return SimpleDialogOption(
               onPressed: () {
                 bloc.add(ChangeLanguageRequested(lang['code']!));
-                context.read<LanguageBloc>().add(
-                      LanguageSelected(lang['code']!),
+                context.read<AppLanguageBloc>().add(
+                      AppLanguageSelected(lang['code']!),
                     );
                 Navigator.pop(context);
               },

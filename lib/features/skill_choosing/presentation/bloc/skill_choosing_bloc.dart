@@ -14,9 +14,9 @@ class SkillChoosingBloc extends Bloc<SkillChoosingEvent, SkillChoosingState> {
     try {
       final skills = [
         Skill(id: '1', name: 'Vocabulary'),
-        Skill(id: '1', name: 'Reading'),
-        Skill(id: '1', name: 'Writing'),
-        Skill(id: '1', name: 'Speaking'),
+        Skill(id: '2', name: 'Reading'),
+        Skill(id: '3', name: 'Writing'),
+        Skill(id: '4', name: 'Speaking'),
       ];
       emit(SkillsLoaded(skills: skills));
     } catch (e) {

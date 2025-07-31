@@ -1,4 +1,4 @@
-final List<Map<String, dynamic>> languagesList = [
+final List<Map<String, dynamic>> appLanguagesList = [
   {'name': '한국어', 'flag': 'assets/flags/ko.png', 'code': 'ko'},
   {'name': 'English', 'flag': 'assets/flags/us.png', 'code': 'en'},
   {'name': 'O\'zbek', 'flag': 'assets/flags/uz.png', 'code': 'uz'},

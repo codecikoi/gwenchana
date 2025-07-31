@@ -98,6 +98,7 @@ class _SkillChoosingPageState extends State<SkillChoosingPage>
     ];
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'Gwenchana',
           style: TextStyle(

@@ -72,7 +72,10 @@ class _LoginPageState extends State<LoginPage> {
       if (userCredential != null && userCredential.user != null) {
         await _preferencesService.saveToken(userCredential.user!.uid);
         if (mounted) {
-          context.router.replace(const SkillChoosingRoute());
+          context.router.pushAndPopUntil(
+            SkillChoosingRoute(),
+            predicate: (route) => false,
+          );
         }
       }
     } catch (e) {
@@ -256,7 +259,10 @@ class _LoginPageState extends State<LoginPage> {
                               await AuthServiceImpl().signInWithFacebook();
                           if (!mounted) return;
                           if (result != null) {
-                            context.router.pushPath('/skill-choosing-page');
+                            context.router.pushAndPopUntil(
+                              SkillChoosingRoute(),
+                              predicate: (route) => false,
+                            );
                           }
                         } catch (e) {
                           if (!mounted) return;

@@ -6,11 +6,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:gwenchana/core/di/locator.dart';
 import 'package:gwenchana/features/authentication/presentation/bloc/auth_bloc.dart';
 import 'package:gwenchana/features/authentication/presentation/bloc/auth_event.dart';
-import 'package:gwenchana/features/choose_language/presentation/bloc/language_bloc.dart';
-import 'package:gwenchana/features/choose_language/presentation/bloc/language_event.dart';
+import 'package:gwenchana/features/choose_language/presentation/bloc/app_language_bloc.dart';
+import 'package:gwenchana/features/choose_language/presentation/bloc/app_language_event.dart';
 import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/core/services/auth_service_impl.dart';
-import 'package:gwenchana/features/choose_language/presentation/bloc/language_state.dart';
+import 'package:gwenchana/features/choose_language/presentation/bloc/app_language_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 import 'l10n/gen_l10n/app_localizations.dart';
@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         // language bloc
         BlocProvider(
-          create: (context) => LanguageBloc()..add(LanguageLoaded()),
+          create: (context) => AppLanguageBloc()..add(AppLanguageLoaded()),
         ),
         // auth bloc
         BlocProvider(
@@ -74,10 +74,10 @@ class _MyAppState extends State<MyApp> {
             ),
         ),
       ],
-      child: BlocBuilder<LanguageBloc, LanguageState>(
+      child: BlocBuilder<AppLanguageBloc, AppLanguageState>(
         builder: (context, languageState) {
-          if (languageState is LanguageSelectedState) {
-            _locale = _getLocaleFromLanguageCode(languageState.languageCode);
+          if (languageState is AppLanguageSelectedState) {
+            _locale = _getLocaleFromLanguageCode(languageState.appLanguageCode);
           }
           return MaterialApp.router(
             routerConfig: _appRouter.config(),
