@@ -21,7 +21,7 @@ class AccountSettingsRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const AccountSettingsPage();
+      return WrappedRoute(child: const AccountSettingsPage());
     },
   );
 }
@@ -53,7 +53,7 @@ class CreateAccountRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const CreateAccountPage();
+      return WrappedRoute(child: const CreateAccountPage());
     },
   );
 }
