@@ -13,4 +13,5 @@ abstract class IAuthService {
   Future<UserCredential?> signInWithFacebook();
   Future<void> signOut();
   Future<void> resetPassword(String email);
+  Future<void> reauthenticateAndDelete(String password);
 }

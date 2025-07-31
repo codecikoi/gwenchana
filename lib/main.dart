@@ -31,7 +31,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  setupLocator();
+  await setupLocator();
   runApp(MyApp());
 }
 
@@ -105,7 +105,6 @@ class _MyAppState extends State<MyApp> {
               Locale('tr'),
               Locale('pt'),
             ],
-            // TODO: main fontfamily SORA
           );
         },
       ),
@@ -136,6 +135,8 @@ class _MyAppState extends State<MyApp> {
         return Locale('es');
       case 'tr':
         return Locale('tr');
+      case 'th':
+        return Locale('th');
       case 'pt':
         return Locale('pt');
       case 'th':

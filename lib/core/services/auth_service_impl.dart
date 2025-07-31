@@ -15,6 +15,19 @@ class AuthServiceImpl implements IAuthService {
   @override
   Stream<User?> get authStateChanges => _auth.authStateChanges();
 
+  // reaut & delete account
+  @override
+  Future<void> reauthenticateAndDelete(String password) async {
+    final user = _auth.currentUser;
+    if (user == null || user.email == null) throw Exception('User not found');
+    final cred = EmailAuthProvider.credential(
+      email: user.email!,
+      password: password,
+    );
+    await user.reauthenticateWithCredential(cred);
+    await user.delete();
+  }
+
   // email sing in
   @override
   Future<UserCredential?> signInWithEmailPassword(

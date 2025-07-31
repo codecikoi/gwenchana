@@ -317,19 +317,10 @@ class _FavoritesCardPageState extends State<FavoritesCardPage>
         actions: [
           IconButton(
             icon: Icon(
-                currentViewMode == ViewMode.cards ? Icons.list : Icons.style),
+              currentViewMode == ViewMode.cards ? Icons.list : Icons.style,
+            ),
             onPressed: toggleViewMode,
           ),
-          // if (currentViewMode == ViewMode.cards)
-          //   IconButton(
-          //     icon: Icon(Icons.delete),
-          //     onPressed: () {
-          //       if (favorites.isNotEmpty) {
-          //         final card = favorites[currentIndex];
-          //         removeFromFavorites(card);
-          //       }
-          //     },
-          //   )
         ],
       ),
       body: currentViewMode == ViewMode.cards

@@ -1,25 +1,31 @@
+import 'package:gwenchana/core/di/locator.dart';
+import 'package:gwenchana/core/domain/repository/book_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:gwenchana/features/vocabulary/presentation/widgets/card_titles.dart';
+import '../domain/models/level.dart';
 
 class ProgressService {
   static const String _progressPrefix = 'vocabulary_progress';
   static const String _completedPrefix = 'vocabulary_completed';
   static const String _selectedLevel = 'selected_level';
 
+  static final BookRepository _bookRepository = locator<BookRepository>();
+
   // saveProgress
 
   static Future<void> saveProgress(
-      int setIndex, int progress, int level) async {
+      int setIndex, int progress, int level, int total) async {
     final prefs = await SharedPreferences.getInstance();
     final key = '${_progressPrefix}level${level}_set$setIndex';
     await prefs.setInt(key, progress);
 
     // for completed sets
-// TODO: change countity of words in card. it is different
 
-    if (progress >= 26) {
+    if (progress >= total) {
       final completedKey = '${_completedPrefix}level${level}_set$setIndex';
       await prefs.setBool(completedKey, true);
+    } else {
+      final completedKey = '${_completedPrefix}level${level}_set$setIndex';
+      await prefs.setBool(completedKey, false);
     }
   }
 
@@ -42,19 +48,32 @@ class ProgressService {
   // getting all progress for a specific level
 
   static int getSetCountForLevel(int level) {
-    switch (level) {
+    final levelEnum = _intToLevel(level);
+    final lessonTitles = _bookRepository.getLessonTitlesForLevel(levelEnum);
+    return lessonTitles.length;
+  }
+
+  static int getTotalCardsForLevel(int level) {
+    final levelEnum = _intToLevel(level);
+    final lessons = _bookRepository.getAllLessons(level: levelEnum);
+    if (lessons == null) return 0;
+    return lessons.fold(0, (sum, lesson) => sum + lesson.words.length);
+  }
+
+  static Level _intToLevel(int levelIndex) {
+    switch (levelIndex) {
       case 1:
-        return cardTitlesElementaryLevel.length;
+        return Level.elementary;
       case 2:
-        return cardTitlesBeginnerLevelOne.length;
+        return Level.beginnerLevelOne;
       case 3:
-        return cardTitlesBeginnerLevelTwo.length;
+        return Level.beginnerLevelTwo;
       case 4:
-        return cardTitlesIntermediateLevelOne.length;
+        return Level.intermediateLevelOne;
       case 5:
-        return cardTitlesIntermediateLevelTwo.length;
+        return Level.intermediateLevelTwo;
       default:
-        return 0;
+        throw ArgumentError('Invalid level index: $levelIndex');
     }
   }
 
@@ -131,7 +150,7 @@ class ProgressService {
       final progress = await getAllProgress(level);
       final completed = await getAllCompleted(level);
 
-      final totalCards = getSetCountForLevel(level) * 26;
+      final totalCards = getTotalCardsForLevel(level);
       final completedCards = progress.fold(0, (sum, p) => sum + p);
       final completedSets = completed.where((c) => c).length;
 

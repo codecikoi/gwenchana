@@ -7,6 +7,32 @@ abstract class WritingSkillEvent extends Equatable {
   List<Object?> get props => [];
 }
 
+class LoadWritingLevels extends WritingSkillEvent {
+  const LoadWritingLevels();
+}
+
+class ChangeWritingLevel extends WritingSkillEvent {
+  final int level;
+
+  const ChangeWritingLevel(this.level);
+
+  @override
+  List<Object?> get props => [level];
+}
+
+class StartWritingSkill extends WritingSkillEvent {
+  final int level;
+  final int setIndex;
+
+  const StartWritingSkill({
+    required this.level,
+    required this.setIndex,
+  });
+
+  @override
+  List<Object?> get props => [level, setIndex];
+}
+
 class WritingInputChanged extends WritingSkillEvent {
   final String input;
   const WritingInputChanged(this.input);

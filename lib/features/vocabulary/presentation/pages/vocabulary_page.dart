@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gwenchana/core/domain/repository/book_repository.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/core/helper/card_colors.dart';
 import 'package:gwenchana/core/navigation/app_router.dart';
@@ -9,6 +10,7 @@ import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/add_card_dialog.dart';
 import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
+import '../../../../core/di/locator.dart';
 
 @RoutePage()
 class VocabularyPage extends StatefulWidget {
@@ -19,13 +21,8 @@ class VocabularyPage extends StatefulWidget {
 }
 
 class _VocabularyPageState extends State<VocabularyPage> {
-  final List<String> levelNames = [
-    '기조', // elementary
-    '초급 1', // beginner I
-    '초급 2', // beginner II
-    '중급 1', // intermediate I
-    '중급 2', // intermediate II
-  ];
+  final BookRepository _bookRepository = locator<BookRepository>();
+  List<String> get levelNames => _bookRepository.getAllBookTitles();
 
   Color getCardColor(int index) {
     return cardColors[index % cardColors.length];
@@ -67,11 +64,6 @@ class _VocabularyPageState extends State<VocabularyPage> {
       builder: (context, state) {
         if (state is VocabularyLoading) {
           return Scaffold(
-            appBar: AppBar(
-              title: Text('Vocabulary Cards'),
-              backgroundColor: Colors.white,
-              foregroundColor: Colors.black,
-            ),
             body: Center(
               child: CircularProgressIndicator(),
             ),
@@ -143,6 +135,7 @@ class _VocabularyPageState extends State<VocabularyPage> {
                   return GestureDetector(
                     onTap: () => context.router.push(const MyCardsRoute()),
                     child: Card(
+                      elevation: 4,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(6),
                       ),

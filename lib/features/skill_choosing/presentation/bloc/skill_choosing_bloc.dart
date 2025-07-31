@@ -3,12 +3,33 @@ import 'package:gwenchana/features/skill_choosing/presentation/bloc/skill_choosi
 import 'package:gwenchana/features/skill_choosing/presentation/bloc/skill_choosing_state.dart';
 
 class SkillChoosingBloc extends Bloc<SkillChoosingEvent, SkillChoosingState> {
-  SkillChoosingBloc() : super(const SkillChoosingState()) {
-    on<SkillSelected>((event, emit) {
-      emit(state.copyWith(selectedIndex: event.index, isAnimating: true));
-    });
-    on<SkillAnimationEnded>((event, emit) {
-      emit(state.copyWith(isAnimating: false));
-    });
+  SkillChoosingBloc() : super(SkillsInitial()) {
+    on<LoadSkills>(_onLoadSkills);
+    on<SkillSelected>(_onSkillSelected);
+  }
+
+  Future<void> _onLoadSkills(
+      LoadSkills event, Emitter<SkillChoosingState> emit) async {
+    emit(SkillsLoading());
+    try {
+      final skills = [
+        Skill(id: '1', name: 'Vocabulary'),
+        Skill(id: '1', name: 'Reading'),
+        Skill(id: '1', name: 'Writing'),
+        Skill(id: '1', name: 'Speaking'),
+      ];
+      emit(SkillsLoaded(skills: skills));
+    } catch (e) {
+      emit(SkillsError('Error loading skills list'));
+    }
+  }
+
+  void _onSkillSelected(SkillSelected event, Emitter<SkillChoosingState> emit) {
+    if (state is SkillsLoaded) {
+      final loadedState = state as SkillsLoaded;
+      emit(SkillsLoaded(
+        skills: loadedState.skills,
+      ));
+    }
   }
 }

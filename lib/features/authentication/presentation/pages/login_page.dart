@@ -4,7 +4,6 @@ import 'package:gwenchana/core/helper/app_colors.dart';
 import 'package:gwenchana/core/helper/validation_helper.dart';
 import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/core/services/preferences_service.dart';
-import 'package:gwenchana/core/helper/basic_appbar.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/core/services/auth_service_impl.dart';
 import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
@@ -92,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BasicAppBar(
+      appBar: AppBar(
         title: Text(
           AppLocalizations.of(context)!.login,
           style: TextStyle(
@@ -100,6 +99,7 @@ class _LoginPageState extends State<LoginPage> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -158,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
-                      color: AppColors.enableButton,
+                      color: AppColors.mainColor,
                     ),
                   ),
                 ),
@@ -293,31 +293,28 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
               const SizedBox(height: 10),
-              SizedBox(
-                width: double.infinity,
-                child: Row(
-                  children: [
-                    Text(
-                      AppLocalizations.of(context)!.dontHaveAccount,
+              Row(
+                children: [
+                  Text(
+                    AppLocalizations.of(context)!.dontHaveAccount,
+                    maxLines: 3,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () => context.router.pushPath('/create-account'),
+                    child: Text(
+                      AppLocalizations.of(context)!.createAccount,
+                      maxLines: 3,
                       style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                      ),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.mainColor),
                     ),
-                    TextButton(
-                      onPressed: () =>
-                          context.router.pushPath('/create-account'),
-                      child: Text(
-                        AppLocalizations.of(context)!.createAccount,
-                        maxLines: 2,
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.enableButton),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               if (_errorMessage != null)
                 Padding(

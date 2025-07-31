@@ -22,8 +22,8 @@ class BasicAppButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          disabledBackgroundColor: AppColors.disableButton,
-          backgroundColor: AppColors.enableButton,
+          disabledBackgroundColor: AppColors.secondaryColor,
+          backgroundColor: AppColors.mainColor,
           foregroundColor: Colors.white,
           padding: const EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(

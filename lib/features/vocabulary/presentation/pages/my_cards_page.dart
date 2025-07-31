@@ -392,7 +392,7 @@ class _MyCardsPageState extends State<MyCardsPage>
                 ),
                 label: Text(AppLocalizations.of(context)!.addCard),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.enableButton,
+                  backgroundColor: AppColors.mainColor,
                   foregroundColor: Colors.white,
                 ),
               ),

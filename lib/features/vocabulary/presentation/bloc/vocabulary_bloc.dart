@@ -1,18 +1,18 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
+import 'package:gwenchana/core/di/locator.dart';
+import 'package:gwenchana/core/domain/repository/book_repository.dart';
 import 'package:gwenchana/core/services/progress_service.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_begginer_one_data.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_beginner_two_data.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_elementary_data.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_intermediate_one.dart';
-import 'package:gwenchana/features/vocabulary/data/vocabulary_intermediate_two.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
-import 'package:gwenchana/features/vocabulary/presentation/widgets/card_titles.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_page.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 
+import '../../../../core/domain/models/level.dart';
+
 class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
+  final BookRepository _bookRepository = locator<BookRepository>();
+
   VocabularyBloc() : super(VocabularyLoading()) {
     on<LoadProgressEvent>(_onLoadProgress);
     on<ChangeLevelEvent>(_onChangeLevel);
@@ -37,43 +37,41 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
   }
 
   int _getWordCount(int level, int index) {
-    switch (level) {
+    final levelEnum = _intToLevel(level);
+    final lessons = _bookRepository.getAllLessons(level: levelEnum);
+    if (lessons == null || lessons.isEmpty || index >= lessons.length) return 0;
+    return lessons[index].words.length;
+  }
+
+  Level _intToLevel(int levelIndex) {
+    switch (levelIndex) {
+      case 1:
+        return Level.elementary;
       case 2:
-        return allBeginnerOneDataSets[index].length;
+        return Level.beginnerLevelOne;
       case 3:
-        return allBeginnerTwoDataSets[index].length;
+        return Level.beginnerLevelTwo;
       case 4:
-        return allIntermediateLevelOneDataSets[index].length;
+        return Level.intermediateLevelOne;
       case 5:
-        return allIntermediateLevelTwoDataSets[index].length;
+        return Level.intermediateLevelTwo;
       default:
-        return allElementaryLevelDataSets[index].length;
+        throw ArgumentError('Invalid level index: $levelIndex');
     }
   }
 
   Future<void> _onLoadProgress(
       LoadProgressEvent event, Emitter<VocabularyState> emit) async {
     emit(VocabularyLoading());
+
     final selectedLevel = await ProgressService.getSelectedLevel();
     final progress = await ProgressService.getAllProgress(selectedLevel);
     final completed = await ProgressService.getAllCompleted(selectedLevel);
-    int cardCount;
-    switch (selectedLevel) {
-      case 4:
-        cardCount = cardTitlesIntermediateLevelOne.length;
-        break;
-      case 5:
-        cardCount = cardTitlesIntermediateLevelTwo.length;
-        break;
-      case 2:
-        cardCount = cardTitlesBeginnerLevelOne.length;
-        break;
-      case 3:
-        cardCount = cardTitlesBeginnerLevelTwo.length;
-        break;
-      default:
-        cardCount = cardTitlesElementaryLevel.length;
-    }
+
+    final levelEnum = _intToLevel(selectedLevel);
+    final lessonTitles = _bookRepository.getLessonTitlesForLevel(levelEnum);
+    final cardCount = lessonTitles.length;
+
     final cards = List.generate(
       cardCount,
       (i) => VocabularyCardData(
@@ -110,18 +108,10 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
   }
 
   String _getCardTitle(int level, int index) {
-    switch (level) {
-      case 2:
-        return cardTitlesBeginnerLevelOne[index];
-      case 3:
-        return cardTitlesBeginnerLevelTwo[index];
-      case 4:
-        return cardTitlesIntermediateLevelOne[index];
-      case 5:
-        return cardTitlesIntermediateLevelTwo[index];
-      default:
-        return cardTitlesElementaryLevel[index];
-    }
+    final levelEnum = _intToLevel(level);
+    final lessonTitles = _bookRepository.getLessonTitlesForLevel(levelEnum);
+    if (index >= lessonTitles.length) return '';
+    return lessonTitles[index];
   }
 
   // favorites and myCards bloc

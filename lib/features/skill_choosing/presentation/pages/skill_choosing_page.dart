@@ -59,6 +59,7 @@ class _SkillChoosingViewState extends State<SkillChoosingView>
   Widget build(BuildContext context) {
     final List<SkillCard> skills = [
       SkillCard(
+        id: '1',
         title: AppLocalizations.of(context)!.vocabulary,
         gradient: [
           Color.fromARGB(255, 136, 216, 139),
@@ -67,16 +68,19 @@ class _SkillChoosingViewState extends State<SkillChoosingView>
         icon: Icons.book,
       ),
       SkillCard(
+        id: '2',
         title: AppLocalizations.of(context)!.reading,
         gradient: [Color(0xFFf093fb), Color(0xFFf5576c)],
         icon: Icons.menu_book,
       ),
       SkillCard(
+        id: '3',
         title: AppLocalizations.of(context)!.writing,
         gradient: [Color(0xff667eea), Color(0xff764ba2)],
         icon: Icons.message,
       ),
       SkillCard(
+        id: '4',
         title: AppLocalizations.of(context)!.speaking,
         gradient: [Color(0xFFffeaa7), Color(0xFFfab1a0)],
         icon: Icons.speaker,
@@ -126,173 +130,187 @@ class _SkillChoosingViewState extends State<SkillChoosingView>
           ),
           child: BlocListener<SkillChoosingBloc, SkillChoosingState>(
             listenWhen: (prev, curr) =>
+                prev is SkillsLoaded &&
+                curr is SkillsLoaded &&
                 prev.isAnimating &&
                 !curr.isAnimating &&
                 curr.selectedIndex != -1,
             listener: (context, state) {
-              switch (state.selectedIndex) {
-                case 0:
-                  context.router.pushPath('/vocabulary-page');
-                  break;
-                case 1:
-                  context.router.pushPath('/reading-page');
-                  break;
-                case 2:
-                  context.router.pushPath('/writing-skill-page');
-                  break;
-                case 3:
-                  context.router.pushPath('/speaking-page');
-                  break;
+              if (state is SkillsLoaded && state.selectedIndex != -1) {
+                switch (state.selectedIndex) {
+                  case 0:
+                    context.router.pushPath('/vocabulary-page');
+                    break;
+                  case 1:
+                    context.router.pushPath('/reading-page');
+                    break;
+                  case 2:
+                    context.router.pushPath('/writing-skill-page');
+                    break;
+                  case 3:
+                    context.router.pushPath('/speaking-page');
+                    break;
+                }
               }
             },
             child: BlocBuilder<SkillChoosingBloc, SkillChoosingState>(
               builder: (context, state) {
-                var selectedIndex = state.selectedIndex;
-                final isAnimating = state.isAnimating;
-                return ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: skills.length,
-                  itemBuilder: (context, index) {
-                    return AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                      margin: EdgeInsets.only(
-                        bottom: 20,
-                        left: selectedIndex == index ? 10 : 0,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          if (!isAnimating) {
-                            context.read<SkillChoosingBloc>().add(
-                                  SkillSelected(
-                                      selectedIndex == index ? -1 : index),
-                                );
-                            _animationController.forward().then((_) {
-                              _animationController.reverse();
-                              Future.delayed(const Duration(milliseconds: 50),
-                                  () {
-                                context
-                                    .read<SkillChoosingBloc>()
-                                    .add(SkillAnimationEnded());
+                if (state is SkillsLoaded) {
+                  var selectedIndex = state.selectedIndex;
+                  final isAnimating = state.isAnimating;
+                  return ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: skills.length,
+                    itemBuilder: (context, index) {
+                      return AnimatedContainer(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                        margin: EdgeInsets.only(
+                          bottom: 20,
+                          left: selectedIndex == index ? 10 : 0,
+                        ),
+                        child: GestureDetector(
+                          onTap: () {
+                            if (!isAnimating) {
+                              context.read<SkillChoosingBloc>().add(
+                                    SkillSelected(selectedIndex == index
+                                        ? ''
+                                        : skills[index].id),
+                                  );
+                              _animationController.forward().then((_) {
+                                _animationController.reverse();
+                                Future.delayed(const Duration(milliseconds: 50),
+                                    () {
+                                  context
+                                      .read<SkillChoosingBloc>()
+                                      .add(SkillAnimationEnded());
+                                });
                               });
-                            });
-                          }
-                        },
-                        child: Transform.scale(
-                          scale: selectedIndex == index ? 1.05 : 1.0,
-                          child: Container(
-                            clipBehavior: Clip.hardEdge,
-                            height: 120,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              gradient: LinearGradient(
-                                colors: skills[index].gradient,
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
+                            }
+                          },
+                          child: Transform.scale(
+                            scale: selectedIndex == index ? 1.05 : 1.0,
+                            child: Container(
+                              clipBehavior: Clip.hardEdge,
+                              height: 120,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                gradient: LinearGradient(
+                                  colors: skills[index].gradient,
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withAlpha(40),
+                                    spreadRadius: 0,
+                                    blurRadius: 20,
+                                    offset: Offset(0, 10),
+                                  ),
+                                ],
                               ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withAlpha(40),
-                                  spreadRadius: 0,
-                                  blurRadius: 20,
-                                  offset: Offset(0, 10),
-                                ),
-                              ],
-                            ),
-                            child: Stack(
-                              children: [
-                                Positioned(
-                                  top: -20,
-                                  right: -20,
-                                  child: Container(
-                                    width: 100,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white.withAlpha(30),
-                                      shape: BoxShape.circle,
+                              child: Stack(
+                                children: [
+                                  Positioned(
+                                    top: -20,
+                                    right: -20,
+                                    child: Container(
+                                      width: 100,
+                                      height: 100,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withAlpha(30),
+                                        shape: BoxShape.circle,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Positioned(
-                                  top: -10,
-                                  right: -10,
-                                  child: Container(
-                                    width: 60,
-                                    height: 60,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white.withAlpha(30),
-                                      shape: BoxShape.circle,
+                                  Positioned(
+                                    top: -10,
+                                    right: -10,
+                                    child: Container(
+                                      width: 60,
+                                      height: 60,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withAlpha(30),
+                                        shape: BoxShape.circle,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(24),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            skills[index].title,
-                                            style: TextStyle(
-                                              fontSize: 24,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white,
+                                  Padding(
+                                    padding: const EdgeInsets.all(24),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              skills[index].title,
+                                              style: TextStyle(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.white,
+                                              ),
                                             ),
-                                          ),
-                                          const SizedBox(height: 8),
-                                          Container(
-                                            width: 40,
-                                            height: 3,
-                                            color: Colors.white.withAlpha(80),
-                                          )
-                                        ],
-                                      ),
-                                      AnimatedBuilder(
-                                        animation: _animation,
-                                        builder: (context, child) {
-                                          return Opacity(
-                                            opacity: selectedIndex == index
-                                                ? _animation.value
-                                                : 0.7,
-                                            child: Icon(
-                                              skills[index].icon,
-                                              color: Colors.white,
-                                              size: 40,
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                if (selectedIndex == index)
-                                  AnimatedBuilder(
-                                    animation: _animation,
-                                    builder: (context, child) {
-                                      return Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: Colors.white.withAlpha(
-                                              (30 * _animation.value).toInt()),
+                                            const SizedBox(height: 8),
+                                            Container(
+                                              width: 40,
+                                              height: 3,
+                                              color: Colors.white.withAlpha(80),
+                                            )
+                                          ],
                                         ),
-                                      );
-                                    },
+                                        AnimatedBuilder(
+                                          animation: _animation,
+                                          builder: (context, child) {
+                                            return Opacity(
+                                              opacity: selectedIndex == index
+                                                  ? _animation.value
+                                                  : 0.7,
+                                              child: Icon(
+                                                skills[index].icon,
+                                                color: Colors.white,
+                                                size: 40,
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                              ],
+                                  if (selectedIndex == index)
+                                    AnimatedBuilder(
+                                      animation: _animation,
+                                      builder: (context, child) {
+                                        return Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: Colors.white.withAlpha(
+                                                (30 * _animation.value)
+                                                    .toInt()),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                );
+                      );
+                    },
+                  );
+                } else if (state is SkillsLoading) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (state is SkillsError) {
+                  return Center(child: Text(state.message));
+                } else {
+                  return Center(child: Text('Unknown state'));
+                }
               },
             ),
           ),
@@ -303,11 +321,13 @@ class _SkillChoosingViewState extends State<SkillChoosingView>
 }
 
 class SkillCard {
+  final String id;
   final String title;
   final List<Color> gradient;
   final IconData icon;
 
   SkillCard({
+    required this.id,
     required this.title,
     required this.gradient,
     required this.icon,

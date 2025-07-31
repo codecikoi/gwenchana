@@ -186,19 +186,19 @@ abstract class AppLocalizations {
   /// No description provided for @createAccount.
   ///
   /// In en, this message translates to:
-  /// **'Create Account'**
+  /// **'Create account'**
   String get createAccount;
 
   /// No description provided for @forgotPassword.
   ///
   /// In en, this message translates to:
-  /// **'Forgot Password?'**
+  /// **'Forgot password?'**
   String get forgotPassword;
 
   /// No description provided for @recoverPassword.
   ///
   /// In en, this message translates to:
-  /// **'Recover Password'**
+  /// **'Recover password'**
   String get recoverPassword;
 
   /// No description provided for @reset.
@@ -210,7 +210,7 @@ abstract class AppLocalizations {
   /// No description provided for @termsAndConditions.
   ///
   /// In en, this message translates to:
-  /// **'By signing in to Gwenchana, you agree to our Terms of Service and Privacy Policy'**
+  /// **'By signing in to Gwenchana, you agree to our Terms of service and Privacy policy'**
   String get termsAndConditions;
 
   /// No description provided for @name.
@@ -282,7 +282,7 @@ abstract class AppLocalizations {
   /// No description provided for @chooseBook.
   ///
   /// In en, this message translates to:
-  /// **'Choose Book'**
+  /// **'Choose book'**
   String get chooseBook;
 
   /// No description provided for @emptyEmail.

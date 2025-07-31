@@ -7,15 +7,12 @@ abstract class SkillChoosingEvent extends Equatable {
   List<Object?> get props => [];
 }
 
+class LoadSkills extends SkillChoosingEvent {}
+
 class SkillSelected extends SkillChoosingEvent {
-  final int index;
-  const SkillSelected(this.index);
+  final String skillsId;
+  const SkillSelected(this.skillsId);
 
   @override
-  List<Object?> get props => [index];
+  List<Object?> get props => [skillsId];
 }
-
-class SkillAnimationStarted extends SkillChoosingEvent {}
-
-class SkillAnimationEnded extends SkillChoosingEvent {}
-
