@@ -204,15 +204,7 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
                             OpenExternalLink('mailto:wowdobryy@gmail.com'),
                           )),
 
-                  // // change passsword
-                  // _accountSettingsItem(
-                  //   icon: Icons.lock_outline,
-                  //   title: AppLocalizations.of(context)!.changePassword,
-                  //   onTap: () => _changePassword(context),
-                  // ),
-
                   // delete account
-
                   _accountSettingsItem(
                     icon: Icons.delete_outline,
                     color: AppColors.mainColor,
@@ -413,6 +405,4 @@ class AccountSettingsPage extends StatelessWidget implements AutoRouteWrapper {
       ),
     );
   }
-
-  // void _changePassword(BuildContext context) {}
 }
