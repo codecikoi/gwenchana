@@ -30,7 +30,7 @@ class OpenFavoritesEvent extends VocabularyEvent {}
 
 class OpenMyCardsEvent extends VocabularyEvent {}
 
-class LoadCardsEvent extends VocabularyEvent {}
+class LoadMyCardsEvent extends VocabularyEvent {}
 
 class AddCardEvent extends VocabularyEvent {
   final MyCard card;
@@ -54,4 +54,78 @@ class RemoveFromFavoritesEvent extends VocabularyEvent {
   const RemoveFromFavoritesEvent(this.card);
   @override
   List<Object?> get props => [card];
+}
+
+class LoadCardDataEvent extends VocabularyEvent {
+  final int setIndex;
+  final int selectedLevel;
+  final List<Map<String, String>> wordCards;
+
+  const LoadCardDataEvent({
+    required this.setIndex,
+    required this.selectedLevel,
+    required this.wordCards,
+  });
+
+  @override
+  List<Object?> get props => [
+        setIndex,
+        selectedLevel,
+        wordCards,
+      ];
+}
+
+class NextCardEvent extends VocabularyEvent {
+  final int setIndex;
+  final int selectedLevel;
+
+  const NextCardEvent({
+    required this.setIndex,
+    required this.selectedLevel,
+  });
+
+  @override
+  List<Object?> get props => [
+        setIndex,
+        selectedLevel,
+      ];
+}
+
+class PreviousCardEvent extends VocabularyEvent {}
+
+class FlipCardEvent extends VocabularyEvent {}
+
+class UpdateCardProgressEvent extends VocabularyEvent {
+  final int setIndex;
+  final int selectedLevel;
+  final int currentIndex;
+  final int totalCards;
+
+  const UpdateCardProgressEvent({
+    required this.setIndex,
+    required this.selectedLevel,
+    required this.currentIndex,
+    required this.totalCards,
+  });
+
+  @override
+  List<Object?> get props => [
+        setIndex,
+        selectedLevel,
+        currentIndex,
+        totalCards,
+      ];
+}
+
+class ResetCardProgressEvent extends VocabularyEvent {
+  final int setIndex;
+  final int selectedLevel;
+
+  const ResetCardProgressEvent({
+    required this.setIndex,
+    required this.selectedLevel,
+  });
+
+  @override
+  List<Object?> get props => [setIndex, selectedLevel];
 }

@@ -8,14 +8,14 @@ abstract class VocabularyState extends Equatable {
   List<Object?> get props => [];
 }
 
-class VocabularyLoading extends VocabularyState {}
+class VocabularyLoadingState extends VocabularyState {}
 
-class VocabularyLoaded extends VocabularyState {
+class VocabularyLoadedState extends VocabularyState {
   final int selectedLevel;
   final List<VocabularyCardData> cards;
   final bool isLoading;
 
-  const VocabularyLoaded({
+  const VocabularyLoadedState({
     required this.selectedLevel,
     required this.cards,
     this.isLoading = false,
@@ -25,27 +25,74 @@ class VocabularyLoaded extends VocabularyState {
   List<Object?> get props => [selectedLevel, cards, isLoading];
 }
 
-class VocabularyError extends VocabularyState {
+class VocabularyErrorState extends VocabularyState {
   final String message;
 
-  const VocabularyError(this.message);
+  const VocabularyErrorState(this.message);
 
   @override
   List<Object?> get props => [message];
 }
 
-class CardsLoaded extends VocabularyState {
+class MyCardsLoadedState extends VocabularyState {
   final List<MyCard> cards;
-  const CardsLoaded(this.cards);
+  const MyCardsLoadedState(this.cards);
 
   @override
   List<Object?> get props => [cards];
 }
 
-class FavoritesLoaded extends VocabularyState {
+class FavoritesLoadedState extends VocabularyState {
   final List<MyCard> favorites;
-  const FavoritesLoaded(this.favorites);
+  const FavoritesLoadedState(this.favorites);
 
   @override
   List<Object?> get props => [favorites];
+}
+
+class CardDataLoadedState extends VocabularyState {
+  final List<Map<String, String>> wordCards;
+  final int currentIndex;
+  final bool showEnglish;
+  final int currentProgress;
+  final String setTitle;
+  final List<MyCard> favorites;
+  final int setIndex;
+  final int selectedLevel;
+
+  const CardDataLoadedState({
+    required this.wordCards,
+    required this.currentIndex,
+    required this.showEnglish,
+    required this.currentProgress,
+    required this.setTitle,
+    required this.favorites,
+    required this.setIndex,
+    required this.selectedLevel,
+  });
+
+  @override
+  List<Object?> get props => [
+        wordCards,
+        currentIndex,
+        showEnglish,
+        currentProgress,
+        setTitle,
+        favorites,
+        setIndex,
+        selectedLevel,
+      ];
+}
+
+class CardProgressUpdatedState extends VocabularyState {
+  final int currentIndex;
+  final int currentProgress;
+
+  const CardProgressUpdatedState({
+    required this.currentIndex,
+    required this.currentProgress,
+  });
+
+  @override
+  List<Object?> get props => [currentIndex, currentProgress];
 }

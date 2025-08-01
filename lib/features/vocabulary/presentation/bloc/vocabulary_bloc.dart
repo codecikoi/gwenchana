@@ -13,26 +13,263 @@ import '../../../../core/domain/models/level.dart';
 class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
   final BookRepository _bookRepository = locator<BookRepository>();
 
-  VocabularyBloc() : super(VocabularyLoading()) {
+  VocabularyBloc() : super(VocabularyLoadingState()) {
     on<LoadProgressEvent>(_onLoadProgress);
     on<ChangeLevelEvent>(_onChangeLevel);
     on<ResetProgressEvent>(_onResetProgress);
     on<UpdateProgressEvent>(_onUpdateProgress);
-    on<LoadCardsEvent>(_onLoadCards);
+    on<LoadMyCardsEvent>(_onLoadCards);
     on<AddCardEvent>(_onAddCard);
     on<AddToFavoritesEvent>(_onAddToFavorites);
     on<LoadFavoritesEvent>(_onLoadFavorites);
     on<RemoveFromFavoritesEvent>(_onRemoveFromFavorites);
+
+    on<LoadCardDataEvent>(_onLoadCardData);
+    on<NextCardEvent>(_onNextCard);
+    on<PreviousCardEvent>(_onPreviousCard);
+    on<FlipCardEvent>(_onFlipCard);
+    on<UpdateCardProgressEvent>(_onUpdateCardProgress);
+    on<ResetCardProgressEvent>(_onResetCardProgress);
+  }
+
+  Future<void> _onLoadCardData(
+    LoadCardDataEvent event,
+    Emitter<VocabularyState> emit,
+  ) async {
+    emit(VocabularyLoadingState());
+
+    try {
+      final setTitle = _getCardTitle(
+        event.selectedLevel,
+        event.setIndex,
+      );
+      final currentProgress = await ProgressService.getProgress(
+        event.setIndex,
+        event.selectedLevel,
+      );
+
+      final currentIndex =
+          (currentProgress - 1).clamp(0, event.wordCards.length - 1);
+
+      final favorites = await HiveStorageService.getFavorites();
+
+      emit(CardDataLoadedState(
+        wordCards: event.wordCards,
+        currentIndex: currentIndex,
+        showEnglish: false,
+        currentProgress: currentProgress,
+        setTitle: setTitle,
+        favorites: favorites,
+        selectedLevel: event.selectedLevel,
+        setIndex: event.setIndex,
+      ));
+    } catch (e) {
+      emit(VocabularyErrorState('Error loading cards $e'));
+    }
+  }
+
+  Future<void> _onNextCard(
+    NextCardEvent event,
+    Emitter<VocabularyState> emit,
+  ) async {
+    final currenState = state;
+    if (currenState is CardDataLoadedState) {
+      if (currenState.currentIndex < currenState.wordCards.length - 1) {
+        final newIndex = currenState.currentIndex + 1;
+        emit(CardDataLoadedState(
+            wordCards: currenState.wordCards,
+            currentIndex: newIndex,
+            showEnglish: false,
+            currentProgress: currenState.currentProgress,
+            setTitle: currenState.setTitle,
+            favorites: currenState.favorites,
+            setIndex: currenState.currentIndex,
+            selectedLevel: currenState.selectedLevel));
+
+        // try {
+        //   final newProgress = newIndex + 1;
+        //   await ProgressService.saveProgress(
+        //     event.setIndex,
+        //     newProgress,
+        //     event.selectedLevel,
+        //     currenState.wordCards.length,
+        //   );
+        add(UpdateCardProgressEvent(
+          setIndex: currenState.setIndex,
+          selectedLevel: currenState.selectedLevel,
+          currentIndex: newIndex,
+          totalCards: currenState.wordCards.length,
+        ));
+        // } catch (e) {
+        //   emit(VocabularyErrorState('error updating progress $e'));
+      }
+    }
+  }
+
+  Future<void> _onPreviousCard(
+    PreviousCardEvent event,
+    Emitter<VocabularyState> emit,
+  ) async {
+    final currentState = state;
+    if (currentState is CardDataLoadedState) {
+      if (currentState.currentIndex > 0) {
+        final newIndex = currentState.currentIndex - 1;
+        emit(CardDataLoadedState(
+          wordCards: currentState.wordCards,
+          currentIndex: newIndex,
+          showEnglish: false,
+          currentProgress: currentState.currentProgress,
+          setTitle: currentState.setTitle,
+          favorites: currentState.favorites,
+          setIndex: currentState.setIndex,
+          selectedLevel: currentState.selectedLevel,
+        ));
+      }
+    }
+  }
+
+  Future<void> _onFlipCard(
+    FlipCardEvent event,
+    Emitter<VocabularyState> emit,
+  ) async {
+    final currentState = state;
+    if (currentState is CardDataLoadedState) {
+      emit(CardDataLoadedState(
+        wordCards: currentState.wordCards,
+        currentIndex: currentState.currentIndex,
+        showEnglish: !currentState.showEnglish,
+        currentProgress: currentState.currentProgress,
+        setTitle: currentState.setTitle,
+        favorites: currentState.favorites,
+        setIndex: currentState.setIndex,
+        selectedLevel: currentState.selectedLevel,
+      ));
+    }
+  }
+
+  Future<void> _onUpdateCardProgress(
+    UpdateCardProgressEvent event,
+    Emitter<VocabularyState> emit,
+  ) async {
+    try {
+      final newProgress = event.currentIndex + 1;
+      await ProgressService.saveProgress(
+        event.setIndex,
+        newProgress,
+        event.selectedLevel,
+        event.totalCards,
+      );
+      // emit(CardProgressUpdatedState(
+      //   currentIndex: event.currentIndex,
+      //   currentProgress: newProgress,
+      // ));
+    } catch (e) {
+      emit(VocabularyErrorState('error updating progress $e'));
+    }
+  }
+
+  Future<void> _onResetCardProgress(
+    ResetCardProgressEvent event,
+    Emitter<VocabularyState> emit,
+  ) async {
+    try {
+      await ProgressService.resetProgress(
+        event.setIndex,
+        event.selectedLevel,
+      );
+
+      final setTitle = _getCardTitle(
+        event.selectedLevel,
+        event.setIndex,
+      );
+      final currentProgress = await ProgressService.getProgress(
+        event.setIndex,
+        event.selectedLevel,
+      );
+      final levelEnum = _intToLevel(event.selectedLevel);
+      final lesson = _bookRepository.getLesson(
+        level: levelEnum,
+        lessonIndex: event.setIndex,
+      );
+      if (lesson != null) {
+        final wordCards = lesson.words
+            .map((word) => {
+                  'korean': word.korean,
+                  'english': word.english,
+                })
+            .toList();
+        final currentIndex =
+            (currentProgress - 1).clamp(0, wordCards.length - 1);
+        final favorites = await HiveStorageService.getFavorites();
+        emit(CardDataLoadedState(
+          wordCards: wordCards,
+          currentIndex: currentIndex,
+          showEnglish: false,
+          currentProgress: currentProgress,
+          setTitle: setTitle,
+          favorites: favorites,
+          setIndex: event.setIndex,
+          selectedLevel: event.selectedLevel,
+        ));
+      } else {
+        emit(VocabularyErrorState('Lesson not found'));
+      }
+    } catch (e) {
+      emit(VocabularyErrorState('error reset progress $e'));
+    }
+  }
+
+  Future<void> _onAddToFavorites(
+    AddToFavoritesEvent event,
+    Emitter<VocabularyState> emit,
+  ) async {
+    try {
+      await HiveStorageService.addToFavorites(event.card);
+
+      final currentState = state;
+      if (currentState is CardDataLoadedState) {
+        final updateFavorites = await HiveStorageService.getFavorites();
+        emit(CardDataLoadedState(
+          wordCards: currentState.wordCards,
+          currentIndex: currentState.currentIndex,
+          showEnglish: currentState.showEnglish,
+          currentProgress: currentState.currentProgress,
+          setTitle: currentState.setTitle,
+          favorites: updateFavorites,
+          setIndex: currentState.setIndex,
+          selectedLevel: currentState.selectedLevel,
+        ));
+      }
+    } catch (e) {
+      emit(VocabularyErrorState('Ошибка добавления в избранное $e'));
+    }
   }
 
   Future<void> _onRemoveFromFavorites(
-      RemoveFromFavoritesEvent event, Emitter<VocabularyState> emit) async {
+    RemoveFromFavoritesEvent event,
+    Emitter<VocabularyState> emit,
+  ) async {
     try {
       await HiveStorageService.removeFromFavorites(event.card);
-      final updateFavorites = await HiveStorageService.getFavorites();
-      emit(FavoritesLoaded(updateFavorites));
+      final currentState = state;
+      if (currentState is CardDataLoadedState) {
+        final updateFavorites = await HiveStorageService.getFavorites();
+        emit(CardDataLoadedState(
+          wordCards: currentState.wordCards,
+          currentIndex: currentState.currentIndex,
+          showEnglish: currentState.showEnglish,
+          currentProgress: currentState.currentProgress,
+          setTitle: currentState.setTitle,
+          favorites: updateFavorites,
+          setIndex: currentState.setIndex,
+          selectedLevel: currentState.selectedLevel,
+        ));
+      } else {
+        final updateFavorites = await HiveStorageService.getFavorites();
+        emit(FavoritesLoadedState(updateFavorites));
+      }
     } catch (e) {
-      emit(VocabularyError('Error deleting from favorites: $e'));
+      emit(VocabularyErrorState('Error deleting from favorites: $e'));
     }
   }
 
@@ -62,7 +299,7 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
 
   Future<void> _onLoadProgress(
       LoadProgressEvent event, Emitter<VocabularyState> emit) async {
-    emit(VocabularyLoading());
+    emit(VocabularyLoadingState());
 
     final selectedLevel = await ProgressService.getSelectedLevel();
     final progress = await ProgressService.getAllProgress(selectedLevel);
@@ -82,7 +319,7 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
         isCompleted: completed[i],
       ),
     );
-    emit(VocabularyLoaded(
+    emit(VocabularyLoadedState(
       selectedLevel: selectedLevel,
       cards: cards,
     ));
@@ -90,14 +327,14 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
 
   Future<void> _onChangeLevel(
       ChangeLevelEvent event, Emitter<VocabularyState> emit) async {
-    emit(VocabularyLoading());
+    emit(VocabularyLoadingState());
     await ProgressService.saveSelectedLevel(event.level);
     add(LoadProgressEvent());
   }
 
   Future<void> _onResetProgress(
       ResetProgressEvent event, Emitter<VocabularyState> emit) async {
-    emit(VocabularyLoading());
+    emit(VocabularyLoadingState());
     await ProgressService.resetAllProgress(event.level);
     add(LoadProgressEvent());
   }
@@ -117,13 +354,13 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
   // favorites and myCards bloc
 
   Future<void> _onLoadCards(
-      LoadCardsEvent event, Emitter<VocabularyState> emit) async {
-    emit(VocabularyLoading());
+      LoadMyCardsEvent event, Emitter<VocabularyState> emit) async {
+    emit(VocabularyLoadingState());
     try {
       final cards = await HiveStorageService.getAllCards();
-      emit(CardsLoaded(cards));
+      emit(MyCardsLoadedState(cards));
     } catch (e) {
-      emit(VocabularyError('Ошибка загрузки карточек $e'));
+      emit(VocabularyErrorState('Ошибка загрузки карточек $e'));
     }
   }
 
@@ -132,28 +369,19 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
     try {
       await HiveStorageService.addCard(event.card);
     } catch (e) {
-      emit(VocabularyError('Ошибка добавления карточки $e'));
-    }
-  }
-
-  Future<void> _onAddToFavorites(
-      AddToFavoritesEvent event, Emitter<VocabularyState> emit) async {
-    try {
-      await HiveStorageService.addToFavorites(event.card);
-    } catch (e) {
-      emit(VocabularyError('Ошибка добавления в избранное $e'));
+      emit(VocabularyErrorState('Ошибка добавления карточки $e'));
     }
   }
 
   Future<void> _onLoadFavorites(
       LoadFavoritesEvent event, Emitter<VocabularyState> emit) async {
-    emit(VocabularyLoading());
+    emit(VocabularyLoadingState());
     try {
       final favorites = await HiveStorageService.getFavorites();
-      emit(FavoritesLoaded(favorites));
+      emit(FavoritesLoadedState(favorites));
     } catch (e) {
       print('Error loading favorites: $e');
-      emit(VocabularyError('Ошибка загрузки избранного $e'));
+      emit(VocabularyErrorState('Ошибка загрузки избранного $e'));
     }
   }
 }

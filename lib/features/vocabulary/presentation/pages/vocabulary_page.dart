@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gwenchana/core/di/locator.dart';
 import 'package:gwenchana/core/domain/repository/book_repository.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/core/helper/card_colors.dart';
@@ -10,7 +11,6 @@ import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event
 import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/add_card_dialog.dart';
 import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
-import '../../../../core/di/locator.dart';
 
 @RoutePage()
 class VocabularyPage extends StatefulWidget {
@@ -62,14 +62,14 @@ class _VocabularyPageState extends State<VocabularyPage> {
   Widget build(BuildContext context) {
     return BlocBuilder<VocabularyBloc, VocabularyState>(
       builder: (context, state) {
-        if (state is VocabularyLoading) {
+        if (state is VocabularyLoadingState) {
           return Scaffold(
             body: Center(
               child: CircularProgressIndicator(),
             ),
           );
         }
-        if (state is VocabularyError) {
+        if (state is VocabularyErrorState) {
           return Scaffold(
             appBar: AppBar(
               title: Text('Error'),
@@ -81,7 +81,7 @@ class _VocabularyPageState extends State<VocabularyPage> {
             ),
           );
         }
-        if (state is VocabularyLoaded) {
+        if (state is VocabularyLoadedState) {
           return Scaffold(
             appBar: AppBar(
               title: TextButton(
@@ -248,7 +248,7 @@ class _VocabularyPageState extends State<VocabularyPage> {
             ),
           );
         }
-        if (state is CardsLoaded) {
+        if (state is MyCardsLoadedState) {
           context.read<VocabularyBloc>().add(LoadProgressEvent());
           return Scaffold(
             body: Center(
@@ -256,7 +256,7 @@ class _VocabularyPageState extends State<VocabularyPage> {
             ),
           );
         }
-        if (state is FavoritesLoaded) {
+        if (state is FavoritesLoadedState) {
           context.read<VocabularyBloc>().add(LoadProgressEvent());
           return Scaffold(
             body: Center(
@@ -293,8 +293,8 @@ class VocabularyCardData {
   VocabularyCardData({
     required this.title,
     required this.mainTitle,
+    required this.total,
     this.progress = 0,
-    this.total = 26,
     this.isCompleted = false,
   });
 }
