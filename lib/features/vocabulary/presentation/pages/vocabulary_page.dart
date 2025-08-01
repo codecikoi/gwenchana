@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/core/di/locator.dart';
 import 'package:gwenchana/core/domain/repository/book_repository.dart';
-import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/core/helper/card_colors.dart';
 import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc_vocabulary/vocabulary_bloc.dart';
@@ -248,34 +247,9 @@ class _VocabularyPageState extends State<VocabularyPage> {
             ),
           );
         }
-        if (state is MyCardsLoadedState) {
-          context.read<VocabularyBloc>().add(LoadProgressEvent());
-          return Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-        if (state is FavoritesLoadedState) {
-          context.read<VocabularyBloc>().add(LoadProgressEvent());
-          return Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-
         return Scaffold(
           body: Center(
-            child: BasicAppButton(
-              onPressed: () {
-                context.router.push(
-                  const VocabularyRoute(),
-                );
-                context.read<VocabularyBloc>().add(LoadProgressEvent());
-              },
-              title: 'Back to vocabulary',
-            ),
+            child: Text('unknown state ${state.runtimeType}'),
           ),
         );
       },

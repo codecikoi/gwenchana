@@ -30,6 +30,17 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
   late Animation<double> _animation;
 
   final BookRepository _bookRepository = locator<BookRepository>();
+  final Map<String, MyCard> _cardCache = {};
+
+  MyCard _getCachedCard(String korean, String english) {
+    final key = '$korean|$english';
+    return _cardCache.putIfAbsent(
+        key,
+        () => MyCard(
+              korean: korean,
+              translation: english,
+            ));
+  }
 
   @override
   void initState() {
@@ -174,6 +185,10 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
           }
 
           final card = state.wordCards[state.currentIndex];
+          final myCard = _getCachedCard(
+            card['korean'] ?? 'No word',
+            card['english'] ?? 'No translation',
+          );
 
           return Scaffold(
             appBar: AppBar(
@@ -256,10 +271,6 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
                       ),
                       Builder(
                         builder: (context) {
-                          final myCard = MyCard(
-                            korean: card['korean'] ?? 'No word',
-                            translation: card['english'] ?? 'No translation',
-                          );
                           final isFavorite = state.favorites.any(
                             (fav) =>
                                 fav.korean == myCard.korean &&
@@ -272,9 +283,13 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
                                   : Icons.favorite_border,
                               color: isFavorite ? Colors.red : null,
                             ),
-                            onPressed: () => isFavorite
-                                ? removeFromFavorites(myCard)
-                                : addToFavorites(myCard),
+                            onPressed: () async {
+                              if (isFavorite) {
+                                await removeFromFavorites(myCard);
+                              } else {
+                                await addToFavorites(myCard);
+                              }
+                            },
                           );
                         },
                       ),

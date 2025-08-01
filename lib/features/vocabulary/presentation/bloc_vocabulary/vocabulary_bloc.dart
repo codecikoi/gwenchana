@@ -1,14 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:gwenchana/core/di/locator.dart';
+import 'package:gwenchana/core/domain/models/level.dart';
 import 'package:gwenchana/core/domain/repository/book_repository.dart';
 import 'package:gwenchana/core/services/progress_service.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc_vocabulary/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc_vocabulary/vocabulary_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_page.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
-
-import '../../../../core/domain/models/level.dart';
 
 class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
   final BookRepository _bookRepository = locator<BookRepository>();
@@ -77,31 +76,22 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
       if (currenState.currentIndex < currenState.wordCards.length - 1) {
         final newIndex = currenState.currentIndex + 1;
         emit(CardDataLoadedState(
-            wordCards: currenState.wordCards,
-            currentIndex: newIndex,
-            showEnglish: false,
-            currentProgress: currenState.currentProgress,
-            setTitle: currenState.setTitle,
-            favorites: currenState.favorites,
-            setIndex: currenState.currentIndex,
-            selectedLevel: currenState.selectedLevel));
+          wordCards: currenState.wordCards,
+          currentIndex: newIndex,
+          showEnglish: false,
+          currentProgress: currenState.currentProgress,
+          setTitle: currenState.setTitle,
+          favorites: currenState.favorites,
+          setIndex: currenState.setIndex,
+          selectedLevel: currenState.selectedLevel,
+        ));
 
-        // try {
-        //   final newProgress = newIndex + 1;
-        //   await ProgressService.saveProgress(
-        //     event.setIndex,
-        //     newProgress,
-        //     event.selectedLevel,
-        //     currenState.wordCards.length,
-        //   );
         add(UpdateCardProgressEvent(
           setIndex: currenState.setIndex,
           selectedLevel: currenState.selectedLevel,
           currentIndex: newIndex,
           totalCards: currenState.wordCards.length,
         ));
-        // } catch (e) {
-        //   emit(VocabularyErrorState('error updating progress $e'));
       }
     }
   }
@@ -123,6 +113,12 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
           favorites: currentState.favorites,
           setIndex: currentState.setIndex,
           selectedLevel: currentState.selectedLevel,
+        ));
+        add(UpdateCardProgressEvent(
+          setIndex: currentState.setIndex,
+          selectedLevel: currentState.selectedLevel,
+          currentIndex: newIndex,
+          totalCards: currentState.wordCards.length,
         ));
       }
     }
@@ -159,10 +155,11 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
         event.selectedLevel,
         event.totalCards,
       );
-      // emit(CardProgressUpdatedState(
-      //   currentIndex: event.currentIndex,
-      //   currentProgress: newProgress,
-      // ));
+
+      final currentState = state;
+      if (currentState is! CardDataLoadedState) {
+        add(LoadProgressEvent());
+      }
     } catch (e) {
       emit(VocabularyErrorState('error updating progress $e'));
     }

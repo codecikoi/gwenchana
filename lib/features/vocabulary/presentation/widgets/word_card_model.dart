@@ -76,7 +76,7 @@ class HiveStorageService {
     }
   }
 
-  static Future<void> cleareAllCards() async {
+  static Future<void> clearAllCards() async {
     await initHive();
     final box = await Hive.openBox<MyCard>('my_cards');
     await box.clear();
