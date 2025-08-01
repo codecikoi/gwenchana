@@ -6,9 +6,9 @@ import 'package:gwenchana/core/domain/repository/book_repository.dart';
 import 'package:gwenchana/core/helper/basic_appbutton.dart';
 import 'package:gwenchana/core/helper/card_colors.dart';
 import 'package:gwenchana/core/navigation/app_router.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc_vocabulary/vocabulary_bloc.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc_vocabulary/vocabulary_event.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc_vocabulary/vocabulary_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/add_card_dialog.dart';
 import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 

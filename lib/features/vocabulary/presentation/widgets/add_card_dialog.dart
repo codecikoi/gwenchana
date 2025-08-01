@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gwenchana/core/helper/validation_helper.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc_vocabulary/vocabulary_bloc.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc_vocabulary/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 

@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/core/helper/app_colors.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc_vocabulary/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/add_card_dialog.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';

@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/core/di/locator.dart';
 import 'package:gwenchana/core/domain/models/level.dart';
 import 'package:gwenchana/core/domain/repository/book_repository.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_bloc.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_event.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc/vocabulary_state.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc_vocabulary/vocabulary_bloc.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc_vocabulary/vocabulary_event.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc_vocabulary/vocabulary_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 
 @RoutePage()
