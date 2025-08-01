@@ -4,8 +4,8 @@ import 'package:gwenchana/core/di/locator.dart';
 import 'package:gwenchana/core/domain/models/level.dart';
 import 'package:gwenchana/core/domain/repository/book_repository.dart';
 import 'package:gwenchana/core/services/progress_service.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc_vocabulary/vocabulary_event.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc_vocabulary/vocabulary_state.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_event.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_page.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 

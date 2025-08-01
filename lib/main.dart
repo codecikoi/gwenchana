@@ -11,12 +11,12 @@ import 'package:gwenchana/features/choose_language/presentation/bloc/app_languag
 import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/core/services/auth_service_impl.dart';
 import 'package:gwenchana/features/choose_language/presentation/bloc/app_language_state.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc_vocabulary/vocabulary_event.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 import 'l10n/gen_l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'firebase_options.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc_vocabulary/vocabulary_bloc.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
