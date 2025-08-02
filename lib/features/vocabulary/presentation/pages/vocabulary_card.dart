@@ -77,7 +77,7 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
   }
 
   void _loadCardData() {
-    final levelEnum = _intToLevel(widget.selectedLevel);
+    final levelEnum = Level.values[widget.selectedLevel - 1];
     final lesson = _bookRepository.getLesson(
       level: levelEnum,
       lessonIndex: widget.setIndex,
@@ -133,23 +133,6 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
 
   void removeFromFavorites(MyCard card) async {
     context.read<FavoritesBloc>().add(RemoveFromFavoritesEvent(card));
-  }
-
-  Level _intToLevel(int levelIndex) {
-    switch (levelIndex) {
-      case 1:
-        return Level.elementary;
-      case 2:
-        return Level.beginnerLevelOne;
-      case 3:
-        return Level.beginnerLevelTwo;
-      case 4:
-        return Level.intermediateLevelOne;
-      case 5:
-        return Level.intermediateLevelTwo;
-      default:
-        throw ArgumentError('Invalid level index: $levelIndex');
-    }
   }
 
   @override
@@ -219,36 +202,37 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
                   child: GestureDetector(
                     onTap: flipCard,
                     child: AnimatedBuilder(
-                        animation: _animation,
-                        builder: (context, child) {
-                          final isBack = _animation.value > 0.5;
-                          return Transform(
-                            transform: Matrix4.identity()
-                              ..setEntry(3, 2, 0.001)
-                              ..rotateY(3.14159 * _animation.value),
-                            alignment: Alignment.center,
-                            child: Card(
-                              margin: EdgeInsets.all(16.0),
-                              child: Container(
+                      animation: _animation,
+                      builder: (context, child) {
+                        final isBack = _animation.value > 0.5;
+                        return Transform(
+                          transform: Matrix4.identity()
+                            ..setEntry(3, 2, 0.001)
+                            ..rotateY(3.14159 * _animation.value),
+                          alignment: Alignment.center,
+                          child: Card(
+                            margin: EdgeInsets.all(16.0),
+                            child: Container(
+                              alignment: Alignment.center,
+                              padding: EdgeInsets.all(16.0),
+                              child: Transform(
                                 alignment: Alignment.center,
-                                padding: EdgeInsets.all(16.0),
-                                child: Transform(
-                                  alignment: Alignment.center,
-                                  transform: Matrix4.rotationY(
-                                    isBack ? 3.14159 : 0.0,
-                                  ),
-                                  child: Text(
-                                    isBack
-                                        ? cachedCard.translation
-                                        : cachedCard.korean,
-                                    style: TextStyle(fontSize: 32.0),
-                                    textAlign: TextAlign.center,
-                                  ),
+                                transform: Matrix4.rotationY(
+                                  isBack ? 3.14159 : 0.0,
+                                ),
+                                child: Text(
+                                  isBack
+                                      ? cachedCard.translation
+                                      : cachedCard.korean,
+                                  style: TextStyle(fontSize: 32.0),
+                                  textAlign: TextAlign.center,
                                 ),
                               ),
                             ),
-                          );
-                        }),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
                 Padding(
@@ -277,13 +261,6 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
                                 addToFavorites(cachedCard);
                               }
                             },
-                            // onPressed: () async {
-                            //   if (isFavorite) {
-                            //     await removeFromFavorites(myCard);
-                            //   } else {
-                            //     await addToFavorites(myCard);
-                            //   }
-                            // },
                             icon: Icon(
                               isFavorite
                                   ? Icons.favorite
@@ -308,10 +285,8 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
           );
         }
         return Scaffold(
-          appBar: AppBar(title: Text('unknow state')),
+          appBar: AppBar(title: Text('unknown state')),
           body: Center(child: Text('state ${vocabularyState.runtimeType}')),
-
-          // body: Center(child: Text('unknow state ${state.runtimeType}')),
         );
       },
     );

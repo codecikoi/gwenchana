@@ -37,7 +37,8 @@ class WritingSkillBloc extends Bloc<WritingSkillEvent, WritingSkillState> {
       ChangeWritingLevel event, Emitter<WritingSkillState> emit) {
     if (state is WritingLevelsLoaded) {
       final currentState = state as WritingLevelsLoaded;
-      final level = _intToLevel(event.level);
+      final level = Level.values[event.level];
+
       emit(currentState.copyWith(
         selectedLevel: event.level,
         lessonTitles: GetWordsFromDataService.getLessonTitlesForLevel(level),
@@ -47,7 +48,7 @@ class WritingSkillBloc extends Bloc<WritingSkillEvent, WritingSkillState> {
 
   void _onStartWritingSkill(
       StartWritingSkill event, Emitter<WritingSkillState> emit) {
-    final level = _intToLevel(event.level);
+    final level = Level.values[event.level];
 
     words = GetWordsFromDataService.getWordsForWriting(level, event.setIndex);
     emit(WritingSkillInProgress(
@@ -146,22 +147,5 @@ class WritingSkillBloc extends Bloc<WritingSkillEvent, WritingSkillState> {
       totalWords: words.length,
       currentWord: words[0],
     ));
-  }
-
-  Level _intToLevel(int levelIndex) {
-    switch (levelIndex) {
-      case 0:
-        return Level.elementary;
-      case 1:
-        return Level.beginnerLevelOne;
-      case 2:
-        return Level.beginnerLevelTwo;
-      case 3:
-        return Level.intermediateLevelOne;
-      case 4:
-        return Level.intermediateLevelTwo;
-      default:
-        throw ArgumentError('Invalid level index: $levelIndex');
-    }
   }
 }
