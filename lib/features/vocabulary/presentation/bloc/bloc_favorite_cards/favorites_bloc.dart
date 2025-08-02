@@ -8,6 +8,10 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     on<LoadFavoritesEvent>(_onLoadFavorites);
     on<AddToFavoritesEvent>(_onAddToFavorites);
     on<RemoveFromFavoritesEvent>(_onRemoveFromFavorites);
+    on<ToggleViewModeEvent>(_onToggleViewMode);
+    on<NextCardEvent>(_onNextCard);
+    on<PreviousCardEvent>(_onPreviousCard);
+    on<FlipCardEvent>(_onFlipCard);
   }
 
   Future<void> _onLoadFavorites(
@@ -17,7 +21,11 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     emit(FavoritesLoadingState());
     try {
       final favorites = await HiveStorageService.getFavorites();
-      emit(FavoritesLoadedState(favorites));
+      if (favorites.isEmpty) {
+        emit(FavoritesEmptyState());
+      } else {
+        emit(FavoritesLoadedState(favorites: favorites));
+      }
     } catch (e) {
       emit(FavoritesErrorState('error fav loading $e'));
     }
@@ -31,7 +39,7 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
       await HiveStorageService.addToFavorites(event.card);
       final updatedFavorites = await HiveStorageService.getFavorites();
 
-      emit(FavoritesLoadedState(updatedFavorites));
+      emit(FavoritesLoadedState(favorites: updatedFavorites));
     } catch (e) {
       emit(FavoritesErrorState('error adding to fav $e'));
     }
@@ -44,10 +52,80 @@ class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
     try {
       await HiveStorageService.removeFromFavorites(event.card);
       final updatedFavorites = await HiveStorageService.getFavorites();
-
-      emit(FavoritesLoadedState(updatedFavorites));
+      if (updatedFavorites.isEmpty) {
+        emit(FavoritesEmptyState());
+      } else {
+        emit(FavoritesLoadedState(favorites: updatedFavorites));
+      }
     } catch (e) {
       emit(FavoritesErrorState('Error deleting from favorites: $e'));
+    }
+  }
+
+  Future<void> _onToggleViewMode(
+    ToggleViewModeEvent event,
+    Emitter<FavoritesState> emit,
+  ) async {
+    final currentState = state;
+    if (currentState is FavoritesLoadedState) {
+      final newViewMode = currentState.viewMode == ViewMode.cards
+          ? ViewMode.list
+          : ViewMode.cards;
+      emit(FavoritesLoadedState(
+        favorites: currentState.favorites,
+        currentIndex: currentState.currentIndex,
+        showTranslation: false,
+        viewMode: newViewMode,
+      ));
+    }
+  }
+
+  Future<void> _onNextCard(
+    NextCardEvent event,
+    Emitter<FavoritesState> emit,
+  ) async {
+    final currentState = state;
+    if (currentState is FavoritesLoadedState) {
+      if (currentState.currentIndex < currentState.favorites.length - 1) {
+        emit(FavoritesLoadedState(
+          favorites: currentState.favorites,
+          currentIndex: currentState.currentIndex + 1,
+          showTranslation: false,
+          viewMode: currentState.viewMode,
+        ));
+      }
+    }
+  }
+
+  Future<void> _onPreviousCard(
+    PreviousCardEvent event,
+    Emitter<FavoritesState> emit,
+  ) async {
+    final currentState = state;
+    if (currentState is FavoritesLoadedState) {
+      if (currentState.currentIndex > 0) {
+        emit(FavoritesLoadedState(
+          favorites: currentState.favorites,
+          currentIndex: currentState.currentIndex - 1,
+          showTranslation: false,
+          viewMode: currentState.viewMode,
+        ));
+      }
+    }
+  }
+
+  Future<void> _onFlipCard(
+    FlipCardEvent event,
+    Emitter<FavoritesState> emit,
+  ) async {
+    final currentState = state;
+    if (currentState is FavoritesLoadedState) {
+      emit(FavoritesLoadedState(
+        favorites: currentState.favorites,
+        currentIndex: currentState.currentIndex,
+        showTranslation: !currentState.showTranslation,
+        viewMode: currentState.viewMode,
+      ));
     }
   }
 }

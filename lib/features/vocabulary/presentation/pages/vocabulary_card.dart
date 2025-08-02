@@ -8,8 +8,10 @@ import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_ca
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_bloc.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_event.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_state.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_event.dart'
+    as vocab;
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_state.dart'
+    as vocab;
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 
 @RoutePage()
@@ -87,7 +89,7 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
                 'english': word.english,
               })
           .toList();
-      context.read<VocabularyBloc>().add(LoadCardDataEvent(
+      context.read<VocabularyBloc>().add(vocab.LoadCardDataEvent(
             setIndex: widget.setIndex,
             selectedLevel: widget.selectedLevel,
             wordCards: wordCards,
@@ -96,32 +98,32 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
   }
 
   void nextCard() {
-    context.read<VocabularyBloc>().add(NextCardEvent(
+    context.read<VocabularyBloc>().add(vocab.NextCardEvent(
           setIndex: widget.setIndex,
           selectedLevel: widget.selectedLevel,
         ));
   }
 
   void prevCard() {
-    context.read<VocabularyBloc>().add(PreviousCardEvent());
+    context.read<VocabularyBloc>().add(vocab.PreviousCardEvent());
   }
 
   void flipCard() {
     final bloc = context.read<VocabularyBloc>();
     final state = bloc.state;
 
-    if (state is CardDataLoadedState) {
+    if (state is vocab.CardDataLoadedState) {
       if (state.showTranslation) {
         _controller.reverse();
       } else {
         _controller.forward();
       }
-      bloc.add(FlipCardEvent());
+      bloc.add(vocab.FlipCardEvent());
     }
   }
 
   void resetProgress() {
-    context.read<VocabularyBloc>().add(ResetCardProgressEvent(
+    context.read<VocabularyBloc>().add(vocab.ResetCardProgressEvent(
         setIndex: widget.setIndex, selectedLevel: widget.selectedLevel));
   }
 
@@ -152,9 +154,9 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<VocabularyBloc, VocabularyState>(
+    return BlocBuilder<VocabularyBloc, vocab.VocabularyState>(
       builder: (context, vocabularyState) {
-        if (vocabularyState is VocabularyLoadingState) {
+        if (vocabularyState is vocab.VocabularyLoadingState) {
           return Scaffold(
             appBar: AppBar(title: Text('Loading')),
             body: Center(
@@ -163,14 +165,14 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
           );
         }
 
-        if (vocabularyState is VocabularyErrorState) {
+        if (vocabularyState is vocab.VocabularyErrorState) {
           return Scaffold(
             appBar: AppBar(title: Text('Error')),
             body: Center(child: Text(vocabularyState.message)),
           );
         }
 
-        if (vocabularyState is CardDataLoadedState) {
+        if (vocabularyState is vocab.CardDataLoadedState) {
           final currentCard =
               vocabularyState.wordCards[vocabularyState.currentIndex];
           final cachedCard = _getCachedCard(

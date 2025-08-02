@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_bloc.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_event.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_state.dart';
+
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
-
-enum ViewMode { list, cards }
 
 @RoutePage()
 class FavoriteCardsPage extends StatefulWidget {
@@ -15,15 +18,8 @@ class FavoriteCardsPage extends StatefulWidget {
 
 class _FavoriteCardsPageState extends State<FavoriteCardsPage>
     with SingleTickerProviderStateMixin {
-  int currentIndex = 0;
-  bool showTranslation = false;
-
-  ViewMode currentViewMode = ViewMode.list;
   late AnimationController _controller;
   late Animation<double> _animation;
-
-  List<MyCard> favorites = [];
-  bool isLoading = true;
 
   @override
   void initState() {
@@ -33,7 +29,7 @@ class _FavoriteCardsPageState extends State<FavoriteCardsPage>
       duration: const Duration(milliseconds: 400),
     );
     _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
-    loadFavoritesDirectly();
+    context.read<FavoritesBloc>().add(LoadFavoritesEvent());
   }
 
   @override
@@ -42,78 +38,18 @@ class _FavoriteCardsPageState extends State<FavoriteCardsPage>
     super.dispose();
   }
 
-  Future<void> loadFavoritesDirectly() async {
-    try {
-      final loadedFavorites = await HiveStorageService.getFavorites();
-      setState(() {
-        favorites = loadedFavorites;
-        isLoading = false;
-      });
-    } catch (e) {
-      setState(() {
-        isLoading = false;
-      });
-    }
-  }
-
-  void nextCard(int total) {
-    if (currentIndex < total - 1) {
-      setState(() {
-        currentIndex++;
-        showTranslation = false;
-        _controller.reset();
-      });
-    }
-  }
-
-  void prevCard(int total) {
-    if (currentIndex > 0) {
-      setState(() {
-        currentIndex--;
-        showTranslation = false;
-        _controller.reset();
-      });
-    }
-  }
-
   void flipCard() {
-    if (showTranslation) {
-      _controller.reverse();
-    } else {
-      _controller.forward();
+    final bloc = context.read<FavoritesBloc>();
+    final state = bloc.state;
+
+    if (state is FavoritesLoadedState) {
+      if (state.showTranslation) {
+        _controller.reverse();
+      } else {
+        _controller.forward();
+      }
+      bloc.add(FlipCardEvent());
     }
-    setState(() {
-      showTranslation = !showTranslation;
-    });
-  }
-
-  Future<void> removeFromFavorites(MyCard card, {String? source}) async {
-    try {
-      await HiveStorageService.removeFromFavorites(card);
-
-      setState(() {
-        favorites.removeWhere(
-          (fav) =>
-              fav.korean == card.korean && fav.translation == card.translation,
-        );
-        if (currentViewMode == ViewMode.list && favorites.isNotEmpty) {
-          if (currentIndex >= favorites.length) {
-            currentIndex = favorites.length - 1;
-          }
-          showTranslation = false;
-          _controller.reset();
-        }
-      });
-    } catch (e) {
-      print('error from favorites $e');
-    }
-  }
-
-  void toggleViewMode() {
-    setState(() {
-      currentViewMode =
-          currentViewMode == ViewMode.list ? ViewMode.cards : ViewMode.list;
-    });
   }
 
   Widget _buildListView(List<MyCard> favorites) {
@@ -132,7 +68,9 @@ class _FavoriteCardsPageState extends State<FavoriteCardsPage>
           key: Key('${card.korean}_${card.translation}_$index'),
           direction: DismissDirection.endToStart,
           onDismissed: (direction) {
-            removeFromFavorites(card, source: 'swipe');
+            context.read<FavoritesBloc>().add(
+                  RemoveFromFavoritesEvent(card),
+                );
           },
           dismissThresholds: {
             DismissDirection.endToStart: 0.6,
@@ -183,11 +121,16 @@ class _FavoriteCardsPageState extends State<FavoriteCardsPage>
     );
   }
 
-  Widget _buildCardView(List<MyCard> favorites) {
+  Widget _buildCardView(
+    List<MyCard> favorites,
+    int currentIndex,
+    bool showTranslation,
+  ) {
     if (currentIndex >= favorites.length) {
       currentIndex = favorites.length - 1;
     }
     final card = favorites[currentIndex];
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -253,14 +196,16 @@ class _FavoriteCardsPageState extends State<FavoriteCardsPage>
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconButton(
-                onPressed:
-                    currentIndex > 0 ? () => prevCard(favorites.length) : null,
+                onPressed: currentIndex > 0
+                    ? () =>
+                        context.read<FavoritesBloc>().add(PreviousCardEvent())
+                    : null,
                 icon: Icon(Icons.arrow_back),
                 iconSize: 40,
               ),
               IconButton(
                 onPressed: currentIndex < favorites.length - 1
-                    ? () => nextCard(favorites.length)
+                    ? () => context.read<FavoritesBloc>().add(NextCardEvent())
                     : null,
                 icon: Icon(Icons.arrow_forward),
                 iconSize: 40,
@@ -274,58 +219,80 @@ class _FavoriteCardsPageState extends State<FavoriteCardsPage>
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) {
-      return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(
-            AppLocalizations.of(context)!.favorites,
-          ),
-        ),
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
-
-    if (favorites.isEmpty) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            AppLocalizations.of(context)!.favorites,
-          ),
-          centerTitle: true,
-        ),
-        body: Center(
-          child: Text(AppLocalizations.of(context)!.emptyFavorites),
-        ),
-      );
-    }
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => context.router.pop(),
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.red,
-          ),
-        ),
-        centerTitle: true,
-        title: Text(
-          AppLocalizations.of(context)!.favorites,
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              currentViewMode == ViewMode.cards ? Icons.list : Icons.style,
+    return BlocBuilder<FavoritesBloc, FavoritesState>(
+      builder: (context, state) {
+        if (state is FavoritesLoadingState) {
+          return Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              title: Text(
+                AppLocalizations.of(context)!.favorites,
+              ),
             ),
-            onPressed: toggleViewMode,
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+
+        if (state is FavoritesEmptyState) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(
+                AppLocalizations.of(context)!.favorites,
+              ),
+              centerTitle: true,
+            ),
+            body: Center(
+              child: Text(AppLocalizations.of(context)!.emptyFavorites),
+            ),
+          );
+        }
+
+        if (state is FavoritesLoadedState) {
+          return Scaffold(
+            appBar: AppBar(
+              leading: IconButton(
+                onPressed: () => context.router.pop(),
+                icon: Icon(
+                  Icons.arrow_back,
+                ),
+              ),
+              centerTitle: true,
+              title: Text(
+                AppLocalizations.of(context)!.favorites,
+              ),
+              actions: [
+                IconButton(
+                  icon: Icon(
+                    state.viewMode == ViewMode.cards ? Icons.list : Icons.style,
+                  ),
+                  onPressed: () => context.read<FavoritesBloc>().add(
+                        ToggleViewModeEvent(),
+                      ),
+                ),
+              ],
+            ),
+            body: state.viewMode == ViewMode.cards
+                ? _buildCardView(
+                    state.favorites,
+                    state.currentIndex,
+                    state.showTranslation,
+                  )
+                : _buildListView(state.favorites),
+          );
+        }
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(
+              AppLocalizations.of(context)!.favorites,
+            ),
           ),
-        ],
-      ),
-      body: currentViewMode == ViewMode.cards
-          ? _buildCardView(favorites)
-          : _buildListView(favorites),
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      },
     );
   }
 }

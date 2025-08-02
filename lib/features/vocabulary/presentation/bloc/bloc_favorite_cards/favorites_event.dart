@@ -23,3 +23,11 @@ class RemoveFromFavoritesEvent extends FavoritesEvent {
   @override
   List<Object?> get props => [card];
 }
+
+class ToggleViewModeEvent extends FavoritesEvent {}
+
+class NextCardEvent extends FavoritesEvent {}
+
+class PreviousCardEvent extends FavoritesEvent {}
+
+class FlipCardEvent extends FavoritesEvent {}
