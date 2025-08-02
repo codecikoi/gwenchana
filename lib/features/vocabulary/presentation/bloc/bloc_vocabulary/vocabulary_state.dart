@@ -13,16 +13,14 @@ class VocabularyLoadingState extends VocabularyState {}
 class VocabularyLoadedState extends VocabularyState {
   final int selectedLevel;
   final List<VocabularyCardData> cards;
-  final bool isLoading;
 
   const VocabularyLoadedState({
     required this.selectedLevel,
     required this.cards,
-    this.isLoading = false,
   });
 
   @override
-  List<Object?> get props => [selectedLevel, cards, isLoading];
+  List<Object?> get props => [selectedLevel, cards];
 }
 
 class VocabularyErrorState extends VocabularyState {

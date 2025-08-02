@@ -58,6 +58,12 @@ class _VocabularyPageState extends State<VocabularyPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    context.read<VocabularyBloc>().add(LoadProgressEvent());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<VocabularyBloc, VocabularyState>(
       builder: (context, state) {
@@ -249,7 +255,8 @@ class _VocabularyPageState extends State<VocabularyPage> {
         }
         return Scaffold(
           body: Center(
-            child: Text('unknown state ${state.runtimeType}'),
+            child: CircularProgressIndicator(),
+            // child: Text('state ${state.runtimeType}'),
           ),
         );
       },

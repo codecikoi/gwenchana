@@ -30,12 +30,15 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
   late Animation<double> _animation;
 
   final BookRepository _bookRepository = locator<BookRepository>();
-  final Map<String, MyCard> _cardCache = {};
+  final Map<int, MyCard> _cardCache = {};
 
-  MyCard _getCachedCard(String korean, String english) {
-    final key = '$korean|$english';
+  MyCard _getCachedCard(
+    int index,
+    String korean,
+    String english,
+  ) {
     return _cardCache.putIfAbsent(
-        key,
+        index,
         () => MyCard(
               korean: korean,
               translation: english,
@@ -186,6 +189,7 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
 
           final card = state.wordCards[state.currentIndex];
           final myCard = _getCachedCard(
+            state.currentIndex,
             card['korean'] ?? 'No word',
             card['english'] ?? 'No translation',
           );
@@ -309,7 +313,9 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
         }
         return Scaffold(
           appBar: AppBar(title: Text('unknow state')),
-          body: Center(child: Text('unknow state ${state.runtimeType}')),
+          body: Center(child: Text('state ${state.runtimeType}')),
+
+          // body: Center(child: Text('unknow state ${state.runtimeType}')),
         );
       },
     );

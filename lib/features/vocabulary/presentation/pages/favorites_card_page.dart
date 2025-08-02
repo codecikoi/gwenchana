@@ -36,6 +36,12 @@ class _FavoritesCardPageState extends State<FavoritesCardPage>
     loadFavoritesDirectly();
   }
 
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   Future<void> loadFavoritesDirectly() async {
     try {
       final loadedFavorites = await HiveStorageService.getFavorites();
@@ -48,12 +54,6 @@ class _FavoritesCardPageState extends State<FavoritesCardPage>
         isLoading = false;
       });
     }
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 
   void nextCard(int total) {

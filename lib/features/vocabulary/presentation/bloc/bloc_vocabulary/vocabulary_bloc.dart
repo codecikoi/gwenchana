@@ -8,6 +8,8 @@ import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_page.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
+import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart'
+    show HiveStorageService;
 
 class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
   final BookRepository _bookRepository = locator<BookRepository>();
@@ -238,7 +240,7 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
         ));
       }
     } catch (e) {
-      emit(VocabularyErrorState('Ошибка добавления в избранное $e'));
+      emit(VocabularyErrorState('error adding to fav $e'));
     }
   }
 
