@@ -1,9 +1,12 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/core/di/locator.dart';
 import 'package:gwenchana/core/domain/models/level.dart';
 import 'package:gwenchana/core/domain/repository/book_repository.dart';
+import 'package:gwenchana/core/helper/card_colors.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_state.dart';
@@ -94,7 +97,7 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
             selectedLevel: widget.selectedLevel,
             wordCards: wordCards,
           ));
-    }
+    } else {}
   }
 
   void nextCard() {
@@ -139,22 +142,6 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
   Widget build(BuildContext context) {
     return BlocBuilder<VocabularyBloc, vocab.VocabularyState>(
       builder: (context, vocabularyState) {
-        if (vocabularyState is vocab.VocabularyLoadingState) {
-          return Scaffold(
-            appBar: AppBar(title: Text('Loading')),
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-
-        if (vocabularyState is vocab.VocabularyErrorState) {
-          return Scaffold(
-            appBar: AppBar(title: Text('Error')),
-            body: Center(child: Text(vocabularyState.message)),
-          );
-        }
-
         if (vocabularyState is vocab.CardDataLoadedState) {
           final currentCard =
               vocabularyState.wordCards[vocabularyState.currentIndex];
@@ -185,19 +172,15 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
                   backgroundColor: Colors.grey[300],
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                  ),
-                  child: Text(
-                    '${vocabularyState.currentIndex + 1} / ${vocabularyState.wordCards.length}',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                const SizedBox(height: 30),
+                Text(
+                  '${vocabularyState.currentIndex + 1} / ${vocabularyState.wordCards.length}',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 18),
+                SizedBox(height: 30),
                 Expanded(
                   child: GestureDetector(
                     onTap: flipCard,
@@ -211,10 +194,17 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
                             ..rotateY(3.14159 * _animation.value),
                           alignment: Alignment.center,
                           child: Card(
-                            margin: EdgeInsets.all(16.0),
+                            margin: EdgeInsets.only(
+                              left: 20.0,
+                              right: 20.0,
+                              top: 20.0,
+                              bottom: 150.0,
+                            ),
                             child: Container(
+                              color: vocabularyState.cardColor,
+                              // color: Color(0xFFE8DCC0),
                               alignment: Alignment.center,
-                              padding: EdgeInsets.all(16.0),
+                              padding: EdgeInsets.all(32.0),
                               child: Transform(
                                 alignment: Alignment.center,
                                 transform: Matrix4.rotationY(
@@ -224,7 +214,10 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
                                   isBack
                                       ? cachedCard.translation
                                       : cachedCard.korean,
-                                  style: TextStyle(fontSize: 32.0),
+                                  style: TextStyle(
+                                    fontSize: 42.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                   textAlign: TextAlign.center,
                                 ),
                               ),
@@ -285,8 +278,7 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
           );
         }
         return Scaffold(
-          appBar: AppBar(title: Text('unknown state')),
-          body: Center(child: Text('state ${vocabularyState.runtimeType}')),
+          body: Center(child: CircularProgressIndicator()),
         );
       },
     );

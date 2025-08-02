@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gwenchana/core/helper/app_colors.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_state.dart';
@@ -134,7 +135,7 @@ class _FavoriteCardsPageState extends State<FavoriteCardsPage>
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const SizedBox(height: 40),
+        const SizedBox(height: 30),
         Text(
           '${currentIndex + 1} / ${favorites.length}',
           style: TextStyle(
@@ -142,6 +143,7 @@ class _FavoriteCardsPageState extends State<FavoriteCardsPage>
             fontWeight: FontWeight.bold,
           ),
         ),
+        const SizedBox(height: 10),
         Expanded(
           child: GestureDetector(
             onTap: flipCard,
@@ -162,6 +164,7 @@ class _FavoriteCardsPageState extends State<FavoriteCardsPage>
                       bottom: 150.0,
                     ),
                     child: Container(
+                      color: AppColors.secondaryColor,
                       alignment: Alignment.center,
                       padding: const EdgeInsets.all(32.0),
                       child: Transform(
@@ -169,18 +172,13 @@ class _FavoriteCardsPageState extends State<FavoriteCardsPage>
                         transform: Matrix4.rotationY(
                           isBack ? 3.14159 : 0.0,
                         ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              isBack ? card.translation : card.korean,
-                              style: TextStyle(
-                                fontSize: 42.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
+                        child: Text(
+                          isBack ? card.translation : card.korean,
+                          style: TextStyle(
+                            fontSize: 42.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/core/di/locator.dart';
 import 'package:gwenchana/core/domain/repository/book_repository.dart';
+import 'package:gwenchana/core/helper/app_colors.dart';
 import 'package:gwenchana/core/helper/card_colors.dart';
 import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_add_cards/add_cards_bloc.dart';
@@ -28,22 +29,73 @@ class _VocabularyPageState extends State<VocabularyPage> {
     return cardColors[index % cardColors.length];
   }
 
-  void showLevelDialog(BuildContext context, VocabularyBloc bloc) {
-    levelNames;
+  void showLevelDialog(BuildContext context, VocabularyBloc bloc,
+      int selectedLevel, List<String> levelNames) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(AppLocalizations.of(context)!.chooseBook),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        title: Row(
+          children: [
+            Icon(
+              Icons.menu_book,
+              color: AppColors.mainColor,
+              size: 20,
+            ),
+            const SizedBox(width: 6),
+            Text(
+              AppLocalizations.of(context)!.chooseBook,
+              style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: AppColors.black,
+              ),
+            ),
+          ],
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: List.generate(
-            5,
-            (i) => ListTile(
-                title: Text(levelNames[i]),
-                onTap: () {
-                  bloc.add(ChangeLevelEvent(i + 1));
-                  Navigator.of(context).pop();
-                }),
+            levelNames.length,
+            (i) => Container(
+              margin: const EdgeInsets.only(bottom: 4),
+              decoration: BoxDecoration(
+                color: selectedLevel == i + 1
+                    ? AppColors.secondaryColor.withAlpha(40)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(6),
+                border: selectedLevel == i + 1
+                    ? Border.all(color: AppColors.mainColor)
+                    : Border.all(color: Colors.grey.shade400),
+              ),
+              child: ListTile(
+                  dense: true,
+                  title: Text(
+                    levelNames[i],
+                    style: TextStyle(
+                      fontWeight: selectedLevel == i + 1
+                          ? FontWeight.w600
+                          : FontWeight.normal,
+                      color: selectedLevel == i + 1
+                          ? AppColors.mainColor
+                          : AppColors.black,
+                      fontSize: 12,
+                    ),
+                  ),
+                  trailing: selectedLevel == i + 1
+                      ? Icon(
+                          Icons.check_circle,
+                          color: AppColors.mainColor,
+                          size: 20,
+                        )
+                      : null,
+                  onTap: () {
+                    bloc.add(ChangeLevelEvent(i + 1));
+                    Navigator.of(context).pop();
+                  }),
+            ),
           ),
         ),
       ),
@@ -58,17 +110,19 @@ class _VocabularyPageState extends State<VocabularyPage> {
     bloc.add(LoadProgressEvent());
   }
 
-  @override
-  void initState() {
-    super.initState();
-    context.read<VocabularyBloc>().add(LoadProgressEvent());
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   context.read<VocabularyBloc>().add(LoadProgressEvent());
+  // }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<VocabularyBloc, VocabularyState>(
       builder: (context, state) {
         if (state is VocabularyLoadingState) {
+          print('Debug: Handling VocabularyLoadingState');
+
           return Scaffold(
             body: Center(
               child: CircularProgressIndicator(),
@@ -88,20 +142,58 @@ class _VocabularyPageState extends State<VocabularyPage> {
           );
         }
         if (state is VocabularyLoadedState) {
+          print('Debug: Handling VocabularyLoadedState');
+
           return Scaffold(
             appBar: AppBar(
-              title: TextButton(
-                child: Text(
-                  state.selectedLevel > 0
-                      ? levelNames[state.selectedLevel - 1]
-                      : AppLocalizations.of(context)!.chooseBook,
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
+              centerTitle: true,
+              title: Container(
+                decoration: BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(
+                    width: 1,
+                    color: AppColors.mainColor,
+                  )),
                 ),
-                onPressed: () => showLevelDialog(
-                  context,
-                  context.read<VocabularyBloc>(),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(16),
+                    onTap: () => showLevelDialog(
+                      context,
+                      context.read<VocabularyBloc>(),
+                      state.selectedLevel,
+                      levelNames,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0,
+                        vertical: 6.0,
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            (state.selectedLevel > 0 &&
+                                    state.selectedLevel <= levelNames.length)
+                                ? levelNames[state.selectedLevel - 1]
+                                : AppLocalizations.of(context)!.chooseBook,
+                            style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          Icon(
+                            Icons.keyboard_arrow_down,
+                            color: Colors.black87,
+                            size: 18,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ),
               backgroundColor: Colors.white,
@@ -254,10 +346,14 @@ class _VocabularyPageState extends State<VocabularyPage> {
             ),
           );
         }
+
+        // return const SizedBox.shrink();
+
         return Scaffold(
           body: Center(
             child: CircularProgressIndicator(),
-            // child: Text('state ${state.runtimeType}'),
+            // child: Text('What is state ${state.runtimeType}'),
+            // TODO: CIrcular indicator is OK?
           ),
         );
       },

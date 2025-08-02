@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:gwenchana/core/di/locator.dart';
 import 'package:gwenchana/core/domain/models/level.dart';
 import 'package:gwenchana/core/domain/repository/book_repository.dart';
+import 'package:gwenchana/core/helper/card_colors.dart';
 import 'package:gwenchana/core/services/progress_service.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_state.dart';
@@ -43,6 +46,8 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
       final currentIndex =
           (currentProgress - 1).clamp(0, event.wordCards.length - 1);
 
+      final cardColor = cardColors[Random().nextInt(cardColors.length)];
+
       emit(CardDataLoadedState(
         wordCards: event.wordCards,
         currentIndex: currentIndex,
@@ -51,6 +56,7 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
         setTitle: setTitle,
         setIndex: event.setIndex,
         selectedLevel: event.selectedLevel,
+        cardColor: cardColor,
       ));
     } catch (e) {
       emit(VocabularyErrorState('Error loading cards $e'));
@@ -73,6 +79,7 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
           setTitle: currenState.setTitle,
           setIndex: currenState.setIndex,
           selectedLevel: currenState.selectedLevel,
+          cardColor: currenState.cardColor,
         ));
 
         add(UpdateCardProgressEvent(
@@ -101,6 +108,7 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
           setTitle: currentState.setTitle,
           setIndex: currentState.setIndex,
           selectedLevel: currentState.selectedLevel,
+          cardColor: currentState.cardColor,
         ));
         add(UpdateCardProgressEvent(
           setIndex: currentState.setIndex,
@@ -126,6 +134,7 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
         setTitle: currentState.setTitle,
         setIndex: currentState.setIndex,
         selectedLevel: currentState.selectedLevel,
+        cardColor: currentState.cardColor,
       ));
     }
   }
@@ -184,15 +193,19 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
             .toList();
         final currentIndex =
             (currentProgress - 1).clamp(0, wordCards.length - 1);
-        emit(CardDataLoadedState(
-          wordCards: wordCards,
-          currentIndex: currentIndex,
-          showTranslation: false,
-          currentProgress: currentProgress,
-          setTitle: setTitle,
-          setIndex: event.setIndex,
-          selectedLevel: event.selectedLevel,
-        ));
+        final currentState = state;
+        if (currentState is CardDataLoadedState) {
+          emit(CardDataLoadedState(
+            wordCards: wordCards,
+            currentIndex: currentIndex,
+            showTranslation: false,
+            currentProgress: currentProgress,
+            setTitle: setTitle,
+            setIndex: event.setIndex,
+            selectedLevel: event.selectedLevel,
+            cardColor: currentState.cardColor,
+          ));
+        }
       } else {
         emit(VocabularyErrorState('Lesson not found'));
       }

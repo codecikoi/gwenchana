@@ -48,34 +48,36 @@ class ProgressService {
   // getting all progress for a specific level
 
   static int getSetCountForLevel(int level) {
-    final levelEnum = _intToLevel(level);
+    // final levelEnum = _intToLevel(level);
+    final levelEnum = Level.values[level - 1];
+
     final lessonTitles = _bookRepository.getLessonTitlesForLevel(levelEnum);
     return lessonTitles.length;
   }
 
   static int getTotalCardsForLevel(int level) {
-    final levelEnum = _intToLevel(level);
+    final levelEnum = Level.values[level - 1];
     final lessons = _bookRepository.getAllLessons(level: levelEnum);
     if (lessons == null) return 0;
     return lessons.fold(0, (sum, lesson) => sum + lesson.words.length);
   }
 
-  static Level _intToLevel(int levelIndex) {
-    switch (levelIndex) {
-      case 1:
-        return Level.elementary;
-      case 2:
-        return Level.beginnerLevelOne;
-      case 3:
-        return Level.beginnerLevelTwo;
-      case 4:
-        return Level.intermediateLevelOne;
-      case 5:
-        return Level.intermediateLevelTwo;
-      default:
-        throw ArgumentError('Invalid level index: $levelIndex');
-    }
-  }
+  // static Level _intToLevel(int levelIndex) {
+  //   switch (levelIndex) {
+  //     case 1:
+  //       return Level.elementary;
+  //     case 2:
+  //       return Level.beginnerLevelOne;
+  //     case 3:
+  //       return Level.beginnerLevelTwo;
+  //     case 4:
+  //       return Level.intermediateLevelOne;
+  //     case 5:
+  //       return Level.intermediateLevelTwo;
+  //     default:
+  //       throw ArgumentError('Invalid level index: $levelIndex');
+  //   }
+  // }
 
   static Future<List<int>> getAllProgress(int level) async {
     List<int> progressList = [];

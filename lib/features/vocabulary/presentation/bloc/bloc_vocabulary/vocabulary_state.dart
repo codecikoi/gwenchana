@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:equatable/equatable.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_page.dart';
 
@@ -31,22 +33,6 @@ class VocabularyErrorState extends VocabularyState {
   List<Object?> get props => [message];
 }
 
-// class MyCardsLoadedState extends VocabularyState {
-//   final List<MyCard> cards;
-//   const MyCardsLoadedState(this.cards);
-
-//   @override
-//   List<Object?> get props => [cards];
-// }
-
-// class FavoritesLoadedState extends VocabularyState {
-//   final List<MyCard> favorites;
-//   const FavoritesLoadedState(this.favorites);
-
-//   @override
-//   List<Object?> get props => [favorites];
-// }
-
 class CardDataLoadedState extends VocabularyState {
   final List<Map<String, String>> wordCards;
   final int currentIndex;
@@ -56,6 +42,9 @@ class CardDataLoadedState extends VocabularyState {
   final int setIndex;
   final int selectedLevel;
 
+  // TODO: temporarily getting color solution
+  final Color? cardColor;
+
   const CardDataLoadedState({
     required this.wordCards,
     required this.currentIndex,
@@ -64,6 +53,7 @@ class CardDataLoadedState extends VocabularyState {
     required this.setTitle,
     required this.setIndex,
     required this.selectedLevel,
+    this.cardColor,
   });
 
   @override
@@ -75,6 +65,7 @@ class CardDataLoadedState extends VocabularyState {
         setTitle,
         setIndex,
         selectedLevel,
+        cardColor
       ];
 }
 

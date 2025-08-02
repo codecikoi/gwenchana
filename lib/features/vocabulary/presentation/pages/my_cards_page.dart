@@ -184,6 +184,7 @@ class _MyCardsPageState extends State<MyCardsPage>
                       bottom: 150.0,
                     ),
                     child: Container(
+                      color: AppColors.secondaryColor,
                       alignment: Alignment.center,
                       padding: const EdgeInsets.all(32.0),
                       child: Transform(
