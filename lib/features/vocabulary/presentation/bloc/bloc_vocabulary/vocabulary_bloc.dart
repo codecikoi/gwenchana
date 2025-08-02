@@ -7,9 +7,6 @@ import 'package:gwenchana/core/services/progress_service.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_page.dart';
-import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
-import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart'
-    show HiveStorageService;
 
 class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
   final BookRepository _bookRepository = locator<BookRepository>();
