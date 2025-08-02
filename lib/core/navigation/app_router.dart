@@ -9,7 +9,7 @@ import 'package:gwenchana/features/reading/presentation/reading_page.dart';
 import 'package:gwenchana/features/recover_password/presentation/recover_password_page.dart';
 import 'package:gwenchana/features/skill_choosing/presentation/pages/skill_choosing_page.dart';
 import 'package:gwenchana/features/speaking/presentation/speaking_page.dart';
-import 'package:gwenchana/features/vocabulary/presentation/pages/favorites_card_page.dart';
+import 'package:gwenchana/features/vocabulary/presentation/pages/favorite_cards_page.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/my_cards_page.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_card.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_page.dart';
@@ -76,7 +76,7 @@ class AppRouter extends RootStackRouter {
           guards: [_authGuard],
         ),
         AutoRoute(
-          page: FavoritesCardRoute.page,
+          page: FavoriteCardsRoute.page,
           path: '/favorites-page',
           guards: [_authGuard],
         ),

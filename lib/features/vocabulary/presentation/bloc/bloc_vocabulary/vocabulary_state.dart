@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:gwenchana/features/vocabulary/presentation/pages/vocabulary_page.dart';
-import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 
 abstract class VocabularyState extends Equatable {
   const VocabularyState();
@@ -32,21 +31,21 @@ class VocabularyErrorState extends VocabularyState {
   List<Object?> get props => [message];
 }
 
-class MyCardsLoadedState extends VocabularyState {
-  final List<MyCard> cards;
-  const MyCardsLoadedState(this.cards);
+// class MyCardsLoadedState extends VocabularyState {
+//   final List<MyCard> cards;
+//   const MyCardsLoadedState(this.cards);
 
-  @override
-  List<Object?> get props => [cards];
-}
+//   @override
+//   List<Object?> get props => [cards];
+// }
 
-class FavoritesLoadedState extends VocabularyState {
-  final List<MyCard> favorites;
-  const FavoritesLoadedState(this.favorites);
+// class FavoritesLoadedState extends VocabularyState {
+//   final List<MyCard> favorites;
+//   const FavoritesLoadedState(this.favorites);
 
-  @override
-  List<Object?> get props => [favorites];
-}
+//   @override
+//   List<Object?> get props => [favorites];
+// }
 
 class CardDataLoadedState extends VocabularyState {
   final List<Map<String, String>> wordCards;
@@ -54,7 +53,6 @@ class CardDataLoadedState extends VocabularyState {
   final bool showEnglish;
   final int currentProgress;
   final String setTitle;
-  final List<MyCard> favorites;
   final int setIndex;
   final int selectedLevel;
 
@@ -64,7 +62,6 @@ class CardDataLoadedState extends VocabularyState {
     required this.showEnglish,
     required this.currentProgress,
     required this.setTitle,
-    required this.favorites,
     required this.setIndex,
     required this.selectedLevel,
   });
@@ -76,7 +73,6 @@ class CardDataLoadedState extends VocabularyState {
         showEnglish,
         currentProgress,
         setTitle,
-        favorites,
         setIndex,
         selectedLevel,
       ];

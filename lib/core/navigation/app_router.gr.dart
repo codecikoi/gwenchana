@@ -59,17 +59,17 @@ class CreateAccountRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [FavoritesCardPage]
-class FavoritesCardRoute extends PageRouteInfo<void> {
-  const FavoritesCardRoute({List<PageRouteInfo>? children})
-    : super(FavoritesCardRoute.name, initialChildren: children);
+/// [FavoriteCardsPage]
+class FavoriteCardsRoute extends PageRouteInfo<void> {
+  const FavoriteCardsRoute({List<PageRouteInfo>? children})
+    : super(FavoriteCardsRoute.name, initialChildren: children);
 
-  static const String name = 'FavoritesCardRoute';
+  static const String name = 'FavoriteCardsRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const FavoritesCardPage();
+      return const FavoriteCardsPage();
     },
   );
 }
@@ -149,7 +149,7 @@ class SkillChoosingRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const SkillChoosingPage();
+      return WrappedRoute(child: const SkillChoosingPage());
     },
   );
 }

@@ -4,6 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/core/di/locator.dart';
 import 'package:gwenchana/core/domain/models/level.dart';
 import 'package:gwenchana/core/domain/repository/book_repository.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_bloc.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_event.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_state.dart';
@@ -104,42 +107,20 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
   }
 
   void flipCard() {
-    final currentState = context.read<VocabularyBloc>().state;
-    if (currentState is CardDataLoadedState) {
-      if (currentState.showEnglish) {
-        _controller.reverse();
-      } else {
-        _controller.forward();
-      }
-      context.read<VocabularyBloc>().add(FlipCardEvent());
-    }
+    context.read<VocabularyBloc>().add(FlipCardEvent());
   }
 
-  String getCardtitle(int index) {
-    final levelEnum = _intToLevel(widget.selectedLevel);
-    final lessonTitles = _bookRepository.getLessonTitlesForLevel(levelEnum);
-    if (index >= lessonTitles.length) return '';
-    return lessonTitles[index];
+  void resetProgress() {
+    context.read<VocabularyBloc>().add(ResetCardProgressEvent(
+        setIndex: widget.setIndex, selectedLevel: widget.selectedLevel));
   }
 
-  Future<bool> addToFavorites(MyCard card) async {
-    try {
-      context.read<VocabularyBloc>().add(AddToFavoritesEvent(card));
-      return true;
-    } catch (e) {
-      print('error adding $e');
-      return false;
-    }
+  void addToFavorites(MyCard card) async {
+    context.read<FavoritesBloc>().add(AddToFavoritesEvent(card));
   }
 
-  Future<bool> removeFromFavorites(MyCard card) async {
-    try {
-      context.read<VocabularyBloc>().add(RemoveFromFavoritesEvent(card));
-      return true;
-    } catch (e) {
-      print('error removing $e');
-      return false;
-    }
+  void removeFromFavorites(MyCard card) async {
+    context.read<FavoritesBloc>().add(RemoveFromFavoritesEvent(card));
   }
 
   Level _intToLevel(int levelIndex) {
@@ -161,163 +142,244 @@ class _VocabularyCardPageState extends State<VocabularyCardPage>
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<VocabularyBloc, VocabularyState>(
-      builder: (context, state) {
-        if (state is VocabularyLoadingState) {
-          return Scaffold(
-            appBar: AppBar(title: Text('Loading')),
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-
-        if (state is VocabularyErrorState) {
-          return Scaffold(
-            appBar: AppBar(title: Text('Error')),
-            body: Center(child: Text(state.message)),
-          );
-        }
-
-        if (state is CardDataLoadedState) {
-          if (state.wordCards.isEmpty) {
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<VocabularyBloc, VocabularyState>(
+          listener: (context, state) {
+            if (state is CardDataLoadedState) {
+              _controller.forward();
+            }
+          },
+        ),
+      ],
+      child: BlocBuilder<VocabularyBloc, VocabularyState>(
+        builder: (context, vocabularyState) {
+          if (vocabularyState is VocabularyLoadingState) {
             return Scaffold(
-              appBar: AppBar(title: Text('no data')),
-              body: Center(child: Text('not found cards for this set')),
+              appBar: AppBar(title: Text('Loading')),
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
             );
           }
 
-          final card = state.wordCards[state.currentIndex];
-          final myCard = _getCachedCard(
-            state.currentIndex,
-            card['korean'] ?? 'No word',
-            card['english'] ?? 'No translation',
-          );
+          if (vocabularyState is VocabularyErrorState) {
+            return Scaffold(
+              appBar: AppBar(title: Text('Error')),
+              body: Center(child: Text(vocabularyState.message)),
+            );
+          }
 
-          return Scaffold(
-            appBar: AppBar(
-              title: Text(state.setTitle),
-              backgroundColor: Colors.white,
-              foregroundColor: Colors.black,
-              actions: [
-                IconButton(
-                  icon: Icon(Icons.refresh),
-                  onPressed: () {
-                    context.read<VocabularyBloc>().add(ResetCardProgressEvent(
-                          setIndex: widget.setIndex,
-                          selectedLevel: widget.selectedLevel,
-                        ));
-                    _controller.reset();
-                  },
-                ),
-              ],
-            ),
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.0,
+          if (vocabularyState is CardDataLoadedState) {
+            final currenCard =
+                vocabularyState.wordCards[vocabularyState.currentIndex];
+            final cachedCard = _getCachedCard(
+              vocabularyState.currentIndex,
+              currenCard['korean']!,
+              currenCard['english']!,
+            );
+
+            return Scaffold(
+              appBar: AppBar(
+                title: Text(vocabularyState.setTitle),
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
+                actions: [
+                  IconButton(
+                    icon: Icon(Icons.refresh),
+                    onPressed: resetProgress,
+                    // onPressed: () {
+                    //   context.read<VocabularyBloc>().add(ResetCardProgressEvent(
+                    //         setIndex: widget.setIndex,
+                    //         selectedLevel: widget.selectedLevel,
+                    //       ));
+                    //   _controller.reset();
+                    // },
                   ),
-                  child: Text(
-                    '${state.currentIndex + 1} / ${state.wordCards.length}',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                ],
+              ),
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // TODO: temporary indicator need?
+                  LinearProgressIndicator(
+                    value: (vocabularyState.currentIndex + 1) /
+                        vocabularyState.wordCards.length,
+                    backgroundColor: Colors.grey[300],
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.green),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.0,
+                    ),
+                    child: Text(
+                      '${vocabularyState.currentIndex + 1} / ${vocabularyState.wordCards.length}',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(height: 18),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: flipCard,
-                    child: AnimatedBuilder(
-                        animation: _animation,
-                        builder: (context, child) {
-                          final isBack = _animation.value > 0.5;
-                          return Transform(
-                            transform: Matrix4.identity()
-                              ..setEntry(3, 2, 0.001)
-                              ..rotateY(3.14159 * _animation.value),
-                            alignment: Alignment.center,
-                            child: Card(
-                              margin: EdgeInsets.all(16.0),
-                              child: Container(
-                                alignment: Alignment.center,
-                                padding: EdgeInsets.all(16.0),
-                                child: Transform(
-                                  alignment: Alignment.center,
-                                  transform: Matrix4.rotationY(
-                                    isBack ? 3.14159 : 0.0,
+                  SizedBox(height: 18),
+
+                  // new flipcard
+                  Expanded(
+                    child: Center(
+                      child: AnimatedBuilder(
+                          animation: _animation,
+                          builder: (context, child) {
+                            return Transform.scale(
+                              scale: _animation.value,
+                              child: GestureDetector(
+                                onTap: flipCard,
+                                child: Container(
+                                  margin: const EdgeInsets.all(20),
+                                  padding: EdgeInsets.all(20),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withAlpha(60),
+                                        spreadRadius: 2,
+                                        blurRadius: 5,
+                                        offset: Offset(0, 3),
+                                      ),
+                                    ],
                                   ),
-                                  child: Text(
-                                    isBack
-                                        ? (card['english'] ?? 'No translation')
-                                        : (card['korean'] ?? 'No word'),
-                                    style: TextStyle(fontSize: 32.0),
-                                    textAlign: TextAlign.center,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        cachedCard.korean,
+                                        style: const TextStyle(
+                                          fontSize: 32,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      const SizedBox(height: 20),
+                                      if (vocabularyState.showEnglish)
+                                        Text(
+                                          cachedCard.korean,
+                                          style: TextStyle(
+                                            fontSize: 32,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey[600],
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                    ],
                                   ),
                                 ),
                               ),
-                            ),
-                          );
-                        }),
+                            );
+                          }),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.arrow_back),
-                        onPressed: state.currentIndex > 0 ? prevCard : null,
-                      ),
-                      Builder(
-                        builder: (context) {
-                          final isFavorite = state.favorites.any(
-                            (fav) =>
-                                fav.korean == myCard.korean &&
-                                fav.translation == myCard.translation,
-                          );
-                          return IconButton(
-                            icon: Icon(
-                              isFavorite
-                                  ? Icons.favorite
-                                  : Icons.favorite_border,
-                              color: isFavorite ? Colors.red : null,
-                            ),
-                            onPressed: () async {
-                              if (isFavorite) {
-                                await removeFromFavorites(myCard);
-                              } else {
-                                await addToFavorites(myCard);
-                              }
-                            },
-                          );
-                        },
-                      ),
-                      IconButton(
-                        icon: Icon(Icons.arrow_forward),
-                        onPressed:
-                            state.currentIndex < state.wordCards.length - 1
-                                ? nextCard
-                                : null,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          );
-        }
-        return Scaffold(
-          appBar: AppBar(title: Text('unknow state')),
-          body: Center(child: Text('state ${state.runtimeType}')),
 
-          // body: Center(child: Text('unknow state ${state.runtimeType}')),
-        );
-      },
+                  // my flipcard
+                  // Expanded(
+                  //   child: GestureDetector(
+                  //     onTap: flipCard,
+                  //     child: AnimatedBuilder(
+                  //         animation: _animation,
+                  //         builder: (context, child) {
+                  //           final isBack = _animation.value > 0.5;
+                  //           return Transform(
+                  //             transform: Matrix4.identity()
+                  //               ..setEntry(3, 2, 0.001)
+                  //               ..rotateY(3.14159 * _animation.value),
+                  //             alignment: Alignment.center,
+                  //             child: Card(
+                  //               margin: EdgeInsets.all(16.0),
+                  //               child: Container(
+                  //                 alignment: Alignment.center,
+                  //                 padding: EdgeInsets.all(16.0),
+                  //                 child: Transform(
+                  //                   alignment: Alignment.center,
+                  //                   transform: Matrix4.rotationY(
+                  //                     isBack ? 3.14159 : 0.0,
+                  //                   ),
+                  //                   child: Text(
+                  //                     isBack
+                  //                         ? cachedCard.translation
+                  //                         : cachedCard.korean,
+                  //                     style: TextStyle(fontSize: 32.0),
+                  //                     textAlign: TextAlign.center,
+                  //                   ),
+                  //                 ),
+                  //               ),
+                  //             ),
+                  //           );
+                  //         }),
+                  //   ),
+                  // ),
+                  Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        IconButton(
+                          onPressed: vocabularyState.currentIndex > 0
+                              ? prevCard
+                              : null,
+                          icon: Icon(Icons.arrow_back),
+                        ),
+                        BlocBuilder<FavoritesBloc, FavoritesState>(
+                          builder: (context, favoritesState) {
+                            final isFavorite = favoritesState
+                                    is FavoritesLoadedState &&
+                                favoritesState.favorites.any((fav) =>
+                                    fav.korean == cachedCard.korean &&
+                                    fav.translation == cachedCard.translation);
+
+                            return IconButton(
+                              onPressed: () {
+                                if (isFavorite) {
+                                  removeFromFavorites(cachedCard);
+                                } else {
+                                  addToFavorites(cachedCard);
+                                }
+                              },
+                              // onPressed: () async {
+                              //   if (isFavorite) {
+                              //     await removeFromFavorites(myCard);
+                              //   } else {
+                              //     await addToFavorites(myCard);
+                              //   }
+                              // },
+                              icon: Icon(
+                                isFavorite
+                                    ? Icons.favorite
+                                    : Icons.favorite_border,
+                                color: isFavorite ? Colors.red : null,
+                              ),
+                            );
+                          },
+                        ),
+                        IconButton(
+                          onPressed: vocabularyState.currentIndex <
+                                  vocabularyState.wordCards.length - 1
+                              ? nextCard
+                              : null,
+                          icon: Icon(Icons.arrow_forward),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+          return Scaffold(
+            appBar: AppBar(title: Text('unknow state')),
+            body: Center(child: Text('state ${vocabularyState.runtimeType}')),
+
+            // body: Center(child: Text('unknow state ${state.runtimeType}')),
+          );
+        },
+      ),
     );
   }
 }

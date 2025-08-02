@@ -2,12 +2,17 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gwenchana/core/helper/app_colors.dart';
-import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_bloc.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_add_cards/add_cards_bloc.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_add_cards/add_cards_event.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_add_cards/add_cards_state.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_bloc.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_event.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_state.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/add_card_dialog.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 
-enum ViewMode { list, cards }
+// enum ViewMode { list, cards }
 
 @RoutePage()
 class MyCardsPage extends StatefulWidget {
@@ -19,17 +24,18 @@ class MyCardsPage extends StatefulWidget {
 
 class _MyCardsPageState extends State<MyCardsPage>
     with SingleTickerProviderStateMixin {
-  int currentIndex = 0;
-  bool showTranslation = false;
+  // int currentIndex = 0;
+  // bool showTranslation = false;
 
-  ViewMode currentViewMode = ViewMode.list;
+  // ViewMode currentViewMode = ViewMode.list;
+
   late AnimationController _controller;
   late Animation<double> _animation;
 
-  List<MyCard> myCards = [];
-  List<MyCard> favorites = [];
+  // List<MyCard> myCards = [];
+  // List<MyCard> favorites = [];
 
-  bool isLoading = true;
+  // bool isLoading = true;
 
   @override
   void initState() {
@@ -39,35 +45,39 @@ class _MyCardsPageState extends State<MyCardsPage>
       duration: const Duration(milliseconds: 400),
     );
     _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
-    loadCardsDirectly();
-    loadFavorites();
+
+    context.read<AddCardsBloc>().add(LoadMyCardsEvent());
+    context.read<FavoritesBloc>().add(LoadFavoritesEvent());
+
+    // loadCardsDirectly();
+    // loadFavorites();
   }
 
-  Future<void> loadFavorites() async {
-    try {
-      final loadedFavorites = await HiveStorageService.getFavorites();
-      setState(() {
-        favorites = loadedFavorites;
-      });
-    } catch (e) {
-      print('error loading');
-    }
-  }
+  // Future<void> loadFavorites() async {
+  //   try {
+  //     final loadedFavorites = await HiveStorageService.getFavorites();
+  //     setState(() {
+  //       favorites = loadedFavorites;
+  //     });
+  //   } catch (e) {
+  //     print('error loading');
+  //   }
+  // }
 
-  Future<void> loadCardsDirectly() async {
-    try {
-      final loadedCards = await HiveStorageService.getAllCards();
-      setState(() {
-        myCards = loadedCards;
-        isLoading = false;
-      });
-    } catch (e) {
-      print('error loading card $e');
-      setState(() {
-        isLoading = false;
-      });
-    }
-  }
+  // Future<void> loadCardsDirectly() async {
+  //   try {
+  //     final loadedCards = await HiveStorageService.getAllCards();
+  //     setState(() {
+  //       myCards = loadedCards;
+  //       isLoading = false;
+  //     });
+  //   } catch (e) {
+  //     print('error loading card $e');
+  //     setState(() {
+  //       isLoading = false;
+  //     });
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -75,103 +85,107 @@ class _MyCardsPageState extends State<MyCardsPage>
     super.dispose();
   }
 
-  void nextCard(int total) {
-    if (currentIndex < total - 1) {
-      setState(() {
-        currentIndex++;
-        showTranslation = false;
-        _controller.reset();
-      });
-    }
-  }
+  // void nextCard(int total) {
+  //   if (currentIndex < total - 1) {
+  //     setState(() {
+  //       currentIndex++;
+  //       showTranslation = false;
+  //       _controller.reset();
+  //     });
+  //   }
+  // }
 
-  void prevCard(int total) {
-    if (currentIndex > 0) {
-      setState(() {
-        currentIndex--;
-        showTranslation = false;
-        _controller.reset();
-      });
-    }
-  }
+  // void prevCard(int total) {
+  //   if (currentIndex > 0) {
+  //     setState(() {
+  //       currentIndex--;
+  //       showTranslation = false;
+  //       _controller.reset();
+  //     });
+  //   }
+  // }
 
   void flipCard() {
-    if (showTranslation) {
-      _controller.reverse();
-    } else {
-      _controller.forward();
-    }
-    setState(() {
-      showTranslation = !showTranslation;
-    });
-  }
-
-  Future<void> deleteCard(MyCard card, {String? source}) async {
-    try {
-      final allCards = await HiveStorageService.getAllCards();
-      final index = allCards.indexWhere(
-        (c) => c.korean == card.korean && c.translation == card.translation,
-      );
-      if (index != -1) {
-        await HiveStorageService.deleteCard(index);
+    final bloc = context.read<AddCardsBloc>();
+    final state = bloc.state;
+    if (state is MyCardsLoadedState) {
+      if (state.showTranslation) {
+        _controller.reverse();
+      } else {
+        _controller.forward();
       }
-      setState(() {
-        myCards.removeWhere(
-          (c) => c.korean == card.korean && c.translation == card.translation,
-        );
-        if (currentViewMode == ViewMode.cards && myCards.isNotEmpty) {
-          if (currentIndex >= myCards.length) {
-            currentIndex = myCards.length - 1;
-          }
-          showTranslation = false;
-          _controller.reset();
-        }
-      });
-    } catch (e) {
-      print('Error deleting card $e');
+      bloc.add(FlipCardEvent());
     }
   }
 
-  Future<void> addCardBack(MyCard card) async {
-    try {
-      await HiveStorageService.addCard(card);
-      setState(() {
-        myCards.add(card);
-      });
-    } catch (e) {
-      print('error adding card back $e');
-    }
-  }
+  // Future<void> deleteCard(MyCard card, {String? source}) async {
+  //   try {
+  //     final allCards = await HiveStorageService.getAllCards();
+  //     final index = allCards.indexWhere(
+  //       (c) => c.korean == card.korean && c.translation == card.translation,
+  //     );
+  //     if (index != -1) {
+  //       await HiveStorageService.deleteCard(index);
+  //     }
+  //     setState(() {
+  //       myCards.removeWhere(
+  //         (c) => c.korean == card.korean && c.translation == card.translation,
+  //       );
+  //       if (currentViewMode == ViewMode.cards && myCards.isNotEmpty) {
+  //         if (currentIndex >= myCards.length) {
+  //           currentIndex = myCards.length - 1;
+  //         }
+  //         showTranslation = false;
+  //         _controller.reset();
+  //       }
+  //     });
+  //   } catch (e) {
+  //     print('Error deleting card $e');
+  //   }
+  // }
 
-  Future<void> toggleFavorites(MyCard card) async {
-    if (favorites.contains(card)) {
-      await HiveStorageService.removeFromFavorites(card);
-      setState(() {
-        favorites.remove(card);
-      });
-    } else {
-      await HiveStorageService.addToFavorites(card);
-      setState(() {
-        favorites.add(card);
-      });
-    }
-  }
+  // Future<void> addCardBack(MyCard card) async {
+  //   try {
+  //     await HiveStorageService.addCard(card);
+  //     setState(() {
+  //       myCards.add(card);
+  //     });
+  //   } catch (e) {
+  //     print('error adding card back $e');
+  //   }
+  // }
 
-  void toggleViewMode() {
-    setState(() {
-      currentViewMode =
-          currentViewMode == ViewMode.cards ? ViewMode.list : ViewMode.cards;
-    });
-  }
+  // Future<void> toggleFavorites(MyCard card) async {
+  //   if (favorites.contains(card)) {
+  //     await HiveStorageService.removeFromFavorites(card);
+  //     setState(() {
+  //       favorites.remove(card);
+  //     });
+  //   } else {
+  //     await HiveStorageService.addToFavorites(card);
+  //     setState(() {
+  //       favorites.add(card);
+  //     });
+  //   }
+  // }
+
+  // void toggleViewMode() {
+  //   setState(() {
+  //     currentViewMode =
+  //         currentViewMode == ViewMode.cards ? ViewMode.list : ViewMode.cards;
+  //   });
+  // }
 
   void showAddCardDialog() {
     showDialog(
       context: context,
       builder: (context) => AddCardDialog(
-        bloc: context.read<VocabularyBloc>(),
+        addCardsBloc: context.read<AddCardsBloc>(),
       ),
     ).then((_) {
-      loadCardsDirectly();
+      if (mounted) {
+        context.read<AddCardsBloc>().add(LoadMyCardsEvent());
+      }
     });
   }
 
@@ -187,11 +201,13 @@ class _MyCardsPageState extends State<MyCardsPage>
       itemBuilder: (context, index) {
         final card = cards[index];
 
+        // TODO: swipe to right add to fav ?
+
         return Dismissible(
           key: Key('${card.korean}_${card.translation}_$index'),
           direction: DismissDirection.endToStart,
           onDismissed: (direction) {
-            deleteCard(card, source: 'swipe');
+            context.read<AddCardsBloc>().add(DeleteCardEvent(card));
           },
           dismissThresholds: {
             DismissDirection.endToStart: 0.6,
@@ -242,7 +258,12 @@ class _MyCardsPageState extends State<MyCardsPage>
     );
   }
 
-  Widget _buildCardView(List<MyCard> cards) {
+  Widget _buildCardView(
+    List<MyCard> cards,
+    int currentIndex,
+    bool showTranslation,
+    List<MyCard> favorites,
+  ) {
     if (currentIndex >= cards.length) {
       currentIndex = cards.length - 1;
     }
@@ -312,24 +333,40 @@ class _MyCardsPageState extends State<MyCardsPage>
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               IconButton(
-                onPressed:
-                    currentIndex > 0 ? () => prevCard(cards.length) : null,
+                onPressed: currentIndex > 0
+                    ? () =>
+                        context.read<AddCardsBloc>().add(PreviousCardEvent())
+                    : null,
                 icon: Icon(Icons.arrow_back),
                 iconSize: 40,
               ),
-              IconButton(
-                onPressed: () => toggleFavorites(card),
-                icon: Icon(
-                  favorites.contains(card)
-                      ? Icons.favorite
-                      : Icons.favorite_border,
-                ),
-                color: favorites.contains(card) ? Colors.red : null,
-                iconSize: 32,
-              ),
+              BlocBuilder<FavoritesBloc, FavoritesState>(
+                  builder: (context, favoritesState) {
+                final isFavorite = favoritesState is FavoritesLoadedState
+                    ? favoritesState.favorites.contains(card)
+                    : false;
+                return IconButton(
+                  onPressed: () {
+                    if (isFavorite) {
+                      context
+                          .read<FavoritesBloc>()
+                          .add(RemoveFromFavoritesEvent(card));
+                    } else {
+                      context
+                          .read<FavoritesBloc>()
+                          .add(AddToFavoritesEvent(card));
+                    }
+                  },
+                  icon: Icon(
+                    isFavorite ? Icons.favorite : Icons.favorite_border,
+                  ),
+                  color: isFavorite ? Colors.red : null,
+                  iconSize: 32,
+                );
+              }),
               IconButton(
                 onPressed: currentIndex < cards.length - 1
-                    ? () => nextCard(cards.length)
+                    ? () => context.read<AddCardsBloc>().add(NextCardEvent())
                     : null,
                 icon: Icon(Icons.arrow_forward),
                 iconSize: 40,
@@ -343,95 +380,123 @@ class _MyCardsPageState extends State<MyCardsPage>
 
   @override
   Widget build(BuildContext context) {
-    // Show loading
-    if (isLoading) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            AppLocalizations.of(context)!.myCards,
-          ),
-        ),
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
+    return BlocBuilder<AddCardsBloc, AddCardsState>(
+      builder: (context, addCardsState) {
+        return BlocBuilder<FavoritesBloc, FavoritesState>(
+          builder: (context, favoritesState) {
+            if (addCardsState is AddCardsLoadingState) {
+              return Scaffold(
+                appBar: AppBar(
+                  title: Text(AppLocalizations.of(context)!.myCards),
+                ),
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            }
 
-    // Show empty state
-    if (myCards.isEmpty) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            AppLocalizations.of(context)!.myCards,
-          ),
-          actions: [
-            IconButton(
-              icon: Icon(Icons.add),
-              onPressed: showAddCardDialog,
-            ),
-          ],
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                ';(',
-                style: TextStyle(
-                  fontSize: 28,
-                  color: Colors.grey,
-                  fontWeight: FontWeight.bold,
+            // Show empty state
+            if (addCardsState is MyCardsEmptyState) {
+              return Scaffold(
+                appBar: AppBar(
+                  title: Text(AppLocalizations.of(context)!.myCards),
+                  actions: [
+                    IconButton(
+                      icon: Icon(Icons.add),
+                      onPressed: showAddCardDialog,
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(height: 16),
-              ElevatedButton.icon(
-                onPressed: showAddCardDialog,
-                icon: Icon(
-                  Icons.add,
-                  size: 20,
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        ';(',
+                        style: TextStyle(
+                          fontSize: 28,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      ElevatedButton.icon(
+                        onPressed: showAddCardDialog,
+                        icon: Icon(
+                          Icons.add,
+                          size: 20,
+                        ),
+                        label: Text(AppLocalizations.of(context)!.addCard),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.mainColor,
+                          foregroundColor: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                label: Text(AppLocalizations.of(context)!.addCard),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.mainColor,
-                  foregroundColor: Colors.white,
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
+              );
+            }
 
-    // Show cards content
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () => context.router.pop(),
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.blue,
-          ),
-        ),
-        title: Text(
-          AppLocalizations.of(context)!.myCards,
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(
-              currentViewMode == ViewMode.cards ? Icons.list : Icons.style,
-            ),
-            onPressed: toggleViewMode,
-          ),
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: showAddCardDialog,
-          ),
-        ],
-      ),
-      body: currentViewMode == ViewMode.cards
-          ? _buildCardView(myCards)
-          : _buildListView(myCards),
+            if (addCardsState is AddCardsErrorState) {
+              return Scaffold(
+                body: Center(
+                  child: Text(addCardsState.message),
+                ),
+              );
+            }
+
+            if (addCardsState is MyCardsLoadedState) {
+              final favorites = favoritesState is FavoritesLoadedState
+                  ? favoritesState.favorites
+                  : <MyCard>[];
+
+              // Show cards content
+              return Scaffold(
+                appBar: AppBar(
+                  leading: IconButton(
+                    onPressed: () => context.router.pop(),
+                    icon: Icon(Icons.arrow_back),
+                  ),
+                  title: Text(
+                    AppLocalizations.of(context)!.myCards,
+                  ),
+                  centerTitle: true,
+                  actions: [
+                    IconButton(
+                      icon: Icon(
+                        addCardsState.viewMode == ViewMode.cards
+                            ? Icons.list
+                            : Icons.style,
+                      ),
+                      onPressed: () => context
+                          .read<AddCardsBloc>()
+                          .add(ToggleViewModeEvent()),
+                    ),
+                    IconButton(
+                      icon: Icon(Icons.add),
+                      onPressed: showAddCardDialog,
+                    ),
+                  ],
+                ),
+                body: addCardsState.viewMode == ViewMode.cards
+                    ? _buildCardView(
+                        addCardsState.cards,
+                        addCardsState.currentIndex,
+                        addCardsState.showTranslation,
+                        favorites,
+                      )
+                    : _buildListView(addCardsState.cards),
+              );
+            }
+            return Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }

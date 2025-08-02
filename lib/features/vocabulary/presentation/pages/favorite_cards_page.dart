@@ -6,14 +6,14 @@ import 'package:gwenchana/l10n/gen_l10n/app_localizations.dart';
 enum ViewMode { list, cards }
 
 @RoutePage()
-class FavoritesCardPage extends StatefulWidget {
-  const FavoritesCardPage({super.key});
+class FavoriteCardsPage extends StatefulWidget {
+  const FavoriteCardsPage({super.key});
 
   @override
-  State<FavoritesCardPage> createState() => _FavoritesCardPageState();
+  State<FavoriteCardsPage> createState() => _FavoriteCardsPageState();
 }
 
-class _FavoritesCardPageState extends State<FavoritesCardPage>
+class _FavoriteCardsPageState extends State<FavoriteCardsPage>
     with SingleTickerProviderStateMixin {
   int currentIndex = 0;
   bool showTranslation = false;

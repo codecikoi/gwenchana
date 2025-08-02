@@ -5,6 +5,7 @@ import 'package:gwenchana/core/di/locator.dart';
 import 'package:gwenchana/core/domain/repository/book_repository.dart';
 import 'package:gwenchana/core/helper/card_colors.dart';
 import 'package:gwenchana/core/navigation/app_router.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_add_cards/add_cards_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_state.dart';
@@ -111,7 +112,7 @@ class _VocabularyPageState extends State<VocabularyPage> {
                   onPressed: () => showDialog(
                     context: context,
                     builder: (context) => AddCardDialog(
-                      bloc: context.read<VocabularyBloc>(),
+                      addCardsBloc: context.read<AddCardsBloc>(),
                     ),
                   ),
                 ),
@@ -172,7 +173,7 @@ class _VocabularyPageState extends State<VocabularyPage> {
                   // favorites
                   return GestureDetector(
                     onTap: () => context.router.push(
-                      FavoritesCardRoute(),
+                      FavoriteCardsRoute(),
                     ),
                     child: Card(
                       shape: RoundedRectangleBorder(
