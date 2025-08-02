@@ -50,7 +50,7 @@ class VocabularyErrorState extends VocabularyState {
 class CardDataLoadedState extends VocabularyState {
   final List<Map<String, String>> wordCards;
   final int currentIndex;
-  final bool showEnglish;
+  final bool showTranslation;
   final int currentProgress;
   final String setTitle;
   final int setIndex;
@@ -59,7 +59,7 @@ class CardDataLoadedState extends VocabularyState {
   const CardDataLoadedState({
     required this.wordCards,
     required this.currentIndex,
-    required this.showEnglish,
+    required this.showTranslation,
     required this.currentProgress,
     required this.setTitle,
     required this.setIndex,
@@ -70,7 +70,7 @@ class CardDataLoadedState extends VocabularyState {
   List<Object?> get props => [
         wordCards,
         currentIndex,
-        showEnglish,
+        showTranslation,
         currentProgress,
         setTitle,
         setIndex,

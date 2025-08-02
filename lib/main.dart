@@ -11,6 +11,8 @@ import 'package:gwenchana/features/choose_language/presentation/bloc/app_languag
 import 'package:gwenchana/core/navigation/app_router.dart';
 import 'package:gwenchana/core/services/auth_service_impl.dart';
 import 'package:gwenchana/features/choose_language/presentation/bloc/app_language_state.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_add_cards/add_cards_bloc.dart';
+import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_favorite_cards/favorites_bloc.dart';
 import 'package:gwenchana/features/vocabulary/presentation/bloc/bloc_vocabulary/vocabulary_event.dart';
 import 'package:gwenchana/features/vocabulary/presentation/widgets/word_card_model.dart';
 import 'l10n/gen_l10n/app_localizations.dart';
@@ -72,6 +74,12 @@ class _MyAppState extends State<MyApp> {
             ..add(
               LoadProgressEvent(),
             ),
+        ),
+        BlocProvider<AddCardsBloc>(
+          create: (context) => AddCardsBloc(),
+        ),
+        BlocProvider<FavoritesBloc>(
+          create: (context) => FavoritesBloc(),
         ),
       ],
       child: BlocBuilder<AppLanguageBloc, AppLanguageState>(

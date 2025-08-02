@@ -52,7 +52,7 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
       emit(CardDataLoadedState(
         wordCards: event.wordCards,
         currentIndex: currentIndex,
-        showEnglish: false,
+        showTranslation: false,
         currentProgress: currentProgress,
         setTitle: setTitle,
         setIndex: event.setIndex,
@@ -74,7 +74,7 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
         emit(CardDataLoadedState(
           wordCards: currenState.wordCards,
           currentIndex: newIndex,
-          showEnglish: false,
+          showTranslation: false,
           currentProgress: currenState.currentProgress,
           setTitle: currenState.setTitle,
           setIndex: currenState.setIndex,
@@ -102,7 +102,7 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
         emit(CardDataLoadedState(
           wordCards: currentState.wordCards,
           currentIndex: newIndex,
-          showEnglish: false,
+          showTranslation: false,
           currentProgress: currentState.currentProgress,
           setTitle: currentState.setTitle,
           setIndex: currentState.setIndex,
@@ -127,7 +127,7 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
       emit(CardDataLoadedState(
         wordCards: currentState.wordCards,
         currentIndex: currentState.currentIndex,
-        showEnglish: !currentState.showEnglish,
+        showTranslation: !currentState.showTranslation,
         currentProgress: currentState.currentProgress,
         setTitle: currentState.setTitle,
         setIndex: currentState.setIndex,
@@ -193,7 +193,7 @@ class VocabularyBloc extends Bloc<VocabularyEvent, VocabularyState> {
         emit(CardDataLoadedState(
           wordCards: wordCards,
           currentIndex: currentIndex,
-          showEnglish: false,
+          showTranslation: false,
           currentProgress: currentProgress,
           setTitle: setTitle,
           setIndex: event.setIndex,
